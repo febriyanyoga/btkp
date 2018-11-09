@@ -31,7 +31,7 @@
 		<script src="assets/js/modernizr-custom.js"></script>
 
 	</head>
-	<body class="layout-wide">
+	<body class="layout-wide slideshow-background">
 
 		<div id="preloader" class="preloader preloader-dark">
 			<div class="loader-status">
@@ -94,6 +94,23 @@
 				<i class="fas fa-angle-up"></i>
 			</a>
 
+			<!-- Global overlay -->
+			<div class="global-overlay">
+				<div class="overlay-inner bg-image-holder bg-cover">
+					<img src="demo/images/image-4.jpg" alt="background">
+				</div>
+				<div class="overlay-inner overlay-video">
+					<div class="video-wrapper">
+						<video autoplay muted loop data-keepplaying>
+							<!-- <source src="demo/video/work.webm" type="video/webm"> -->
+							<source src="demo/video/back.mp4" type="video/mp4">
+							<!-- <source src="demo/video/work.ogv" type="video/ogg"> -->
+						</video>
+					</div>
+				</div>
+				<div class="overlay-inner bg-dark opacity-50"></div>
+			</div>
+
 			<!-- Scroll progress -->
 			<div class="scroll-progress">
 				<div class="sp-left">
@@ -109,20 +126,27 @@
 			<!-- Page content -->
 			<div class="ln-fullpage" data-navigation="true">
 
-				<section class="ln-section d-lg-flex fullscreen-lg bg-primary" data-anchor="home" data-tooltip="Home" data-overlay-color="#00050e" data-overlay-opacity="50">
+				<section class="ln-section d-lg-flex fullscreen-lg" data-anchor="home" data-tooltip="Home" data-overlay-color="#00050e" data-overlay-opacity="50">
+					<div class="overlay has-mobile-overlay">
+						<div class="overlay-inner"></div>
+					</div>
 					<div class="container align-self-lg-center">
 						<div class="row">
 							<div class="col-12 col-lg-9 col-xl-6">
 
-								<h1 class="text-white mb-5 animated" data-animation="fadeInUp">We bulidt brands and beautiful digital experiences.</h1>
-								<a href="#our-mission" class="btn btn-white scrollto animated" data-animation="fadeInUp" data-animation-delay="150">Learn more</a>
+								<div class="countdown text-white mb-5 animated" data-animation="fadeInUp" data-countdown="2018/05/25 12:00:00"></div>
+								<h2 class="text-white mb-5 animated" data-animation="fadeInUp" data-animation-delay="150">Our website is under construction. We`ll be here soon with our new awesome site.</h2>
+								<a href="#our-mission" class="btn btn-primary scrollto animated" data-animation="fadeInUp" data-animation-delay="300">Learn more</a>
 
 							</div>
 						</div>
 					</div>
 				</section>
 
-				<section class="ln-section d-xl-flex bg-secondary" data-anchor="our-mission" data-tooltip="Our mission" data-overlay-color="#00050e" data-overlay-opacity="90">
+				<section class="ln-section d-xl-flex" data-anchor="our-mission" data-tooltip="Our mission" data-overlay-color="#00050e" data-overlay-opacity="90">
+					<div class="overlay has-mobile-overlay">
+						<div class="overlay-inner"></div>
+					</div>
 					<div class="container align-self-xl-center">
 
 						<div class="row">
@@ -135,7 +159,10 @@
 					</div>
 				</section>
 
-				<section class="ln-section d-xl-flex bg-primary" data-anchor="what-we-do" data-tooltip="What we do" data-overlay-color="#2d5aec" data-overlay-opacity="90">
+				<section class="ln-section d-xl-flex" data-anchor="what-we-do" data-tooltip="What we do" data-overlay-color="#2d5aec" data-overlay-opacity="90">
+					<div class="overlay has-mobile-overlay">
+						<div class="overlay-inner"></div>
+					</div>
 					<div class="container align-self-xl-center">
 
 						<div class="row">
@@ -219,7 +246,10 @@
 					</div>
 				</section>
 
-				<section class="ln-section d-xl-flex bg-secondary" data-anchor="our-solutions" data-tooltip="Our solutions" data-overlay-color="#00050e" data-overlay-opacity="90">
+				<section class="ln-section d-xl-flex" data-anchor="our-solutions" data-tooltip="Our solutions" data-overlay-color="#00050e" data-overlay-opacity="90">
+					<div class="overlay has-mobile-overlay">
+						<div class="overlay-inner"></div>
+					</div>
 					<div class="container align-self-xl-center">
 						<div class="row mb-5">
 							<div class="col-12 col-xl-6">
@@ -248,7 +278,10 @@
 					</div>
 				</section>
 
-				<section class="ln-section d-xl-flex bg-primary" data-anchor="subscribe" data-tooltip="Subscribe" data-overlay-color="#2d5aec" data-overlay-opacity="90">
+				<section class="ln-section d-xl-flex" data-anchor="subscribe" data-tooltip="Subscribe" data-overlay-color="#2d5aec" data-overlay-opacity="90">
+					<div class="overlay has-mobile-overlay">
+						<div class="overlay-inner"></div>
+					</div>
 					<div class="container align-self-xl-center">
 						<div class="row">
 							<div class="col-12 col-xl-6">
@@ -285,7 +318,10 @@
 					</div>
 				</section>
 
-				<section class="ln-section d-xl-flex bg-secondary" data-anchor="our-work" data-tooltip="Our work" data-overlay-color="#00050e" data-overlay-opacity="80">
+				<section class="ln-section d-xl-flex" data-anchor="our-work" data-tooltip="Our work" data-overlay-color="#00050e" data-overlay-opacity="80">
+					<div class="overlay has-mobile-overlay">
+						<div class="overlay-inner"></div>
+					</div>
 					<div class="container align-self-xl-center">
 						<div class="row mb-5">
 							<div class="col-12 col-xl-6">
@@ -424,7 +460,10 @@
 					</div>
 				</section>
 
-				<section class="ln-section d-xl-flex bg-primary" data-anchor="contact" data-tooltip="Contact" data-overlay-color="#00050e" data-overlay-opacity="90">
+				<section class="ln-section d-xl-flex" data-anchor="contact" data-tooltip="Contact" data-overlay-color="#00050e" data-overlay-opacity="90">
+					<div class="overlay has-mobile-overlay">
+						<div class="overlay-inner"></div>
+					</div>
 					<div class="container align-self-center">
 						<div class="row mb-5">
 							<div class="col-12 col-xl-6">
