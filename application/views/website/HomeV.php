@@ -307,27 +307,18 @@
                                     <div class="pricing-item-content">
                                         <div class="head">
                                             <h3 class="title">Cek Perizinan</h3>
-                                            <p class="desc">Masukan nomor seri perizinan</p>
+                                            <p class="desc">Mengecek surat perizinan</p>
 
                                         </div>
                                         <div class="body">
                                             <div class="features">
                                               <div class="form-group">
-  <label for="usr">Name:</label>
-  <input type="text" class="form-control" id="usr">
-</div>
-<div class="form-group">
-  <label for="pwd">Password:</label>
-  <input type="password" class="form-control" id="pwd">
-</div>
-                                              <div class="form-group">
-                                          <div class="input-group">
-                                              <input type="text" name="domain" class="form-control" placeholder="eg. example" required="" aria-required="true">
-                                              <div class="buy-now">
-                                                  <a href="#" class="btn btn-lg btn-custom">Buy Now</a>
-                                              </div>
+                                          <label for="usr">Masukkan Nomor Seri:</label>
+                                          <input type="text" class="form-control" id="usr">
                                           </div>
-                                      </div> 
+                                              <div class="buy-now">
+                                                  <a href="#" class="btn btn-lg btn-custom">Cek</a>
+                                              </div>
                                             </div>
 
                                         </div>
@@ -346,21 +337,12 @@
                                 <div class="col-md-4 pricing-item">
                                     <div class="pricing-item-content">
                                         <div class="head">
-                                            <h3 class="title">Basic</h3>
-                                            <p class="desc">Cras ex justo bibendum eget sollicitudin lobortis libero</p>
+                                            <h3 class="title">Production Approval</h3>
+                                            <p class="desc">Deskripsi</p>
                                             <div class="price"><div>Start at</div><div><span>$9.99</span>/m</div></div>
                                         </div>
                                         <div class="body">
                                             <div class="features">
-                                                <ul>
-                                                    <li>2GB RAM</li>
-                                                    <li>2GB RAM</li>
-                                                    <li>20GB SSD Cloud Storage</li>
-                                                    <li>Monthly Backups</li>
-                                                    <li>DDoS Protection</li>
-                                                    <li>Full Root Access</li>
-                                                    <li>24/7/365 Tech Support</li>
-                                                </ul>
                                             </div>
                                             <div class="buy-now">
                                                 <a href="#" class="btn btn-lg btn-custom">Buy Now</a>
@@ -382,15 +364,6 @@
                                         </div>
                                         <div class="body">
                                             <div class="features">
-                                                <ul>
-                                                    <li>4GB RAM</li>
-                                                    <li>4GB RAM</li>
-                                                    <li>40GB SSD Cloud Storage</li>
-                                                    <li>Weekly Backups</li>
-                                                    <li>DDoS Protection</li>
-                                                    <li>Full Root Access</li>
-                                                    <li>24/7/365 Tech Support</li>
-                                                </ul>
                                             </div>
                                             <div class="buy-now">
                                                 <a href="#" class="btn btn-lg btn-custom">Buy Now</a>
