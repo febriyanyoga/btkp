@@ -10,16 +10,27 @@ class Website extends CI_Controller {
 		// $data['isi'] = "isi";
 		$this->load->view('website/Layout', $data);
 	}
-	public function login ()
-	{
-		$this->load->view('website/LoginV');
+
+	public function tentang(){
+		$this->data['lele'] = 'lel';
+		$data['isi'] = $this->load->view('website/tentangV',$this->data, TRUE);
+		// $data['isi'] = "isi";
+		$this->load->view('website/tentang', $data);
 	}
-	public function daftar ()
-	{
-		$this->load->view('website/DaftarV');
+
+	public function kontak(){
+		$this->data['lele'] = 'lel';
+		$data['isi'] = $this->load->view('website/tentangV',$this->data, TRUE);
+		// $data['isi'] = "isi";
+		$this->load->view('website/tentang', $data);
 	}
-	public function perizinan()
-	{
-		$this->load->view('website/perizinanV');
+
+	public function pengujian(){
+		$this->data['lele'] = 'lel';
+		$data['isi'] = $this->load->view('website/tentangV',$this->data, TRUE);
+		// $data['isi'] = "isi";
+		$this->load->view('website/tentang', $data);
 	}
+
+	
 }
