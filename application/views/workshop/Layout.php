@@ -12,9 +12,9 @@
     <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url()?>assets/app/images/favicon.png">
     <title>BTKP</title>
     <!-- Custom CSS -->
-    <link href="<?php echo base_url()?>assets/app/libs/chartist/dist/chartist.min.css" rel="stylesheet">
-    <link href="<?php echo base_url()?>assets/app/extra-libs/c3/c3.min.css" rel="stylesheet">
-    <link href="<?php echo base_url()?>assets/app/libs/morris.js/morris.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/app/extra-libs/prism/prism.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/app/libs/datatables.net-bs4/css/dataTables.bootstrap4.css">
+
     <!-- Custom CSS -->
     <link href="<?php echo base_url()?>assets/app/dist/css/style.min.css" rel="stylesheet">
 
@@ -60,7 +60,7 @@
 
                         <!-- Logo text -->
                         <span class="logo-text">
-                             
+
                             <!-- Light Logo text -->
                           <h3 class="dark-logo" style="color:#fff;">BTKP Apps</h3>
                             <img src="<?php echo base_url()?>assets/app/images/logo-light-text.png" class="light-logo" alt="homepage" />
@@ -151,7 +151,7 @@
                                         <p class=" m-b-0">workshop@gmail.com</p>
                                     </div>
                                 </div>
-                            
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="javascript:void(0)">
                                     <i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
@@ -218,30 +218,26 @@
                             <!-- End User Profile-->
                         </li>
                         <!-- User Profile-->
+
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?php echo site_url('workshop/dashboard')?>" aria-expanded="false">
+                                <i class="icon-Car-Wheel"></i>
+                                <span class="hide-menu">Dashboard </span>
+                            </a>
+                        </li>
                         <li class="nav-small-cap">
                             <i class="mdi mdi-dots-horizontal"></i>
-                            <span class="hide-menu">Menu User</span>
+                            <span class="hide-menu">Perizinan</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('Home/dashboard_perizinan')?>" aria-expanded="false">
+                            <a class="sidebar-link" href="<?php echo site_url('workshop/perizinan_baru')?>" aria-expanded="false">
                                 <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Dashboards </span>
+                                <span class="hide-menu">Perizinan Baru</span>
                             </a>
                         </li>
+
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('Home/perizinan_baru')?>" aria-expanded="false">
-                                <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Perizinan Baru </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('Home/perpanjangan')?>" aria-expanded="false">
-                                <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Perpanjangan </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('Home/tagihan')?>" aria-expanded="false">
+                            <a class="sidebar-link" href="<?php echo site_url('workshop/tagihan')?>" aria-expanded="false">
                                 <i class="icon-Car-Wheel"></i>
                                 <span class="hide-menu">Tagihan </span>
                             </a>
@@ -252,13 +248,22 @@
                                 <span class="hide-menu">Pelaporan </span>
                             </a>
                         </li>
+                        <li class="nav-small-cap">
+                            <i class="mdi mdi-dots-horizontal"></i>
+                            <span class="hide-menu">Pengujian</span>
+                        </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('Home/')?>" aria-expanded="false">
+                            <a class="sidebar-link" href="<?php echo site_url('Home/tagihan')?>" aria-expanded="false">
                                 <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Logout </span>
+                                <span class="hide-menu">Type Approval </span>
                             </a>
                         </li>
-
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="<?php echo site_url('Home/tagihan')?>" aria-expanded="false">
+                                <i class="icon-Car-Wheel"></i>
+                                <span class="hide-menu">Production Approval </span>
+                            </a>
+                        </li>
                     </ul>
                 </nav>
                 <!-- End Sidebar navigation -->
@@ -269,7 +274,9 @@
         <!-- End Left Sidebar - style you can find in sidebar.scss  -->
         <!-- ============================================================== -->
         <!-- ============================================================== -->
+        <div class="container-fluid">
        <?php echo $isi;?>
+       </div>
         <!-- ============================================================== -->
     <!-- ============================================================== -->
     <!-- ============================================================== -->
@@ -281,7 +288,7 @@
     <!-- All Jquery -->
     <!-- ============================================================== -->
 
-    
+
 <script src="<?php echo base_url()?>assets/app/libs/jquery/dist/jquery.min.js"></script>
     <!-- Bootstrap tether Core JavaScript -->
     <script src="<?php echo base_url()?>assets/app/libs/popper.js/dist/umd/popper.min.js"></script>
@@ -299,25 +306,13 @@
     <script src="<?php echo base_url()?>assets/app/dist/js/sidebarmenu.js"></script>
     <!--Custom JavaScript -->
     <script src="<?php echo base_url()?>assets/app/dist/js/custom.min.js"></script>
- 
-    <!--This page JavaScript -->
-    <!--chartis chart-->
-    <script src="<?php echo base_url()?>assets/app/libs/chartist/dist/chartist.min.js"></script>
-    <script src="<?php echo base_url()?>assets/app/libs/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js"></script>
-    <!--c3 charts -->
-    <script src="<?php echo base_url()?>assets/app/extra-libs/c3/d3.min.js"></script>
-    <script src="<?php echo base_url()?>assets/app/extra-libs/c3/c3.min.js"></script>
-    <!--chartjs -->
-    <script src="<?php echo base_url()?>assets/app/libs/raphael/raphael.min.js"></script>
-    <script src="<?php echo base_url()?>assets/app/libs/morris.js/morris.min.js"></script>
 
-    <script src="<?php echo base_url()?>assets/app/dist/js/pages/dashboards/dashboard1.js"></script>
-
-     
 <script src="<?php echo base_url()?>assets/app/dist/js/custom.js"></script>
 <script src="<?php echo base_url()?>assets/app/libs/jquery-steps/build/jquery.steps.min.js"></script>
 <script src="<?php echo base_url()?>assets/app/libs/jquery-validation/dist/jquery.validate.min.js"></script>
-
+<!-- datatabel -->
+<script src="<?php echo base_url()?>assets/app/extra-libs/DataTables/datatables.min.js"></script>
+<script src="<?php echo base_url()?>assets/app/dist/js/pages/datatable/datatable-basic.init.js"></script>
 
     <script>
 
@@ -377,7 +372,7 @@
     })
     </script>
 
-    
+
 </body>
             <!-- footer -->
             <!-- ============================================================== -->

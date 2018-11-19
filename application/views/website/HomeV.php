@@ -1,6 +1,6 @@
 
         <!-- Service Area Start -->
-        <div id="service" class="service-primary" data-bg-img="<?php echo base_url()?>assets/website/img/background-img/bg.jpg">
+        <div id="service" class="service-primary" data-bg-img="<?php echo base_url()?>assets/website/img/home/bg.jpg">
             <div class="vc-parent">
                 <div class="vc-child">
                     <div class="service-slider">
@@ -9,7 +9,7 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="image">
-                                            <img src="img/service-slider-bg/slider-01.png" alt="">
+                                            <img style="width:300px;" src="<?php echo base_url()?>assets/website/img/home/jaket.png" alt="">
                                         </div>
                                         <div class="price-tag bg-green">
                                             <p>starting at<span>$10<em>/mo</em></span></p>
@@ -382,15 +382,6 @@
                                         </div>
                                         <div class="body">
                                             <div class="features">
-                                                <ul>
-                                                    <li>10GB RAM</li>
-                                                    <li>10GB RAM</li>
-                                                    <li>100GB SSD Cloud Storage</li>
-                                                    <li>Daily Backups</li>
-                                                    <li>DDoS Protection</li>
-                                                    <li>Full Root Access</li>
-                                                    <li>24/7/365 Tech Support</li>
-                                                </ul>
                                             </div>
                                             <div class="buy-now">
                                                 <a href="#" class="btn btn-lg btn-custom">Buy Now</a>
@@ -403,190 +394,7 @@
                             <!-- Pricing Table End -->
                         </div>
                     </div>
-                    <div role="tabpanel" class="tab-pane fade" id="tabC">
-                        <div class="row">
-                            <!-- Pricing Table Start -->
-                            <div class="pricing-table">
-                                <!-- Pricing Item Start -->
-                                <div class="col-md-4 pricing-item">
-                                    <div class="pricing-item-content">
-                                        <div class="head">
-                                            <h3 class="title">Basic</h3>
-                                            <p class="desc">Cras ex justo bibendum eget sollicitudin lobortis libero</p>
-                                            <div class="price"><div>Start at</div><div><span>$9.99</span>/m</div></div>
-                                        </div>
-                                        <div class="body">
-                                            <div class="features">
-                                                <ul>
-                                                    <li>2GB RAM</li>
-                                                    <li>2GB RAM</li>
-                                                    <li>20GB SSD Cloud Storage</li>
-                                                    <li>Monthly Backups</li>
-                                                    <li>DDoS Protection</li>
-                                                    <li>Full Root Access</li>
-                                                    <li>24/7/365 Tech Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="buy-now">
-                                                <a href="#" class="btn btn-lg btn-custom">Buy Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Pricing Item End -->
-                                <!-- Pricing Item Start -->
-                                <div class="col-md-4 pricing-item active">
-                                    <div class="pricing-item-content">
-                                        <div class="ribbon ribbon-small text-white">
-                                            <div class="ribbon-content bg-green text-uppercase">Popular</div>
-                                        </div>
-                                        <div class="head">
-                                            <h3 class="title">Advance</h3>
-                                            <p class="desc">Cras ex justo bibendum eget sollicitudin lobortis libero</p>
-                                            <div class="price"><div>Start at</div><div><span>$19.99</span>/m</div></div>
-                                        </div>
-                                        <div class="body">
-                                            <div class="features">
-                                                <ul>
-                                                    <li>4GB RAM</li>
-                                                    <li>4GB RAM</li>
-                                                    <li>40GB SSD Cloud Storage</li>
-                                                    <li>Weekly Backups</li>
-                                                    <li>DDoS Protection</li>
-                                                    <li>Full Root Access</li>
-                                                    <li>24/7/365 Tech Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="buy-now">
-                                                <a href="#" class="btn btn-lg btn-custom">Buy Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Pricing Item End -->
-                                <!-- Pricing Item Start -->
-                                <div class="col-md-4 pricing-item">
-                                    <div class="pricing-item-content">
-                                        <div class="head">
-                                            <h3 class="title">Business</h3>
-                                            <p class="desc">Cras ex justo bibendum eget sollicitudin lobortis libero</p>
-                                            <div class="price"><div>Start at</div><div><span>$29.99</span>/m</div></div>
-                                        </div>
-                                        <div class="body">
-                                            <div class="features">
-                                                <ul>
-                                                    <li>10GB RAM</li>
-                                                    <li>10GB RAM</li>
-                                                    <li>100GB SSD Cloud Storage</li>
-                                                    <li>Daily Backups</li>
-                                                    <li>DDoS Protection</li>
-                                                    <li>Full Root Access</li>
-                                                    <li>24/7/365 Tech Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="buy-now">
-                                                <a href="#" class="btn btn-lg btn-custom">Buy Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Pricing Item End -->
-                            </div>
-                            <!-- Pricing Table End -->
-                        </div>
-                    </div>
-                    <div role="tabpanel" class="tab-pane fade" id="tabD">
-                        <div class="row">
-                            <!-- Pricing Table Start -->
-                            <div class="pricing-table">
-                                <!-- Pricing Item Start -->
-                                <div class="col-md-4 pricing-item">
-                                    <div class="pricing-item-content">
-                                        <div class="head">
-                                            <h3 class="title">Basic</h3>
-                                            <p class="desc">Cras ex justo bibendum eget sollicitudin lobortis libero</p>
-                                            <div class="price"><div>Start at</div><div><span>$9.99</span>/m</div></div>
-                                        </div>
-                                        <div class="body">
-                                            <div class="features">
-                                                <ul>
-                                                    <li>2GB RAM</li>
-                                                    <li>2GB RAM</li>
-                                                    <li>20GB SSD Cloud Storage</li>
-                                                    <li>Monthly Backups</li>
-                                                    <li>DDoS Protection</li>
-                                                    <li>Full Root Access</li>
-                                                    <li>24/7/365 Tech Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="buy-now">
-                                                <a href="#" class="btn btn-lg btn-custom">Buy Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Pricing Item End -->
-                                <!-- Pricing Item Start -->
-                                <div class="col-md-4 pricing-item active">
-                                    <div class="pricing-item-content">
-                                        <div class="ribbon ribbon-small text-white">
-                                            <div class="ribbon-content bg-green text-uppercase">Popular</div>
-                                        </div>
-                                        <div class="head">
-                                            <h3 class="title">Advance</h3>
-                                            <p class="desc">Cras ex justo bibendum eget sollicitudin lobortis libero</p>
-                                            <div class="price"><div>Start at</div><div><span>$19.99</span>/m</div></div>
-                                        </div>
-                                        <div class="body">
-                                            <div class="features">
-                                                <ul>
-                                                    <li>4GB RAM</li>
-                                                    <li>4GB RAM</li>
-                                                    <li>40GB SSD Cloud Storage</li>
-                                                    <li>Weekly Backups</li>
-                                                    <li>DDoS Protection</li>
-                                                    <li>Full Root Access</li>
-                                                    <li>24/7/365 Tech Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="buy-now">
-                                                <a href="#" class="btn btn-lg btn-custom">Buy Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Pricing Item End -->
-                                <!-- Pricing Item Start -->
-                                <div class="col-md-4 pricing-item">
-                                    <div class="pricing-item-content">
-                                        <div class="head">
-                                            <h3 class="title">Business</h3>
-                                            <p class="desc">Cras ex justo bibendum eget sollicitudin lobortis libero</p>
-                                            <div class="price"><div>Start at</div><div><span>$29.99</span>/m</div></div>
-                                        </div>
-                                        <div class="body">
-                                            <div class="features">
-                                                <ul>
-                                                    <li>10GB RAM</li>
-                                                    <li>10GB RAM</li>
-                                                    <li>100GB SSD Cloud Storage</li>
-                                                    <li>Daily Backups</li>
-                                                    <li>DDoS Protection</li>
-                                                    <li>Full Root Access</li>
-                                                    <li>24/7/365 Tech Support</li>
-                                                </ul>
-                                            </div>
-                                            <div class="buy-now">
-                                                <a href="#" class="btn btn-lg btn-custom">Buy Now</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- Pricing Item End -->
-                            </div>
-                            <!-- Pricing Table End -->
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>

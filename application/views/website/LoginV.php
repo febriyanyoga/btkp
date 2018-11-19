@@ -42,8 +42,8 @@
             <div class="auth-box">
                 <div id="loginform">
                     <div class="logo">
-                        <span class="db"><img style="max-height: 100px;" src="<?php echo base_url()?>assets/landing-page/images/logo-btkp-glow.png" alt="logo" /></span>
-                        <h5 class="font-medium m-b-20">Silahkan Masuk</h5>
+                        <span class="db"><img style="max-height: 100px;" src="<?php echo base_url()?>assets/app/images/logo-btkp.png" alt="logo" /></span>
+                        <h3>Silahkan Login</h3>
                     </div>
                     <!-- Form -->
                     <div class="row">
