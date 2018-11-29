@@ -129,26 +129,8 @@
                                             <div class="widget-body">
                                                 <!-- Begin House Members -->
                                                 <div class="row align-items-center">
-                                                    <div class="col-xl-6">
-                                                        <div class="house-members">
-                                                            <a class="here" href="javascript:void(0);">
-                                                                <img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-07.jpg" class="img-fluid rounded-circle" alt="...">
-                                                            </a>
-                                                            <a class="away" href="javascript:void(0);">
-                                                                <img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-02.jpg" class="img-fluid rounded-circle" alt="...">
-                                                            </a>
-                                                            <a class="away" href="javascript:void(0);">
-                                                                <img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-04.jpg" class="img-fluid rounded-circle" alt="...">
-                                                            </a>
-                                                            <a class="away" href="javascript:void(0);">
-                                                                <img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-06.jpg" class="img-fluid rounded-circle" alt="...">
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-xl-6">
-                                                        <div class="text-dark">
-                                                            <i class="la la-tv align-middle pr-2 la-2x"></i>In the Living Room
-                                                        </div>
+                                                    <div class="col-xl-12">
+                                                        <h2 class="text-center">Kalender</h2>
                                                     </div>
                                                 </div>
                                                 <!-- End House Members -->
@@ -168,23 +150,12 @@
                                         <div class="widget widget-25 has-shadow">
                                             <!-- Begin Widget Header -->
                                             <div class="widget-header d-flex align-items-center">
-                                                <h2>Status Pelayanan</h2>
+                                                <h2>Perizinan Anda</h2>
                                                 <div class="widget-options">
                                                     <div class="dropdown">
                                                         <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">
                                                             <i class="la la-ellipsis-h"></i>
                                                         </button>
-                                                        <div class="dropdown-menu">
-                                                            <a href="#" class="dropdown-item">
-                                                                <i class="la la-bell-slash"></i>Disable Alerts
-                                                            </a>
-                                                            <a href="#" class="dropdown-item">
-                                                                <i class="la la-edit"></i>Edit Widget
-                                                            </a>
-                                                            <a href="#" class="dropdown-item faq">
-                                                                <i class="la la-question-circle"></i>FAQ
-                                                            </a>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -194,35 +165,21 @@
                                             <table id="zero-config" class="table mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>Order ID</th>
-                                                        <th>Customer Name</th>
-                                                        <th>Country</th>
-                                                        <th>Ship Date</th>
+                                                        <th>No.BTKP</th>
+                                                        <th>Jenis SPK</th>
+                                                        <th>Jatuh Tempo</th>
                                                         <th><span style="width:100px;">Status</span></th>
-                                                        <th>Order Total</th>
                                                         <th>Actions</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
                                                     <tr>
-                                                        <td><span class="text-primary">054-01-FR</span></td>
-                                                        <td>Lori Baker</td>
-                                                        <td>US</td>
-                                                        <td>10/21/2017</td>
-                                                        <td><span style="width:100px;"><span class="badge-text badge-text-small info">Paid</span></span></td>
-                                                        <td>$139.45</td>
-                                                        <td class="td-actions">
-                                                            <a href="#"><i class="la la-edit edit"></i></a>
-                                                            <a href="#"><i class="la la-close delete"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><span class="text-primary">021-12-US</span></td>
-                                                        <td>Lawrence Crawford</td>
-                                                        <td>FR</td>
-                                                        <td>10/21/2017</td>
-                                                        <td><span style="width:100px;"><span class="badge-text badge-text-small info">Paid</span></span></td>
-                                                        <td>$189.00</td>
+                                                        <td><span class="text-primary">0760-LSA</span></td>
+                                                        <td>PERAWATAN DAN PERBAIKAN
+PEMADAM KEBAKARAN (PMK)  PORTABLE & CO2 SYSTEM
+</td>
+                                                        <td>09 OKTOBER 2019</td>
+                                                        <td><span style="width:100px;"><span class="badge-text badge-text-small info">Aktif</span></span></td>
                                                         <td class="td-actions">
                                                             <a href="#"><i class="la la-edit edit"></i></a>
                                                             <a href="#"><i class="la la-close delete"></i></a>
