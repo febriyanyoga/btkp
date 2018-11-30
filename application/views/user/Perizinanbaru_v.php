@@ -42,16 +42,16 @@
 										<h4>Identitas Service Station</h4>
 									</div>
 									<div class="form-group row mb-3">
-										<div class="col-xl-6 mb-3">
+										<div class="col-xl-12 mb-3">
 											<label class="form-control-label"><b>NAMA PERUSAHAAN</b> <i>(PUSAT / CABANG)</i><span class="text-danger ml-2">*</span></label>
 											<input type="text" value="PT. SURYA SEGARA SAFETY MARINE" class="form-control">
 										</div>
-										<div class="col-xl-6 mb-3">
+										<div class="col-xl-12 mb-3">
 											<label class="form-control-label"><b>ALAMAT KANTOR PERUSAHAAN</b><span class="text-danger ml-2">*</span></label>
 											<input type="text" value="Jl. Ir. Sutami Pergudangan Tamalanrea Blok. A2 No. 6 Kel. Parang Loe, Kec. Tamalanrea, Kota Makassar, Sulawesi Selatan"
 											 class="form-control">
 										</div>
-										<div class="col-xl-6 mb-3">
+										<div class="col-xl-12 mb-3">
 											<label class="form-control-label"><b>ALAMAT WORKSHOP / SERVICE STATION</b> <span class="text-danger ml-2">*</span></label>
 											<input type="text" value="" class="form-control">
 										</div>
@@ -87,7 +87,7 @@
 										</div>
 									</div>
 									<div class="section-title mt-5 mb-5">
-										<h4>Jenis SPK</h4>
+										<h4>Jenis Permohonan Izin SPK</h4>
 									</div>
 									<div class="form-group row mb-3">
 										<div class="col-xl-6">
@@ -129,84 +129,115 @@
 									</div>
 									<div class="form-group row mb-3">
 										<div class="col-xl-6 mb-3">
-                                        <!-- <div class="custom-file">
-											<input type="file" class="custom-file-input" id="customFile">
-											<label class="custom-file-label" for="customFile">Choose file</label>
-										</div> -->
-											<label class="form-control-label">Username<span class="text-danger ml-2">*</span></label>
-											<input type="file" class="form-control" id="customFile">
-											<label class="custom-file-label" for="customFile">Choose file</label>
-										</div>
-										<div class="col-xl-6">
-											<label class="form-control-label">Password<span class="text-danger ml-2">*</span></label>
-											<input type="text" value="**********" class="form-control">
-										</div>
-									</div>
-									<div class="form-group row mb-3">
-										<div class="col-xl-12">
-											<label class="form-control-label">Url</label>
-											<input type="url" value="http://mywebsite.com" class="form-control">
-										</div>
-									</div>
-									<div class="section-title mt-5 mb-5">
-										<h4>Billing Information</h4>
-									</div>
-									<div class="form-group row mb-3">
-										<div class="col-xl-12 mb-3">
-											<label class="form-control-label">Card Number</label>
-											<input type="text" value="98765432145698547" class="form-control">
-										</div>
-									</div>
-									<div class="form-group row mb-3">
-										<div class="col-xl-4 mb-3">
-											<label class="form-control-label">Exp Month<span class="text-danger ml-2">*</span></label>
-											<select name="exp-month" class="custom-select form-control">
-												<option value="">Select</option>
-												<option value="01">01</option>
-												<option value="02">02</option>
-												<option value="03">03</option>
-												<option value="04">04</option>
-												<option value="05">05</option>
-												<option value="06" selected>06</option>
-												<option value="07">07</option>
-												<option value="08">08</option>
-												<option value="09">09</option>
-												<option value="10">10</option>
-												<option value="11">11</option>
-												<option value="12">12</option>
-											</select>
-										</div>
-										<div class="col-xl-4 mb-3">
-											<label class="form-control-label">Exp Year<span class="text-danger ml-2">*</span></label>
-											<select name="exp-month" class="custom-select form-control">
-												<option value="2018">2018</option>
-												<option value="2019">2019</option>
-												<option value="2020">2020</option>
-												<option value="2021">2021</option>
-												<option value="2022">2022</option>
-												<option value="2023" selected>2023</option>
-												<option value="2024">2024</option>
-											</select>
-										</div>
-										<div class="col-xl-4">
-											<label class="form-control-label">CVV<span class="text-danger ml-2">*</span></label>
-											<input type="email" value="651" class="form-control">
-										</div>
-									</div>
-									<div class="form-group row mb-3">
-										<div class="col-xl-12">
-											<div class="styled-checkbox">
-												<input type="checkbox" name="savecard" id="check-card">
-												<label for="check-card">Save this card</label>
+											<label class="form-control-label">Akta Pendirian Perusahaan <span class="text-danger ml-2">*</span></label>
+                                            <i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Akta Pendirian Perusahaan harus mencantumkan kalimat “Jasa Perbaikan alat keselamatan pelayaran” pada bidang usahanya" data-original-title="" title="">
+                                                Syarat
+                                            </i>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
+											</div>
+                                        </div>
+                                        <div class="col-xl-6 mb-3">
+											<label class="form-control-label">Surat Ijin Perdagangan (SIUP) <span class="text-danger ml-2">*</span></label>
+                                            <i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Surat Ijin Perdagangan (SIUP) harus mencantumkan kalimat “Jasa Perbaikan alat keselamatan pelayaran” pada bidang usahanya;" data-original-title="" title="">
+                                                Syarat
+                                            </i>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
+											</div>
+                                        </div>
+                                        <div class="col-xl-6 mb-3">
+											<label class="form-control-label">Tanda Daftar Perusahaan (TDP) <span class="text-danger ml-2">*</span></label>
+                                            <i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Tanda Daftar Perusahaan (TDP) harus mencantumkan kalimat “Jasa Perbaikan alat keselamatan pelayaran” pada bidang usahanya (bila Perusahaan Cabang : TDP CABANG yang dilampirkan)" data-original-title="" title="">
+                                                Syarat
+                                            </i>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
+											</div>
+                                        </div>
+                                        <div class="col-xl-6 mb-3">
+											<label class="form-control-label">Nomor Pokok Wajib Pajak (NPWP) <span class="text-danger ml-2">*</span></label>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
+											</div>
+                                        </div>
+                                        <div class="col-xl-6 mb-3">
+											<label class="form-control-label">Surat Keterangan Domisili Perusahaan <span class="text-danger ml-2">*</span></label>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
 											</div>
 										</div>
+										<div class="col-xl-6 mb-3">
+											<label class="form-control-label">Sertifikat Tenaga Teknisi <span class="text-danger ml-2">*</span></label>
+                                            <i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Sertifikat Tenaga Teknisi dari pabrikan alat keselamatan pelayaran (ILR, PMK, Lifeboat, EPIRB dan MES)" data-original-title="" title="">
+                                                Syarat
+                                            </i>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
+											</div>
+                                        </div>
+                                        <div class="col-xl-6 mb-3">
+											<label class="form-control-label">Denah bengkel  <span class="text-danger ml-2">*</span></label>
+                                            <i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Denah bengkel pemeliharaan untuk Inflatable Liferaft (ILR), Pemadam Kebakaran (PMK) Portable & CO2 System & Lifeboat & Davit" data-original-title="" title="">
+                                                Syarat
+                                            </i>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
+											</div>
+                                        </div>
+                                        <div class="col-xl-6 mb-3">
+											<label class="form-control-label">Daftar Peralatan Kerja <span class="text-danger ml-2">*</span></label>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
+											</div>
+                                        </div>
+                                        <div class="col-xl-6 mb-3">
+											<label class="form-control-label">Surat Kepemilikan Workshop  <span class="text-danger ml-2">*</span></label>
+                                            <i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content=
+                                            "Surat Kepemilikan Workshop •Milik Sendiri (Sertifikat), •Sewa/Kontrak (Surat Perjanjian)" data-original-title="" title="">
+                                                Syarat
+                                            </i>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
+											</div>
+                                        </div>
+                                        <div class="col-xl-6 mb-3">
+											<label class="form-control-label">Surat Rekomendasi  <span class="text-danger ml-2">*</span></label>
+                                            <i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content=
+                                            "Surat Rekomendasi dari Syahbandar Utama/KSOP/KANPEL/Kepala UPP setempat (Khusus SPK Baru);" data-original-title="" title="">
+                                                Syarat
+                                            </i>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
+											</div>
+                                        </div>
+                                        <div class="col-xl-6 mb-3">
+											<label class="form-control-label">Foto-foto   <span class="text-danger ml-2">*</span></label>
+                                            <i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Foto-foto (Ruang service, Administrasi, Peralatan dan gedung)" data-original-title="" title="">
+                                                Syarat
+                                            </i>
+                                            <div class="custom-file">
+												<input type="file" class="custom-file-input" id="customFile">
+												<label class="custom-file-label" for="customFile">Choose file</label>
+											</div>
+                                        </div>
 									</div>
 									<ul class="pager wizard text-right">
 										<li class="previous d-inline-block">
-											<a href="javascript:;" class="btn btn-secondary ripple">Previous</a>
+											<a href="javascript:;" class="btn btn-secondary ripple">Kembali</a>
 										</li>
 										<li class="next d-inline-block">
-											<a href="javascript:;" class="btn btn-gradient-01">Next</a>
+											<a href="javascript:;" class="btn btn-gradient-01">Lanjut</a>
 										</li>
 									</ul>
 								</div>
