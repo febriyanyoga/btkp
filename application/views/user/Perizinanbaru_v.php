@@ -91,7 +91,7 @@
 									</div>
 									<div class="form-group row mb-3">
 										<div class="col-xl-6">
-											<label class="form-control-label">Country<span class="text-danger ml-2">*</span></label>
+											<label class="form-control-label">Jenis Perizinan<span class="text-danger ml-2">*</span></label>
 											<select name="country" class="custom-select form-control">
 												<option value="">Select</option>
 												<option value="GB">Inflatable Liferaft (ILR)</option>
@@ -249,87 +249,58 @@
 										<div class="widget has-shadow">
 											<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne"
 											 aria-expanded="true">
-												<div class="card-title w-100">1. Client Informations</div>
+												<div class="card-title w-100">1. Identitas Service Station</div>
 											</a>
 											<div id="IconRightCollapseOne" class="card-body collapse show" data-parent="#accordion-icon-right">
 												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Name</div>
-													<div class="col-sm-8 form-control-plaintext">David Green</div>
+													<div class="col-sm-3 form-control-label d-flex align-items-center">Nama Perusahaan</div>
+													<div class="col-sm-8 form-control-plaintext">PT. SURYA SEGARA SAFETY MARINE</div>
 												</div>
 												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Email</div>
-													<div class="col-sm-8 form-control-plaintext">dgreen@elisyam.com</div>
+													<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Kantor Perusahaan</div>
+													<div class="col-sm-8 form-control-plaintext">Jl. Ir. Sutami Pergudangan Tamalanrea Blok. A2 No. 6 Kel. Parang Loe, Kec. Tamalanrea, Kota Makassar, Sulawesi Selatan</div>
 												</div>
 												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Phone</div>
-													<div class="col-sm-8 form-control-plaintext">+00 987 654 32</div>
+													<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Workshop/Service Station</div>
+													<div class="col-sm-8 form-control-plaintext"></div>
 												</div>
 												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Occupation</div>
-													<div class="col-sm-8 form-control-plaintext">UX Designer</div>
+													<div class="col-sm-3 form-control-label d-flex align-items-center">Akta Pendirian Perusahaan</div>
+													<div class="col-sm-8 form-control-plaintext">012345 - 13 Mei 1990</div>
+												</div>
+												<div class="form-group row mb-5">
+													<div class="col-sm-3 form-control-label d-flex align-items-center">Pemimpin/Penanggung Jawab</div>
+													<div class="col-sm-8 form-control-plaintext">TEUKU NASER</div>
 												</div>
 											</div>
 											<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
-												<div class="card-title w-100">2. Address</div>
+												<div class="card-title w-100">2. Informasi Kontak</div>
 											</a>
 											<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
 												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Address</div>
-													<div class="col-sm-8 form-control-plaintext">123 Century Blvd</div>
+													<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor Telepon Perusahaan</div>
+													<div class="col-sm-8 form-control-plaintext">02123333345</div>
 												</div>
 												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Country</div>
-													<div class="col-sm-8 form-control-plaintext">Country</div>
+													<div class="col-sm-3 form-control-label d-flex align-items-center">Email Perusahaan</div>
+													<div class="col-sm-8 form-control-plaintext">tes@gmail.com</div>
 												</div>
 												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">City</div>
-													<div class="col-sm-8 form-control-plaintext">Los Angeles</div>
-												</div>
-												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">State</div>
-													<div class="col-sm-8 form-control-plaintext">CA</div>
-												</div>
-												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Zip</div>
-													<div class="col-sm-8 form-control-plaintext">90045</div>
+													<div class="col-sm-3 form-control-label d-flex align-items-center">NPWP</div>
+													<div class="col-sm-8 form-control-plaintext">01.440.926.2-801.001</div>
 												</div>
 											</div>
 											<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseThree">
-												<div class="card-title w-100">3. Account Details</div>
+												<div class="card-title w-100">3. Jenis SPK & Masa Berlaku</div>
 											</a>
 											<div id="IconRightCollapseThree" class="card-body collapse" data-parent="#accordion-icon-right">
 												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Username</div>
-													<div class="col-sm-8 form-control-plaintext">Saerox</div>
+													<div class="col-sm-3 form-control-label d-flex align-items-center">Jenis SPK</div>
+													<div class="col-sm-8 form-control-plaintext">Life Boat</div>
 												</div>
 												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Password</div>
-													<div class="col-sm-8 form-control-plaintext"><span class="la-2x">*********</span></div>
-												</div>
-												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Url</div>
-													<div class="col-sm-8 form-control-plaintext">http://mywebsite.com</div>
-												</div>
-											</div>
-											<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseFour">
-												<div class="card-title w-100">4. Billing Information</div>
-											</a>
-											<div id="IconRightCollapseFour" class="card-body collapse" data-parent="#accordion-icon-right">
-												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Card Number</div>
-													<div class="col-sm-8 form-control-plaintext">98765432145698547</div>
-												</div>
-												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Exp Month</div>
-													<div class="col-sm-8 form-control-plaintext">06</div>
-												</div>
-												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">Exp Year</div>
-													<div class="col-sm-8 form-control-plaintext">2023</div>
-												</div>
-												<div class="form-group row mb-5">
-													<div class="col-sm-3 form-control-label d-flex align-items-center">CVV</div>
-													<div class="col-sm-8 form-control-plaintext">651</div>
+													<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor SPK Lama</div>
+													<div class="col-sm-8 form-control-plaintext">BHSJADKTYUIO</div>
 												</div>
 												<div class="form-group row mb-5">
 													<div class="col-xl-12">
@@ -344,10 +315,10 @@
 									</div>
 									<ul class="pager wizard text-right">
 										<li class="previous d-inline-block">
-											<a href="javascript:void(0)" class="btn btn-secondary ripple">Previous</a>
+											<a href="javascript:void(0)" class="btn btn-secondary ripple">Kembali</a>
 										</li>
 										<li class="next d-inline-block">
-											<a href="javascript:void(0)" class="finish btn btn-gradient-01" data-toggle="modal">Finish</a>
+											<a href="javascript:void(0)" class="finish btn btn-gradient-01" data-toggle="modal">Selesai</a>
 										</li>
 									</ul>
 								</div>

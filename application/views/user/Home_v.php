@@ -165,9 +165,9 @@
                                             <table id="zero-config" class="table mb-0">
                                                 <thead>
                                                     <tr>
-                                                        <th>No.BTKP</th>
+                                                        <th>No. Perizinan</th>
                                                         <th>Jenis SPK</th>
-                                                        <th>Jatuh Tempo</th>
+                                                        <th>Tanggal Berakhir</th>
                                                         <th><span style="width:100px;">Status</span></th>
                                                         <th>Actions</th>
                                                     </tr>
@@ -181,8 +181,8 @@ PEMADAM KEBAKARAN (PMK)  PORTABLE & CO2 SYSTEM
                                                         <td>09 OKTOBER 2019</td>
                                                         <td><span style="width:100px;"><span class="badge-text badge-text-small info">Aktif</span></span></td>
                                                         <td class="td-actions">
-                                                            <a href="#"><i class="la la-edit edit"></i></a>
-                                                            <a href="#"><i class="la la-close delete"></i></a>
+                                                            <a href="#"><i class="ion-eye"></i></a>
+
                                                         </td>
                                                     </tr>
                                                 </tbody>
