@@ -44,6 +44,14 @@ class Pemohon extends CI_Controller
         $this->load->view('user/Layout', $data);
     }
 
+    public function detailperizinan()
+    {
+        $this->data['lele'] = 'lel';
+        $data['isi'] = $this->load->view('user/detailperizinan_v', $this->data, true);
+        // $data['isi'] = "isi";
+        $this->load->view('user/Layout', $data);
+    }
+
     public function datareinspeksi()
     {
         $this->data['lele'] = 'lel';

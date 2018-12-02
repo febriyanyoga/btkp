@@ -61,9 +61,9 @@ Author: SAEROX
                                     <img src="<?php echo base_url(); ?>assets/app/img/logo.png" alt="logo">
                                 </a>
                             </div>
-                            <h1>Sistem Informasi BTKP</h1>
+                            <h1>Aplikasi</h1>
                             <span class="description">
-                            Pelayanan dan Pengujian Alat Keselamatan Pelayaran.
+                            Keselamatan Pelayaran
                             </span>
                             <ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
                                 <li><a class="active" data-toggle="tab" href="#singin" role="tab" id="singin-tab" data-easein="zoomInUp">Sign In</a></li>

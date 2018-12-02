@@ -22,12 +22,12 @@
                                                 <thead>
                                                     <tr>
                                                         <th>No.Izin</th>
-                                                        <th>Di peruntukan</th>
+                                                        <th>SPK</th>
                                                         <th>Tanggal Mulai</th>
                                                         <th>Tanggal Berakhir</th>
                                                         <th><span style="width:100px;">Status</span></th>
-                                                        <th>Order Total</th>
-                                                        <th>Actions</th>
+
+                                                        <th>Perpanjang</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -37,10 +37,11 @@
                                                         <td>Life Boat</td>
                                                         <td>08/12/2017</td>
                                                         <td>08/12/2018</td>
-                                                        <td><span style="width:100px;"><span class="badge-text badge-text-small danger">Failed</span></span></td>
-                                                        <td>$107.55</td>
+                                                        <td><span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span></td>
+
                                                         <td class="td-actions">
-                                                            <a href="#"><i class="ion-share"></i></a>
+                                                            <a href="<?php echo site_url('pemohon/perizinanbaru'); ?>"><i class="ion-share"></i></a>
+                                                            <a href="<?php echo site_url('pemohon/detailperizinan'); ?>"><i class="ion-eye"></i></a>
                                                         </td>
                                                     </tr>
                                                     <tr>
@@ -48,10 +49,11 @@
                                                         <td>Life jacket</td>
                                                         <td>08/12/2018</td>
                                                         <td>08/12/2019</td>
-                                                        <td><span style="width:100px;"><span class="badge-text badge-text-small info">Paid</span></span></td>
-                                                        <td>$129.85</td>
+                                                        <td><span style="width:100px;"><span class="badge-text badge-text-small info">Aktif</span></span></td>
+
                                                         <td class="td-actions">
-                                                        <a href="#"><i class="ion-share"></i></a>
+                                                        <a href="<?php echo site_url('pemohon/perizinanbaru'); ?>"><i class="ion-share"></i></a>
+                                                        <a href="<?php echo site_url('pemohon/detailperizinan'); ?>"><i class="ion-eye"></i></a>
                                                         </td>
                                                     </tr>
                                                 </tbody>
