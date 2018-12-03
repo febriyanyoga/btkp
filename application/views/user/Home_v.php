@@ -80,10 +80,10 @@
 											<td class="text-center"><span class="text-primary">0760-LSA</span></td>
 											<td class="text-left">PERAWATAN DAN PERBAIKAN
 												PEMADAM KEBAKARAN (PMK) PORTABLE & CO2 SYSTEM
-                                            </td>
-                                            <td class="text-center" style="color:red;">
-                                                <b>Proses</b>
-                                            </td>
+											</td>
+											<td class="text-center" style="color:red;">
+												<b>Proses</b>
+											</td>
 
 											<td class="text-center">
 												<!-- <a href="#"><i class="ion-eye"></i></a> -->
@@ -93,12 +93,12 @@
 											<td class="text-center"><span class="text-primary">0760-LSA</span></td>
 											<td class="text-left">PERAWATAN DAN PERBAIKAN
 												PEMADAM KEBAKARAN (PMK) PORTABLE & CO2 SYSTEM
-                                            </td>
-                                            <td class="text-center" style="color:red;">
-                                                <b>Menunggu Pembayaran</b>
-                                            </td>
+											</td>
+											<td class="text-center" style="color:red;">
+												<b>Menunggu Pembayaran</b>
+											</td>
 											<td class="text-center">
-											<button type="button" class="btn btn-success mr-1 mb-2"><i class="la la-check"></i>Bayar</button>
+												<button type="button" class="btn btn-success mr-1 mb-2"><i class="la la-check"></i>Bayar</button>
 
 											</td>
 										</tr>
@@ -121,7 +121,7 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content room-details">
 			<div class="modal-header border-0">
-				<h3 class="modal-title"><i class="la la-tv la-2x align-middle pr-2"></i>Perizinan</h3>
+				<h2 class="modal-title">PERIZINAN</h2>
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span>
 					<span class="sr-only">close</span>
@@ -131,31 +131,20 @@
 				<div class="row">
 					<div class="col-xl-12">
 						<div class="room-image">
-							<div class="overlay"></div>
-							<img src="<?php echo base_url(); ?>assets/app/img/smarthome/12.jpg" class="img-fluid rounded" alt="...">
+							<a href="<?php echo site_url('pemohon/perizinanbaru'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perizinanbaru.jpg"
+								 class="img-fluid rounded" alt="..."></a>
 						</div>
 					</div>
-				</div>
-				<br>
-				<div class="main-room-info text-center">
-					<button type="button" class="btn btn-gradient-01 "><a href="<?php echo site_url('pemohon/perizinanbaru'); ?>">Perizinan
-							Baru</a></button>
 				</div>
 				<br>
 				<div class="row">
-					<div class="col-xl-12">
+				<div class="col-xl-12">
 						<div class="room-image">
-							<div class="overlay"></div>
-							<img src="<?php echo base_url(); ?>assets/app/img/smarthome/12.jpg" class="img-fluid rounded" alt="...">
+							<a href="<?php echo site_url('pemohon/perizinanbaru'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perpanjang.jpg"
+								 class="img-fluid rounded" alt="..."></a>
 						</div>
 					</div>
 				</div>
-				<br>
-				<div class="main-room-info text-center">
-					<button type="button" class="btn btn-gradient-01 " href="<?php echo site_url('pemohon/perizinanbaru'); ?>">Perpanjangan
-						Perizinan</button>
-				</div>
-
 			</div>
 		</div>
 	</div>
