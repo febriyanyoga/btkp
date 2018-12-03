@@ -26,55 +26,56 @@
 			</ul>
 			<div class="tab-content pt-3">
 				<div class="tab-pane fade show active" id="d-tab-1" role="tabpanel" aria-labelledby="drop-tab-1">
-				<div class="text-right">
-				<button type="button" class="btn btn-gradient-03 mr-1 mb-2" data-toggle="modal" data-target="#cetaksertifikat">Cetak Sertifikat</button>
-				</div>
-				<button type="button" class="btn btn-gradient-04 mr-1 mb-2">Tambah Data</button>
-				<div class="widget-body">
-                                        <div class="table-responsive">
-                                            <table id="sorting-table" class="table mb-0">
-                                                <thead>
-                                                    <tr>
-														<th>No.</th>
-                                                        <th>No.Sertifikat</th>
-                                                        <th>Kapal</th>
-                                                        <th>Tanggal Mulai</th>
-                                                        <th>Tanggal Berakhir</th>
-                                                        <th><span style="width:100px;">Hasil</span></th>
-                                                        <th>Dilaporkan</th>
-                                                        <th>Actions</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+					<div class="text-right">
+						<button type="button" class="btn btn-gradient-03 mr-1 mb-2" data-toggle="modal" data-target="#cetaksertifikat">Cetak
+							Sertifikat</button>
+					</div>
+					<button type="button" class="btn btn-gradient-04 mr-1 mb-2">Tambah Data</button>
+					<div class="widget-body">
+						<div class="table-responsive">
+							<table id="sorting-table" class="table mb-0">
+								<thead>
+									<tr>
+										<th>No.</th>
+										<th>No.Sertifikat</th>
+										<th>Kapal</th>
+										<th>Tanggal Mulai</th>
+										<th>Tanggal Berakhir</th>
+										<th><span style="width:100px;">Hasil</span></th>
+										<th>Dilaporkan</th>
+										<th>Actions</th>
+									</tr>
+								</thead>
+								<tbody>
 
-                                                    <tr>
-														<td>1</td>
-                                                        <td><span class="text-primary">189-01-RU</span></td>
-                                                        <td>PERTAMINA</td>
-                                                        <td>08/12/2017</td>
-                                                        <td>08/12/2018</td>
-                                                        <td>Condamn</span></td>
-                                                        <td><span style="width:100px;"><span class="badge-text badge-text-small success">Sudah</span></span></td>
-                                                        <td class="td-actions">
-                                                            <a href="#"><i class="ion-share"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                    <tr>
-														<td>2</td>
-                                                        <td><span class="text-primary">092-06-FR</span></td>
-                                                        <td>PERTAMINA</td>
-                                                        <td>08/12/2018</td>
-                                                        <td>08/12/2019</td>
-                                                        <td>Lolos</td>
-                                                        <td><span style="width:100px;"><span class="badge-text badge-text-small danger">Belum</span></span></td>
-                                                        <td class="td-actions">
-                                                        <a href="#"><i class="ion-share"></i></a>
-                                                        </td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
+									<tr>
+										<td>1</td>
+										<td><span class="text-primary">189-01-RU</span></td>
+										<td>PERTAMINA</td>
+										<td>08/12/2017</td>
+										<td>08/12/2018</td>
+										<td>Condamn</span></td>
+										<td><span style="width:100px;"><span class="badge-text badge-text-small success">Sudah</span></span></td>
+										<td class="td-actions">
+											<a href="#"><i class="ion-share"></i></a>
+										</td>
+									</tr>
+									<tr>
+										<td>2</td>
+										<td><span class="text-primary">092-06-FR</span></td>
+										<td>PERTAMINA</td>
+										<td>08/12/2018</td>
+										<td>08/12/2019</td>
+										<td>Lolos</td>
+										<td><span style="width:100px;"><span class="badge-text badge-text-small danger">Belum</span></span></td>
+										<td class="td-actions">
+											<a href="#"><i class="ion-share"></i></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 				<div class="tab-pane fade" id="d-tab-2" role="tabpanel" aria-labelledby="drop-tab-2">
 				</div>
@@ -94,25 +95,28 @@
 	<!-- End Tabs Dropdown -->
 </div>
 
- <div id="cetaksertifikat" class="modal fade">
-            <div class="modal-dialog modal-lg">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h4 class="modal-title">Form cetak sertifikat</h4>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span aria-hidden="true">×</span>
-                            <span class="sr-only">close</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Donec non lectus nec est porta eleifend. Morbi ut dictum augue, feugiat condimentum est. Pellentesque tincidunt justo nec aliquet tincidunt. Integer dapibus tellus non neque pulvinar mollis. Maecenas dictum laoreet diam, non convallis lorem sagittis nec. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nunc venenatis lacus arcu, nec ultricies dui vehicula vitae.
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save</button>
-                    </div>
-                </div>
-            </div>
-        </div>
+<div id="cetaksertifikat" class="modal fade">
+	<div class="modal-dialog modal-lg">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Form cetak sertifikat</h4>
+				<button type="button" class="close" data-dismiss="modal">
+					<span aria-hidden="true">×</span>
+					<span class="sr-only">close</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<p>
+					Donec non lectus nec est porta eleifend. Morbi ut dictum augue, feugiat condimentum est. Pellentesque tincidunt
+					justo nec aliquet tincidunt. Integer dapibus tellus non neque pulvinar mollis. Maecenas dictum laoreet diam, non
+					convallis lorem sagittis nec. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia
+					Curae; Nunc venenatis lacus arcu, nec ultricies dui vehicula vitae.
+				</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save</button>
+			</div>
+		</div>
+	</div>
+</div>
