@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>BTKP</title>
+    <title>BTKP - Masuk</title>
     <meta name="description" content="Elisyam is a Web App and Admin Dashboard Template built with Bootstrap 4">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Google Fonts -->
@@ -84,8 +84,8 @@
                                 if($data!=""){ 
                                     ?>
                                     <div class="alert alert-success">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true">×</span> </button>
-                                        <h3 class="text-success"><i class="fa fa-check-circle"></i> Sukses!</h3>
+                                        <button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+                                        <h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
                                         <?=$data;?>
                                     </div>
                                     <?php 
@@ -96,51 +96,49 @@
                                 if($data2!=""){ 
                                     ?>
                                     <div class="alert alert-danger">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span> </button>
-                                        <h3 class="text-danger"><i class="fa fa-check-circle"></i> Gagal!</h3>
+                                        <button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+                                        <h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
                                         <?=$data2;?>
                                     </div>
                                     <?php 
                                 } 
                                 ?>
                                 <h3 style="font-color: white;">Masuk</h3>
-                                <form>
+                                <form action="<?php echo site_url('login')?>" method="post">
                                     <div class="group material-input">
-                                        <input class="form-control" type="text" required>
+                                        <input class="form-control" type="email" id="email" name="email_login" required placeholder="Email">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>Email</label>
+                                        <!-- <label>Email</label> -->
                                     </div>
                                     <div class="group material-input">
-                                        <input class="form-control" type="password" required>
+                                        <input class="form-control" type="password" name="password_login" required placeholder="Password">
                                         <span class="highlight"></span>
                                         <span class="bar"></span>
-                                        <label>Password</label>
+                                        <!-- <label>Password</label> -->
                                     </div>
                                     <div class="group material-input">
                                         <center><?=$cap_img?></center>
                                     </div>
                                     <div class="group material-input">
-                                        <label>Masukkan captcha</label>
-                                        <input class="form-control" type="text" id="captcha" name="captcha" required>
+                                        <!-- <label>Masukkan captcha</label> -->
+                                        <input class="form-control" type="text" id="captcha" name="captcha" required placeholder="Masukkan captcha">
                                     </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col text-left">
-                                        <div class="styled-checkbox">
-                                            <input type="checkbox" name="checkbox" id="remeber">
-                                            <label for="remeber">Ingat saya</label>
+                                    <div class="row">
+                                        <!-- <div class="col text-left">
+                                            <div class="styled-checkbox">
+                                                <input type="checkbox" name="checkbox" id="remeber">
+                                                <label for="remeber">Ingat saya</label>
+                                            </div>
+                                        </div> -->
+                                        <div class="col text-right">
+                                            <a href="#">Lupa Password ?</a>
                                         </div>
                                     </div>
-                                    <div class="col text-right">
-                                        <a href="pages-forgot-password.html">Lupa Password ?</a>
+                                    <div class="sign-btn text-center">
+                                        <input type="submit" name="submit" value="Masuk" class="btn btn-lg btn-gradient-01">
                                     </div>
-                                </div>
-                                <div class="sign-btn text-center">
-                                    <a href="<?php echo site_url('pemohon/homeuser'); ?>" class="btn btn-lg btn-gradient-01">
-                                        Masuk
-                                    </a>
-                                </div>
+                                </form>
                             </div>
                             <!-- End Sign In -->
                             <!-- Begin Sign Up -->
@@ -150,8 +148,8 @@
                                 if($data!=""){ 
                                     ?>
                                     <div class="alert alert-success">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
-                                        <h3 class="text-success"><i class="fa fa-check-circle"></i> Sukses!</h3>
+                                        <button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+                                        <h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
                                         <?=$data;?>
                                     </div>
                                     <?php 
@@ -162,8 +160,8 @@
                                 if($data2!=""){ 
                                     ?>
                                     <div class="alert alert-danger">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
-                                        <h3 class="text-danger"><i class="fa fa-check-circle"></i> Gagal!</h3>
+                                        <button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+                                        <h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
                                         <?=$data2;?>
                                     </div>
                                     <?php 
@@ -202,8 +200,8 @@
                                         <label for="confirm_password" class="error"></label>
                                     </div>
                                     <div class="group material-input">
-                                        <select class="form-control" id="id_jabatan" name="id_jabatan">
-                                            <option>----- Pilih User -----</option>
+                                        <select class="form-control" id="id_jabatan" name="id_jabatan" required="required">
+                                            <option value="">----- Pilih Jenis User -----</option>
                                             <?php 
                                             foreach ($jabatan as $jab) {
                                                 ?>
@@ -312,7 +310,8 @@
                         required: true,
                         email: true
                     },
-                    agree: 'required'
+                    agree: 'required',
+                    id_jabatan : 'required'
                 },
                 messages : {
                     nama_pengguna : 'Silahkan isi Nama Anda',
@@ -330,7 +329,8 @@
                         required : 'Silahkan isi alamat email anda',
                         email : 'Alamat email tidak valid',
                     },
-                    agree : 'Silahkan setujui syarat dan ketentuan kami'
+                    agree : 'Silahkan setujui syarat dan ketentuan kami',
+                    id_jabatan : 'Silahkan Pilih jenis user'
                 }
             });
         });

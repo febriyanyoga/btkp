@@ -1,396 +1,304 @@
 <!DOCTYPE html>
-<html dir="ltr" lang="en">
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <!-- Tell the browser to be responsive to screen width -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <!-- Favicon icon -->
-    <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/app/images/favicon.png">
-    <title>BTKP</title>
-    <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/app/extra-libs/prism/prism.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>assets/app/libs/datatables.net-bs4/css/dataTables.bootstrap4.css">
-
-    <!-- Custom CSS -->
-    <link href="<?php echo base_url(); ?>assets/app/dist/css/style.min.css" rel="stylesheet">
-
-    <link href="<?php echo base_url(); ?>assets/app/libs/jquery-steps/jquery.steps.css" rel="stylesheet">
-<link href="<?php echo base_url(); ?>assets/app/libs/jquery-steps/steps.css" rel="stylesheet">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-<![endif]-->
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title><?php echo $title;?></title>
+	<meta name="description" content="Elisyam is a Web App and Admin Dashboard Template built with Bootstrap 4">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<!-- Google Fonts -->
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+	<script>
+		WebFont.load({
+            google: {"families":["Montserrat:400,500,600,700","Noto+Sans:400,700"]},
+            active: function() {
+                sessionStorage.fonts = true;
+            }
+          });
+        </script> -->
+	<!-- Favicon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>assets/app/img/apple-touch-icon.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>assets/app/img/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/app/img/favicon-16x16.png">
+	<!-- Stylesheet -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/vendors/css/base/bootstrap.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/vendors/css/base/elisyam-1.5.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/lineawesome/css/line-awesome.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/ionicons/css/ionicons.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/themify/css/themify-icons.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/meteocons/css/meteocons.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/owl-carousel/owl.carousel.min.css">
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/owl-carousel/owl.theme.min.css">
+	<!-- tabel -->
+	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/datatables/datatables.min.css">
+	<!-- Tweaks for older IEs-->
+	<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
 
-<body>
-    <!-- ============================================================== -->
-    <!-- Preloader - style you can find in spinners.css -->
-    <!-- ============================================================== -->
-    <div class="preloader">
-        <div class="lds-ripple">
-            <div class="lds-pos"></div>
-            <div class="lds-pos"></div>
-        </div>
-    </div>
-    <!-- ============================================================== -->
-    <!-- Main wrapper - style you can find in pages.scss -->
-    <!-- ============================================================== -->
-    <div id="main-wrapper">
-        <!-- ============================================================== -->
-        <!-- Topbar header - style you can find in pages.scss -->
-        <!-- ============================================================== -->
-        <header class="topbar">
-            <nav class="navbar top-navbar navbar-expand-md navbar-light">
-                <div class="navbar-header" style="background-color: #4798e8">
-                    <!-- This is for the sidebar toggle which is visible on mobile only -->
-                    <a class="nav-toggler waves-effect waves-light d-block d-md-none" href="javascript:void(0)">
-                        <i class="ti-menu ti-close"></i>
-                    </a>
-                    <!-- ============================================================== -->
-                    <!-- Logo -->
-                    <!-- ============================================================== -->
-                    <a class="navbar-brand" href="index.html">
+<body id="page-top">
+	<!-- Begin Preloader -->
+	<div id="preloader">
+		<div class="canvas">
+			<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" class="loader-logo">
+			<div class="spinner"></div>
+		</div>
+	</div>
+	<!-- End Preloader -->
+	<div class="page db-social">
+		<!-- Begin Header -->
+		<header class="header">
+			<nav class="navbar fixed-top">
+				<!-- Begin Search Box-->
+				<div class="search-box">
+					<button class="dismiss"><i class="ion-close-round"></i></button>
+					<form id="searchForm" action="#" role="search">
+						<input type="search" placeholder="Search something ..." class="form-control">
+					</form>
+				</div>
+				<!-- End Search Box-->
+				<!-- Begin Topbar -->
+				<div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
+					<!-- Begin Logo -->
+					<div class="navbar-header">
+						<a href="db-social.html" class="navbar-brand">
+							<div class="brand-image brand-big">
+								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" style="width: 70px;" class="logo-big">
+							</div>
+							<div class="brand-image brand-small">
+								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" class="logo-small">
+							</div>
+						</a>
+						<!-- Toggle Button -->
+						<a id="toggle-btn" href="#" class="menu-btn active">
+							<span></span>
+							<span></span>
+							<span></span>
+						</a>
+						<!-- End Toggle -->
+					</div>
+					<!-- End Logo -->
+					<!-- Begin Navbar Menu -->
+					<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center pull-right">
+						<!-- Search -->
+						<li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="la la-search"></i></a></li>
+						<!-- End Search -->
+						<!-- Begin Notifications -->
+						<li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
+							 aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="la la-bell animated infinite swing"></i><span
+								 class="badge-pulse"></span></a>
+							<ul aria-labelledby="notifications" class="dropdown-menu notification">
+								<li>
+									<div class="notifications-header">
+										<div class="title">Notifications (4)</div>
+										<div class="notifications-overlay"></div>
+										<img src="<?php echo base_url(); ?>assets/app/img/notifications/01.jpg" alt="..." class="img-fluid">
+									</div>
+								</li>
+								<li>
+									<a href="#">
+										<div class="message-icon">
+											<i class="la la-user"></i>
+										</div>
+										<div class="message-body">
+											<div class="message-body-heading">
+												New user registered
+											</div>
+											<span class="date">2 hours ago</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<div class="message-icon">
+											<i class="la la-calendar-check-o"></i>
+										</div>
+										<div class="message-body">
+											<div class="message-body-heading">
+												New event added
+											</div>
+											<span class="date">7 hours ago</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<div class="message-icon">
+											<i class="la la-history"></i>
+										</div>
+										<div class="message-body">
+											<div class="message-body-heading">
+												Server rebooted
+											</div>
+											<span class="date">7 hours ago</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a href="#">
+										<div class="message-icon">
+											<i class="la la-twitter"></i>
+										</div>
+										<div class="message-body">
+											<div class="message-body-heading">
+												You have 3 new followers
+											</div>
+											<span class="date">10 hours ago</span>
+										</div>
+									</a>
+								</li>
+								<li>
+									<a rel="nofollow" href="#" class="dropdown-item all-notifications text-center">View All Notifications</a>
+								</li>
+							</ul>
+						</li>
+						<!-- End Notifications -->
+						<!-- User -->
+						<li class="nav-item dropdown"><a id="user" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
+							 aria-haspopup="true" aria-expanded="false" class="nav-link"><img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg"
+								 alt="..." class="avatar rounded-circle"></a>
+							<ul aria-labelledby="user" class="user-size dropdown-menu">
+								<li class="welcome">
+									<a href="#" class="edit-profil"><i class="la la-gear"></i></a>
+									<img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg" alt="..." class="rounded-circle">
+								</li>
+								<li>
+									<a href="db-social.html" class="dropdown-item">
+										Profile
+									</a>
+								</li>
+								<li>
+									<a href="app-mail.html" class="dropdown-item">
+										Messages
+									</a>
+								</li>
+								<li>
+									<a href="#" class="dropdown-item no-padding-bottom">
+										Settings
+									</a>
+								</li>
+								<li class="separator"></li>
+								<li>
+									<a href="pages-faq.html" class="dropdown-item no-padding-top">
+										Faq
+									</a>
+								</li>
+								<li><a rel="nofollow" href="<?php echo site_url('logout')?>" class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
+							</ul>
+						</li>
+						<!-- End User -->
+					</ul>
+					<!-- End Navbar Menu -->
+				</div>
+				<!-- End Topbar -->
+			</nav>
+		</header>
+		<!-- End Header -->
+		<!-- Begin Page Content -->
+		<div class="page-content d-flex align-items-stretch">
+			<div class="compact-sidebar light-sidebar has-shadow">
+				<!-- Begin Side Navbar -->
+				<nav class="side-navbar box-scroll sidebar-scroll">
+					<!-- Begin Main Navigation -->
+					<ul class="list-unstyled">
+						<li>
+							<a href="<?php echo site_url('workshop'); ?>">
+								<i class="ion-home"></i><span>Home</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo site_url('data_perizinan'); ?>">
+								<i class="ion-clipboard"></i><span>Data Perizinan</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo site_url('data_reinspeksi'); ?>">
+								<i class="ti ti-user"></i><span>Data Re-inspeksi</span>
+							</a>
+						</li>
+						<li>
+							<a href="<?php echo site_url('pelaporan'); ?>">
+								<i class="ti ti-world"></i><span>Pelaporan</span>
+							</a>
+						</li>
+					</ul>
+					<!-- End Main Navigation -->
+				</nav>
+				<!-- End Side Navbar -->
+			</div>
+			<!-- End Left Sidebar -->
+			<!-- Begin Content -->
+			<div class="content-inner compact" style="background:url(<?php echo base_url(); ?>assets/bg.jpg); background-size: cover;">
+				<?php echo $isi; ?>
+				<!-- Begin Page Footer-->
+				<footer class="main-footer">
+					<div class="row">
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-center">
+							<p class="text-gradient-02">Design By Soepomo 84</p>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-xl-end justify-content-lg-end justify-content-md-end justify-content-center">
+							<ul class="nav">
+								<li class="nav-item">
+									<a class="nav-link" href="documentation.html">Bantuan</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</footer>
+				<!-- End Page Footer -->
+				<a href="#" class="go-top"><i class="la la-arrow-up"></i></a>
 
-                        <!-- Logo text -->
-                        <span class="logo-text">
+			</div>
+			<!-- End Content -->
+		</div>
+		<!-- End Page Content -->
+	</div>
+	<!-- Begin Vendor Js -->
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
+	<!-- End Vendor Js -->
+	<!-- Begin Page Vendor Js -->
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/bootstrap-wizard/bootstrap.wizard.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/js/components/wizard/form-wizard.min.js"></script>
 
-                            <!-- Light Logo text -->
-                          <h3 class="dark-logo" style="color:#fff;">BTKP Apps</h3>
-                            <img src="<?php echo base_url(); ?>assets/app/images/logo-light-text.png" class="light-logo" alt="homepage" />
-                        </span>
-                    </a>
-                    <!-- ============================================================== -->
-                    <!-- End Logo -->
-                    <!-- ============================================================== -->
-                    <!-- ============================================================== -->
-                    <!-- Toggle which is visible on mobile only -->
-                    <!-- ============================================================== -->
-                    <a class="topbartoggler d-block d-md-none waves-effect waves-light" href="javascript:void(0)" data-toggle="collapse" data-target="#navbarSupportedContent"
-                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <i class="ti-more"></i>
-                    </a>
-                </div>
-                <!-- ============================================================== -->
-                <!-- End Logo -->
-                <!-- ============================================================== -->
-                <div class="navbar-collapse collapse" id="navbarSupportedContent" style="background-color: #4798e8;">
-                    <!-- ============================================================== -->
-                    <!-- toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-left mr-auto">
-                        <li class="nav-item d-none d-md-block">
-                            <a class="nav-link sidebartoggler waves-effect waves-light" href="javascript:void(0)" data-sidebartype="mini-sidebar">
-                                <i class="sl-icon-menu font-20"></i>
-                            </a>
-                        </li>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/nicescroll/nicescroll.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/owl-carousel/owl.carousel.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/progress/circle-progress.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/app/app.min.js"></script>
+	<!-- End Page Vendor Js -->
+	<!-- Begin Page Snippets -->
+	<script src="<?php echo base_url(); ?>assets/app/js/dashboard/db-smarthome.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/js/components/music/music-player.min.js"></script>
+	<!-- End Page Snippets -->
+	<script src="<?php echo base_url(); ?>assets/app/js/components/tables/tables.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/datatables.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/dataTables.buttons.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/jszip.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/buttons.html5.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/pdfmake.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/vfs_fonts.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/buttons.print.min.js"></script>
+	<!-- End Page Vendor Js -->
 
-                    </ul>
-                    <!-- ============================================================== -->
-                    <!-- Right side toggle and nav items -->
-                    <!-- ============================================================== -->
-                    <ul class="navbar-nav float-right">
-                        <!-- ============================================================== -->
-                        <!-- Search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item search-box">
-                            <a class="nav-link waves-effect waves-dark" href="javascript:void(0)">
-                                <i class="ti-search font-16"></i>
-                            </a>
-                            <form class="app-search position-absolute">
-                                <input type="text" class="form-control" placeholder="Search &amp; enter">
-                                <a class="srh-btn">
-                                    <i class="ti-close"></i>
-                                </a>
-                            </form>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- create new -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="flag-icon flag-icon-us font-18"></i>
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right  animated bounceInDown" aria-labelledby="navbarDropdown2">
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-us"></i> English</a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-fr"></i> French</a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-es"></i> Spanish</a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="flag-icon flag-icon-de"></i> German</a>
-                            </div>
-                        </li>
-
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark pro-pic" href="" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <img src="<?php echo base_url(); ?>assets/app/images/users/1.jpg" alt="user" class="rounded-circle" width="31">
-                            </a>
-                            <div class="dropdown-menu dropdown-menu-right user-dd animated flipInY">
-                                <span class="with-arrow">
-                                    <span class="bg-primary"></span>
-                                </span>
-                                <div class="d-flex no-block align-items-center p-15 bg-primary text-white m-b-10">
-                                    <div class="">
-                                        <img src="<?php echo base_url(); ?>assets/app/images/users/1.jpg" alt="user" class="img-circle" width="60">
-                                    </div>
-                                    <div class="m-l-10">
-                                        <h4 class="m-b-0">Nama Workshop</h4>
-                                        <p class=" m-b-0">workshop@gmail.com</p>
-                                    </div>
-                                </div>
-
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
-                                <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="javascript:void(0)">
-                                    <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                <div class="dropdown-divider"></div>
-                                <div class="p-l-30 p-10">
-                                    <a href="javascript:void(0)" class="btn btn-sm btn-success btn-rounded">View Profile</a>
-                                </div>
-                            </div>
-                        </li>
-                        <!-- ============================================================== -->
-                        <!-- User profile and search -->
-                        <!-- ============================================================== -->
-                    </ul>
-                </div>
-            </nav>
-        </header>
-        <!-- ============================================================== -->
-        <!-- End Topbar header -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <aside class="left-sidebar">
-            <!-- Sidebar scroll-->
-            <div class="scroll-sidebar">
-                <!-- Sidebar navigation-->
-                <nav class="sidebar-nav">
-                    <ul id="sidebarnav">
-                        <!-- User Profile-->
-                        <li>
-                            <!-- User Profile-->
-                            <div class="user-profile dropdown m-t-20">
-                                <div class="user-pic">
-                                    <img src="<?php echo base_url(); ?>assets/app/images/users/agent2.jpg" alt="users" class="rounded-circle img-fluid" />
-                                </div>
-                                <div class="user-content hide-menu m-t-10">
-                                    <h5 class="m-b-10 user-name font-medium">Nama Workshop</h5>
-                                    <a href="javascript:void(0)" class="btn btn-circle btn-sm m-r-5" id="Userdd" role="button" data-toggle="dropdown" aria-haspopup="true"
-                                        aria-expanded="false">
-                                        <i class="ti-settings"></i>
-                                    </a>
-                                    <a href="javascript:void(0)" title="Logout" class="btn btn-circle btn-sm">
-                                        <i class="ti-power-off"></i>
-                                    </a>
-                                    <div class="dropdown-menu animated flipInY" aria-labelledby="Userdd">
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="ti-user m-r-5 m-l-5"></i> My Profile</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="ti-wallet m-r-5 m-l-5"></i> My Balance</a>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="ti-email m-r-5 m-l-5"></i> Inbox</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="ti-settings m-r-5 m-l-5"></i> Account Setting</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="javascript:void(0)">
-                                            <i class="fa fa-power-off m-r-5 m-l-5"></i> Logout</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End User Profile-->
-                        </li>
-                        <!-- User Profile-->
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('workshop/dashboard'); ?>" aria-expanded="false">
-                                <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Dashboard </span>
-                            </a>
-                        </li>
-                        <li class="nav-small-cap">
-                            <i class="mdi mdi-dots-horizontal"></i>
-                            <span class="hide-menu">Perizinan</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('workshop/perizinan_baru'); ?>" aria-expanded="false">
-                                <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Perizinan Baru</span>
-                            </a>
-                        </li>
-
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('workshop/perpanjang'); ?>" aria-expanded="false">
-                                <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Perpanjang Izin </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('workshop/pelaporan'); ?>" aria-expanded="false">
-                                <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Pelaporan </span>
-                            </a>
-                        </li>
-
-                        <!-- Jika yang login sebagai perusahaan produksi alat tampilkan menu ini -->
-                        <li class="nav-small-cap">
-                            <i class="mdi mdi-dots-horizontal"></i>
-                            <span class="hide-menu">Dashboard</span>
-                        </li>
-                        <li class="nav-small-cap">
-                            <i class="mdi mdi-dots-horizontal"></i>
-                            <span class="hide-menu">Pengujian</span>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('Home/tagihan'); ?>" aria-expanded="false">
-                                <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Type Approval </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('Home/tagihan'); ?>" aria-expanded="false">
-                                <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Production Approval </span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item">
-                            <a class="sidebar-link" href="<?php echo site_url('Home/tagihan'); ?>" aria-expanded="false">
-                                <i class="icon-Car-Wheel"></i>
-                                <span class="hide-menu">Pelaporan </span>
-                            </a>
-                        </li>
-                    </ul>
-                </nav>
-                <!-- End Sidebar navigation -->
-            </div>
-            <!-- End Sidebar scroll-->
-        </aside>
-        <!-- ============================================================== -->
-        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <div class="container-fluid">
-       <?php echo $isi; ?>
-       </div>
-        <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- customizer Panel -->
-</div>
-
-    <div class="chat-windows"></div>
-    <!-- ============================================================== -->
-    <!-- All Jquery -->
-    <!-- ============================================================== -->
+	<script>
+		$.noConflict();
+		jQuery(document).ready(function ($) {
+			$('#myTable').DataTable();
+		});
 
 
-<script src="<?php echo base_url(); ?>assets/app/libs/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap tether Core JavaScript -->
-    <script src="<?php echo base_url(); ?>assets/app/libs/popper.js/dist/umd/popper.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/app/libs/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- apps -->
-    <script src="<?php echo base_url(); ?>assets/app/dist/js/app.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/app/dist/js/app.init.light-sidebar.js"></script>
-    <script src="<?php echo base_url(); ?>assets/app/dist/js/app-style-switcher.js"></script>
-    <!-- slimscrollbar scrollbar JavaScript -->
-    <script src="<?php echo base_url(); ?>assets/app/libs/perfect-scrollbar/dist/perfect-scrollbar.jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/app/extra-libs/sparkline/sparkline.js"></script>
-    <!--Wave Effects -->
-    <script src="<?php echo base_url(); ?>assets/app/dist/js/waves.js"></script>
-    <!--Menu sidebar -->
-    <script src="<?php echo base_url(); ?>assets/app/dist/js/sidebarmenu.js"></script>
-    <!--Custom JavaScript -->
-    <script src="<?php echo base_url(); ?>assets/app/dist/js/custom.min.js"></script>
-
-<script src="<?php echo base_url(); ?>assets/app/dist/js/custom.js"></script>
-<script src="<?php echo base_url(); ?>assets/app/libs/jquery-steps/build/jquery.steps.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/app/libs/jquery-validation/dist/jquery.validate.min.js"></script>
-<!-- datatabel -->
-<script src="<?php echo base_url(); ?>assets/app/extra-libs/DataTables/datatables.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/app/dist/js/pages/datatable/datatable-basic.init.js"></script>
-
-    <script>
-
-    //Custom design form example
-    $(".tab-wizard").steps({
-        headerTag: "h6",
-        bodyTag: "section",
-        transitionEffect: "fade",
-        titleTemplate: '<span class="step">#index#</span> #title#',
-        labels: {
-            finish: "Submit"
-        },
-        onFinished: function(event, currentIndex) {
-            swal("Form Submitted!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
-
-        }
-    });
-
-
-    var form = $(".validation-wizard").show();
-
-    $(".validation-wizard").steps({
-        headerTag: "h6",
-        bodyTag: "section",
-        transitionEffect: "fade",
-        titleTemplate: '<span class="step">#index#</span> #title#',
-        labels: {
-            finish: "Submit"
-        },
-        onStepChanging: function(event, currentIndex, newIndex) {
-            return currentIndex > newIndex || !(3 === newIndex && Number($("#age-2").val()) < 18) && (currentIndex < newIndex && (form.find(".body:eq(" + newIndex + ") label.error").remove(), form.find(".body:eq(" + newIndex + ") .error").removeClass("error")), form.validate().settings.ignore = ":disabled,:hidden", form.valid())
-        },
-        onFinishing: function(event, currentIndex) {
-            return form.validate().settings.ignore = ":disabled", form.valid()
-        },
-        onFinished: function(event, currentIndex) {
-            swal("Form Submitted!", "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed lorem erat eleifend ex semper, lobortis purus sed.");
-        }
-    }), $(".validation-wizard").validate({
-        ignore: "input[type=hidden]",
-        errorClass: "text-danger",
-        successClass: "text-success",
-        highlight: function(element, errorClass) {
-            $(element).removeClass(errorClass)
-        },
-        unhighlight: function(element, errorClass) {
-            $(element).removeClass(errorClass)
-        },
-        errorPlacement: function(error, element) {
-            error.insertAfter(element)
-        },
-        rules: {
-            email: {
-                email: !0
-            }
-        }
-    })
     </script>
+    <!-- Popover -->
+	<script>
+		$(function () {
+			$('[data-toggle="popover"]').popover()
+		})
 
+	</script>
 
 </body>
-            <!-- footer -->
-            <!-- ============================================================== -->
-            <footer class="footer text-center">
-                All Rights Reserved by BTKP. Designed and Developed by
-                <a href="https://wrappixel.com">Soepomo 86</a>.
-            </footer>
-            <!-- ============================================================== -->
+
 </html>
