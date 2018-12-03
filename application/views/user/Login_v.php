@@ -7,34 +7,34 @@ Author: SAEROX
 ** A license must be purchased in order to legally use this template for your project **
 -->
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>* BTKP</title>
-        <meta name="description" content="Elisyam is a Web App and Admin Dashboard Template built with Bootstrap 4">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <!-- Google Fonts -->
-        <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-        <script>
-          WebFont.load({
-            google: {"families":["Montserrat:400,500,600,700","Noto+Sans:400,700"]},
-            active: function() {
-                sessionStorage.fonts = true;
-            }
-          });
-        </script>
-        <!-- Favicon -->
-        <link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>assets/app/img/apple-touch-icon.png">
-        <link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>assets/app/img/favicon-32x32.png">
-        <link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/app/img/favicon-16x16.png">
-        <!-- Stylesheet -->
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/vendors/css/base/bootstrap.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/vendors/css/base/elisyam-1.5.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/animate/animate.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/lineawesome/css/line-awesome.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/ionicons/css/ionicons.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/themify/css/themify-icons.min.css">
-        <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/meteocons/css/meteocons.min.css">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>BTKP</title>
+    <meta name="description" content="Elisyam is a Web App and Admin Dashboard Template built with Bootstrap 4">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Google Fonts -->
+    <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+    <script>
+      WebFont.load({
+        google: {"families":["Montserrat:400,500,600,700","Noto+Sans:400,700"]},
+        active: function() {
+            sessionStorage.fonts = true;
+        }
+    });
+</script>
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>assets/app/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>assets/app/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="<?php echo base_url(); ?>assets/app/img/favicon-16x16.png">
+<!-- Stylesheet -->
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/vendors/css/base/bootstrap.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/vendors/css/base/elisyam-1.5.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/animate/animate.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/lineawesome/css/line-awesome.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/ionicons/css/ionicons.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/themify/css/themify-icons.min.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/meteocons/css/meteocons.min.css">
         <!-- Tweaks for older IEs--><!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
@@ -63,11 +63,11 @@ Author: SAEROX
                             </div>
                             <h1>Aplikasi</h1>
                             <span class="description">
-                            Keselamatan Pelayaran
+                                Keselamatan Pelayaran
                             </span>
                             <ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
-                                <li><a class="active" data-toggle="tab" href="#singin" role="tab" id="singin-tab" data-easein="zoomInUp">Sign In</a></li>
-                                <li><a data-toggle="tab" href="#signup" role="tab" id="signup-tab" data-easein="zoomInRight">Sign Up</a></li>
+                                <li><a class="active" data-toggle="tab" href="#singin" role="tab" id="singin-tab" data-easein="zoomInUp">Masuk</a></li>
+                                <li><a data-toggle="tab" href="#signup" role="tab" id="signup-tab" data-easein="zoomInRight">Daftar</a></li>
                             </ul>
                         </div>
                     </div>
@@ -80,96 +80,111 @@ Author: SAEROX
                         <div class="tab-content" id="animate-tab-content">
                             <!-- Begin Sign In -->
                             <div role="tabpanel" class="tab-pane show active" id="singin" aria-labelledby="singin-tab">
-                                <h3 style="font-color: white;">Sign In</h3>
+                                <h3 style="font-color: white;">Masuk</h3>
                                 <form>
                                     <div class="group material-input">
-        							    <input type="text" required>
-        							    <span class="highlight"></span>
-        							    <span class="bar"></span>
-        							    <label>Email</label>
-                                    </div>
-                                    <div class="group material-input">
-        							    <input type="password" required>
-        							    <span class="highlight"></span>
-        							    <span class="bar"></span>
-        							    <label>Password</label>
-                                    </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col text-left">
-                                        <div class="styled-checkbox">
-                                            <input type="checkbox" name="checkbox" id="remeber">
-                                            <label for="remeber">Remember me</label>
-                                        </div>
-                                    </div>
-                                    <div class="col text-right">
-                                        <a href="pages-forgot-password.html">Forgot Password ?</a>
+                                       <input type="text" required>
+                                       <span class="highlight"></span>
+                                       <span class="bar"></span>
+                                       <label>Email</label>
+                                   </div>
+                                   <div class="group material-input">
+                                       <input type="password" required>
+                                       <span class="highlight"></span>
+                                       <span class="bar"></span>
+                                       <label>Password</label>
+                                   </div>
+                               </form>
+                               <div class="row">
+                                <div class="col text-left">
+                                    <div class="styled-checkbox">
+                                        <input type="checkbox" name="checkbox" id="remeber">
+                                        <label for="remeber">Ingat saya</label>
                                     </div>
                                 </div>
-                                <div class="sign-btn text-center">
-                                    <a href="<?php echo site_url('pemohon/homeuser'); ?>" class="btn btn-lg btn-gradient-01">
-                                        Sign In
-                                    </a>
+                                <div class="col text-right">
+                                    <a href="pages-forgot-password.html">Lupa Password ?</a>
                                 </div>
                             </div>
-                            <!-- End Sign In -->
-                            <!-- Begin Sign Up -->
-                            <div role="tabpanel" class="tab-pane" id="signup" aria-labelledby="signup-tab">
-                                <h3>Create An Account</h3>
-                                <form>
-                                    <div class="group material-input">
-                                        <input type="text" required>
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>Email</label>
-                                    </div>
-                                    <div class="group material-input">
-                                        <input type="password" required>
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>Password</label>
-                                    </div>
-                                    <div class="group material-input">
-                                        <input type="password" required>
-                                        <span class="highlight"></span>
-                                        <span class="bar"></span>
-                                        <label>Confirm Password</label>
-                                    </div>
-                                </form>
-                                <div class="row">
-                                    <div class="col text-left">
-                                        <div class="styled-checkbox">
-                                            <input type="checkbox" name="checkbox" id="agree">
-                                            <label for="agree">I Accept <a href="#">Terms and Conditions</a></label>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="sign-btn text-center">
-                                    <a href="<?php echo site_url('pemohon/feedbackemail'); ?>" class="btn btn-lg btn-gradient-01">
-                                        Sign Up
-                                    </a>
-                                </div>
+                            <div class="sign-btn text-center">
+                                <a href="<?php echo site_url('pemohon/homeuser'); ?>" class="btn btn-lg btn-gradient-01">
+                                    Masuk
+                                </a>
                             </div>
-                            <!-- End Sign Up -->
                         </div>
+                        <!-- End Sign In -->
+                        <!-- Begin Sign Up -->
+                        <div role="tabpanel" class="tab-pane" id="signup" aria-labelledby="signup-tab">
+                            <h3>Buat akun</h3>
+                            <form>
+                                <div class="group material-input">
+                                    <input type="text" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Email</label>
+                                </div>
+                                <div class="group material-input">
+                                    <input type="password" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Password</label>
+                                </div>
+                                <div class="group material-input">
+                                    <input type="password" required>
+                                    <span class="highlight"></span>
+                                    <span class="bar"></span>
+                                    <label>Konfirmasi Password</label>
+                                </div>
+                                <div class="group material-input">
+                                    <select class="form-control">
+                                        <option>----- Pilih User -----</option>
+                                        <option>Admin</option>
+                                        <option>Pimpinan</option>
+                                        <option>Tata Usaha</option>
+                                        <option>Kasie</option>
+                                        <option>Service Station</option>
+                                    </select>
+                                </div>
+                                <div class="group material-input">
+                                    <label><?php echo $cap_img;?></label>
+                                    <label>Masukkan lel</label>
+                                    <input type="text" required>
+                                </div>
+                            </form>
+                            <div class="row">
+                                <div class="col text-left">
+                                    <div class="styled-checkbox">
+                                        <input type="checkbox" name="checkbox" id="agree">
+                                        <label for="agree">Saya Menerima <a href="#">Syarat dan Ketentuan</a></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="sign-btn text-center">
+                                <a href="<?php echo site_url('pemohon/feedbackemail'); ?>" class="btn btn-lg btn-gradient-01">
+                                    Daftar
+                                </a>
+                            </div>
+                        </div>
+                        <!-- End Sign Up -->
                     </div>
-                    <!-- End Form -->
                 </div>
-                </div>
-                <!-- End Right Content -->
+                <!-- End Form -->
             </div>
-            <!-- End Row -->
         </div>
-        <!-- End Container -->
-        <!-- Begin Vendor Js -->
-        <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
-        <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
-        <!-- End Vendor Js -->
-        <!-- Begin Page Vendor Js -->
-        <script src="<?php echo base_url(); ?>assets/app/vendors/js/app/app.min.js"></script>
-        <!-- End Page Vendor Js -->
-        <!-- Begin Page Snippets -->
-        <script src="<?php echo base_url(); ?>assets/app/js/components/tabs/animated-tabs.min.js"></script>
-        <!-- End Page Snippets -->
-    </body>
+        <!-- End Right Content -->
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Container -->
+<!-- Begin Vendor Js -->
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
+<!-- End Vendor Js -->
+<!-- Begin Page Vendor Js -->
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/app/app.min.js"></script>
+<!-- End Page Vendor Js -->
+<!-- Begin Page Snippets -->
+<script src="<?php echo base_url(); ?>assets/app/js/components/tabs/animated-tabs.min.js"></script>
+<!-- End Page Snippets -->
+</body>
 </html>
