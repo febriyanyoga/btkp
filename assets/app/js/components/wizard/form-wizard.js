@@ -8,8 +8,8 @@ $(function () {
 				width: $percent + '%'
 			});
 		}
-	});	
+	});
 	$('#rootwizard .finish').click(function () {
 	    $('#success-modal').modal();
-	});	
+	});
 });
