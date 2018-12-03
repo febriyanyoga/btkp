@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div class="row flex-row">
 	<div class="col-xl-12">
 		<!-- Form -->
@@ -330,5 +331,6 @@
 		</div>
 		<!-- End Form -->
 	</div>
+</div>
 </div>
 <!-- End Row -->

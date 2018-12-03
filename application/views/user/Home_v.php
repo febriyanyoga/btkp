@@ -1,119 +1,31 @@
 <div class="container-fluid">
 	<div class="row justify-content-center">
 		<div class="col-xl-11">
-			<!-- Start Head Profile -->
-			<!-- <div class="widget head-profile has-shadow">
-                                    <div class="widget-body pb-0">
-                                        <div class="row d-flex align-items-center">
-                                            <div class="col-xl-4 col-md-4 d-flex justify-content-lg-start justify-content-md-start justify-content-center">
-                                                <ul>
-                                                    <li>
-                                                        <div class="counter">8234</div>
-                                                        <div class="heading">Followers</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="counter">357</div>
-                                                        <div class="heading">Likes</div>
-                                                    </li>
-                                                    <li>
-                                                        <div class="counter">23</div>
-                                                        <div class="heading">Products</div>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-xl-4 col-md-4 d-flex justify-content-center">
-                                                <div class="image-default">
-                                                    <img class="rounded-circle" src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg" alt="...">
-                                                </div>
-                                                <div class="infos">
-                                                    <h2>David Green</h2>
-                                                    <div class="location">Las Vegas, Nevada, U.S.</div>
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-4 col-md-4 d-flex justify-content-lg-end justify-content-md-end justify-content-center">
-                                                <div class="follow">
-                                                    <a class="btn btn-gradient-01" href="#"><i class="la la-check"></i>Follow</a>
-                                                    <div class="actions dark">
-                                                        <div class="dropdown">
-                                                            <button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">
-                                                                <i class="la la-ellipsis-h"></i>
-                                                            </button>
-                                                            <div class="dropdown-menu">
-                                                                <a href="#" class="dropdown-item">
-                                                                    Report
-                                                                </a>
-                                                                <a href="#" class="dropdown-item">
-                                                                    Block
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <ul class="head-nav nav nav-tabs justify-content-center">
-                                            <li><a class="active" href="db-social.html">Timeline</a></li>
-                                            <li><a href="pages-about.html">About</a></li>
-                                            <li><a href="pages-friends.html">Friends</a></li>
-                                            <li><a href="javascript:void(0);">Photos</a></li>
-                                            <li><a href="javascript:void(0);">Videos</a></li>
-                                        </ul>
-                                    </div>
-                                </div> -->
-			<!-- End Head Profile -->
 			<div class="row">
 				<div class="col-xl-12 widget-29">
 					<div class="widget no-bg">
 						<div class="widget-body pt-0">
 							<div class="widget29 owl-carousel">
-								<div class="item" data-toggle="modal" data-target="#living-room">
-									<div class="devices-item d-flex justify-content-center align-items-center">
-										<!-- <i class="la la-tv"></i> -->
-										<div class="room">Perizinan</div>
-									</div>
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/smarthome/03.jpg" alt="...">
+								<div class="item" data-toggle="modal" data-target="#perizinan">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/perizinan.jpg" alt="...">
 								</div>
-								<div class="item" data-toggle="modal" data-target="#kitchen">
-									<div class="devices-item d-flex justify-content-center align-items-center">
-										<i class="la la-cutlery"></i>
-										<div class="room">Pemeriksaan</div>
-									</div>
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/smarthome/04.jpg" alt="...">
+								<div class="item" data-toggle="modal" data-target="#inspeksi">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/inspeksi.jpg" alt="...">
 								</div>
-								<div class="item" data-toggle="modal" data-target="#dinner-room">
-									<div class="devices-item d-flex justify-content-center align-items-center">
-										<i class="la la-glass"></i>
-										<div class="room">Pengujian</div>
-									</div>
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/smarthome/05.jpg" alt="...">
+								<div class="item" data-toggle="modal" data-target="#inspeksi">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/pengujian.jpg" alt="...">
 								</div>
-								<div class="item" data-toggle="modal" data-target="#bathroom">
-									<div class="devices-item d-flex justify-content-center align-items-center">
-										<i class="la la-tint"></i>
-										<div class="room">Monitoring</div>
-									</div>
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/smarthome/06.jpg" alt="...">
+								<div class="item" data-toggle="modal" data-target="#inspeksi">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/pemeriksaan.jpg" alt="...">
 								</div>
-								<div class="item" data-toggle="modal" data-target="#bedroom">
-									<div class="devices-item d-flex justify-content-center align-items-center">
-										<i class="la la-bed"></i>
-										<div class="room">Inspeksi</div>
-									</div>
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/smarthome/07.jpg" alt="...">
+								<div class="item" data-toggle="modal" data-target="#inspeksi">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/monitoring.jpg" alt="...">
 								</div>
-								<div class="item" data-toggle="modal" data-target="#office">
-									<div class="devices-item d-flex justify-content-center align-items-center">
-										<i class="la la-laptop"></i>
-										<div class="room">Penyewaan</div>
-									</div>
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/smarthome/08.jpg" alt="...">
+								<div class="item" data-toggle="modal" data-target="#inspeksi">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/penyewaan.jpg" alt="...">
 								</div>
-								<div class="item" data-toggle="modal" data-target="#garage">
-									<div class="devices-item d-flex justify-content-center align-items-center">
-										<i class="la la-car"></i>
-										<div class="room">Pelatihan</div>
-									</div>
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/smarthome/10.jpg" alt="...">
+								<div class="item" data-toggle="modal" data-target="#inspeksi">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/pelatihan.jpg" alt="...">
 								</div>
 							</div>
 						</div>
@@ -150,13 +62,6 @@
 						<!-- Begin Widget Header -->
 						<div class="widget-header d-flex align-items-center">
 							<h2>Permohonan SPK</h2>
-							<div class="widget-options">
-								<div class="dropdown">
-									<button type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="dropdown-toggle">
-										<i class="la la-ellipsis-h"></i>
-									</button>
-								</div>
-							</div>
 						</div>
 						<!-- End Widget Header -->
 						<div class="widget-body">
@@ -175,10 +80,10 @@
 											<td class="text-center"><span class="text-primary">0760-LSA</span></td>
 											<td class="text-left">PERAWATAN DAN PERBAIKAN
 												PEMADAM KEBAKARAN (PMK) PORTABLE & CO2 SYSTEM
-                                            </td>
-                                            <td class="text-center" style="color:red;">
-                                                <b>Proses</b>
-                                            </td>
+											</td>
+											<td class="text-center" style="color:red;">
+												<b>Proses</b>
+											</td>
 
 											<td class="text-center">
 												<!-- <a href="#"><i class="ion-eye"></i></a> -->
@@ -188,12 +93,12 @@
 											<td class="text-center"><span class="text-primary">0760-LSA</span></td>
 											<td class="text-left">PERAWATAN DAN PERBAIKAN
 												PEMADAM KEBAKARAN (PMK) PORTABLE & CO2 SYSTEM
-                                            </td>
-                                            <td class="text-center" style="color:red;">
-                                                <b>Menunggu Pembayaran</b>
-                                            </td>
+											</td>
+											<td class="text-center" style="color:red;">
+												<b>Menunggu Pembayaran</b>
+											</td>
 											<td class="text-center">
-											<button type="button" class="btn btn-success mr-1 mb-2"><i class="la la-check"></i>Bayar</button>
+												<button type="button" class="btn btn-success mr-1 mb-2"><i class="la la-check"></i>Bayar</button>
 
 											</td>
 										</tr>
@@ -212,11 +117,11 @@
 </div>
 <!-- End Container -->
 <!-- Begin Living Room Modal -->
-<div id="living-room" class="modal fade">
+<div id="perizinan" class="modal fade">
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content room-details">
 			<div class="modal-header border-0">
-				<h3 class="modal-title"><i class="la la-tv la-2x align-middle pr-2"></i>Perizinan</h3>
+				<h2 class="modal-title">PERIZINAN</h2>
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span>
 					<span class="sr-only">close</span>
@@ -226,31 +131,20 @@
 				<div class="row">
 					<div class="col-xl-12">
 						<div class="room-image">
-							<div class="overlay"></div>
-							<img src="<?php echo base_url(); ?>assets/app/img/smarthome/12.jpg" class="img-fluid rounded" alt="...">
+							<a href="<?php echo site_url('pemohon/perizinanbaru'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perizinanbaru.jpg"
+								 class="img-fluid rounded" alt="..."></a>
 						</div>
 					</div>
-				</div>
-				<br>
-				<div class="main-room-info text-center">
-					<button type="button" class="btn btn-gradient-01 "><a href="<?php echo site_url('pemohon/perizinanbaru'); ?>">Perizinan
-							Baru</a></button>
 				</div>
 				<br>
 				<div class="row">
-					<div class="col-xl-12">
+				<div class="col-xl-12">
 						<div class="room-image">
-							<div class="overlay"></div>
-							<img src="<?php echo base_url(); ?>assets/app/img/smarthome/12.jpg" class="img-fluid rounded" alt="...">
+							<a href="<?php echo site_url('pemohon/perizinanbaru'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perpanjang.jpg"
+								 class="img-fluid rounded" alt="..."></a>
 						</div>
 					</div>
 				</div>
-				<br>
-				<div class="main-room-info text-center">
-					<button type="button" class="btn btn-gradient-01 " href="<?php echo site_url('pemohon/perizinanbaru'); ?>">Perpanjangan
-						Perizinan</button>
-				</div>
-
 			</div>
 		</div>
 	</div>
