@@ -238,9 +238,6 @@ Author: SAEROX
 			<!-- End Left Sidebar -->
 			<!-- Begin Content -->
 			<div class="content-inner compact" style="background:url(<?php echo base_url(); ?>assets/bg.jpg); background-size: cover;">
-				<!-- Begin Jumbotron -->
-
-				<!-- End Jumbotron -->
 				<?php echo $isi; ?>
 				<!-- Begin Page Footer-->
 				<footer class="main-footer">

@@ -66,7 +66,7 @@
 						<!-- End Widget Header -->
 						<div class="widget-body">
 							<div class="table-responsive">
-								<table id="zero-config" class="table mb-0">
+								<table class="table mb-0">
 									<thead>
 										<tr>
 											<th class="text-center">No. Permohonan</th>
@@ -138,7 +138,7 @@
 				</div>
 				<br>
 				<div class="row">
-				<div class="col-xl-12">
+					<div class="col-xl-12">
 						<div class="room-image">
 							<a href="<?php echo site_url('pemohon/perizinanbaru'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perpanjang.jpg"
 								 class="img-fluid rounded" alt="..."></a>
