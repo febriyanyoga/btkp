@@ -1,3 +1,4 @@
+<div class="container-fluid">
 <div class="row">
 	<div class="col-xl-12">
 		<!-- Begin Invoice -->
@@ -106,18 +107,6 @@
                                 </div>
 							</div>
                         </div>
-						<div class="col-xl-5 col-md-5 col-sm-6 d-flex justify-content-xl-end justify-content-md-end justify-content-center mb-2">
-							<div class="client-details">
-								<ul>
-									<li class="title">To.</li>
-									<li>Philip Jensen</li>
-									<li>123 Century Blvd</li>
-									<li>Los Angeles, CA 90045</li>
-									<li>Phone: +00 987 654 32</li>
-									<li>Email: philip@xample.com</li>
-								</ul>
-							</div>
-						</div>
 					</div>
 				</div>
 				<!-- End Invoice Header -->
@@ -225,4 +214,5 @@
 			<!-- End Invoice Footer -->
 		</div>
 	</div>
+</div>
 </div>
