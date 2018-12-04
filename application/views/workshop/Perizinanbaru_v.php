@@ -61,7 +61,7 @@
 											<input type="text" value="" class="form-control">
 										</div>
 										<div class="col-xl-6 mb-3">
-											<label class="form-control-label"><b>PEMIMPIN / PENAGGUNG JAWAB </b><span class="text-danger ml-2">*</span></label>
+											<label class="form-control-label"><b>PEMIMPIN / PENANGGUNG JAWAB </b><span class="text-danger ml-2">*</span></label>
 											<input type="text" value="" class="form-control">
 										</div>
 										<div class="col-xl-6 mb-3">

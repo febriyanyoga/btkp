@@ -92,7 +92,7 @@
 							<ul aria-labelledby="notifications" class="dropdown-menu notification">
 								<li>
 									<div class="notifications-header">
-										<div class="title">Notifications (4)</div>
+										<div class="title">Pemberitahuan (4)</div>
 										<div class="notifications-overlay"></div>
 										<img src="<?php echo base_url(); ?>assets/app/img/notifications/01.jpg" alt="..." class="img-fluid">
 									</div>
@@ -157,12 +157,15 @@
 						<!-- End Notifications -->
 						<!-- User -->
 						<li class="nav-item dropdown"><a id="user" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
-							 aria-haspopup="true" aria-expanded="false" class="nav-link"><img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg"
+							 aria-haspopup="true" aria-expanded="false" class="nav-link"><img src="<?php echo base_url(); ?>assets/app/img/avatar/images.png"
 								 alt="..." class="avatar rounded-circle"></a>
 							<ul aria-labelledby="user" class="user-size dropdown-menu">
 								<li class="welcome">
 									<a href="#" class="edit-profil"><i class="la la-gear"></i></a>
-									<img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg" alt="..." class="rounded-circle">
+									<img src="<?php echo base_url(); ?>assets/app/img/avatar/images.png" alt="..." class="rounded-circle">
+								</li>
+								<li>
+									<p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama')?></h5></p>
 								</li>
 								<li>
 									<a href="db-social.html" class="dropdown-item">
