@@ -20,6 +20,7 @@
                         <table id="sorting-table" class="table mb-0">
                             <thead>
                                 <tr>
+                                <th>No</th>
                                     <th>No.Izin</th>
                                     <th>SPK</th>
                                     <th>Tanggal Mulai</th>
@@ -32,6 +33,7 @@
                             <tbody>
 
                                 <tr>
+                                <td>1</td>
                                     <td><span class="text-primary">189-01-RU</span></td>
                                     <td>Life Boat</td>
                                     <td>08/12/2017</td>
@@ -44,6 +46,7 @@
                                     </td>
                                 </tr>
                                 <tr>
+                                <td>2</td>
                                     <td><span class="text-primary">092-06-FR</span></td>
                                     <td>Life jacket</td>
                                     <td>08/12/2018</td>

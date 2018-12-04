@@ -9,11 +9,11 @@
 								<div class="item" data-toggle="modal" data-target="#perizinan">
 									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/perizinan.jpg" alt="...">
 								</div>
-								<div class="item" data-toggle="modal" data-target="#inspeksi">
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/inspeksi.jpg" alt="...">
+								<div class="item"><a href="<?php echo site_url('data_reinspeksi'); ?>">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/reinspeksi.jpg" alt="..."></a>
 								</div>
-								<div class="item" data-toggle="modal" data-target="#inspeksi">
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/pengujian.jpg" alt="...">
+								<div class="item"><a href="<?php echo site_url('type_approval'); ?>">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/type.jpg" alt="..."></a>
 								</div>
 								<div class="item" data-toggle="modal" data-target="#inspeksi">
 									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/pemeriksaan.jpg" alt="...">
@@ -71,6 +71,7 @@
 										<tr>
 											<th class="text-center">No. Permohonan</th>
 											<th class="text-center">Jenis SPK</th>
+											<th class="text-center">Tanggal Pengajuan</th>
 											<th class="text-center">Status</th>
 											<th class="text-center">Actions</th>
 										</tr>
@@ -81,6 +82,7 @@
 											<td class="text-left">PERAWATAN DAN PERBAIKAN
 												PEMADAM KEBAKARAN (PMK) PORTABLE & CO2 SYSTEM
 											</td>
+											<td class="text-center">12 November 2018</td>
 											<td class="text-center" style="color:red;">
 												<b>Proses</b>
 											</td>
@@ -94,6 +96,7 @@
 											<td class="text-left">PERAWATAN DAN PERBAIKAN
 												PEMADAM KEBAKARAN (PMK) PORTABLE & CO2 SYSTEM
 											</td>
+											<td class="text-center">12 Agustus 2018</td>
 											<td class="text-center" style="color:red;">
 												<b>Menunggu Pembayaran</b>
 											</td>
