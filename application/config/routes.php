@@ -54,32 +54,30 @@ $route['default_controller'] = 'HomeC';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 
-
 // index
-$route['daftar'] 	= 'HomeC/post_daftar';
-$route['home'] 		= 'HomeC';
-$route['login'] 	= 'HomeC/post_login';
-$route['logout']	= 'HomeC/logout';
+$route['daftar'] = 'HomeC/post_daftar';
+$route['home'] = 'HomeC';
+$route['login'] = 'HomeC/post_login';
+$route['logout'] = 'HomeC/logout';
 // $route['tentang'] = 'website/tentang';
 
-
 // workshop
-$route['workshop']			= 'WorkshopC';
-$route['data_perizinan'] 	= 'WorkshopC/data_perizinan';
-$route['data_reinspeksi'] 	= 'WorkshopC/data_reinspeksi';
-$route['pelaporan'] 		= 'WorkshopC/pelaporan';
-$route['izin_baru'] 		= 'WorkshopC/perizinan_baru';
-$route['izin_perpanjang'] 	= 'WorkshopC/perizinan_perpanjang';
-
+$route['workshop'] = 'WorkshopC';
+$route['data_perizinan'] = 'WorkshopC/data_perizinan';
+$route['data_reinspeksi'] = 'WorkshopC/data_reinspeksi';
+$route['pelaporan'] = 'WorkshopC/pelaporan';
+$route['izin_baru'] = 'WorkshopC/perizinan_baru';
+$route['izin_perpanjang'] = 'WorkshopC/perizinan_perpanjang';
+$route['type_approval'] = 'WorkshopC/type_approval';
 
 // admin
-$route['admin']		= 'AdminC';
+$route['admin'] = 'AdminC';
 
 // tatausaha
-$route['tatausaha']	= 'TatausahaC';
+$route['tatausaha'] = 'TatausahaC';
 
 // kasie
-$route['kasie']		= 'KasieC';
+$route['kasie'] = 'KasieC';
 
 // pimpinan
-$route['pimpinan']	= 'PimpinanC';
+$route['pimpinan'] = 'PimpinanC';
