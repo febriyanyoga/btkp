@@ -66,9 +66,13 @@ $route['workshop'] = 'WorkshopC';
 $route['data_perizinan'] = 'WorkshopC/data_perizinan';
 $route['data_reinspeksi'] = 'WorkshopC/data_reinspeksi';
 $route['pelaporan'] = 'WorkshopC/pelaporan';
-$route['izin_baru'] = 'WorkshopC/perizinan_baru';
+$route['izin_baru'] = 'WorkshopC/perizinan_baru_1';
+$route['izin_baru2'] = 'WorkshopC/perizinan_baru_2';
+$route['izin_baru3'] = 'WorkshopC/perizinan_baru_3';
 $route['izin_perpanjang'] = 'WorkshopC/perizinan_perpanjang';
 $route['type_approval'] = 'WorkshopC/type_approval';
+
+$route['post_izin_baru1'] = 'WorkshopC/post_izin_baru1';
 
 // admin
 $route['admin'] = 'AdminC';
