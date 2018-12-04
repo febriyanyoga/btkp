@@ -50,8 +50,36 @@ defined('BASEPATH') or exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'pemohon';
+$route['default_controller'] = 'HomeC';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 
+
+// index
+$route['daftar'] 	= 'HomeC/post_daftar';
+$route['home'] 		= 'HomeC';
+$route['login'] 	= 'HomeC/post_login';
+$route['logout']	= 'HomeC/logout';
 // $route['tentang'] = 'website/tentang';
+
+
+// workshop
+$route['workshop']			= 'WorkshopC';
+$route['data_perizinan'] 	= 'WorkshopC/data_perizinan';
+$route['data_reinspeksi'] 	= 'WorkshopC/data_reinspeksi';
+$route['pelaporan'] 		= 'WorkshopC/pelaporan';
+$route['izin_baru'] 		= 'WorkshopC/perizinan_baru';
+$route['izin_perpanjang'] 	= 'WorkshopC/perizinan_perpanjang';
+
+
+// admin
+$route['admin']		= 'AdminC';
+
+// tatausaha
+$route['tatausaha']	= 'TatausahaC';
+
+// kasie
+$route['kasie']		= 'KasieC';
+
+// pimpinan
+$route['pimpinan']	= 'PimpinanC';
