@@ -1,6 +1,7 @@
 <?php
 
 defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 class WorkshopC extends CI_Controller
 {
     public $data = array();
@@ -16,13 +17,17 @@ class WorkshopC extends CI_Controller
     public function index()
     {
         $data['title'] = 'BTKP - Home';
+        $id_pengguna = $this->session->userdata('id_pengguna');
+        $this->data['perizinan']    = $this->WorkshopM->get_all_perizinan_by_id_pengguna($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/Home_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }
 
     public function data_perizinan()
     {
+        $id_pengguna = $this->session->userdata('id_pengguna');
         $data['title'] = 'BTKP - Data Perizinan';
+        $this->data['perizinan']    = $this->WorkshopM->get_all_perizinan_by_id_pengguna($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/dataperizinan_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }
@@ -41,35 +46,51 @@ class WorkshopC extends CI_Controller
         $this->load->view('workshop/Layout', $data);
     }
 
-    public function perizinan_baru_1()
+    public function perizinan_baru_1($id_pengguna = null)
+    {
+        $id_pengguna = $this->session->userdata('id_pengguna');
+        if($this->WorkshopM->get_perizinan_by_id($id_pengguna)->num_rows() > 0){ //ada perizinan yg belum selesai
+            $id_perizinan = $this->WorkshopM->get_perizinan_by_id($id_pengguna)->row()->id_perizinan; //ambil id nya
+            if($this->WorkshopM->get_perizinan_by_id($id_pengguna)->row()->id_jenis_alat  != ""){ //kalo jenis alat blm disii
+                $id_perizinan = $this->WorkshopM->get_perizinan_by_id($id_pengguna)->row()->id_perizinan;
+                redirect('izin_baru2/'.$id_perizinan); //ke tab 2
+            }elseif ($this->WorkshopM->get_berkas_by_id($id_perizinan)->num_rows() > 0 ){
+                redirect('izin_baru3/'.$id_perizinan);
+            }
+        }else{
+            if($this->WorkshopM->get_data_pengguna_by_id($id_pengguna)->row()->nama_perusahaan == ""){
+                $data['title'] = 'BTKP - Perizinan Baru';
+                $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
+                $data['isi'] = $this->load->view('workshop/Perizinanbaru_v1', $this->data, true);
+                $this->load->view('workshop/Layout', $data);
+            }else{
+                redirect('izin_baru22/'."");
+            }
+        }
+    }
+    public function perizinan_baru_2($id_perizinan="")
     {
         $id_pengguna = $this->session->userdata('id_pengguna');
         if($this->WorkshopM->get_perizinan_by_id($id_pengguna)->num_rows() > 0){
             $id_perizinan = $this->WorkshopM->get_perizinan_by_id($id_pengguna)->row()->id_perizinan;
-            if($this->WorkshopM->get_perizinan_by_id($id_pengguna)->row()->id_jenis_alat  != ""){
-                redirect('izin_baru2');
-            }elseif ($this->WorkshopM->get_berkas_by_id($id_perizinan)->num_rows() > 0 ){
-                redirect('izin_baru3');
+            if($this->WorkshopM->get_berkas_by_id($id_perizinan)->num_rows() > 0 ){
+                redirect('izin_baru3/'.$id_perizinan);
             }
         }else{
             $data['title'] = 'BTKP - Perizinan Baru';
-            $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
+            $this->data['berkas']       = $this->WorkshopM->get_berkas_all()->result();
             $this->data['jenis_alat']   = $this->GeneralM->get_jenis_alat()->result();
-            $data['isi'] = $this->load->view('workshop/Perizinanbaru_v1', $this->data, true);
+            $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
+            $data['isi'] = $this->load->view('workshop/Perizinanbaru_v2', $this->data, true);
             $this->load->view('workshop/Layout', $data);
         }
     }
-    public function perizinan_baru_2()
+    public function perizinan_baru_3($id_perizinan = null)
     {
+        $this->data['id_perizinan'] = $id_perizinan;
         $data['title'] = 'BTKP - Perizinan Baru';
         $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
-        $data['isi'] = $this->load->view('workshop/Perizinanbaru_v2', $this->data, true);
-        $this->load->view('workshop/Layout', $data);
-    }
-    public function perizinan_baru_3()
-    {
-        $data['title'] = 'BTKP - Perizinan Baru';
-        $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
+        $this->data['perizinan']    = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->result();
         $data['isi'] = $this->load->view('workshop/Perizinanbaru_v3', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }
@@ -133,7 +154,7 @@ class WorkshopC extends CI_Controller
             redirect_back();
         }else{
             $data = array(
-                'id_pengguna'               =>  $this->session->userdata('id_pengguna'),
+                'id_pengguna'               => $this->session->userdata('id_pengguna'),
                 'nama_perusahaan'           => $this->input->post('nama_perusahaan'), 
                 'alamat_perusahaan'         => $this->input->post('alamat_perusahaan'), 
                 'id_kel_perusahaan'         => $this->input->post('kelurahan_pt'), 
@@ -153,15 +174,75 @@ class WorkshopC extends CI_Controller
             );
 
             if($insert_id = $this->WorkshopM->insert_perusahaan($data)){
-                if($this->WorkshopM->insert_perizinan($data_izin)){
-                    $this->session->set_flashdata('sukses','Data anda berhasil disimpan');
-                    redirect('izin_baru2');
+                $this->session->set_flashdata('sukses','Data anda berhasil disimpan');
+                redirect('izin_baru2');
+            }else{
+                $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function post_berkas(){
+        $jumlah_file = $this->WorkshopM->get_berkas_all()->num_rows();
+        $data_izin = array(
+            'id_jenis_alat'         =>  $this->input->post('jenis_alat'),
+            'id_pengguna'           =>  $this->session->userdata('id_pengguna'),
+            'id_jenis_perizinan'    =>  $this->input->post('jenis_perizinan')
+        );
+        if($id_perizinan = $this->WorkshopM->insert_perizinan($data_izin)){
+            for ($i=1; $i <= $jumlah_file; $i++){
+                $input_name     = 'files'.$i;
+                $id_berkas_perizinan = 'id_berkas_perizinan'.$i;
+                $namaFile   = $this->upload_file($input_name);
+                if($namaFile['result'] == 'success'){
+                    $data = array(
+                        'id_perizinan'          => $id_perizinan, 
+                        'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan), 
+                        'nama_file'             => $namaFile['file_name'], 
+                        'ukuran_berkas'         => $namaFile['file_size'], 
+                    );
+                    if($this->WorkshopM->insert_detail_berkas($data)){
+                        $this->session->set_flashdata('sukses','Data berhasil diupload');
+                    }else{
+                        $this->session->set_flashdata('error','Gagal diupload');
+                    }
                 }else{
-                    $this->WorkshopM->hapus_perusahaan($id_perusahaan);
-                    $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
-                    redirect_back();
+                    $this->session->set_flashdata('error','Gagal diupload');
                 }
             }
+            redirect('izin_baru3/'.$id_perizinan);   
+        }
+    }
+
+    public function upload_file($input_name){
+        $config['upload_path'] = './assets/upload/'; //path folder
+        $config['allowed_types'] = 'jpg|jpeg|pdf|doc|docx';
+        $config['max_size'] = '1000'; // max_size in kb
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $this->upload->initialize($config);
+        if(!empty($_FILES[$input_name]['name'])){
+            if($this->upload->do_upload($input_name)){
+                $gbr = $this->upload->data();
+                $return = array('result' => 'success', 'file_name' => $gbr['file_name'], 'file_size' => $gbr['file_size'], 'error' => '');
+                return $return;
+            }
+        }else{
+            $return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
+            return $return;
+            echo "Image yang diupload kosong";
+        }
+    }
+
+    public function selesai($id_perizinan){
+        $data = array('status_pengajuan' => 'selesai');
+        if($this->WorkshopM->selesai($id_perizinan, $data)){
+            $this->session->set_flashdata('sukses', 'Permohonan perizinan berhasil disimpan');
+            redirect('workshop');
+        }else{
+            $this->session->set_flashdata('error', 'Gagal menyelesaikan Permohonan perizinan');
+            redirect_back();
         }
     }
 }

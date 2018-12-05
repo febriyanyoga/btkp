@@ -11,7 +11,7 @@ Author: SAEROX
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>*BTKP | Aplikasi</title>
+	<title><?php echo $title;?></title>
 	<meta name="description" content="Elisyam is a Web App and Admin Dashboard Template built with Bootstrap 4">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Google Fonts -->
@@ -211,12 +211,12 @@ Author: SAEROX
 					<!-- Begin Main Navigation -->
 					<ul class="list-unstyled">
 						<li>
-							<a href="<?php echo site_url('admintu'); ?>">
+							<a href="<?php echo site_url('tatausaha'); ?>">
 								<i class="ion-home"></i><span>Dashboard</span>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('admintu/perizinan'); ?>">
+							<a href="<?php echo site_url('perizinan'); ?>">
 								<i class="ion-clipboard"></i><span>Data Perizinan</span>
 							</a>
 						</li>

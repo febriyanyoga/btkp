@@ -17,19 +17,19 @@
 										</div>
 										<ul>
 											<li>
-												<a href="<?php echo site_url('izin_baru')?>">
+												<a href="">
 													<span class="step">1</span>
 													<span class="title">Step 1</span>
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('izin_baru2')?>">
+												<a href="">
 													<span class="step">2</span>
 													<span class="title">Step 2</span>
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('izin_baru3')?>">
+												<a href="" class="active show">
 													<span class="step">3</span>
 													<span class="title">Step 3</span>
 												</a>
@@ -38,7 +38,7 @@
 									</div>
 								</div>
 								<div class="">
-									<div class="" id="tab1" class="">
+									<div class="" id="tab1" class="active show">
 										<?php
 										$data=$this->session->flashdata('sukses');
 										if($data!=""){ 
@@ -67,76 +67,86 @@
 											<h4>Confirmation</h4>
 										</div>
 										<div id="accordion-icon-right" class="accordion">
-											<div class="widget has-shadow">
-												<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne" aria-expanded="true"><div class="card-title w-100">1. Identitas Service Station</div></a>
-												<div id="IconRightCollapseOne" class="card-body collapse show" data-parent="#accordion-icon-right">
-													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Nama Perusahaan</div>
-														<div class="col-sm-8 form-control-plaintext">PT. SURYA SEGARA SAFETY MARINE</div>
+											<?php
+											foreach ($perizinan as $per) {
+												?>
+												<div class="widget has-shadow">
+													<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne" aria-expanded="true"><div class="card-title w-100">1. Identitas Service Station</div></a>
+													<div id="IconRightCollapseOne" class="card-body collapse show" data-parent="#accordion-icon-right">
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Nama Perusahaan</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $per->nama_perusahaan?></div>
+														</div>
+														<div class="form-group row mb-5">
+															<?php
+															$alamat_pt_detail = $this->WorkshopM->detail_alamat($per->id_kel_perusahaan)->row();
+															$alamat_ws_detail = $this->WorkshopM->detail_alamat($per->id_kel_workshop)->row();
+															?>
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Kantor Perusahaan</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $per->alamat_perusahaan.'<br>'.$alamat_pt_detail->nama_kelurahan.', '.$alamat_pt_detail->nama_kecamatan.', '.$alamat_pt_detail->nama_kabupaten_kota.', '.$alamat_pt_detail->nama_propinsi;?></div>
+														</div>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Workshop/Service Station</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $per->alamat_workshop.'<br>'.$alamat_ws_detail->nama_kelurahan.', '.$alamat_ws_detail->nama_kecamatan.', '.$alamat_ws_detail->nama_kabupaten_kota.', '.$alamat_ws_detail->nama_propinsi;?></div>
+														</div>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Akta Pendirian Perusahaan</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $per->akta_perusahaan?></div>
+														</div>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Pemimpin/Penanggung Jawab</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $per->nama_pimpinan?></div>
+														</div>
 													</div>
-													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Kantor Perusahaan</div>
-														<div class="col-sm-8 form-control-plaintext">Jl. Ir. Sutami Pergudangan Tamalanrea Blok. A2 No. 6 Kel. Parang Loe, Kec. Tamalanrea, Kota Makassar, Sulawesi Selatan</div>
+													<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
+														<div class="card-title w-100">2. Informasi Kontak</div>
+													</a>
+													<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor Telepon Perusahaan</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $per->no_tlp?></div>
+														</div>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Email Perusahaan</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $per->email_perusahaan?></div>
+														</div>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">NPWP</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $per->npwp?></div>
+														</div>
 													</div>
-													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Workshop/Service Station</div>
-														<div class="col-sm-8 form-control-plaintext"></div>
-													</div>
-													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Akta Pendirian Perusahaan</div>
-														<div class="col-sm-8 form-control-plaintext">012345 - 13 Mei 1990</div>
-													</div>
-													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Pemimpin/Penanggung Jawab</div>
-														<div class="col-sm-8 form-control-plaintext">TEUKU NASER</div>
-													</div>
-												</div>
-												<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
-													<div class="card-title w-100">2. Informasi Kontak</div>
-												</a>
-												<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
-													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor Telepon Perusahaan</div>
-														<div class="col-sm-8 form-control-plaintext">02123333345</div>
-													</div>
-													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Email Perusahaan</div>
-														<div class="col-sm-8 form-control-plaintext">tes@gmail.com</div>
-													</div>
-													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">NPWP</div>
-														<div class="col-sm-8 form-control-plaintext">01.440.926.2-801.001</div>
-													</div>
-												</div>
-												<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseThree">
-													<div class="card-title w-100">3. Jenis SPK & Masa Berlaku</div>
-												</a>
-												<div id="IconRightCollapseThree" class="card-body collapse" data-parent="#accordion-icon-right">
-													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Jenis SPK</div>
-														<div class="col-sm-8 form-control-plaintext">Life Boat</div>
-													</div>
-													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor SPK Lama</div>
-														<div class="col-sm-8 form-control-plaintext">BHSJADKTYUIO</div>
-													</div>
-													<div class="form-group row mb-5">
-														<div class="col-xl-12">
-															<div class="styled-checkbox">
-																<input type="checkbox" name="checkbox" id="agree">
-																<label for="agree">I Accept <a href="#">Terms and Conditions</a></label>
+													<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseThree">
+														<div class="card-title w-100">3. Jenis SPK & Masa Berlaku</div>
+													</a>
+													<div id="IconRightCollapseThree" class="card-body collapse" data-parent="#accordion-icon-right">
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Jenis SPK</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $per->nama_alat?></div>
+														</div>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor SPK Lama</div>
+															<div class="col-sm-8 form-control-plaintext">BHSJADKTYUIO</div>
+														</div>
+														<div class="form-group row mb-5">
+															<div class="col-xl-12">
+																<div class="styled-checkbox">
+																	<input type="checkbox" name="checkbox" id="agree">
+																	<label for="agree">I Accept <a href="#">Terms and Conditions</a></label>
+																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-											</div>
+												<?php
+											}
+											?>
 										</div>
 										<ul class="pager wizard text-right">
-											<li class="previous d-inline-block">
-												<input type="button" name="back" class="btn btn-secondary ripple" value="Kembali">
-											</li>
+											<!-- <li class="previous d-inline-block">
+												<a href="<?php echo site_url('izin_baru2/'.$id_perizinan)?>" class="btn btn-secondary ripple">Kembali</a>
+											</li> -->
 											<li class="next d-inline-block">
-												<input type="submit" name="submit" class="btn btn-gradient-01" value="Selesai">
+												<a href="<?php echo site_url('selesai/'.$id_perizinan)?>" class="btn btn-gradient-01" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">Selesai</a>
 											</li>
 										</ul>
 									</div>

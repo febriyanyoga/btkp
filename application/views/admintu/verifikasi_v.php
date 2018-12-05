@@ -34,9 +34,13 @@
 					<!-- Begin Invoice Header -->
 					<div class="invoice-header">
 						<div id="accordion-icon-right" class="accordion">
-							<div class="widget has-shadow">
-								<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne"
-								 aria-expanded="true">
+							<?php
+							foreach ($detail_perizinan as $per) {
+								?>
+
+								<div class="widget has-shadow">
+									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne"
+									aria-expanded="true">
 									<div class="card-title w-100"> <b>1. Identitas Service Station</b></div>
 								</a>
 								<div id="IconRightCollapseOne" class="card-body collapse show" style="color:black;" data-parent="#accordion-icon-right">
@@ -47,17 +51,20 @@
 												<label for="1">Nama Perusahaan</label>
 											</div>
 										</div>
-										<div class="col-xl-8">PT. SURYA SEGARA SAFETY MARINE</div>
+										<div class="col-xl-8"><?php echo $per->nama_perusahaan?></div>
 									</div>
 									<div class="form-group row mb-5">
+										<?php
+										$alamat_pt_detail = $this->WorkshopM->detail_alamat($per->id_kel_perusahaan)->row();
+										$alamat_ws_detail = $this->WorkshopM->detail_alamat($per->id_kel_workshop)->row();
+										?>
 										<div class="col-xl-4">
 											<div class="styled-checkbox">
 												<input type="checkbox" name="checkbox" id="2">
 												<label for="2">Alamat Kantor Perusahaan</label>
 											</div>
 										</div>
-										<div class="col-xl-8">Jl. Ir. Sutami Pergudangan Tamalanrea Blok. A2 No. 6 Kel. Parang
-											Loe, Kec. Tamalanrea, Kota Makassar, Sulawesi Selatan</div>
+										<div class="col-xl-8"><?php echo $per->alamat_perusahaan.'<br>'.$alamat_pt_detail->nama_kelurahan.', '.$alamat_pt_detail->nama_kecamatan.', '.$alamat_pt_detail->nama_kabupaten_kota.', '.$alamat_pt_detail->nama_propinsi;?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -66,7 +73,7 @@
 												<label for="3">Alamat Workshop/Service Station </label>
 											</div>
 										</div>
-										<div class="col-xl-8"> </div>
+										<div class="col-xl-8"><?php echo $per->alamat_workshop.'<br>'.$alamat_ws_detail->nama_kelurahan.', '.$alamat_ws_detail->nama_kecamatan.', '.$alamat_ws_detail->nama_kabupaten_kota.', '.$alamat_ws_detail->nama_propinsi;?> </div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -75,7 +82,7 @@
 												<label for="4">Akta Pendirian Perusahaan</label>
 											</div>
 										</div>
-										<div class="col-xl-8">012345 - 13 Mei 1990</div>
+										<div class="col-xl-8"><?php echo $per->akta_perusahaan?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -84,7 +91,7 @@
 												<label for="5">Pemimpin/Penanggung Jawab</label>
 											</div>
 										</div>
-										<div class="col-xl-8">TEUKU NASER</div>
+										<div class="col-xl-8"><?php echo $per->nama_pimpinan?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -93,7 +100,7 @@
 												<label for="6">Nomor Telepon Perusahaan</label>
 											</div>
 										</div>
-										<div class="col-xl-8">0987435321</div>
+										<div class="col-xl-8"><?php echo $per->no_tlp?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -102,7 +109,7 @@
 												<label for="7">Email Perusahaan</label>
 											</div>
 										</div>
-										<div class="col-xl-8">tes@gmail.com</div>
+										<div class="col-xl-8"><?php echo $per->email_perusahaan?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -111,7 +118,7 @@
 												<label for="8">NPWP</label>
 											</div>
 										</div>
-										<div class="col-xl-8">01.440.926.2-801.00</div>
+										<div class="col-xl-8"><?php echo $per->npwp?></div>
 									</div>
 
 								</div>
@@ -126,105 +133,73 @@
 												<label for="9">Jenis SPK</label>
 											</div>
 										</div>
-										<div class="col-xl-8">Life Boat</div>
+										<div class="col-xl-8"><?php echo $per->nama_alat?></div>
 									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" name="checkbox" id="10">
-												<label for="10">Nomor SPK Lama</label>
+									<?php
+									if($per->nama_jenis_izin == "Perpanjang"){
+										?>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" name="checkbox" id="10">
+													<label for="10">Nomor SPK Lama</label>
+												</div>
 											</div>
+											<div class="col-xl-8">BHSJADKTYUIO</div>
 										</div>
-										<div class="col-xl-8">BHSJADKTYUIO</div>
-									</div>
+										<?php
+									}
+									?>
 
 								</div>
 								<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseThree">
 									<div class="card-title w-100">3. Dokumen Pendukung</div>
 								</a>
 								<div id="IconRightCollapseThree" class="card-body collapse" data-parent="#accordion-icon-right">
-
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" name="checkbox" id="11">
-												<label for="11">Akta Pendirian Perusahaan </label>
+									<?php
+									$detail_berkas = $this->TatausahaM->get_berkas_by_id($per->id_perizinan)->result();
+									// print_r($detail_berkas);
+									foreach ($detail_berkas as $ber) {
+										?>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" name="checkbox" id="11">
+													<label for="11"><?php echo $ber->nama_berkas?></label>
+												</div>
+											</div>
+											<div class="col-xl-8">
+												<a target="_blank" href="<?php echo base_url().'assets/upload/'.$ber->nama_file;?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
 											</div>
 										</div>
-										<div class="col-xl-8">
-										<a href="<?php echo site_url('#'); ?>">
-											<button type="button" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</button>
-											</i></a>
-										</div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" name="checkbox" id="12">
-												<label for="12">Surat Ijin Perdagangan (SIUP) </label>
-											</div>
-										</div>
-										<div class="col-xl-8">
-										<a href="<?php echo site_url('#'); ?>">
-											<button type="button" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</button>
-											</i></a>
-										</div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" name="checkbox" id="13">
-												<label for="13">Tanda Daftar Perusahaan (TDP)  </label>
-											</div>
-										</div>
-										<div class="col-xl-8">
-										<a href="<?php echo site_url('#'); ?>">
-											<button type="button" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</button>
-											</i></a>
-										</div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" name="checkbox" id="13">
-												<label for="13">Tanda Daftar Perusahaan (TDP)  </label>
-											</div>
-										</div>
-										<div class="col-xl-8">
-										<a href="<?php echo site_url('#'); ?>">
-											<button type="button" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</button>
-											</i></a>
-										</div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-12">
-											<div class="styled-checkbox">
-												<input type="checkbox" name="checkbox" id="agree">
-												<label for="agree">I Accept <a href="#">Terms and Conditions</a></label>
-											</div>
-										</div>
-									</div>
+										<?php
+									}
+									?>
 								</div>
 								<div class="text-right">
-								<a href="<?php echo site_url('#'); ?>">
-								<button type="button" class="btn btn-danger mr-1 mb-2"><i class="la la-ban"></i>Tidak Lengkap</button>
+									<a href="<?php echo site_url('#'); ?>">
+										<button type="button" class="btn btn-danger mr-1 mb-2"><i class="la la-ban"></i>Tidak Lengkap</button>
 
-											</i></a>
-								<a href="<?php echo site_url('#'); ?>">
-								<button type="button" class="btn btn-success mr-1 mb-2"><i class="la la-check"></i>Lengkap</button>
+									</i></a>
+									<a href="<?php echo site_url('#'); ?>">
+										<button type="button" class="btn btn-success mr-1 mb-2"><i class="la la-check"></i>Lengkap</button>
 
-											</i></a>
+									</i></a>
 								</div>
-							</div>
+
+								<?php
+							}
+							?>
 						</div>
 					</div>
-					<!-- End Invoice Header -->
-					<!-- End Table -->
 				</div>
-				<!-- End Invoice Container -->
-				<!-- Begin Invoice Footer -->
-				<!-- End Invoice Footer -->
+				<!-- End Invoice Header -->
+				<!-- End Table -->
 			</div>
+			<!-- End Invoice Container -->
+			<!-- Begin Invoice Footer -->
+			<!-- End Invoice Footer -->
 		</div>
 	</div>
+</div>
 </div>

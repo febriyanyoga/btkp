@@ -17,19 +17,19 @@
 										</div>
 										<ul>
 											<li>
-												<a href="<?php echo site_url('izin_baru')?>">
+												<a href="">
 													<span class="step">1</span>
 													<span class="title">Step 1</span>
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('izin_baru2')?>">
+												<a href="">
 													<span class="step">2</span>
 													<span class="title">Step 2</span>
 												</a>
 											</li>
 											<li>
-												<a href="<?php echo site_url('izin_baru3')?>">
+												<a href="">
 													<span class="step">3</span>
 													<span class="title">Step 3</span>
 												</a>
@@ -183,24 +183,6 @@
 													<label class="form-control-label">ALAMAT E-MAIL<span class="text-danger ml-2">*</span></label>
 													<input type="email" value="" class="form-control" id="email_perusahaan" name="email_perusahaan" required >
 												</div>
-											</div>
-											<div class="section-title mt-5 mb-5">
-												<h4>Jenis Permohonan Izin SPK</h4>
-											</div>
-											<div class="form-group row mb-3">
-												<div class="col-xl-6">
-													<label class="form-control-label">Jenis Perizinan Alat Keselamatan<span class="text-danger ml-2">*</span></label>
-													<select class="custom-select form-control" id="jenis_alat" name="jenis_alat" required >
-														<?php
-														foreach ($jenis_alat as $alat) {
-															?>
-															<option value="<?php echo $alat->id_jenis_alat?>"><?php echo $alat->nama_alat?></option>
-															<?php
-														}
-														?>
-													</select>
-												</div>
-												<input type="hidden" value="1" class="form-control" id="jenis_perizinan" name="jenis_perizinan" required >
 											</div>
 											<ul class="pager wizard text-right">
 												<li class="d-inline-block">
