@@ -66,7 +66,7 @@
 						<!-- End Widget Header -->
 						<div class="widget-body">
 							<div class="table-responsive">
-								<table class="table mb-0">
+								<table id="myTable" class="table mb-0">
 									<thead>
 										<tr>
 											<th class="text-center">No. Permohonan</th>
@@ -77,34 +77,27 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr>
-											<td class="text-center"><span class="text-primary">0760-LSA</span></td>
-											<td class="text-left">PERAWATAN DAN PERBAIKAN
-												PEMADAM KEBAKARAN (PMK) PORTABLE & CO2 SYSTEM
-											</td>
-											<td class="text-center">12 November 2018</td>
-											<td class="text-center" style="color:red;">
-												<b>Proses</b>
-											</td>
+										<?php
+										foreach ($perizinan as $per) {
+											?>
+											<tr>
+												<td class="text-center"><span class="text-primary"><?php echo $per->id_perizinan?></span></td>
+												<td class="text-left"><?php echo $per->nama_alat?></td>
+												<?php
+												$tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+												?>
+												<td class="text-center"><?php echo $tgl_pengajuan?></td>
+												<td class="text-center" style="color:red;">
+													<b>Proses</b>
+												</td>
 
-											<td class="text-center">
-												<!-- <a href="#"><i class="ion-eye"></i></a> -->
-											</td>
-										</tr>
-										<tr>
-											<td class="text-center"><span class="text-primary">0760-LSA</span></td>
-											<td class="text-left">PERAWATAN DAN PERBAIKAN
-												PEMADAM KEBAKARAN (PMK) PORTABLE & CO2 SYSTEM
-											</td>
-											<td class="text-center">12 Agustus 2018</td>
-											<td class="text-center" style="color:red;">
-												<b>Menunggu Pembayaran</b>
-											</td>
-											<td class="text-center">
-												<button type="button" class="btn btn-success mr-1 mb-2"><i class="la la-check"></i>Bayar</button>
-
-											</td>
-										</tr>
+												<td class="text-center">
+													<!-- <a href="#"><i class="ion-eye"></i></a> -->
+												</td>
+											</tr>
+											<?php
+										}
+										?>
 									</tbody>
 								</table>
 							</div>
@@ -135,42 +128,42 @@
 					<div class="col-xl-12">
 						<div class="room-image">
 							<a href="<?php echo site_url('izin_baru'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perizinanbaru.jpg"
-								 class="img-fluid rounded" alt="..."></a>
+								class="img-fluid rounded" alt="..."></a>
+							</div>
 						</div>
 					</div>
-				</div>
-				<br>
-				<div class="row">
-					<div class="col-xl-12">
-						<div class="room-image">
-							<a href="<?php echo site_url('izin_perpanjang'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perpanjang.jpg"
-								 class="img-fluid rounded" alt="..."></a>
+					<br>
+					<div class="row">
+						<div class="col-xl-12">
+							<div class="room-image">
+								<a href="<?php echo site_url('izin_perpanjang'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perpanjang.jpg"
+									class="img-fluid rounded" alt="..."></a>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
-<!-- End Living Room Modal -->
+		<!-- End Living Room Modal -->
 
-<div id="bayartagihan" class="modal fade">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Form cetak sertifikat</h4>
-				<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">×</span>
-					<span class="sr-only">close</span>
-				</button>
-			</div>
-			<div class="modal-body">
+		<div id="bayartagihan" class="modal fade">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title">Form cetak sertifikat</h4>
+						<button type="button" class="close" data-dismiss="modal">
+							<span aria-hidden="true">×</span>
+							<span class="sr-only">close</span>
+						</button>
+					</div>
+					<div class="modal-body">
 
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save</button>
+					</div>
+				</div>
 			</div>
 		</div>
-	</div>
-</div>

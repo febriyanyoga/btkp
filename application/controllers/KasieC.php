@@ -10,7 +10,15 @@ class KasieC extends CI_Controller{
 	}
 	public function index(){
 		$data['title'] = "BTKP - Home";
-		$data['isi'] = $this->load->view('workshop/Home_v',$this->data, TRUE);
-		$this->load->view('workshop/Layout', $data);
+		$data['isi'] = $this->load->view('admintu/dashboard_v',$this->data, TRUE);
+		$this->load->view('admintu/Layout', $data);
 	}
+
+	public function perizinan()
+    {
+		$data['title'] = "BTKP - Data Perizinan";
+        $data['isi'] = $this->load->view('admintu/dataperizinan_v', $this->data, true);
+        // $data['isi'] = "isi";
+        $this->load->view('admintu/Layout', $data);
+    }
 }
