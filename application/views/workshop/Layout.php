@@ -163,7 +163,7 @@
     									<img src="<?php echo base_url(); ?>assets/app/img/avatar/images.png" alt="..." class="rounded-circle">
     								</li>
     								<li>
-    									<p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama')?></h5></p>
+    									<p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
     								</li>
     								<li>
     									<a href="db-social.html" class="dropdown-item">
@@ -279,9 +279,9 @@
 
 		            // AJAX request
 		            $.ajax({
-		            	url:'<?=base_url()?>WorkshopC/get_kabupaten_kota',
+		            	url:'<?=base_url(); ?>WorkshopC/get_kabupaten_kota',
 		            	method: 'post',
-		                data: {id_propinsi: propinsi}, // data post ke controller 
+		                data: {id_propinsi: propinsi}, // data post ke controller
 		                dataType: 'json',
 		                success: function(response){
 		                    // Remove options
@@ -301,9 +301,9 @@
 
 		            // AJAX request
 		            $.ajax({
-		            	url:'<?=base_url()?>WorkshopC/get_kecamatan',
+		            	url:'<?=base_url(); ?>WorkshopC/get_kecamatan',
 		            	method: 'post',
-		                data: {id_kabupaten_kota: kota}, // data post ke controller 
+		                data: {id_kabupaten_kota: kota}, // data post ke controller
 		                dataType: 'json',
 		                success: function(response){
 		                    // Remove options
@@ -323,9 +323,9 @@
 
 		            // AJAX request
 		            $.ajax({
-		            	url:'<?=base_url()?>WorkshopC/get_kelurahan',
+		            	url:'<?=base_url(); ?>WorkshopC/get_kelurahan',
 		            	method: 'post',
-		                data: {id_kecamatan : kecamatan_pt}, // data post ke controller 
+		                data: {id_kecamatan : kecamatan_pt}, // data post ke controller
 		                dataType: 'json',
 		                success: function(response){
 		                    // Remove options
@@ -349,9 +349,9 @@
 
 		            // AJAX request
 		            $.ajax({
-		            	url:'<?=base_url()?>WorkshopC/get_kabupaten_kota',
+		            	url:'<?=base_url(); ?>WorkshopC/get_kabupaten_kota',
 		            	method: 'post',
-		                data: {id_propinsi: propinsi}, // data post ke controller 
+		                data: {id_propinsi: propinsi}, // data post ke controller
 		                dataType: 'json',
 		                success: function(response){
 		                    // Remove options
@@ -371,9 +371,9 @@
 
 		            // AJAX request
 		            $.ajax({
-		            	url:'<?=base_url()?>WorkshopC/get_kecamatan',
+		            	url:'<?=base_url(); ?>WorkshopC/get_kecamatan',
 		            	method: 'post',
-		                data: {id_kabupaten_kota: kota}, // data post ke controller 
+		                data: {id_kabupaten_kota: kota}, // data post ke controller
 		                dataType: 'json',
 		                success: function(response){
 		                    // Remove options
@@ -393,9 +393,9 @@
 
 		            // AJAX request
 		            $.ajax({
-		            	url:'<?=base_url()?>WorkshopC/get_kelurahan',
+		            	url:'<?=base_url();?>WorkshopC/get_kelurahan',
 		            	method: 'post',
-		                data: {id_kecamatan : kecamatan_ws}, // data post ke controller 
+		                data: {id_kecamatan : kecamatan_ws}, // data post ke controller
 		                dataType: 'json',
 		                success: function(response){
 		                    // Remove options

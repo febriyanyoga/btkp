@@ -34,7 +34,7 @@
 								<td class="text-center">10 Oktober 2018</td>
 								<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Lolos</span></span></td>
 								<td class="text-center">
-									<a href="#"><i class="ion-share"></i></a>
+									<a class="ion-share" href="#"> Cetak</a>
 								</td>
 							</tr>
 						</tbody>

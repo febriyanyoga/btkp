@@ -216,24 +216,22 @@ Author: SAEROX
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('admintu/dataperizinan'); ?>">
+							<a href="<?php echo site_url('admintu/perizinan'); ?>">
 								<i class="ion-clipboard"></i><span>Data Perizinan</span>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('admintu/datareinspeksi'); ?>">
-								<i class="ti ti-user"></i><span>Data Re-inspeksi</span>
+							<a href="<?php echo site_url('admintu/reinspeksi'); ?>">
+								<i class="ti ti-notepad"></i><span>Data Re-inspeksi</span>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('pemohon/pelaporan'); ?>">
-								<i class="ti ti-world"></i><span>Pelaporan</span>
+							<a href="<?php echo site_url('pemohon/typeapproval'); ?>">
+								<i class="ti ti-write"></i><span>Type Approval</span>
 							</a>
 						</li>
 					</ul>
-					<!-- End Main Navigation -->
 				</nav>
-				<!-- End Side Navbar -->
 			</div>
 			<!-- End Left Sidebar -->
 			<!-- Begin Content -->
