@@ -3641,7 +3641,7 @@ section.forms form small {
 	background-color: #5d5386;
 	height: 8px;
 	border: 0 none;
-	width: 0%;
+	/*width: 0%;*/
 	transition: width 0.6s ease
 }
 

@@ -12,12 +12,13 @@
         <div class="col-xl-12">
             <!-- Sorting -->
             <div class="widget has-shadow">
-                <div class="widget-header bordered no-actions d-flex align-items-center">
-                    <h4>Sorting</h4>
-                </div>
+                <!-- <div class="widget-header bordered no-actions d-flex align-items-center"> -->
+                    <!-- <input type="button" name="tambah" value="Tambah" class="btn btn-md btn-info"> -->
+                    <!-- <h4>Sorting</h4> -->
+                <!-- </div> -->
                 <div class="widget-body">
                     <div class="table-responsive">
-                        <table id="sorting-table" class="table mb-0">
+                        <table id="myTable" class="table mb-0">
                             <thead>
                                 <tr>
                                 <th>No</th>
@@ -26,8 +27,7 @@
                                     <th>Tanggal Mulai</th>
                                     <th>Tanggal Berakhir</th>
                                     <th><span style="width:100px;">Status</span></th>
-
-                                    <th>Perpanjang</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
