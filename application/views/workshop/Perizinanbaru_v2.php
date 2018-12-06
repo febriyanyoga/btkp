@@ -9,11 +9,11 @@
 				<div class="widget-body">
 					<div class="row flex-row justify-content-center">
 						<div class="col-xl-10">
-							<div id="rootwizard">
+							<div>
 								<div class="step-container">
 									<div class="step-wizard">
-										<div class="progress">
-											<div class="progressbar" style="width: 67.3333%;"></div>
+										<div class="progress" style="top:36px;">
+											<div class="progressbar" style="width: 67%;"></div>
 										</div>
 										<ul>
 											<li>

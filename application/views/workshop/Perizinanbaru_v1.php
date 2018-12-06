@@ -9,15 +9,15 @@
 				<div class="widget-body">
 					<div class="row flex-row justify-content-center">
 						<div class="col-xl-10">
-							<div id="rootwizard">
+							<div>
 								<div class="step-container">
 									<div class="step-wizard">
-										<div class="progress">
-											<div class="progressbar" id="progressbar"></div>
+										<div class="progress" style="top:36px;">
+											<div class="progressbar" id="progressbar" style="width: 33%;"></div>
 										</div>
 										<ul>
 											<li>
-												<a href="">
+												<a href="" class="active show">
 													<span class="step">1</span>
 													<span class="title">Step 1</span>
 												</a>

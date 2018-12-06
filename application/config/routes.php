@@ -86,8 +86,12 @@ $route['admin'] = 'AdminC';
 $route['tatausaha'] = 'TatausahaC';
 $route['perizinan'] = 'TatausahaC/perizinan';
 $route['verifikasi/(:num)'] = 'TatausahaC/verifikasi/$1';
+<<<<<<< HEAD
 $route['reinspeksi'] = 'TatausahaC/reinspeksi';
 $route['pengujian'] = 'TatausahaC/pengujian';
+=======
+$route['persetujuan'] = 'TatausahaC/persetujuan';
+>>>>>>> 8739d0347e079cf3f05c4818a6d9bf2c60cf0816
 
 // kasie
 $route['kasie'] = 'KasieC';

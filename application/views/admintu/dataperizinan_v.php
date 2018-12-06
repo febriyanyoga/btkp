@@ -17,47 +17,230 @@
 					<!-- <h4>Sorting</h4> -->
 					<!-- </div> -->
 					<div class="widget-body">
-						<div class="table-responsive">
-							<table id="myTable" class="table mb-0">
-								<thead>
-									<tr>
-										<th class="text-center">No</th>
-										<th class="text-center">Jenis Izin</th>
-										<th class="text-center">Perusahaan</th>
-										<th class="text-center">Alat SPK</th>
-										<th class="text-center">Tanggal Permohonan</th>
-										<th class="text-center">Status</th>
-										<th class="text-center">Aksi</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-								// print_r($perizinan);
-									$i=0;
-									foreach ($perizinan as $per) {
-										$i++;
-										?>
-										<tr>
-											<td class="text-center"><?php echo $i;?></td>
-											<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
-											<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
-											<td class="text-center"><?php echo $per->nama_alat?></td>
-											<?php
-											$tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
-											?>
-											<td class="text-center"><?php echo $tgl_pengajuan?></td>
-											<td class="text-center">Belum Diverifikasi</td>
-											<td class="text-center">
-												<a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
-												</a>
-											</td>
-										</tr>
-										<?php
-									}
-									?>
-								</tbody>
-							</table>
+						<div class="widget-body sliding-tabs">
+							<ul class="nav nav-tabs" id="example-one" role="tablist">
+								<li class="nav-item">
+									<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode Billing</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Validasi Pembayaran</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Penerbitan</a>
+								</li>
+							</ul>
+							<div class="tab-content pt-3">
+								<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
+									<div class="table-responsive">
+										<table id="myTable" class="table mb-0">
+											<thead>
+												<tr>
+													<th class="text-center">No</th>
+													<th class="text-center">Jenis Izin</th>
+													<th class="text-center">Perusahaan</th>
+													<th class="text-center">Alat SPK</th>
+													<th class="text-center">Tanggal Permohonan</th>
+													<!-- <th class="text-center">Status</th> -->
+													<th class="text-center">Aksi</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												$i=0;
+												foreach ($perizinan as $per) {
+													$id_pengguna = $this->session->userdata('id_pengguna');
+													$own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
+													if($own_progress == 0){
+														$i++;
+														?>
+														<tr>
+															<td class="text-center"><?php echo $i;?></td>
+															<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
+															<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
+															<td class="text-center"><?php echo $per->nama_alat?></td>
+															<?php
+															$tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+															?>
+															<td class="text-center"><?php echo $tgl_pengajuan?></td>
+															<!-- <td class="text-center">
+															</td> -->
+															<td class="text-center">
+																<a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+																</a>
+															</td>
+														</tr>
+														<?php
+													}
+													?>
+													<?php
+												}
+												?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="base-tab-2">
+									<div class="table-responsive">
+										<table id="myTable2" class="table mb-0">
+											<thead>
+												<tr>
+													<th class="text-center">No</th>
+													<th class="text-center">Jenis Izin</th>
+													<th class="text-center">Perusahaan</th>
+													<th class="text-center">Alat SPK</th>
+													<th class="text-center">Tanggal Permohonan</th>
+													<th class="text-center">Status</th>
+													<th class="text-center">Aksi</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												$i=0;
+												$id_pengguna 		= $this->session->userdata('id_pengguna');
+												$jumlah_kasie	 	= $this->GeneralM->get_kasie()->num_rows();
+												if($jumlah_kasie > 0){
+													$id_pengguna_kasie 	= $this->GeneralM->get_kasie()->result();
+													$array_kasie = array();
+													foreach ($id_pengguna_kasie as $kas) {
+														array_push($array_kasie, $kas->id_pengguna);
+													}
+													// print_r($array_kasie);
+													foreach ($perizinan as $per) {
+														$progress_kasie = $this->GeneralM->get_array_progress($array_kasie, $id_pengguna, $per->id_perizinan)->num_rows();
+														if($progress_kasie > 0){
+															$i++;
+															?>
+															<tr>
+																<td class="text-center"><?php echo $i;?></td>
+																<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
+																<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
+																<td class="text-center"><?php echo $per->nama_alat?></td>
+																<?php
+																$tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+																?>
+																<td class="text-center"><?php echo $tgl_pengajuan?></td>
+																<td class="text-center">
+																</td>
+																<td class="text-center">
+																	<a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+																	</a>
+																</td>
+															</tr>
+															<?php
+														}
+														?>
+														<?php
+													}
+												}
+												?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="base-tab-3">
+									<div class="table-responsive">
+										<table id="myTable" class="table mb-0">
+											<thead>
+												<tr>
+													<th class="text-center">No</th>
+													<th class="text-center">Jenis Izin</th>
+													<th class="text-center">Perusahaan</th>
+													<th class="text-center">Alat SPK</th>
+													<th class="text-center">Tanggal Permohonan</th>
+													<th class="text-center">Status</th>
+													<th class="text-center">Aksi</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												$i=0;
+												foreach ($perizinan as $per) {
+													$id_pengguna = $this->session->userdata('id_pengguna');
+													$own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
+													if($own_progress == 0){
+														$i++;
+														?>
+														<tr>
+															<td class="text-center"><?php echo $i;?></td>
+															<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
+															<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
+															<td class="text-center"><?php echo $per->nama_alat?></td>
+															<?php
+															$tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+															?>
+															<td class="text-center"><?php echo $tgl_pengajuan?></td>
+															<td class="text-center">
+															</td>
+															<td class="text-center">
+																<a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+																</a>
+															</td>
+														</tr>
+														<?php
+													}
+													?>
+													<?php
+												}
+												?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="base-tab-4">
+									<div class="table-responsive">
+										<table id="myTable" class="table mb-0">
+											<thead>
+												<tr>
+													<th class="text-center">No</th>
+													<th class="text-center">Jenis Izin</th>
+													<th class="text-center">Perusahaan</th>
+													<th class="text-center">Alat SPK</th>
+													<th class="text-center">Tanggal Permohonan</th>
+													<th class="text-center">Status</th>
+													<th class="text-center">Aksi</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												$i=0;
+												foreach ($perizinan as $per) {
+													$id_pengguna = $this->session->userdata('id_pengguna');
+													$own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
+													if($own_progress == 0){
+														$i++;
+														?>
+														<tr>
+															<td class="text-center"><?php echo $i;?></td>
+															<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
+															<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
+															<td class="text-center"><?php echo $per->nama_alat?></td>
+															<?php
+															$tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+															?>
+															<td class="text-center"><?php echo $tgl_pengajuan?></td>
+															<td class="text-center">
+															</td>
+															<td class="text-center">
+																<a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+																</a>
+															</td>
+														</tr>
+														<?php
+													}
+													?>
+													<?php
+												}
+												?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
 						</div>
+
 					</div>
 				</div>
 				<!-- End Sorting -->
