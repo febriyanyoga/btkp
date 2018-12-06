@@ -213,6 +213,35 @@ class WorkshopC extends CI_Controller
         }
     }
 
+    public function konfirmasi_pembayaran(){
+        $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required');
+        $this->form_validation->set_rules('atas_nama', 'Atas Nama', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else {
+            $upload = $this->upload_file('foto_bukti_trf');
+            if($upload['result'] == 'success'){
+                $data = array(
+                    'nama_bank'      => $this->input->post('nama_bank'),
+                    'atas_nama'      => $this->input->post('atas_nama'),
+                    'foto_bukti_trf' => $upload['file_name'],
+                );
+                $id_perizinan = $this->input->post('id_perizinan');
+                if($this->WorkshopM->selesai($id_perizinan, $data)) {
+                    $this->session->set_flashdata('sukses', 'Konfirmasi pembayaran berhasil diunggah');
+                    redirect_back();
+                } else {
+                    $this->session->set_flashdata('error', 'Konfirmasi tidak pembayaran berhasil diunggah');
+                    redirect_back();
+                }
+            }else{
+                $this->session->set_flashdata('error', 'Konfirmasi tidak pembayaran berhasil diunggah');
+                redirect_back();
+            }
+        }
+    }
+
     public function upload_file($input_name){
         $config['upload_path'] = './assets/upload/'; //path folder
         $config['allowed_types'] = 'jpg|jpeg|pdf|doc|docx';

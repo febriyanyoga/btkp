@@ -64,9 +64,10 @@
 																<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
 																<td class="text-center"><?php echo $per->nama_alat?></td>
 																<?php
-																$tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+																// $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+																$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
 																?>
-																<td class="text-center"><?php echo $tgl_pengajuan?></td>
+																<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 
 																<td class="text-center">
 																	<a href="<?php echo site_url('verifikasi_kasie/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
@@ -95,7 +96,7 @@
 													<th class="text-center">Alat SPK</th>
 													<th class="text-center">Tanggal Permohonan</th>
 													<th class="text-center">Status</th>
-													<th class="text-center">Aksi</th>
+													<th class="text-center">Masa Aktif</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -112,14 +113,17 @@
 															<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
 															<td class="text-center"><?php echo $per->nama_alat?></td>
 															<?php
-															$tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+															// $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+															$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
+															$tgl_terbit 	= date('Y-m-d', strtotime($per->tgl_terbit));
+															$tgl_expired 	= date('Y-m-d', strtotime($per->tgl_expired));
 															?>
-															<td class="text-center"><?php echo $tgl_pengajuan?></td>
+															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 															<td class="text-center">
+																<span style="width:100px;" title="Sudah input billing"><span class="badge-text badge-text-small success"> Aktif</span></span>
 															</td>
 															<td class="text-center">
-																<a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
-																</a>
+																<?php echo date_indo($tgl_terbit).' sampai '.date_indo($tgl_expired);?>
 															</td>
 														</tr>
 														<?php

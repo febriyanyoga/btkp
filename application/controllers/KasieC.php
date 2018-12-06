@@ -65,6 +65,32 @@ class KasieC extends CI_Controller{
 			}
 		}
 	}
+	public function persetujuan2()
+	{
+		$this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
+		$this->form_validation->set_rules('id_perizinan', 'ID Perizinan');
+		$this->form_validation->set_rules('keterangan', 'keterangan', 'required');
+		$this->form_validation->set_rules('status', 'Status', 'required');
+		if ($this->form_validation->run() == false) {
+			$this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+			redirect_back();
+		}else {
+			$upload = $this->upload_file('hasil_survey');
+			$data = array(
+				'id_pengguna' 		=> $this->input->post('id_pengguna'),
+				'id_perizinan' 		=> $this->input->post('id_perizinan'),
+				'keterangan' 		=> $this->input->post('keterangan'),
+				'status' 			=> $this->input->post('status'),
+			);
+			if($this->GeneralM->insert_persetujuan($data)) {
+				$this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+				redirect('izin_kasie');
+			} else {
+				$this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+				redirect_back();
+			}
+		}
+	}
 
 	public function upload_file($input_name){
         $config['upload_path'] = './assets/upload_survey/'; //path folder

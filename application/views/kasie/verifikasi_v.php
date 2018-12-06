@@ -252,7 +252,7 @@
 				<h4 class="modal-title">Persetujuan Perizinan</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
-			<form action="<?php echo site_url('persetujuan')?>" method="post">
+			<form action="<?php echo site_url('persetujuan_kasie2')?>" method="post">
 				<div class="modal-body">
 					<label for="keterangan" class="label">Keterangan : </label>
 					<input type="text" name="keterangan" value="" class="form-control" placeholder="keterangan" required="required">

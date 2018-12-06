@@ -34,14 +34,19 @@
                                     <?php
                                     $i=0;
                                     foreach ($perizinan as $per) {
-                                        $i++;
-                                        ?>
-                                        <tr>
-                                            <td><?php echo $i;?></td>
-                                            <td><span class="text-primary"><?php echo $per->id_perizinan?></span></td>
+                                        if($per->status_pembayaran == 'unpaid'){
+                                            $i++;
+                                            ?>
+                                            <tr>
+                                                <td><?php echo $i;?></td>
+                                                <td><span class="text-primary"><?php echo $per->id_perizinan?></span></td>
                                                 <td><?php echo $per->nama_alat?></td>
-                                                <td><?php echo $per->tgl_terbit?></td>
-                                                <td><?php echo $per->tgl_expired?></td>
+                                                <?php
+                                                $tgl_terbit = date('Y-m-d', strtotime($per->tgl_terbit));
+                                                $tgl_expired = date('Y-m-d', strtotime($per->tgl_expired));
+                                                ?>
+                                                <td><?php echo date_indo($tgl_terbit)?></td>
+                                                <td><?php echo date_indo($tgl_expired)?></td>
                                                 <td><span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span></td>
                                                 <td class="td-actions">
                                                     <a href="<?php echo site_url('pemohon/perizinanbaru'); ?>"><i class="ion-share"></i></a>
@@ -50,14 +55,15 @@
                                             </tr>
                                             <?php
                                         }
-                                        ?> 
-                                    </tbody>
-                                </table>
-                            </div>
+                                    }
+                                    ?> 
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-                    <!-- End Sorting -->
                 </div>
+                <!-- End Sorting -->
             </div>
-            <!-- End Row -->
         </div>
+        <!-- End Row -->
+    </div>

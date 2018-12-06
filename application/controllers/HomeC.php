@@ -59,7 +59,7 @@ class HomeC extends CI_Controller{
 
 		if($this->LoginM->check_captcha() == TRUE){
 			if($user->num_rows()>0){
-				if($user->row()->status == 'aktif'){
+				if($user->row()->status_akun == 'aktif'){
 					$userData       = array(
 						'nama'  		=> $user->row()->nama_pengguna,
 						'jabatan'   	=> $user->row()->nama_jabatan,
