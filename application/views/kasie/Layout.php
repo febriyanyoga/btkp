@@ -69,7 +69,7 @@ Author: SAEROX
 				<div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
 					<!-- Begin Logo -->
 					<div class="navbar-header">
-						<a href="<?php echo site_url('tatausaha')?>" class="navbar-brand">
+						<a href="<?php echo site_url('kasie')?>" class="navbar-brand">
 							<div class="brand-image brand-big">
 								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" style="width: 70px;" class="logo-big">
 							</div>
@@ -213,12 +213,12 @@ Author: SAEROX
 					<!-- Begin Main Navigation -->
 					<ul class="list-unstyled">
 						<li>
-							<a href="<?php echo site_url('tatausaha'); ?>">
+							<a href="<?php echo site_url('kasie'); ?>">
 								<i class="ion-home"></i><span> Dashboard</span>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('perizinan'); ?>">
+							<a href="<?php echo site_url('izin_kasie'); ?>">
 								<i class="ion-clipboard"></i><span> Data Perizinan</span>
 							</a>
 						</li>

@@ -210,7 +210,7 @@
 													<button onclick="window.location.href='<?php echo site_url('izin_baru')?>'" type="button" name="back" class="btn btn-rounded btn-secondary ripple">Kembali</button>
 												</li> -->
 												<li class="next d-inline-block">
-													<input type="submit" name="submit" class="btn btn-gradient-01" value="Simpan">
+													<input type="submit" name="submit" class="btn btn-gradient-01" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
 												</li>
 											</ul>
 										</form>

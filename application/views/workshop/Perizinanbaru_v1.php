@@ -186,7 +186,7 @@
 											</div>
 											<ul class="pager wizard text-right">
 												<li class="d-inline-block">
-													<input type="submit" name="submit" class="btn btn-gradient-01" value="Simpan">
+													<input type="submit" name="submit" class="btn btn-gradient-01" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
 												</li>
 											</ul>
 										</form>

@@ -63,7 +63,7 @@ class GeneralM extends CI_Model{
 		return TRUE;
 	}
 
-	public function get_own_progress($id_pengguna, $id_perizinan){
+	public function get_own_progress($id_pengguna, $id_perizinan){ //perizinan yang di verifikasi kasie
 		$this->db->select('*');
 		$this->db->from('pengguna_perizinan');
 		$this->db->where('id_pengguna',$id_pengguna);
@@ -71,11 +71,22 @@ class GeneralM extends CI_Model{
 		return $this->db->get();
 	}
 
-	public function get_array_progress($array, $id_pengguna, $id_perizinan){
+	public function get_array_progress($id_perizinan){
 		$this->db->select('*');
-		$this->db->from('pengguna_perizinan');
-		$this->db->where_in($id_pengguna, $array);
-		$this->db->where('id_perizinan',$id_perizinan);
+		$this->db->from('pengguna_perizinan P');
+		$this->db->join('pengguna U','P.id_pengguna = U.id_pengguna','left');
+		$this->db->where('U.id_jabatan = "3"'); //kasie
+		$this->db->where('P.id_perizinan',$id_perizinan);
+		return $this->db->get();
+	}
+
+	public function get_array_progress_setuju($id_perizinan){
+		$this->db->select('*');
+		$this->db->from('pengguna_perizinan P');
+		$this->db->join('pengguna U','P.id_pengguna = U.id_pengguna','left');
+		$this->db->where('U.id_jabatan = "2"'); //tu
+		$this->db->where('P.id_perizinan', $id_perizinan);
+		$this->db->where('P.status = "diterima"');
 		return $this->db->get();
 	}
 
@@ -84,6 +95,24 @@ class GeneralM extends CI_Model{
 		$this->db->from('pengguna');
 		$this->db->join('jabatan','pengguna.id_jabatan = jabatan.id_jabatan');
 		$this->db->where('jabatan.id_jabatan = "3"');
+		return $this->db->get();
+	}
+
+	public function get_tu(){
+		$this->db->select('id_pengguna');
+		$this->db->from('pengguna');
+		$this->db->join('jabatan','pengguna.id_jabatan = jabatan.id_jabatan');
+		$this->db->where('jabatan.id_jabatan = "2"');
+		return $this->db->get();
+	}
+
+	public function get_all_perizinan_by_id_pengguna(){
+		$this->db->select('*');
+		$this->db->from('perizinan P');
+		$this->db->join('pengguna U', 'P.id_pengguna = U.id_pengguna','left');
+		$this->db->join('jenis_alat_keselamatan J','P.id_jenis_alat = J.id_jenis_alat','left');
+		$this->db->join('jenis_perizinan K','P.id_jenis_perizinan = K.id_jenis_perizinan','left');
+		$this->db->join('perusahaan S', 'U.id_pengguna = S.id_pengguna','left');
 		return $this->db->get();
 	}
 }

@@ -11,7 +11,7 @@ class WorkshopC extends CI_Controller
         parent::__construct();
         in_access();
         workshop_access();
-        $this->load->model(['LoginM','GeneralM','WorkshopM']);
+        $this->load->model(['LoginM','GeneralM','WorkshopM','TatausahaM']);
     }
 
     public function index()
@@ -229,7 +229,7 @@ class WorkshopC extends CI_Controller
         }else{
             $return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
             return $return;
-            echo "Image yang diupload kosong";
+            echo "Data yang diupload kosong";
         }
     }
 

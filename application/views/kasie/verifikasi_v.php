@@ -57,7 +57,7 @@
 							<?php 
 						} 
 						?>
-						<form action="<?php echo site_url('persetujuan')?>" method="post" id="form-input-acc">
+						<form action="<?php echo site_url('persetujuan_kasie')?>" enctype="multipart/form-data" method="post" id="form-input-acc">
 							<div id="accordion-icon-right" class="accordion">
 								<?php
 								foreach ($detail_perizinan as $per) {
@@ -203,7 +203,20 @@
 										}
 										?>
 									</div>
-									
+									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseFour">
+										<div class="card-title w-100">4. Dokumen Hasil Survey</div>
+									</a>
+									<div id="IconRightCollapseFour" class="card-body collapse" data-parent="#accordion-icon-right">
+										<div class="form-group row mb-5">
+											<div class="col-xl-8">
+												<div class="form-group">
+													<label for="upload"> Upload Dokumen Hasil Survey</label>
+													<input type="file" name="hasil_survey" class="form-control" required="">
+												</div>
+											</div>
+										</div>
+										
+									</div>
 									<div style="display: none;">
 										<input type="hidden" name="id_pengguna" value="<?php echo $this->session->userdata('id_pengguna');?>">
 										<input type="hidden" name="id_perizinan" value="<?php echo $per->id_perizinan;?>">
@@ -211,8 +224,8 @@
 										<input type="hidden" name="status" value="diterima">
 									</div>
 									<div class="text-right">
-										<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lengkap</a>
-										<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Lengkap" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')">
+										<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lolos</a>
+										<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Lolos" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')">
 									</div>
 									<?php
 								}

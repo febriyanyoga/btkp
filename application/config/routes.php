@@ -92,6 +92,10 @@ $route['persetujuan'] = 'TatausahaC/persetujuan';
 
 // kasie
 $route['kasie'] = 'KasieC';
+$route['izin_kasie'] = 'KasieC/perizinan';
+$route['verifikasi_kasie/(:num)'] = 'KasieC/verifikasi/$1';
+$route['persetujuan_kasie'] = 'KasieC/persetujuan';
+
 
 // pimpinan
 $route['pimpinan'] = 'PimpinanC';
