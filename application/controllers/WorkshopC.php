@@ -11,7 +11,7 @@ class WorkshopC extends CI_Controller
         parent::__construct();
         in_access();
         workshop_access();
-        $this->load->model(['LoginM','GeneralM','WorkshopM']);
+        $this->load->model(['LoginM','GeneralM','WorkshopM','TatausahaM']);
     }
 
     public function index()
@@ -44,6 +44,20 @@ class WorkshopC extends CI_Controller
         $data['title'] = 'BTKP - Data Pelaporan';
         $data['isi'] = $this->load->view('workshop/pelaporan_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
+    }
+
+    public function detailperizinan($id_perizinan)
+    {
+        $data['detail_perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
+        $data['title'] = 'BTKP - Surat Pelimpahan Kewenangan';
+        $data['isi'] = $this->load->view('workshop/detailperizinan_v', $data, true);
+        $this->load->view('workshop/Layout', $data);
+    }
+
+    public function print_perizinan($id_perizinan){
+        $this->data['title'] = "BTKP - Surat Pelimpahan Kewenangan";
+        $this->data['detail_perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
+        $this->load->view('workshop/print_perizinan_v', $this->data);
     }
 
     public function perizinan_baru_1($id_pengguna = null)
@@ -213,6 +227,35 @@ class WorkshopC extends CI_Controller
         }
     }
 
+    public function konfirmasi_pembayaran(){
+        $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required');
+        $this->form_validation->set_rules('atas_nama', 'Atas Nama', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else {
+            $upload = $this->upload_file('foto_bukti_trf');
+            if($upload['result'] == 'success'){
+                $data = array(
+                    'nama_bank'      => $this->input->post('nama_bank'),
+                    'atas_nama'      => $this->input->post('atas_nama'),
+                    'foto_bukti_trf' => $upload['file_name'],
+                );
+                $id_perizinan = $this->input->post('id_perizinan');
+                if($this->WorkshopM->selesai($id_perizinan, $data)) {
+                    $this->session->set_flashdata('sukses', 'Konfirmasi pembayaran berhasil diunggah');
+                    redirect_back();
+                } else {
+                    $this->session->set_flashdata('error', 'Konfirmasi tidak pembayaran berhasil diunggah');
+                    redirect_back();
+                }
+            }else{
+                $this->session->set_flashdata('error', 'Konfirmasi tidak pembayaran berhasil diunggah');
+                redirect_back();
+            }
+        }
+    }
+
     public function upload_file($input_name){
         $config['upload_path'] = './assets/upload/'; //path folder
         $config['allowed_types'] = 'jpg|jpeg|pdf|doc|docx';
@@ -229,7 +272,7 @@ class WorkshopC extends CI_Controller
         }else{
             $return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
             return $return;
-            echo "Image yang diupload kosong";
+            echo "Data yang diupload kosong";
         }
     }
 
@@ -243,4 +286,9 @@ class WorkshopC extends CI_Controller
             redirect_back();
         }
     }
+
+    public function cetak_produk()
+    {
+        $this->load->view('workshop/print');
+    }  
 }

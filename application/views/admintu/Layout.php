@@ -44,7 +44,6 @@ Author: SAEROX
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
     </head>
-
 <body id="page-top">
 	<!-- Begin Preloader -->
 	<div id="preloader">
@@ -70,7 +69,7 @@ Author: SAEROX
 				<div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
 					<!-- Begin Logo -->
 					<div class="navbar-header">
-						<a href="db-social.html" class="navbar-brand">
+						<a href="<?php echo site_url('tatausaha')?>" class="navbar-brand">
 							<div class="brand-image brand-big">
 								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" style="width: 70px;" class="logo-big">
 							</div>
@@ -171,6 +170,9 @@ Author: SAEROX
 									<a href="#" class="edit-profil"><i class="la la-gear"></i></a>
 									<img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg" alt="..." class="rounded-circle">
 								</li>
+                                <li>
+                                    <p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
+                                    </li>
 								<li>
 									<a href="db-social.html" class="dropdown-item">
 										Profile
@@ -192,7 +194,7 @@ Author: SAEROX
 										Faq
 									</a>
 								</li>
-								<li><a rel="nofollow" href="pages-login.html" class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
+								<li><a rel="nofollow" href="<?php echo site_url('logout'); ?>" class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
 							</ul>
 						</li>
 						<!-- End User -->
@@ -258,56 +260,58 @@ Author: SAEROX
     				<!-- End Page Footer -->
     				<a href="#" class="go-top"><i class="la la-arrow-up"></i></a>
 
-    			</div>
-    			<!-- End Content -->
-    		</div>
-    		<!-- End Page Content -->
-    	</div>
-    	<!-- Begin Vendor Js -->
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
-    	<!-- End Vendor Js -->
-    	<!-- Begin Page Vendor Js -->
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/bootstrap-wizard/bootstrap.wizard.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/js/components/wizard/form-wizard.min.js"></script>
+</div>
+<!-- End Content -->
+</div>
+<!-- End Page Content -->
+</div>
+<!-- Begin Vendor Js -->
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
+<!-- End Vendor Js -->
+<!-- Begin Page Vendor Js -->
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/bootstrap-wizard/bootstrap.wizard.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/js/components/wizard/form-wizard.min.js"></script>
 
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/nicescroll/nicescroll.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/owl-carousel/owl.carousel.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/progress/circle-progress.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/app/app.min.js"></script>
-    	<!-- End Page Vendor Js -->
-    	<!-- Begin Page Snippets -->
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/chart/chart.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/js/dashboard/db-default.js"></script>
-    	<!-- End Page Snippets -->
-    	<script src="<?php echo base_url(); ?>assets/app/js/components/tables/tables.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/datatables.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/dataTables.buttons.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/jszip.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/buttons.html5.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/pdfmake.min.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/vfs_fonts.js"></script>
-    	<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/buttons.print.min.js"></script>
-    	<!-- End Page Vendor Js -->
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/nicescroll/nicescroll.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/owl-carousel/owl.carousel.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/progress/circle-progress.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/app/app.min.js"></script>
+<!-- End Page Vendor Js -->
+<!-- Begin Page Snippets -->
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/chart/chart.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/js/dashboard/db-default.js"></script>
+<!-- End Page Snippets -->
+<script src="<?php echo base_url(); ?>assets/app/js/components/tables/tables.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/datatables.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/jszip.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/buttons.html5.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/pdfmake.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/vfs_fonts.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/buttons.print.min.js"></script>
+<!-- End Page Vendor Js -->
 
-    	<script>
-    		$.noConflict();
-    		jQuery(document).ready(function ($) {
-    			$('#myTable').DataTable();
-                $('#myTable2').DataTable();
-    		});
+<script>
+  $.noConflict();
+  jQuery(document).ready(function ($) {
+     $('#myTable').DataTable();
+     $('#myTable2').DataTable();
+     $('#myTable3').DataTable();
+     $('#myTable4').DataTable();
+ });
 
 
-    	</script>
-    	<!-- Popover -->
-    	<script>
-    		$(function () {
-    			$('[data-toggle="popover"]').popover()
-    		})
+</script>
+<!-- Popover -->
+<script>
+  $(function () {
+     $('[data-toggle="popover"]').popover()
+ })
 
-    	</script>
+</script>
 
-    </body>
+</body>
 
-    </html>
+</html>

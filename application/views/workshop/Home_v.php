@@ -31,6 +31,30 @@
 							</div>
 						</div>
 					</div>
+					<?php
+					$data=$this->session->flashdata('sukses');
+					if($data!=""){ 
+						?>
+						<div class="alert alert-success">
+							<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+							<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
+							<?=$data;?>
+						</div>
+						<?php 
+					} 
+					?>
+					<?php 
+					$data2=$this->session->flashdata('error');
+					if($data2!=""){ 
+						?>
+						<div class="alert alert-danger">
+							<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+							<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
+							<?=$data2;?>
+						</div>
+						<?php 
+					} 
+					?>
 				</div>
 			</div>
 			<!-- End Row -->
@@ -79,35 +103,99 @@
 									</thead>
 									<tbody>
 										<?php
-                                        foreach ($perizinan as $per) {
-                                            ?>
-											<tr>
-												<td class="text-center"><span class="text-primary"><?php echo $per->id_perizinan; ?></span></td>
-												<td class="text-left"><?php echo $per->nama_alat; ?></td>
+										foreach ($perizinan as $per) {
+											if($per->status_pembayaran == 'unpaid'){
+												$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
+												if($status != 'ditolak'){
+													
+													?>
+													<tr>
+														<td class="text-center"><span class="text-primary"><?php echo $per->id_perizinan; ?></span></td>
+														<td class="text-left"><?php echo $per->nama_alat; ?></td>
+														<?php
+														$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
+														<td class="text-center"><?php echo date_indo($tgl_pengajuan); ?></td>
+														<td class="text-center">
+															<?php 
+															$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
+															$ket = $this->TatausahaM->cek_status($per->id_perizinan)->row()->keterangan;
+															if($status == 'ditolak'){
+																?>
+																<span style="width:100px;" title="<?php echo $ket;?>"><span class="badge-text badge-text-small danger">Ditolak</span></span>
+																<?php
+															}else{
+																?>
+																<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
+																<?php
+															}
+															?>
+														</td>
+														<td class="text-center">
+															<?php
+															if($status == 'ditolak'){
+																echo "-";
+															}else{
+																if($per->kode_billing != ""){
+																if($per->foto_bukti_trf != ""){ //ada foto
+																	?>
+																	<span style="width:100px;" title="Menunggu verifikasi pembayran"><span class="badge-text badge-text-small info"> Menunggu Verifikasi</span></span>
+																	<?php
+																}else{
+																	?>
+																	<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $per->id_perizinan?>">Konfirmasi Pembayaran</i>
+																	</a>
+																	<?php
+																}
+															}
+														}
+														?>
+													</td>
+												</tr>
+
+												<div class="modal" id="konfirmasi-<?php echo $per->id_perizinan?>">
+													<div class="modal-dialog modal-md">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h4 class="modal-title">Konfirmasi Pembayaran</h4>
+																<button type="button" class="close" data-dismiss="modal">&times;</button>
+															</div>
+															<form action="<?php echo site_url('konfirmasi')?>" enctype="multipart/form-data" method="post">
+																<div class="modal-body">
+																	<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan;?>">
+																	<label for="nama_bank" class="label">Nama Bank : </label>
+																	<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank" required="required">
+
+																	<label for="atas_nama" class="label">Atas Nama : </label>
+																	<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama" required="required">
+
+																	<label for="foto_bukti_trf" class="label">Upload Bukti: </label>
+																	<input type="file" name="foto_bukti_trf" value="" class="form-control"required="required">
+																</div>
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+																	<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin data yang dimasukkan sudah benar?')">
+																</div>
+															</form>
+														</div>
+													</div>
+												</div>
 												<?php
-                                                $tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
-												<td class="text-center"><?php echo date_indo($tgl_pengajuan); ?></td>
-												<td class="text-center" style="color:red;">
-													<b>Proses</b>
-												</td>
-												<td class="text-center">
-												</td>
-											</tr>
-											<?php
-                                        }
-                                        ?>
-									</tbody>
-								</table>
-							</div>
+											}
+										}
+									}
+									?>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- End Row -->
 		</div>
-		<!-- End Col -->
+		<!-- End Row -->
 	</div>
-	<!-- End Row -->
+	<!-- End Col -->
+</div>
+<!-- End Row -->
 </div>
 <!-- End Container -->
 <!-- Begin Living Room Modal -->

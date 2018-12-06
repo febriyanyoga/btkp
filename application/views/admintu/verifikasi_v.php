@@ -34,7 +34,6 @@
 					<!-- Begin Invoice Header -->
 					<div class="invoice-header">
 						<?php
-						print_r($id_perizinan);
 						$data=$this->session->flashdata('sukses');
 						if($data!=""){ 
 							?>
@@ -204,6 +203,7 @@
 										}
 										?>
 									</div>
+									
 									<div style="display: none;">
 										<input type="hidden" name="id_pengguna" value="<?php echo $this->session->userdata('id_pengguna');?>">
 										<input type="hidden" name="id_perizinan" value="<?php echo $per->id_perizinan;?>">
@@ -212,7 +212,7 @@
 									</div>
 									<div class="text-right">
 										<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lengkap</a>
-										<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Lengkap" onClick="return confirm('Anda berkas yang dibutuhkan sudah lengkap?')">
+										<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Lengkap" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')">
 									</div>
 									<?php
 								}

@@ -2,7 +2,6 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
-
 class TatausahaC extends CI_Controller
 {
     public $data = array();
@@ -64,6 +63,55 @@ class TatausahaC extends CI_Controller
                 redirect('perizinan');
             } else {
                 $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function post_kode_billing(){
+        $this->form_validation->set_rules('id_perizinan', 'ID Perizinan','required');
+        $this->form_validation->set_rules('kode_billing', 'Kode Billing', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Data tidak berhasil disimpan, cek kembali data yang anda masukkan');
+            redirect_back();
+        } else {
+            $id_perizinan = $this->input->post('id_perizinan');
+            $data = array(
+                'kode_billing' => $this->input->post('kode_billing'),
+            );
+
+            if ($this->TatausahaM->insert_billing($id_perizinan, $data)) {
+                $this->session->set_flashdata('sukses', 'Billing berhasil dimasukkan');
+                redirect_back();
+            } else {
+                $this->session->set_flashdata('error', 'Data tidak berhasil disimpan, cek kembali data yang anda masukkan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function post_penerbitan(){
+        $this->form_validation->set_rules('status_pembayaran', 'Status Pembayaran');
+        $this->form_validation->set_rules('nomor_spk', 'Nomor SPK', 'required');
+        $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit', 'required');
+        $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Data Penerbitan berhasil dimasukkan, cek kembali data yang anda masukkan');
+            redirect_back();
+        } else {
+            $id_perizinan = $this->input->post('id_perizinan');
+            $data = array(
+                'status_pembayaran' => $this->input->post('status_pembayaran'),
+                'no_spk'            => $this->input->post('nomor_spk'),
+                'tgl_terbit'        => $this->input->post('tgl_terbit'),
+                'tgl_expired'       => $this->input->post('tgl_expired'),
+            );
+
+            if ($this->WorkshopM->selesai($id_perizinan, $data)) {
+                $this->session->set_flashdata('sukses', 'Data Penerbitan berhasil dimasukkan');
+                redirect_back();
+            } else {
+                $this->session->set_flashdata('error', 'Data Penerbitan berhasil dimasukkan, cek kembali data yang anda masukkan');
                 redirect_back();
             }
         }

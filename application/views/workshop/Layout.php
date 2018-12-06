@@ -258,7 +258,9 @@
     <script>
     	$.noConflict();
     	jQuery(document).ready(function ($) {
-    		$('#myTable').DataTable();
+            $('#myTable').DataTable();
+            $('#myTable2').DataTable();
+    		$('#myTable3').DataTable();
     	});
 
 
