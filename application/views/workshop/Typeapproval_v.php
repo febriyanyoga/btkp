@@ -11,28 +11,22 @@
 						<div class="col-xl-12">
 							<div class="form-group row mb-3">
 								<div class="col-xl-12 mb-3">
-									<label class="form-control-label"><b>NAMA PERUSAHAAN</b><span class="text-danger ml-2">*</span></label>
-									<input type="text" value="PT. SURYA SEGARA SAFETY MARINE" class="form-control">
-								</div>
-								<div class="col-xl-12 mb-3">
-									<label class="form-control-label"><b>ALAMAT</b><span class="text-danger ml-2">*</span></label>
+									<label class="form-control-label"><b>NAMA ALAT</b><span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
 								<div class="col-xl-12 mb-3">
-									<label class="form-control-label"><b>NAMA ALAT KESELAMATAN BARU</b> <span class="text-danger ml-2">*</span></label>
+									<label class="form-control-label"><b>TAHUN PRODUKSI</b><span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-12 mb-3">
+									<label class="form-control-label"><b>PERUSAHAAN PRODUKSI</b> <span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-12 mb-3">
+									<label class="form-control-label"><b>KODE PRODUKSI</b> <span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
 
-                                <div class="col-xl-6 mb-3">
-                                <label class="form-control-label"><b>Foto-foto </b><span class="text-danger ml-2">*</span></label>
-								<i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Foto Alat Keselamatan Baru"
-								 data-original-title="" title="">
-									Syarat
-								</i>
-								<div class="custom-file">
-									<input type="file" class="custom-file-input" id="customFile">
-									<label class="custom-file-label" for="customFile">Choose file</label>
-								</div>
 								</div>
 							</div>
 							<!-- <div class="form-group row mb-3">

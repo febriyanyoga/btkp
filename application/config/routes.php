@@ -72,13 +72,12 @@ $route['izin_baru2/(:num)'] = 'WorkshopC/perizinan_baru_2/$1';
 $route['izin_baru3/(:num)'] = 'WorkshopC/perizinan_baru_3/$1';
 $route['selesai/(:num)'] = 'WorkshopC/selesai/$1';
 
-
 // $route['izin_baru3'] = 'WorkshopC/perizinan_baru_3';
 $route['izin_perpanjang'] = 'WorkshopC/perizinan_perpanjang';
 $route['type_approval'] = 'WorkshopC/type_approval';
 
 $route['post_izin_baru1'] = 'WorkshopC/post_izin_baru1';
-$route['post_berkas']	  = 'WorkshopC/post_berkas';
+$route['post_berkas'] = 'WorkshopC/post_berkas';
 
 // admin
 $route['admin'] = 'AdminC';
@@ -87,6 +86,8 @@ $route['admin'] = 'AdminC';
 $route['tatausaha'] = 'TatausahaC';
 $route['perizinan'] = 'TatausahaC/perizinan';
 $route['verifikasi/(:num)'] = 'TatausahaC/verifikasi/$1';
+$route['reinspeksi'] = 'TatausahaC/reinspeksi';
+$route['pengujian'] = 'TatausahaC/pengujian';
 
 // kasie
 $route['kasie'] = 'KasieC';

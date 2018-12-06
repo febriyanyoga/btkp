@@ -11,7 +11,7 @@ Author: SAEROX
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo $title;?></title>
+	<title><?php echo $title; ?></title>
 	<meta name="description" content="Elisyam is a Web App and Admin Dashboard Template built with Bootstrap 4">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Google Fonts -->
@@ -212,22 +212,22 @@ Author: SAEROX
 					<ul class="list-unstyled">
 						<li>
 							<a href="<?php echo site_url('tatausaha'); ?>">
-								<i class="ion-home"></i><span>Dashboard</span>
+								<i class="ion-home"></i><span> Dashboard</span>
 							</a>
 						</li>
 						<li>
 							<a href="<?php echo site_url('perizinan'); ?>">
-								<i class="ion-clipboard"></i><span>Data Perizinan</span>
+								<i class="ion-clipboard"></i><span> Data Perizinan</span>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('admintu/reinspeksi'); ?>">
-								<i class="ti ti-notepad"></i><span>Data Re-inspeksi</span>
+							<a href="<?php echo site_url('pengujian'); ?>">
+								<i class="ti ti-write"></i><span> Data Pengujian </span>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('pemohon/typeapproval'); ?>">
-								<i class="ti ti-write"></i><span>Type Approval</span>
+							<a href="<?php echo site_url('reinspeksi'); ?>">
+								<i class="ti ti-notepad"></i><span> Data Inspeksi</span>
 							</a>
 						</li>
 					</ul>

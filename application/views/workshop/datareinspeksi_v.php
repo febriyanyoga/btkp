@@ -34,7 +34,7 @@
 								<td class="text-center">10 Oktober 2018</td>
 								<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Lolos</span></span></td>
 								<td class="text-center">
-									<a class="ion-share" href="#"> Cetak</a>
+									<a class="ion-share" href="<?php echo site_url('pemohon/detailperizinan'); ?>"> Cetak</a>
 								</td>
 							</tr>
 						</tbody>
@@ -87,9 +87,8 @@
   <div class="form-group">
     <label for="exampleFormControlSelect1">Hasil</label>
     <select class="form-control" id="jenisalat">
-      <option>Lolos</option>
-      <option>Tidak Lolos</option>
-	  <option>Lolos Dengan Catatan</option>
+      <option>Remark</option>
+      <option>Condamm</option>
     </select>
   </div>
   <div class="form-group">

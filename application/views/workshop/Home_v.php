@@ -9,12 +9,13 @@
 								<div class="item" data-toggle="modal" data-target="#perizinan">
 									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/perizinan.jpg" alt="...">
 								</div>
-								<div class="item"><a href="<?php echo site_url('data_reinspeksi'); ?>">
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/reinspeksi.jpg" alt="..."></a>
-								</div>
 								<div class="item"><a href="<?php echo site_url('type_approval'); ?>">
 									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/type.jpg" alt="..."></a>
 								</div>
+								<div class="item"><a href="<?php echo site_url('data_reinspeksi'); ?>">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/reinspeksi.jpg" alt="..."></a>
+								</div>
+
 								<div class="item" data-toggle="modal" data-target="#inspeksi">
 									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/pemeriksaan.jpg" alt="...">
 								</div>
@@ -78,15 +79,14 @@
 									</thead>
 									<tbody>
 										<?php
-										foreach ($perizinan as $per) {
-											?>
+                                        foreach ($perizinan as $per) {
+                                            ?>
 											<tr>
-												<td class="text-center"><span class="text-primary"><?php echo $per->id_perizinan?></span></td>
-												<td class="text-left"><?php echo $per->nama_alat?></td>
+												<td class="text-center"><span class="text-primary"><?php echo $per->id_perizinan; ?></span></td>
+												<td class="text-left"><?php echo $per->nama_alat; ?></td>
 												<?php
-												$tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
-												?>
-												<td class="text-center"><?php echo $tgl_pengajuan?></td>
+                                                $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin)); ?>
+												<td class="text-center"><?php echo $tgl_pengajuan; ?></td>
 												<td class="text-center" style="color:red;">
 													<b>Proses</b>
 												</td>
@@ -96,8 +96,8 @@
 												</td>
 											</tr>
 											<?php
-										}
-										?>
+                                        }
+                                        ?>
 									</tbody>
 								</table>
 							</div>
