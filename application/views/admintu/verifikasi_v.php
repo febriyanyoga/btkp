@@ -33,7 +33,32 @@
 					<!-- End Invoice Top -->
 					<!-- Begin Invoice Header -->
 					<div class="invoice-header">
-						<form action="" method="post" id="form-input-acc">
+						<?php
+						print_r($id_perizinan);
+						$data=$this->session->flashdata('sukses');
+						if($data!=""){ 
+							?>
+							<div class="alert alert-success">
+								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+								<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
+								<?=$data;?>
+							</div>
+							<?php 
+						} 
+						?>
+						<?php 
+						$data2=$this->session->flashdata('error');
+						if($data2!=""){ 
+							?>
+							<div class="alert alert-danger">
+								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+								<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
+								<?=$data2;?>
+							</div>
+							<?php 
+						} 
+						?>
+						<form action="<?php echo site_url('persetujuan')?>" method="post" id="form-input-acc">
 							<div id="accordion-icon-right" class="accordion">
 								<?php
 								foreach ($detail_perizinan as $per) {
@@ -48,7 +73,7 @@
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" name="checkbox" id="1">
+													<input type="checkbox" checked name="checkbox" required id="1">
 													<label for="1">Nama Perusahaan</label>
 												</div>
 											</div>
@@ -61,7 +86,7 @@
 											?>
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" name="checkbox" id="2">
+													<input type="checkbox" checked name="checkbox" required id="2">
 													<label for="2">Alamat Kantor Perusahaan</label>
 												</div>
 											</div>
@@ -70,7 +95,7 @@
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" name="checkbox" id="3">
+													<input type="checkbox" checked name="checkbox" required id="3">
 													<label for="3">Alamat Workshop/Service Station </label>
 												</div>
 											</div>
@@ -79,7 +104,7 @@
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" name="checkbox" id="4">
+													<input type="checkbox" checked name="checkbox" required id="4">
 													<label for="4">Akta Pendirian Perusahaan</label>
 												</div>
 											</div>
@@ -88,7 +113,7 @@
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" name="checkbox" id="5">
+													<input type="checkbox" checked name="checkbox" required id="5">
 													<label for="5">Pemimpin/Penanggung Jawab</label>
 												</div>
 											</div>
@@ -97,7 +122,7 @@
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" name="checkbox" id="6">
+													<input type="checkbox" <?php if($per->no_tlp!=""){echo 'checked';}?> name="checkbox" required id="6">
 													<label for="6">Nomor Telepon Perusahaan</label>
 												</div>
 											</div>
@@ -106,7 +131,7 @@
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" name="checkbox" id="7">
+													<input type="checkbox" checked name="checkbox" required id="7">
 													<label for="7">Email Perusahaan</label>
 												</div>
 											</div>
@@ -115,7 +140,7 @@
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" name="checkbox" id="8">
+													<input type="checkbox" checked name="checkbox" required id="8">
 													<label for="8">NPWP</label>
 												</div>
 											</div>
@@ -130,7 +155,7 @@
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" name="checkbox" id="9">
+													<input type="checkbox" checked name="checkbox" required id="9">
 													<label for="9">Jenis SPK</label>
 												</div>
 											</div>
@@ -142,7 +167,7 @@
 											<div class="form-group row mb-5">
 												<div class="col-xl-4">
 													<div class="styled-checkbox">
-														<input type="checkbox" name="checkbox" id="10">
+														<input type="checkbox" checked name="checkbox" required id="10">
 														<label for="10">Nomor SPK Lama</label>
 													</div>
 												</div>
@@ -166,7 +191,7 @@
 											<div class="form-group row mb-5">
 												<div class="col-xl-4">
 													<div class="styled-checkbox">
-														<input type="checkbox" name="checkbox" id="<?php echo $i?>">
+														<input type="checkbox" name="checkbox" required checked="" id="<?php echo $i?>">
 														<label for="<?php echo $i?>"><?php echo $ber->nama_berkas?></label>
 													</div>
 												</div>
@@ -179,11 +204,16 @@
 										}
 										?>
 									</div>
-									<div class="text-right">
-										<input type="submit" name="submit" id="btn-lengkap" class="btn btn-danger mr-1 mb-2" value="Tidak Lengkap">
-										<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Lengkap">
+									<div style="display: none;">
+										<input type="hidden" name="id_pengguna" value="<?php echo $this->session->userdata('id_pengguna');?>">
+										<input type="hidden" name="id_perizinan" value="<?php echo $per->id_perizinan;?>">
+										<input type="hidden" name="keterangan" value="Berkas Lengkap">
+										<input type="hidden" name="status" value="diterima">
 									</div>
-
+									<div class="text-right">
+										<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lengkap</a>
+										<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Lengkap" onClick="return confirm('Anda berkas yang dibutuhkan sudah lengkap?')">
+									</div>
 									<?php
 								}
 								?>
@@ -201,23 +231,28 @@
 	</div>
 </div>
 </div>
-<script src="<?php echo base_url(); ?>assets/app/js/validate/jquery-3.1.1.js"></script>
-<script src="<?php echo base_url(); ?>assets/app/js/validate/jquery.js"></script>
-<script src="<?php echo base_url(); ?>assets/app/js/validate/jquery.validate.js"></script>
-<!-- <script type="text/javascript">
-	$().ready(function(){
-		$('#form-input-acc').validate({
-			rules : {
-				checkbox : 'required'
-			},
-			messages : {
-				checkbox : 'Harus diisi'
-			}
-		});
-	});
-</script> -->
-<script type="text/javascript">
-	$('#btn-lengkap').click(function(){
-		$('#form-input-acc').get(0).submit();
-	});
-</script>
+
+<div class="modal" id="izin_berkas">
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Persetujuan Perizinan</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<form action="<?php echo site_url('persetujuan')?>" method="post">
+				<div class="modal-body">
+					<label for="keterangan" class="label">Keterangan : </label>
+					<input type="text" name="keterangan" value="" class="form-control" placeholder="keterangan" required="required">
+					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna');?>" >
+					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $id_perizinan;?>">
+					<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
+				</div>
+
+				<div class="modal-footer">
+					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
