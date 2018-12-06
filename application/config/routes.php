@@ -72,6 +72,7 @@ $route['izin_baru2/(:num)'] = 'WorkshopC/perizinan_baru_2/$1';
 $route['izin_baru3/(:num)'] = 'WorkshopC/perizinan_baru_3/$1';
 $route['selesai/(:num)'] = 'WorkshopC/selesai/$1';
 $route['konfirmasi'] = "WorkshopC/konfirmasi_pembayaran";
+$route['detailperizinan/(:num)'] = "WorkshopC/detailperizinan/$1";
 
 // $route['izin_baru3'] = 'WorkshopC/perizinan_baru_3';
 $route['izin_perpanjang'] = 'WorkshopC/perizinan_perpanjang';

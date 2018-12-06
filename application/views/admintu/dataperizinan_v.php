@@ -340,18 +340,17 @@
 														<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
 														<td class="text-center"><?php echo $per->nama_alat?></td>
 														<?php
-																// $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+															// $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
 														$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
-
+														$tgl_terbit 	= date('Y-m-d', strtotime($per->tgl_terbit));
+														$tgl_expired 	= date('Y-m-d', strtotime($per->tgl_expired));
 														?>
 														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 														<td class="text-center">
 															<span style="width:100px;" title="Sudah input billing"><span class="badge-text badge-text-small success"> Aktif</span></span>
 														</td>
 														<td class="text-center">
-															<td class="text-center">
-																<?php echo date_indo($tgl_terbit).' sampai '.date_indo($tgl_expired);?>
-															</td>
+															<?php echo date_indo($tgl_terbit).' <b>sampai</b> '.date_indo($tgl_expired);?>
 														</td>
 													</tr>
 													<?php

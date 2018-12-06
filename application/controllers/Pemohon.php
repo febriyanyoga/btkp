@@ -31,9 +31,9 @@ class Pemohon extends CI_Controller
     public function perizinanbaru()
     {
         $this->data['lele'] = 'lel';
-        $data['isi'] = $this->load->view('user/Perizinanbaru_v', $this->data, true);
+        $data['isi'] = $this->load->view('workshop/Perizinanbaru_v', $this->data, true);
         // $data['isi'] = "isi";
-        $this->load->view('user/Layout', $data);
+        $this->load->view('workshop/Layout', $data);
     }
 
     public function dataperizinan()

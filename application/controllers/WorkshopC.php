@@ -46,6 +46,20 @@ class WorkshopC extends CI_Controller
         $this->load->view('workshop/Layout', $data);
     }
 
+    public function detailperizinan($id_perizinan)
+    {
+        $data['detail_perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
+        $data['title'] = 'BTKP - Surat Pelimpahan Kewenangan';
+        $data['isi'] = $this->load->view('workshop/detailperizinan_v', $data, true);
+        $this->load->view('workshop/Layout', $data);
+    }
+
+    public function print_perizinan($id_perizinan){
+        $this->data['title'] = "BTKP - Surat Pelimpahan Kewenangan";
+        $this->data['detail_perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
+        $this->load->view('workshop/print_perizinan_v', $this->data);
+    }
+
     public function perizinan_baru_1($id_pengguna = null)
     {
         $id_pengguna = $this->session->userdata('id_pengguna');
@@ -272,4 +286,9 @@ class WorkshopC extends CI_Controller
             redirect_back();
         }
     }
+
+    public function cetak_produk()
+    {
+        $this->load->view('workshop/print');
+    }  
 }

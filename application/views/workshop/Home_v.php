@@ -105,35 +105,37 @@
 										<?php
 										foreach ($perizinan as $per) {
 											if($per->status_pembayaran == 'unpaid'){
-
-												?>
-												<tr>
-													<td class="text-center"><span class="text-primary"><?php echo $per->id_perizinan; ?></span></td>
-													<td class="text-left"><?php echo $per->nama_alat; ?></td>
-													<?php
-													$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
-													<td class="text-center"><?php echo date_indo($tgl_pengajuan); ?></td>
-													<td class="text-center">
-														<?php 
-														$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
-														$ket = $this->TatausahaM->cek_status($per->id_perizinan)->row()->keterangan;
-														if($status == 'ditolak'){
-															?>
-															<span style="width:100px;" title="<?php echo $ket;?>"><span class="badge-text badge-text-small danger">Ditolak</span></span>
-															<?php
-														}else{
-															?>
-															<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
-															<?php
-														}
-														?>
-													</td>
-													<td class="text-center">
+												$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
+												if($status != 'ditolak'){
+													
+													?>
+													<tr>
+														<td class="text-center"><span class="text-primary"><?php echo $per->id_perizinan; ?></span></td>
+														<td class="text-left"><?php echo $per->nama_alat; ?></td>
 														<?php
-														if($status == 'ditolak'){
-															echo "-";
-														}else{
-															if($per->kode_billing != ""){
+														$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
+														<td class="text-center"><?php echo date_indo($tgl_pengajuan); ?></td>
+														<td class="text-center">
+															<?php 
+															$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
+															$ket = $this->TatausahaM->cek_status($per->id_perizinan)->row()->keterangan;
+															if($status == 'ditolak'){
+																?>
+																<span style="width:100px;" title="<?php echo $ket;?>"><span class="badge-text badge-text-small danger">Ditolak</span></span>
+																<?php
+															}else{
+																?>
+																<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
+																<?php
+															}
+															?>
+														</td>
+														<td class="text-center">
+															<?php
+															if($status == 'ditolak'){
+																echo "-";
+															}else{
+																if($per->kode_billing != ""){
 																if($per->foto_bukti_trf != ""){ //ada foto
 																	?>
 																	<span style="width:100px;" title="Menunggu verifikasi pembayran"><span class="badge-text badge-text-small info"> Menunggu Verifikasi</span></span>
@@ -180,19 +182,20 @@
 												<?php
 											}
 										}
-										?>
-									</tbody>
-								</table>
-							</div>
+									}
+									?>
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
 			</div>
-			<!-- End Row -->
 		</div>
-		<!-- End Col -->
+		<!-- End Row -->
 	</div>
-	<!-- End Row -->
+	<!-- End Col -->
+</div>
+<!-- End Row -->
 </div>
 <!-- End Container -->
 <!-- Begin Living Room Modal -->
