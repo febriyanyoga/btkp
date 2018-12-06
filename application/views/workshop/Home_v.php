@@ -84,15 +84,13 @@
 												<td class="text-center"><span class="text-primary"><?php echo $per->id_perizinan?></span></td>
 												<td class="text-left"><?php echo $per->nama_alat?></td>
 												<?php
-												$tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+												$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
 												?>
-												<td class="text-center"><?php echo $tgl_pengajuan?></td>
+												<td class="text-center"><?php echo date_indo($tgl_pengajuan);?></td>
 												<td class="text-center" style="color:red;">
 													<b>Proses</b>
 												</td>
-
 												<td class="text-center">
-													<!-- <a href="#"><i class="ion-eye"></i></a> -->
 												</td>
 											</tr>
 											<?php

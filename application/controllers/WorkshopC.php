@@ -147,8 +147,6 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('nama_pimpinan', 'Nama Pimpinan','required');  
         $this->form_validation->set_rules('npwp', 'NPWP','required');  
         $this->form_validation->set_rules('no_tlp', 'Nomor Telfon'); 
-        $this->form_validation->set_rules('jenis_alat', 'jenis alat','required');  
-        $this->form_validation->set_rules('jenis_perizinan', 'jenis izin','required');  
         if($this->form_validation->run() == FALSE){
             $this->session->set_flashdata('error','Data anda tidak berhasil disimpan, periksa kembali data yang anda masukkan');
             redirect_back();
@@ -175,7 +173,7 @@ class WorkshopC extends CI_Controller
 
             if($insert_id = $this->WorkshopM->insert_perusahaan($data)){
                 $this->session->set_flashdata('sukses','Data anda berhasil disimpan');
-                redirect('izin_baru2');
+                redirect('izin_baru22');
             }else{
                 $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
                 redirect_back();
