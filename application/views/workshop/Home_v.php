@@ -126,9 +126,21 @@
 																		<span style="width:100px;" title="<?php echo $ket;?>"><span class="badge-text badge-text-small danger">Ditolak</span></span>
 																		<?php
 																	}else{
-																		?>
-																		<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
-																		<?php
+																		if($per->kode_billing != ""){
+																			if($per->foto_bukti_trf != ""){
+																				?>
+																				<span style="width:100px; " title="pembayaran sedang diverifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu verifikasi</span></span>
+																				<?php
+																			}else{
+																				?>
+																				<span style="width:100px; " title="silahkan lakukan pembayaran dan konfirmasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu Pembayaran</span></span>
+																				<?php
+																			}
+																		}else{
+																			?>
+																			<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
+																			<?php
+																		}
 																	}
 																	?>
 																</td>
