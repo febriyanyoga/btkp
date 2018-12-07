@@ -132,7 +132,6 @@
 															$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
 															if($per->foto_bukti_trf == ""){
 																if($status != 'ditolak'){
-
 																	$i++;
 																	?>
 																	<tr>
@@ -141,7 +140,6 @@
 																		<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
 																		<td class="text-center"><?php echo $per->nama_alat?></td>
 																		<?php
-																// $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
 																		$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
 
 																		?>
@@ -149,9 +147,15 @@
 																		<td class="text-center">
 																			<?php
 																			if($status =='diterima'){
-																				?>
-																				<span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span>
-																				<?
+																				if($per->kode_billing != ""){
+																					?>
+																					<span style="width:100px;"><span class="badge-text badge-text-small default" style="color: black;">Menunggu pembayaran</span></span>
+																					<?
+																				}else{
+																					?>
+																					<span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span>
+																					<?
+																				}
 																			}else{
 																				?>
 																				<span style="width:100px;"><span class="badge-text badge-text-small danger">Ditolak</span></span>
@@ -280,6 +284,12 @@
 																		<form action="<?php echo site_url('penerbitan')?>" method="post">
 																			<div class="modal-body">
 																				<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan;?>">
+																				<label for="keterangan" class="label">Bank Transfer : </label>
+																				<input type="text" name="nama_bank" value="<?php echo $per->nama_bank?>" class="form-control" required="required" readonly>
+																				<label for="keterangan" class="label">Atas Nama : </label>
+																				<input type="text" name="atas_nama" value="<?php echo $per->atas_nama?>" class="form-control" required="required" readonly>
+																				<label for="" class="label">Foto Bukti Transfer : </label>
+																				<img style="max-width: 470px;" src="<?php echo base_url().'assets/upload/'.$per->foto_bukti_trf;?>">
 																				<label for="status_pembayaran" class="label">Status Pembayaran  : </label>
 																				<select class="form-control" name="status_pembayaran">
 																					<option value="paid">Telah Dibayar</option>
