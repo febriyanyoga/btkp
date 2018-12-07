@@ -127,7 +127,7 @@
                                                     $tgl_terbit = date('Y-m-d', strtotime($per->tgl_terbit));
                                                     $tgl_expired = date('Y-m-d', strtotime($per->tgl_expired));
                                                     $sekarang = date('Y-m-d');
-                                                    if($sekarang < $tgl_expired){
+                                                    if($sekarang > $tgl_expired){
                                                         $i++;
                                                         ?>
                                                         <tr class="text-center">
