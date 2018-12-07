@@ -252,7 +252,7 @@
 																		$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
 
 																		?>
-  																		<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+																		<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 																		<td class="text-center">
 																			<?php
 																	if($per->kode_billing != ""){ //ada kode billing
