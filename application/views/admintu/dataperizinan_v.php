@@ -20,27 +20,27 @@
 						<div class="widget-body sliding-tabs">
 							<?php
 							$data=$this->session->flashdata('sukses');
-							if($data!=""){ 
+							if($data!=""){
 								?>
 								<div class="alert alert-success">
 									<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
 									<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
 									<?=$data;?>
 								</div>
-								<?php 
-							} 
+								<?php
+							}
 							?>
-							<?php 
+							<?php
 							$data2=$this->session->flashdata('error');
-							if($data2!=""){ 
+							if($data2!=""){
 								?>
 								<div class="alert alert-danger">
 									<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
 									<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
 									<?=$data2;?>
 								</div>
-								<?php 
-							} 
+								<?php
+							}
 							?>
 							<ul class="nav nav-tabs" id="example-one" role="tablist">
 								<li class="nav-item">
@@ -127,7 +127,7 @@
 												$id_pengguna 	= $this->session->userdata('id_pengguna'); //id pengguna
 													$id_pengguna_kasie 	= $this->GeneralM->get_kasie()->result(); //ambil id nya kasi
 													foreach ($perizinan as $per) {
-														$progress_kasie = $this->GeneralM->get_array_progress($per->id_perizinan)->num_rows(); //jumlah perizinan yang di acc kasie 
+														$progress_kasie = $this->GeneralM->get_array_progress($per->id_perizinan)->num_rows(); //jumlah perizinan yang di acc kasie
 														if($progress_kasie > 0){
 															$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
 															if($per->foto_bukti_trf == ""){
