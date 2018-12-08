@@ -77,7 +77,9 @@
 												foreach ($perizinan as $per) {
 													$id_pengguna = $this->session->userdata('id_pengguna');
 													$own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
-													if($own_progress == 0 && $per->status_pengajuan == 'selesai'){
+													$progress_tu = $this->GeneralM->get_progress_tu($per->id_perizinan)->num_rows();
+													// print_r($progress_tu);
+													if($per->status_pengajuan == 'selesai' && $progress_tu == 0){
 														$i++;
 														?>
 														<tr>
@@ -193,8 +195,33 @@
 																				</div>
 																				<form action="<?php echo site_url('kode_billing')?>" method="post">
 																					<div class="modal-body">
-																						<label for="keterangan" class="label">Kode Billing : </label>
-																						<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
+																						<div class="form-group">
+																							<label for="keterangan" class="label">Kode Billing : </label>
+																							<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
+																							<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan;?>">
+																						</div>
+																						<div class="form-group">
+																							<label for="jumlah_tagihan" class="label">Jumlah Tagihan : </label>
+																							<input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
+																						</div>
+																						<div class="form-group">
+																							<label for="masa_berlaku" class="label">Masa Berlaku : </label>
+																							<input type="date" name="masa_berlaku" value="" class="form-control" required="required">
+																						</div>
+																						<div class="form-group">
+																							<label for="bank_btkp" class="label">Bank Tujuan : </label>
+																							<select class="form-control" name="id_bank_btkp" required="required">
+																								<option>---Pilih Bank BTKP---</option>
+																								<?php
+																								foreach ($bank_btkp as $bank) {
+																									?>
+																									<option value="<?php echo $bank->id_bank_btkp?>"><?php echo $bank->nama_bank.' '.$bank->no_rek.' a/n '.$bank->atas_nama;?></option>
+																									<?php
+																								}
+																								?>
+																							</select>
+																							
+																						</div>
 																						<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan;?>">
 																					</div>
 																					<div class="modal-footer">

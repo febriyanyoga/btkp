@@ -259,7 +259,7 @@ class WorkshopC extends CI_Controller
     public function upload_file($input_name){
         $config['upload_path'] = './assets/upload/'; //path folder
         $config['allowed_types'] = 'jpg|jpeg|pdf|doc|docx';
-        $config['max_size'] = '1000'; // max_size in kb
+        $config['max_size'] = '5000'; // max_size in kb
         $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
 
         $this->upload->initialize($config);

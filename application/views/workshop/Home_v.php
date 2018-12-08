@@ -134,6 +134,10 @@
 																			}else{
 																				?>
 																				<span style="width:100px; " title="silahkan lakukan pembayaran dan konfirmasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu Pembayaran</span></span>
+																				<hr>
+																				<a href="" class="btn btn-sm btn-info" target="_BLANK">
+																					<i class="la la-print"></i> Invoice
+																				</a>
 																				<?php
 																			}
 																		}else{
