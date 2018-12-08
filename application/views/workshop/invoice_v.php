@@ -57,22 +57,7 @@ a img {
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
 }
-
-/* Invoice styles */
-/**
- * DON'T override any styles for the <html> and <body> tags, as this may break the layout.
- * Instead wrap everything in one main <div id="container"> element where you may change
- * something like the font or the background of the invoice
- */
- html, body {
-  /* MOVE ALONG, NOTHING TO CHANGE HERE! */
-}
-
-/** 
- * IMPORTANT NOTICE: DON'T USE '!important' otherwise this may lead to broken print layout.
- * Some browsers may require '!important' in oder to work properly but be careful with it.
- */
- .clearfix {
+.clearfix {
   display: block;
   clear: both;
 }
@@ -182,7 +167,7 @@ b, strong, .bold {
 }
 
 #invoice-title-number {
-  text-align: center;
+  text-align: left;
   margin: 20px 0;
 }
 #invoice-title-number span {
@@ -213,7 +198,7 @@ table th, table td {
   margin: 20px 0 35px 0;
 }
 #items .first-cell, #items table th:first-child, #items table td:first-child {
-  width: 25px;
+  width: 30%;
   text-align: right;
 }
 #items table {
@@ -346,100 +331,153 @@ table th, table td {
 -->
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Invoice</title>
-    
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    
-    <meta name="description" content="Invoicebus Invoice Template">
-    <meta name="author" content="Invoicebus">
+  <meta charset="utf-8">
+  <title>Invoice</title>
 
-    <meta name="template-hash" content="f3142bbb0a1696d5caa932ecab0fc530">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <meta name="description" content="Invoicebus Invoice Template">
+  <meta name="author" content="Invoicebus">
+
+  <meta name="template-hash" content="f3142bbb0a1696d5caa932ecab0fc530">
 
 </head>
 <body>
-    <div id="container">
-        <section id="memo">
-            <div class="company-info">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9x53YKSU8UMKkk-Y9duGKfflBGI-rjbNUNAMmBax-b2-UJOxC" style="max-width: 100px; position: absolute; left: 35px; top: 15px;">
-                <div style="font-size: 20px; font-weight: bold;">
-                    <span>Tagihan Pembayaran</span> <span>#BL1811P641GNINV</span>
-                </div><hr>
-                <p style="font-size: 14px;">PT. Arnawa Teknologi Informasi<br> Terima kasih atas kepercayaanmu telah berbelanja di Koperasi. <br> Mohon segera lakukan pembayaran sebelum :</p>
-            </div>
-        </section>
+<!--  <?php
+ print_r($perizinan);
+ ?> -->
+ <div id="container">
+  <section id="memo">
+    <div class="company-info">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9x53YKSU8UMKkk-Y9duGKfflBGI-rjbNUNAMmBax-b2-UJOxC" style="max-width: 100px; position: absolute; left: 35px; top: 15px;">
+      <div style="font-size: 20px; font-weight: bold;">
+        <span>Balai Teknologi Kelautan dan Perlayaran<hr>
+          <span style="text-align: right; right: 30px; position: absolute; font-size: 12pt;">#TG<?php echo $perizinan->kode_billing;?>/INV</span>
+        </div>
+        <div>
+          <span>Jl. Raya Ancol Baru No. 1 Kalijabat, Tanjung Priok</span><br>
+          <span>Jakarta Utara, Indonesia 14310</span><br>
+          <span>Telp: (021) 4356767</span> <span>Email: btkpjenhubla@yahoo.com</span>
+        </div>
+      </div>
+    </section>
 
-        <section id="items">
-            <table >
-                <tr> <th style="background-color: #e6e7e7; border-bottom: 0px solid; text-align: center; font-size:16px; font-weight: bold; color:#555;"> Jum’at, 23 November 2018 <!-- Pukul 22:52 WIB  -->(7 x 24 jam)</th></tr>
-            </table>
-        </section>
+    <section id="items" style="margin-top: 20px;">
+      <p style="font-size: 12pt; margin-top: 60px;"><br> Mohon segera lakukan pembayaran sebelum :</p><br>
+      <table >
+        <tr> <th style="background-color: #e6e7e7; border-bottom: 0px solid; text-align: center; font-size:16px; font-weight: bold; color:#555;">
+          <?php 
+          $tgl_berlaku   = date('Y-m-d', strtotime($perizinan->masa_berlaku_billing));
+          echo longdate_indo($tgl_berlaku);
+          ?>
+        </th></tr>
+      </table>
+    </section>
 
-        <section id="items">
-            <table style="margin-top: -25px;" >
-                <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Lakukan Pembayaran Sebesar :</th></tr>
-                <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;">Rp20000,-</th></tr>
-            </table>
-        </section>
+    <section id="items">
+      <table style="margin-top: -45px;" >
+        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Lakukan Pembayaran Sebesar :</th></tr>
+        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;"><?php echo "Rp".number_format($perizinan->jumlah_tagihan, 0,',','.').",-";?></th></tr>
+      </table>
+    </section>
 
-        <section id="items">
-            <table style="margin-top: -25px;">
-                <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Transfer dapat dilakukan ke nomor rekening Virtual Account BNI berikut ini :</th></tr>
-                <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;">8608121710958300</th></tr>
-            </table>
-        </section>
-        <div class="clearfix"></div>
 
-        <section id="invoice-title-number">
-            <span id="number">Berikut adalah penjelasan tagihan pembayaran :</span>
-        </section>
+    <section id="items">
+      <table style="margin-top: -45px;">
+        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Transfer dapat dilakukan ke nomor rekening Account <?php echo $perizinan->nama_bank?> berikut ini :</th></tr>
+        <tr><th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;">8608121710958300</th></tr>
+      </table>
+    </section>
+    <div class="clearfix"></div>
 
-        <div class="clearfix"></div>
-        <section id="items">
-            <table cellpadding="0" cellspacing="0" style="font-size: 14px;">
-                <tr style="text-align: center;">
-                    <th>No</th> <!-- Dummy cell for the row number and row commands -->
-                    <th>Nama Produk</th>
-                    <th>Jumlah Produk</th>
-                    <th>Harga</th>
-                    <th>Diskon</th>
-                    <th>Pajak</th>
-                    <th>Total</th>
-                </tr>
-                <tr data-iterate="item">
-                    <td>1</td> <!-- Don't remove this column as it's needed for the row commands -->
-                    <td>Popok</td>
-                    <td>2</td>
-                    <td>10000</td>
-                    <td>0%</td>
-                    <td>0%</td>
-                    <td>20000</td>
-                </tr>
+    <section id="items">
+      <table style="margin-top: -45px;" >
+        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Dengan Nomor Billing  :</th></tr>
+        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;"><?php echo $perizinan->kode_billing?></th></tr>
+      </table>
+    </section>
 
-            </table>
-        </section>
-        <section id="sums">
-            <table cellpadding="0" cellspacing="0">
-                <tr class="amount-total">
-                    <th>Grand Total</th>
-                    <td>20000</td>
-                </tr>
-            </table>
-        </section>
-        <div class="clearfix"></div>
-        <section><br><br>
-            <div class="company-info">
-                <p style="font-size: 14px;">Setelah melakukan pembayaran, silahkan melakukan konfirmasi pembayaran. Jika kamu menghadapi kendala mengenai pembayaran, silakan langsung Hubungi BTKP.</p>
-            </div>
-        </section><br><hr>
-        <section id="invoice-info" style="font-size: 14px;">
-            <div>
-                <span>Copyright © 2018 Balai Teknologi Keselamatan Pelayaran. All Rights Reserved </span>
-                <span>Jl. Raya Ancol Baru No. 1 Kalijabat, Tanjung Priok</span>
-                <span>Jakarta Utara Indonesia 14310</span>
-                <span>Telp: (021) 4356767</span><span>Email: btkpjenhubla@yahoo.com</span>
-            </div>
-        </section>
-    </body>
-    </html>
+    <section id="invoice-title-number">
+      <span id="number">Berikut adalah rincian tagihan pembayaran :</span>
+    </section>
+
+    <div class="clearfix"></div>
+    <section id="items">
+      <table cellpadding="0" cellspacing="0" style="font-size: 14px;">
+        <tr>
+          <th  style="text-align: left;">Nama Perusahaan</th>
+          <th  style="text-align: left; width: 40px;">:</th>
+          <th  style="text-align: left;"><?php echo $perizinan->nama_perusahaan?></th>
+        </tr>
+        <tr>
+          <th  style="text-align: left;">Nama Alat</th>
+          <th  style="text-align: left; width: 40px;">:</th>
+          <th  style="text-align: left;"><?php echo $perizinan->nama_alat?></th>
+        </tr>
+        <?php 
+        if($perizinan->status_pembayaran == 'paid'){
+          ?>
+          <tr>
+            <th  style="text-align: left;">Nomor Sertifikat</th>
+            <th  style="text-align: left; width: 40px;">:</th>
+            <th  style="text-align: left;">
+              <?php
+              echo $perizinan->no_spk;
+              ?>
+            </th>
+          </tr>
+          <tr>
+            <th  style="text-align: left;">Masa Berlaku</th>
+            <th  style="text-align: left; width: 40px;">:</th>
+            <?php
+            $tgl_terbit   = date('Y-m-d', strtotime($perizinan->tgl_terbit));
+            $tgl_expired  = date('Y-m-d', strtotime($perizinan->tgl_expired));
+
+            ?>
+            <th  style="text-align: left;"><?php echo date_indo($tgl_terbit).' <b>sampai</b> '.date_indo($tgl_expired);?></th>
+          </tr>
+          <?php
+        }
+        ?>
+       <!--  <tr>
+          <td  style="text-align: center;">Adminis</td>
+          <td  style="text-align: center;">2</td>
+        </tr> -->
+
+      </table>
+    </section>
+    <!-- <section id="sums">
+      <table cellpadding="0" cellspacing="0">
+        <tr class="amount-total">
+          <th>Grand Total</th>
+          <td>20000</td>
+        </tr>
+      </table>
+    </section> -->
+    <!-- <div class="clearfix"></div> -->
+    <section><br><br>
+      <div class="company-info">
+        <p style="font-size: 14px;">Setelah melakukan pembayaran, silahkan melakukan konfirmasi pembayaran. Jika kamu menghadapi kendala mengenai pembayaran, silakan langsung Hubungi BTKP.</p>
+      </div>
+    </section><br><hr>
+    <section id="invoice-info" style="font-size: 14px;">
+      <div>
+        <span>Copyright © <?php echo date('Y')?> Balai Teknologi Keselamatan Pelayaran.</span>
+
+      </div>
+    </section>
+
+    <?php
+    if($perizinan->status_pembayaran == 'paid'){
+      ?>
+      <img style="max-width: 265px; margin-top: -315px; margin-left: 600px;"  src="<?php echo base_url()?>assets/img/lunas.png">
+      <?php
+    }
+    ?>
+
+    <script>
+      window.print();
+    </script>
+  </body>
+  </html>

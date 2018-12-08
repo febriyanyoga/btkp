@@ -286,9 +286,8 @@ class WorkshopC extends CI_Controller
             redirect_back();
         }
     }
-
-    public function cetak_produk()
-    {
-        $this->load->view('workshop/print');
-    }  
+    public function cetak_produk($id_perizinan){
+        $this->data['perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
+        $this->load->view('workshop/invoice_v',$this->data);
+    }
 }
