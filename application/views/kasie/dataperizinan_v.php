@@ -53,9 +53,11 @@
 												$id_pengguna = $this->session->userdata('id_pengguna');
 												foreach ($perizinan as $per){
 													$own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
+
 													$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
+													$progress_kasie = $this->GeneralM->get_progress_kasie($per->id_perizinan)->num_rows();
 													if($progress_tu > 0){
-														if($own_progress == 0){
+														if($progress_kasie == 0){
 															$i++;
 															?>
 															<tr>

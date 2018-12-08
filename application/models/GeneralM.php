@@ -80,6 +80,24 @@ class GeneralM extends CI_Model{
 		return $this->db->get();
 	}
 
+	public function get_progress_tu($id_perizinan){
+		$this->db->select('*');
+		$this->db->from('pengguna_perizinan P');
+		$this->db->join('pengguna U','P.id_pengguna = U.id_pengguna','left');
+		$this->db->where('U.id_jabatan = "2"'); //tu
+		$this->db->where('P.id_perizinan',$id_perizinan);
+		return $this->db->get();
+	}
+
+	public function get_progress_kasie($id_perizinan){
+		$this->db->select('*');
+		$this->db->from('pengguna_perizinan P');
+		$this->db->join('pengguna U','P.id_pengguna = U.id_pengguna','left');
+		$this->db->where('U.id_jabatan = "3"'); //kasie
+		$this->db->where('P.id_perizinan',$id_perizinan);
+		return $this->db->get();
+	}
+
 	public function get_array_progress_setuju($id_perizinan){
 		$this->db->select('*');
 		$this->db->from('pengguna_perizinan P');

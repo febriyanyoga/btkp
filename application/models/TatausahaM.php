@@ -54,4 +54,8 @@ class TatausahaM extends CI_Model{
 		$this->db->limit('1');
 		return $this->db->get();
 	}
+
+	public function get_bank_btkp(){
+		return $this->db->get('bank_btkp');
+	}
 }
