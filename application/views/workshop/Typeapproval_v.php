@@ -3,33 +3,67 @@
 		<div class="col-xl-12">
 			<!-- Form -->
 			<div class="widget has-shadow">
+				<br>
+				<h2 class="text-center"> FORMULIR SERTIFIKASI</h2>
 				<div class="widget-header bordered no-actions d-flex align-items-center">
-					<h2> Form Type Approval</h2>
 				</div>
 				<div class="widget-body">
 					<div class="row flex-row justify-content-center">
 						<div class="col-xl-12">
 							<div class="form-group row mb-3">
-								<div class="col-xl-12 mb-3">
-									<label class="form-control-label"><b>NAMA ALAT</b><span class="text-danger ml-2">*</span></label>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Jenis Instansi<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
-								<div class="col-xl-12 mb-3">
-									<label class="form-control-label"><b>TAHUN PRODUKSI</b><span class="text-danger ml-2">*</span></label>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Nama Instansi<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
-								<div class="col-xl-12 mb-3">
-									<label class="form-control-label"><b>PERUSAHAAN PRODUKSI</b> <span class="text-danger ml-2">*</span></label>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Alamat<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
-								<div class="col-xl-12 mb-3">
-									<label class="form-control-label"><b>KODE PRODUKSI</b> <span class="text-danger ml-2">*</span></label>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Telepon<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
-
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Email<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Nama Pemohon<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Jabatan Pemohon<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
 								</div>
 							</div>
-							<!-- <div class="form-group row mb-3">
+							<div class="form-group row mb-3">
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Jenis Instansi<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Nama Instansi<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Alamat<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Telepon<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Email<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+							</div>
+						</div>
+						<!-- <div class="form-group row mb-3">
 								<div class="col-xl-6">
 									<label class="form-control-label">Jenis Perizinan<span class="text-danger ml-2">*</span></label>
 									<select name="country" class="custom-select form-control">
@@ -40,15 +74,15 @@
 									</select>
 								</div>
 							</div> -->
-							<ul class="pager wizard text-right">
-								<li class="next d-inline-block">
-									<a href="#" class="btn btn-gradient-01">Submit</a>
-								</li>
-							</ul>
-						</div>
+						<ul class="pager wizard text-right">
+							<li class="next d-inline-block">
+								<a href="#" class="btn btn-gradient-01">Submit</a>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 </div>
