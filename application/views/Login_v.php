@@ -125,12 +125,6 @@
                                         <input class="form-control" type="text" id="captcha" name="captcha" required placeholder="Masukkan captcha">
                                     </div>
                                     <div class="row">
-                                        <!-- <div class="col text-left">
-                                            <div class="styled-checkbox">
-                                                <input type="checkbox" name="checkbox" id="remeber">
-                                                <label for="remeber">Ingat saya</label>
-                                            </div>
-                                        </div> -->
                                         <div class="col text-right">
                                             <a href="#">Lupa Password ?</a>
                                         </div>
@@ -204,9 +198,11 @@
                                             <option value="">----- Pilih Jenis User -----</option>
                                             <?php 
                                             foreach ($jabatan as $jab) {
-                                                ?>
-                                                <option value="<?php echo $jab->id_jabatan?>"><?php echo $jab->nama_jabatan?></option>
-                                                <?php
+                                                if($jab->id_jabatan > 4){
+                                                    ?>
+                                                    <option value="<?php echo $jab->id_jabatan?>"><?php echo $jab->nama_jabatan?></option>
+                                                    <?php
+                                                }
                                             }
                                             ?>
                                         </select>

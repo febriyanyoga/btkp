@@ -135,7 +135,7 @@
 																				?>
 																				<span style="width:100px; " title="silahkan lakukan pembayaran dan konfirmasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu Pembayaran</span></span>
 																				<hr>
-																				<a href="" class="btn btn-sm btn-info" target="_BLANK">
+																				<a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan;?>" class="btn btn-sm btn-info" target="_BLANK">
 																					<i class="la la-print"></i> Invoice
 																				</a>
 																				<?php
@@ -181,10 +181,10 @@
 																			<div class="modal-body">
 																				<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan;?>">
 																				<label for="nama_bank" class="label">Nama Bank : </label>
-																				<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank" required="required">
+																				<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank Anda" required="required">
 
 																				<label for="atas_nama" class="label">Atas Nama : </label>
-																				<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama" required="required">
+																				<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama bank anda" required="required">
 
 																				<label for="foto_bukti_trf" class="label">Upload Bukti: </label>
 																				<input type="file" name="foto_bukti_trf" value="" class="form-control"required="required">

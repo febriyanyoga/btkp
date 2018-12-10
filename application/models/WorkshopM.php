@@ -36,6 +36,7 @@ class WorkshopM extends CI_Model{
 	public function get_all_perizinan_by_id($id_perizinan){
 		$this->db->select('*');
 		$this->db->from('perizinan P');
+		$this->db->join('bank_btkp Z', 'Z.id_bank_btkp = P.id_bank_btkp','left');
 		$this->db->join('pengguna U', 'P.id_pengguna = U.id_pengguna','left');
 		$this->db->join('jenis_alat_keselamatan J','P.id_jenis_alat = J.id_jenis_alat','left');
 		$this->db->join('jenis_perizinan K','P.id_jenis_perizinan = K.id_jenis_perizinan','left');
