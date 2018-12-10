@@ -152,16 +152,16 @@
 																				if($per->kode_billing != ""){
 																					?>
 																					<span style="width:100px;"><span class="badge-text badge-text-small default" style="color: black;">Menunggu pembayaran</span></span>
-																					<?
+																					<?php
 																				}else{
 																					?>
 																					<span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span>
-																					<?
+																					<?php
 																				}
 																			}else{
 																				?>
 																				<span style="width:100px;"><span class="badge-text badge-text-small danger">Ditolak</span></span>
-																				<?
+																				<?php
 																			}
 																			?>
 																		</td>

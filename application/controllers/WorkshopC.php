@@ -290,4 +290,10 @@ class WorkshopC extends CI_Controller
         $this->data['perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
         $this->load->view('workshop/invoice_v',$this->data);
     }
+    
+    public function print_surat($id_perizinan){
+        // $data['perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
+        $data['produk'] = 'print';
+        $this->load->view('workshop/print_surat', $data);
+    }
 }
