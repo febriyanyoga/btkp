@@ -58,4 +58,15 @@ class TatausahaM extends CI_Model{
 	public function get_bank_btkp(){
 		return $this->db->get('bank_btkp');
 	}
+
+	public function get_last_izin_terbit($tgl){
+		$this->db->select('*');
+		$this->db->from('perizinan');
+		$this->db->where('DATE(tgl_terbit) <= ',$tgl);
+		$this->db->where('status_pembayaran = "Paid"');
+		$this->db->order_by('id_perizinan','DESC');
+		$this->db->limit('1');
+
+		return $this->db->get();
+	}
 }

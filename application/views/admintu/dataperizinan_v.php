@@ -25,7 +25,7 @@
 								<div class="alert alert-success">
 									<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
 									<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
-									<?php $data; ?>
+									<?= $data; ?>
 								</div>
 								<?php
 							}
@@ -36,7 +36,7 @@
 								<div class="alert alert-danger">
 									<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
 									<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
-									<?php $data2; ?>
+									<?= $data2; ?>
 								</div>
 								<?php
 							}
@@ -184,9 +184,26 @@
                                                         						</div>
                                                         						<form action="<?php echo site_url('kode_billing'); ?>" method="post">
                                                         							<div class="modal-body">
-                                                        								<label for="keterangan" class="label">Kode Billing : </label>
+                                                        								<label for="kode_billing" class="label">Kode Billing : </label>
                                                         								<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
+                                                                                        <label for="bank_btkp" class="label">Bank BTKP : </label>
+                                                                                        <select class="form-control" name="id_bank_btkp">
+                                                                                            <option value="">---Pilih Bank---</option>
+                                                                                            <?php
+                                                                                            foreach ($bank_btkp as $bank ) {
+                                                                                                ?>
+                                                                                                <option value="<?php echo $bank->id_bank_btkp?>"><?php echo $bank->nama_bank?></option>
+                                                                                                <?php
+                                                                                            }
+                                                                                            ?>
+                                                                                        </select>
+                                                                                        
                                                         								<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
+                                                                                        <label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
+                                                                                        <input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
+                                                                                        <label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
+                                                                                        <input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
+                                                                                        
                                                         							</div>
                                                         							<div class="modal-footer">
                                                         								<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
@@ -280,8 +297,8 @@
                                                             						<option value="paid">Telah Dibayar</option>
                                                             						<option value="unpaid">Belum Dibayar</option>
                                                             					</select>
-                                                            					<label for="keterangan" class="label">Nomor SPK : </label>
-                                                            					<input type="text" name="nomor_spk" value="" class="form-control" placeholder="Masukkan nomor SPK" required="required">
+                                                            					<!-- <label for="keterangan" class="label">Nomor SPK : </label>
+                                                            					<input type="text" name="nomor_spk" value="" class="form-control" placeholder="Masukkan nomor SPK" required="required"> -->
                                                             					<label for="keterangan" class="label">Tanggal Terbit  : </label>
                                                             					<input type="date" name="tgl_terbit" value="" class="form-control" required="required">
                                                             					<label for="keterangan" class="label">Tanggal Expired  : </label>
