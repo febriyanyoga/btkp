@@ -9,9 +9,11 @@
 				</div>
 				<div class="widget-body">
 					<div class="row flex-row justify-content-center">
+					<div class="row"><h2> Data Pemohon</h2></div>					
 						<div class="col-xl-12">
 							<div class="form-group row mb-3">
 								<div class="col-xl-6 mb-3">
+								<!-- sesuai jenis user pas registrasi -->
 									<label class="form-control-label">Jenis Instansi<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
@@ -29,6 +31,10 @@
 								</div>
 								<div class="col-xl-6 mb-3">
 									<label class="form-control-label">Email<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Fax<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
 								<div class="col-xl-6 mb-3">
@@ -39,18 +45,41 @@
 									<label class="form-control-label">Jabatan Pemohon<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Telepon<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Email<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
 							</div>
+							<div class="row flex-row justify-content-center"><h2> Data Perangkat</h2></div>	
 							<div class="form-group row mb-3">
+							
 								<div class="col-xl-6 mb-3">
-									<label class="form-control-label">Jenis Instansi<span class="text-danger ml-2">*</span></label>
+								<!-- milih dari database -->
+									<label class="form-control-label">Nama Alat<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
 								<div class="col-xl-6 mb-3">
-									<label class="form-control-label">Nama Instansi<span class="text-danger ml-2">*</span></label>
+									<label class="form-control-label">Merk<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
 								<div class="col-xl-6 mb-3">
-									<label class="form-control-label">Alamat<span class="text-danger ml-2">*</span></label>
+									<label class="form-control-label">Model/Tipe<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Negara Pembuat<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Pabrikan Pembuat<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Alamat Pabrikan<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
 								<div class="col-xl-6 mb-3">
@@ -59,6 +88,14 @@
 								</div>
 								<div class="col-xl-6 mb-3">
 									<label class="form-control-label">Email<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Fax<span class="text-danger ml-2">*</span></label>
+									<input type="text" value="" class="form-control">
+								</div>
+								<div class="col-xl-6 mb-3">
+									<label class="form-control-label">Catatan<span class="text-danger ml-2">*</span></label>
 									<input type="text" value="" class="form-control">
 								</div>
 							</div>
