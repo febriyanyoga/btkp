@@ -74,7 +74,7 @@ class TatausahaC extends CI_Controller
         $this->form_validation->set_rules('kode_billing', 'Kode Billing', 'required');
         $this->form_validation->set_rules('id_bank_btkp', 'Bank BTKP', 'required');
         $this->form_validation->set_rules('jumlah_tagihan', 'Jumlah Tagihan', 'required');
-        $this->form_validation->set_rules('masa_berlaku', 'Masa Berlaku Billing', 'required');
+        $this->form_validation->set_rules('masa_berlaku_billing', 'Masa Berlaku Billing', 'required');
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Data tidak berhasil disimpan, cek kembali data yang anda masukkan');
             redirect_back();
@@ -84,7 +84,7 @@ class TatausahaC extends CI_Controller
                 'kode_billing'      => $this->input->post('kode_billing'),
                 'id_bank_btkp'      => $this->input->post('id_bank_btkp'),
                 'jumlah_tagihan'    => $this->input->post('jumlah_tagihan'),
-                'masa_berlaku_billing' => $this->input->post('masa_berlaku'),
+                'masa_berlaku_billing' => $this->input->post('masa_berlaku_billing'),
             );
 
             if ($this->TatausahaM->insert_billing($id_perizinan, $data)) {
@@ -99,7 +99,7 @@ class TatausahaC extends CI_Controller
 
     public function post_penerbitan(){
         $this->form_validation->set_rules('status_pembayaran', 'Status Pembayaran');
-        $this->form_validation->set_rules('nomor_spk', 'Nomor SPK', 'required');
+        // $this->form_validation->set_rules('nomor_spk', 'Nomor SPK', 'required');
         $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit', 'required');
         $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired', 'required');
         if ($this->form_validation->run() == false) {
@@ -107,14 +107,54 @@ class TatausahaC extends CI_Controller
             redirect_back();
         } else {
             $id_perizinan = $this->input->post('id_perizinan');
+            $th = date('Y');//th sekarang
+            $tgl = $th.'12'.'31'; //tgl bandingin
+
+            if($this->TatausahaM->get_last_izin_terbit($tgl)->num_rows() > 0){
+                $nomor_sblm = $this->TatausahaM->get_last_izin_terbit($tgl)->row()->no_spk;
+                $no_spk = $nomor_sblm+1;
+            }else{
+                $no_spk = 1;
+            }
+
+            $kode_alat = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row()->kode_alat;
+            if($no_spk < 10){
+                $no_spk = '000'.$no_spk;
+            }elseif($no_spk >= 10){
+                $no_spk ='00'.$no_spk;
+            }elseif($no_spk >= 100){
+                $no_spk = '0'.$no_spk;
+            }elseif($no_spk >= 1000) {
+                $no_spk = $no_spk;
+            }
+            $barcode = $kode_alat.$no_spk.date('y');
+
             $data = array(
                 'status_pembayaran' => $this->input->post('status_pembayaran'),
-                'no_spk'            => $this->input->post('nomor_spk'),
+                'no_spk'            => $no_spk,
+                'kode_barcode'      => $barcode,
                 'tgl_terbit'        => $this->input->post('tgl_terbit'),
                 'tgl_expired'       => $this->input->post('tgl_expired'),
             );
+            $this->load->library('ciqrcode'); //pemanggilan library QR CODE
+            $config['cacheable']    = true; //boolean, the default is true
+            $config['cachedir']     = './application/cache/'; //string, the default is application/cache/
+            $config['errorlog']     = './application/logs/'; //string, the default is application/logs/
+            $config['imagedir']     = './assets/img/qrcode/'; //direktori penyimpanan qr code
+            $config['quality']      = true; //boolean, the default is true
+            $config['size']         = '1024'; //interger, the default is 1024
+            $config['black']        = array(224,255,255); // array, default is array(255,255,255)
+            $config['white']        = array(70,130,180); // array, default is array(0,0,0)
+            $this->ciqrcode->initialize($config);
+            $image_name=$barcode.'.png'; //buat name dari qr code sesuai dengan nim
+            $params['data'] = $barcode; //data yang akan di jadikan QR CODE
+            $params['level'] = 'H'; //H=High
+            $params['size'] = 10;
+            $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
+            $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
 
             if ($this->WorkshopM->selesai($id_perizinan, $data)) {
+
                 $this->session->set_flashdata('sukses', 'Data Penerbitan berhasil dimasukkan');
                 redirect_back();
             } else {

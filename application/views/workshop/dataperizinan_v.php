@@ -93,7 +93,7 @@
                                                             </td>
                                                             <td class="td-actions text-center">
                                                                 <a href="<?php echo site_url('izin_baru3/'.$per->id_perizinan); ?>" title="perpanajang perizinan"><i class="ion-share"></i></a>
-                                                                <a href="<?php echo site_url('detailperizinan/'.$per->id_perizinan); ?>" title="cetak surat"><i class="la la-sticky-note"></i></a>
+                                                                <a href="<?php echo site_url('print_surat/'.$per->id_perizinan); ?>" target="_BLANK" title="cetak surat"><i class="la la-sticky-note"></i></a>
                                                                 <a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan;?>" target="_BLANK" title="Cetak bukti Bayar">
                                                                     <i class="la la-print"></i>
                                                                 </a>
@@ -154,7 +154,7 @@
                                                             </td>
                                                             <td class="td-actions text-center">
                                                                 <a href="<?php echo site_url('izin_baru3/'.$per->id_perizinan); ?>" title="perpanajang perizinan"><i class="ion-share"></i></a>
-                                                                <a href="<?php echo site_url('detailperizinan/'.$per->id_perizinan); ?>" title="cetak surat"><i class="la la-sticky-note"></i></a>
+                                                                <a href="<?php echo site_url('print_surat/'.$per->id_perizinan); ?>" target="_BLANK" title="cetak surat"><i class="la la-sticky-note"></i></a>
                                                                 <a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan;?>" target="_BLANK" title="Cetak bukti Bayar">
                                                                     <i class="la la-print"></i>
                                                                 </a>
@@ -178,3 +178,7 @@
     </div>
     <!-- End Row -->
 </div>
+
+
+
+

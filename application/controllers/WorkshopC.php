@@ -12,6 +12,7 @@ class WorkshopC extends CI_Controller
         in_access();
         workshop_access();
         $this->load->model(['LoginM','GeneralM','WorkshopM','TatausahaM']);
+        $this->load->library('Pdf');
     }
 
     public function index()
@@ -178,85 +179,95 @@ class WorkshopC extends CI_Controller
                 'npwp'                      => $this->input->post('npwp'), 
                 'no_tlp'                    => $this->input->post('no_tlp')
             );
-
-            $data_izin = array(
-                'id_jenis_alat'         =>  $this->input->post('jenis_alat'),
-                'id_pengguna'           =>  $this->session->userdata('id_pengguna'),
-                'id_jenis_perizinan'    =>  $this->input->post('jenis_perizinan')
-            );
-
-            if($insert_id = $this->WorkshopM->insert_perusahaan($data)){
-                $this->session->set_flashdata('sukses','Data anda berhasil disimpan');
-                redirect('izin_baru22');
-            }else{
-                $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
-                redirect_back();
-            }
+        if($insert_id = $this->WorkshopM->insert_perusahaan($data)){
+            $this->session->set_flashdata('sukses','Data anda berhasil disimpan');
+            redirect('izin_baru22');
+        }else{
+            $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+            redirect_back();
         }
     }
+}
 
-    public function post_berkas(){
-        $jumlah_file = $this->WorkshopM->get_berkas_all()->num_rows();
-        $data_izin = array(
-            'id_jenis_alat'         =>  $this->input->post('jenis_alat'),
-            'id_pengguna'           =>  $this->session->userdata('id_pengguna'),
-            'id_jenis_perizinan'    =>  $this->input->post('jenis_perizinan')
-        );
-        if($id_perizinan = $this->WorkshopM->insert_perizinan($data_izin)){
-            for ($i=1; $i <= $jumlah_file; $i++){
-                $input_name     = 'files'.$i;
-                $id_berkas_perizinan = 'id_berkas_perizinan'.$i;
-                $namaFile   = $this->upload_file($input_name);
-                if($namaFile['result'] == 'success'){
-                    $data = array(
-                        'id_perizinan'          => $id_perizinan, 
-                        'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan), 
-                        'nama_file'             => $namaFile['file_name'], 
-                        'ukuran_berkas'         => $namaFile['file_size'], 
-                    );
-                    if($this->WorkshopM->insert_detail_berkas($data)){
-                        $this->session->set_flashdata('sukses','Data berhasil diupload');
-                    }else{
-                        $this->session->set_flashdata('error','Gagal diupload');
-                    }
+public function post_berkas(){
+    $jumlah_file = $this->WorkshopM->get_berkas_all()->num_rows();
+    $data_izin = array(
+        'id_jenis_alat'         =>  $this->input->post('jenis_alat'),
+        'id_pengguna'           =>  $this->session->userdata('id_pengguna'),
+        'id_jenis_perizinan'    =>  $this->input->post('jenis_perizinan')
+    );
+    if($id_perizinan = $this->WorkshopM->insert_perizinan($data_izin)){
+            $this->load->library('ciqrcode'); //pemanggilan library QR CODE
+            $config['cacheable']    = true; //boolean, the default is true
+            $config['cachedir']     = './application/cache/'; //string, the default is application/cache/
+            $config['errorlog']     = './application/logs/'; //string, the default is application/logs/
+            $config['imagedir']     = './assets/img/qrcode/'; //direktori penyimpanan qr code
+            $config['quality']      = true; //boolean, the default is true
+            $config['size']         = '1024'; //interger, the default is 1024
+            $config['black']        = array(224,255,255); // array, default is array(255,255,255)
+            $config['white']        = array(70,130,180); // array, default is array(0,0,0)
+            $this->ciqrcode->initialize($config);
+            $image_name=$nim.'.png'; //buat name dari qr code sesuai dengan nim
+            $params['data'] = $nim; //data yang akan di jadikan QR CODE
+            $params['level'] = 'H'; //H=High
+            $params['size'] = 10;
+            $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
+            $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
+
+        for ($i=1; $i <= $jumlah_file; $i++){
+            $input_name     = 'files'.$i;
+            $id_berkas_perizinan = 'id_berkas_perizinan'.$i;
+            $namaFile   = $this->upload_file($input_name);
+            if($namaFile['result'] == 'success'){
+                $data = array(
+                    'id_perizinan'          => $id_perizinan, 
+                    'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan), 
+                    'nama_file'             => $namaFile['file_name'], 
+                    'ukuran_berkas'         => $namaFile['file_size'], 
+                );
+                if($this->WorkshopM->insert_detail_berkas($data)){
+                    $this->session->set_flashdata('sukses','Data berhasil diupload');
                 }else{
                     $this->session->set_flashdata('error','Gagal diupload');
                 }
-            }
-            redirect('izin_baru3/'.$id_perizinan);   
-        }
-    }
-
-    public function konfirmasi_pembayaran(){
-        $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required');
-        $this->form_validation->set_rules('atas_nama', 'Atas Nama', 'required');
-        if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
-            redirect_back();
-        }else {
-            $upload = $this->upload_file('foto_bukti_trf');
-            if($upload['result'] == 'success'){
-                $data = array(
-                    'nama_bank'      => $this->input->post('nama_bank'),
-                    'atas_nama'      => $this->input->post('atas_nama'),
-                    'foto_bukti_trf' => $upload['file_name'],
-                );
-                $id_perizinan = $this->input->post('id_perizinan');
-                if($this->WorkshopM->selesai($id_perizinan, $data)) {
-                    $this->session->set_flashdata('sukses', 'Konfirmasi pembayaran berhasil diunggah');
-                    redirect_back();
-                } else {
-                    $this->session->set_flashdata('error', 'Konfirmasi tidak pembayaran berhasil diunggah');
-                    redirect_back();
-                }
             }else{
+                $this->session->set_flashdata('error','Gagal diupload');
+            }
+        }
+        redirect('izin_baru3/'.$id_perizinan);   
+    }
+}
+
+public function konfirmasi_pembayaran(){
+    $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required');
+    $this->form_validation->set_rules('atas_nama', 'Atas Nama', 'required');
+    if ($this->form_validation->run() == false) {
+        $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+        redirect_back();
+    }else {
+        $upload = $this->upload_file('foto_bukti_trf');
+        if($upload['result'] == 'success'){
+            $data = array(
+                'nama_bank'      => $this->input->post('nama_bank'),
+                'atas_nama'      => $this->input->post('atas_nama'),
+                'foto_bukti_trf' => $upload['file_name'],
+            );
+            $id_perizinan = $this->input->post('id_perizinan');
+            if($this->WorkshopM->selesai($id_perizinan, $data)) {
+                $this->session->set_flashdata('sukses', 'Konfirmasi pembayaran berhasil diunggah');
+                redirect_back();
+            } else {
                 $this->session->set_flashdata('error', 'Konfirmasi tidak pembayaran berhasil diunggah');
                 redirect_back();
             }
+        }else{
+            $this->session->set_flashdata('error', 'Konfirmasi tidak pembayaran berhasil diunggah');
+            redirect_back();
         }
     }
+}
 
-    public function upload_file($input_name){
+public function upload_file($input_name){
         $config['upload_path'] = './assets/upload/'; //path folder
         $config['allowed_types'] = 'jpg|jpeg|pdf|doc|docx';
         $config['max_size'] = '5000'; // max_size in kb
@@ -289,5 +300,10 @@ class WorkshopC extends CI_Controller
     public function cetak_produk($id_perizinan){
         $this->data['perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
         $this->load->view('workshop/invoice_v',$this->data);
+    }
+
+    public function print_surat($id_perizinan){
+        $this->data['perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
+        $this->load->view('workshop/print_surat',$this->data);
     }
 }
