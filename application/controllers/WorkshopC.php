@@ -229,6 +229,7 @@ class WorkshopC extends CI_Controller
             redirect('izin_baru3/'.$id_perizinan);   
         }
     }
+}
 
     public function post_berkas_perpanjang(){
         $satu = $this->WorkshopM->get_berkas_all()->num_rows();
