@@ -108,48 +108,6 @@
     										</div>
     									</a>
     								</li>
-    								<li>
-    									<a href="#">
-    										<div class="message-icon">
-    											<i class="la la-calendar-check-o"></i>
-    										</div>
-    										<div class="message-body">
-    											<div class="message-body-heading">
-    												New event added
-    											</div>
-    											<span class="date">7 hours ago</span>
-    										</div>
-    									</a>
-    								</li>
-    								<li>
-    									<a href="#">
-    										<div class="message-icon">
-    											<i class="la la-history"></i>
-    										</div>
-    										<div class="message-body">
-    											<div class="message-body-heading">
-    												Server rebooted
-    											</div>
-    											<span class="date">7 hours ago</span>
-    										</div>
-    									</a>
-    								</li>
-    								<li>
-    									<a href="#">
-    										<div class="message-icon">
-    											<i class="la la-twitter"></i>
-    										</div>
-    										<div class="message-body">
-    											<div class="message-body-heading">
-    												You have 3 new followers
-    											</div>
-    											<span class="date">10 hours ago</span>
-    										</div>
-    									</a>
-    								</li>
-    								<li>
-    									<a rel="nofollow" href="#" class="dropdown-item all-notifications text-center">View All Notifications</a>
-    								</li>
     							</ul>
     						</li>
     						<!-- End Notifications -->
@@ -198,12 +156,12 @@
     		</header>
     		<!-- End Header -->
     		<!-- Begin Page Content -->
-    		<div class="page-content d-flex align-items-stretch" style="background:url(<?php echo base_url(); ?>assets/bg.jpg); background-size: cover;">
+    		<div class="page-content d-flex align-items-stretch" style="background:url(<?php echo base_url(); ?>assets/bg4.jpg); background-size: cover;">
 
 
     			<?php echo $isi; ?>
     			<!-- Begin Page Footer-->
-
+		  	
     		</div>
     		<footer class="main-footer">
     			<div class="row">
