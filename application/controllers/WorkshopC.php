@@ -230,6 +230,7 @@ class WorkshopC extends CI_Controller
             }
         }
     }
+}
 
     public function post_berkas_perpanjang(){
         $satu = $this->WorkshopM->get_berkas_all()->num_rows();
