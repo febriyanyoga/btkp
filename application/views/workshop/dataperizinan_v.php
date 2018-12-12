@@ -92,13 +92,29 @@
                                                                 ?>
                                                             </td>
                                                             <td class="td-actions text-center">
-                                                                <a href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan"><i class="ion-share"></i></a>
+                                                                <a data-toggle="modal" data-target="#modal<?php echo $per->id_perizinan;?>" title="perpanjang perizinan"><i class="ion-share"></i></a>
+                                                                <!-- <a href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan"><i class="ion-share"></i></a> -->
                                                                 <a href="<?php echo site_url('print_surat/'.$per->id_perizinan); ?>" target="_BLANK" title="cetak surat"><i class="la la-sticky-note"></i></a>
                                                                 <a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan;?>" target="_BLANK" title="Cetak bukti Bayar">
                                                                     <i class="la la-print"></i>
                                                                 </a>
                                                             </td>
                                                         </tr>
+
+                                                        <div class="modal" id="modal<?php echo $per->id_perizinan;?>">
+                                                            <div class="modal-dialog modal-md">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Apakah Anda ingin memperbarui Lampiran Dokumen Pendukung?</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a class="btn btn-md btn-success" href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan">Ya</a>
+                                                                        <a class="btn btn-md btn-danger" href="<?php echo site_url('izin_perpanjang_tidak/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan">Tidak</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <?php
                                                     }
                                                 }
@@ -153,13 +169,29 @@
                                                                 ?>
                                                             </td>
                                                             <td class="td-actions text-center">
-                                                                <a href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanajang perizinan"><i class="ion-share"></i></a>
+                                                                <a data-toggle="modal" data-target="#modal2<?php echo $per->id_perizinan;?>" title="perpanjang perizinan"><i class="ion-share"></i></a>
+                                                                <!-- <a href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan"><i class="ion-share"></i></a> -->
                                                                 <a href="<?php echo site_url('print_surat/'.$per->id_perizinan); ?>" target="_BLANK" title="cetak surat"><i class="la la-sticky-note"></i></a>
                                                                 <a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan;?>" target="_BLANK" title="Cetak bukti Bayar">
                                                                     <i class="la la-print"></i>
                                                                 </a>
                                                             </td>
                                                         </tr>
+
+                                                        <div class="modal" id="modal2<?php echo $per->id_perizinan;?>">
+                                                            <div class="modal-dialog modal-md">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h4 class="modal-title">Apakah Anda ingin memperbarui Lampiran Dokumen Pendukung?</h4>
+                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <a class="btn btn-md btn-success" href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan">Ya</a>
+                                                                        <a class="btn btn-md btn-danger" href="<?php echo site_url('izin_perpanjang_tidak/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan">Tidak</a>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                         <?php
                                                     }
                                                 }

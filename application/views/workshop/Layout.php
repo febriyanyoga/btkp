@@ -40,12 +40,12 @@
 
     <body id="page-top">
     	<!-- Begin Preloader -->
-    	<div id="preloader">
+    	<!-- <div id="preloader">
     		<div class="canvas">
     			<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" class="loader-logo">
     			<div class="spinner"></div>
     		</div>
-    	</div>
+    	</div> -->
     	<!-- End Preloader -->
     	<div class="page db-social">
     		<!-- Begin Header -->
@@ -233,9 +233,33 @@
     <script language="javascript">
     	$(document).ready(function(){
             var alamat = $('#alamat_perusahaan_p').val();
+            var alamat2 = $('#alamat_workshop_p').val();
 
             $('#alamat_perusahaan_p').keyup(function(){
                 if($('#alamat_perusahaan_p').val() == alamat){
+                    $("kelurahan_pt").removeAttr("required");
+                    $("kecamatan_pt").removeAttr("required");
+                    $("kab_pt").removeAttr("required");
+                    $("propinsi_pt").removeAttr("required");
+
+                    $('#pilih_propinsi2').hide();
+                    $('#pilih_kab2').hide();
+                    $('#pilih_kec2').hide();
+                    $('#pilih_kel2').hide();
+                }else{
+                    $('#pilih_propinsi2').show();
+                    $('#pilih_kab2').show();
+                    $('#pilih_kec2').show();
+                    $('#pilih_kel2').show();
+                }
+
+                
+
+                
+            });
+
+            $('#alamat_workshop_p').keyup(function(){
+                if($('#alamat_workshop_p').val() == alamat2){
                     $("kelurahan_ws").removeAttr("required");
                     $("kecamatan_ws").removeAttr("required");
                     $("kab_ws").removeAttr("required");

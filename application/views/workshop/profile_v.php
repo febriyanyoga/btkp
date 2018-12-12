@@ -87,10 +87,46 @@
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">Alamat Perusahaan</label>
                             <div class="col-lg-6">
-                                <textarea name="alamat_perusahaan_p" id="alamat_perusahaan_p" type="text" class="form-control" placeholder="Alamat Perusahaan" value=""><?php echo $profil->nama_perusahaan?></textarea>
+                                <textarea name="alamat_perusahaan_p" id="alamat_perusahaan_p" type="text" class="form-control" placeholder="Alamat Perusahaan" value=""><?php echo $profil->alamat_perusahaan?></textarea>
                             </div>
                         </div>
                         <div class="form-group row d-flex align-items-center mb-5" id="pilih_alamat">
+                            <label class="col-lg-2 form-control-label d-flex justify-content-lg-end"></label>
+                            <div class="col-lg-2" id="pilih_propinsi2" style="display: none;">
+                                <select class="form-control" id="propinsi_pt" name="propinsi_pt" required >
+                                    <option>-----Pilih Provinsi-----</option>
+                                    <?php
+                                    foreach ($provinsi as $prov) {
+                                        ?>
+                                        <option value="<?php echo $prov['id_propinsi']?>"><?php echo $prov['nama_propinsi'];?></option>
+                                        <?php
+                                    }
+                                    ?>
+                                </select>
+                            </div>
+                            <div class="col-lg-2" id="pilih_kab2" style="display: none;">
+                                <select class="form-control" id="kab_pt" name="kab_pt" required >
+                                    <option>-----Pilih Kabupaten/Kota-----</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2" id="pilih_kec2" style="display: none;">
+                                <select class="form-control" id="kecamatan_pt" name="kecamatan_pt" required >
+                                    <option>-----Pilih Kecamatan-----</option>
+                                </select>
+                            </div>
+                            <div class="col-lg-2" id="pilih_kel2" style="display: none;">
+                                <select class="form-control" id="kelurahan_pt" name="kelurahan_pt" required >
+                                    <option>-----Pilih Kelurahan-----</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">Alamat Workshop</label>
+                            <div class="col-lg-6">
+                                <textarea name="alamat_workshop_p" id="alamat_workshop_p" type="text" class="form-control" placeholder="Alamat Workshop" value=""><?php echo $profil->alamat_workshop?></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex align-items-center mb-5" id="pilih_alamat2">
                             <label class="col-lg-2 form-control-label d-flex justify-content-lg-end"></label>
                             <div class="col-lg-2" id="pilih_propinsi" style="display: none;">
                                 <select class="form-control" id="propinsi_ws" name="propinsi_ws" required >
