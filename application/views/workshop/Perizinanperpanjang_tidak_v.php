@@ -80,9 +80,8 @@
 											</div>
 											<div class="form-group row mb-3">
 												<?php 
-												$i=0;
+												$i=1;
 												foreach ($berkas as $ber) {
-													$i++;
 													?>
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label"><?php echo $ber->nama_berkas?></label>
@@ -94,6 +93,7 @@
 														</div>
 													</div>
 													<?php
+													$i++;
 												}
 												?>
 											</div>
@@ -102,18 +102,18 @@
 											</div>
 											<div class="form-group row mb-3">
 												<?php 
-												$j=$i+1;
+												$j=$i;
 												foreach ($berkas_perpanjang as $ber_p) {
-													$j++;
 													?>
 													<input type="text" name="id_berkas_perizinan<?php echo $j;?>" id="id_berkas_perizinan<?php echo $j;?>" value="<?php echo $ber_p->id_berkas_perizinan;?>">
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label"><?php echo $ber_p->nama_berkas?></label>
 														<div class="custom-file">
-															<input type="file" name="files<?php echo $j?>" class="form-control" required>
+															<input type="file" name="files<?php echo $j?>" class="form-control">
 														</div>
 													</div>
 													<?php
+													$j++;
 												}
 												?>
 											</div>
