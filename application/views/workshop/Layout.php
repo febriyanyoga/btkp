@@ -260,8 +260,8 @@
     	jQuery(document).ready(function ($) {
             $('#myTable').DataTable();
             $('#myTable2').DataTable();
-    		$('#myTable3').DataTable();
-    	});
+            $('#myTable3').DataTable();
+        });
 
 
     </script>
@@ -344,6 +344,26 @@
 	</script>
 	<script language="javascript">
 		$(document).ready(function(){
+            var alamat = $('#alamat_perusahaan_p').val();
+
+            $('#alamat_perusahaan_p').keyup(function(){
+                if($('#alamat_perusahaan_p').val() == alamat){
+                    $("kelurahan_ws").removeAttr("required");
+                    $("kecamatan_ws").removeAttr("required");
+                    $("kab_ws").removeAttr("required");
+                    $("propinsi_ws").removeAttr("required");
+
+                    $('#pilih_propinsi').hide();
+                    $('#pilih_kab').hide();
+                    $('#pilih_kec').hide();
+                    $('#pilih_kel').hide();
+                }else{
+                    $('#pilih_propinsi').show();
+                    $('#pilih_kab').show();
+                    $('#pilih_kec').show();
+                    $('#pilih_kel').show();
+                }
+            });
 	        // City change
 	        $('#propinsi_ws').change(function(){
 		            var propinsi = $(this).val(); //ambil value dr kode_unit

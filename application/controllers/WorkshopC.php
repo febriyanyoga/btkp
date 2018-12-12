@@ -131,7 +131,10 @@ class WorkshopC extends CI_Controller
     }
     public function profile()
     {
+        $id_pengguna = $this->session->userdata('id_pengguna');
         $data['title'] = 'BTKP - Profile';
+        $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
+        $this->data['profil'] = $this->GeneralM->get_pengguna($id_pengguna)->row();
         $data['isi'] = $this->load->view('workshop/profile_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }
@@ -230,7 +233,6 @@ class WorkshopC extends CI_Controller
             }
         }
     }
-}
 
     public function post_berkas_perpanjang(){
         $satu = $this->WorkshopM->get_berkas_all()->num_rows();
@@ -293,6 +295,10 @@ class WorkshopC extends CI_Controller
                 redirect_back();
             }
         }
+    }
+
+    public function post_update_profil(){
+        
     }
 
     public function upload_file($input_name){
