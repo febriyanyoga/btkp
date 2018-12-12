@@ -123,6 +123,12 @@ class WorkshopC extends CI_Controller
         $data['isi'] = $this->load->view('workshop/Typeapproval_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }
+    public function profile()
+    {
+        $data['title'] = 'BTKP - Profile';
+        $data['isi'] = $this->load->view('workshop/profile_v', $this->data, true);
+        $this->load->view('workshop/Layout', $data);
+    }
 
     public function feedbackemail()
     {
@@ -152,31 +158,31 @@ class WorkshopC extends CI_Controller
 
     // post
     public function post_izin_baru1(){
-        $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required');  
-        $this->form_validation->set_rules('alamat_perusahaan', 'Alamat Perusahaan', 'required');  
+        $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required');
+        $this->form_validation->set_rules('alamat_perusahaan', 'Alamat Perusahaan', 'required');
         $this->form_validation->set_rules('kelurahan_pt', 'Kelurahan Perusahaan', 'required');
-        $this->form_validation->set_rules('kelurahan_ws', 'Kelurahan Workshop','required');  
-        $this->form_validation->set_rules('alamat_workshop', 'Alamat Workshop','required');  
-        $this->form_validation->set_rules('akta_perusahaan', 'Akta Perusahaan','required');  
-        $this->form_validation->set_rules('email_perusahaan', 'Email Perusahaan');  
-        $this->form_validation->set_rules('nama_pimpinan', 'Nama Pimpinan','required');  
-        $this->form_validation->set_rules('npwp', 'NPWP','required');  
-        $this->form_validation->set_rules('no_tlp', 'Nomor Telfon'); 
+        $this->form_validation->set_rules('kelurahan_ws', 'Kelurahan Workshop','required');
+        $this->form_validation->set_rules('alamat_workshop', 'Alamat Workshop','required');
+        $this->form_validation->set_rules('akta_perusahaan', 'Akta Perusahaan','required');
+        $this->form_validation->set_rules('email_perusahaan', 'Email Perusahaan');
+        $this->form_validation->set_rules('nama_pimpinan', 'Nama Pimpinan','required');
+        $this->form_validation->set_rules('npwp', 'NPWP','required');
+        $this->form_validation->set_rules('no_tlp', 'Nomor Telfon');
         if($this->form_validation->run() == FALSE){
             $this->session->set_flashdata('error','Data anda tidak berhasil disimpan, periksa kembali data yang anda masukkan');
             redirect_back();
         }else{
             $data = array(
                 'id_pengguna'               => $this->session->userdata('id_pengguna'),
-                'nama_perusahaan'           => $this->input->post('nama_perusahaan'), 
-                'alamat_perusahaan'         => $this->input->post('alamat_perusahaan'), 
-                'id_kel_perusahaan'         => $this->input->post('kelurahan_pt'), 
-                'alamat_workshop'           => $this->input->post('alamat_workshop'), 
-                'id_kel_workshop'           => $this->input->post('kelurahan_ws'), 
-                'akta_perusahaan'           => $this->input->post('akta_perusahaan'), 
-                'email_perusahaan'          => $this->input->post('email_perusahaan'), 
-                'nama_pimpinan'             => $this->input->post('nama_pimpinan'), 
-                'npwp'                      => $this->input->post('npwp'), 
+                'nama_perusahaan'           => $this->input->post('nama_perusahaan'),
+                'alamat_perusahaan'         => $this->input->post('alamat_perusahaan'),
+                'id_kel_perusahaan'         => $this->input->post('kelurahan_pt'),
+                'alamat_workshop'           => $this->input->post('alamat_workshop'),
+                'id_kel_workshop'           => $this->input->post('kelurahan_ws'),
+                'akta_perusahaan'           => $this->input->post('akta_perusahaan'),
+                'email_perusahaan'          => $this->input->post('email_perusahaan'),
+                'nama_pimpinan'             => $this->input->post('nama_pimpinan'),
+                'npwp'                      => $this->input->post('npwp'),
                 'no_tlp'                    => $this->input->post('no_tlp')
             );
         if($insert_id = $this->WorkshopM->insert_perusahaan($data)){
@@ -220,10 +226,10 @@ public function post_berkas(){
             $namaFile   = $this->upload_file($input_name);
             if($namaFile['result'] == 'success'){
                 $data = array(
-                    'id_perizinan'          => $id_perizinan, 
-                    'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan), 
-                    'nama_file'             => $namaFile['file_name'], 
-                    'ukuran_berkas'         => $namaFile['file_size'], 
+                    'id_perizinan'          => $id_perizinan,
+                    'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan),
+                    'nama_file'             => $namaFile['file_name'],
+                    'ukuran_berkas'         => $namaFile['file_size'],
                 );
                 if($this->WorkshopM->insert_detail_berkas($data)){
                     $this->session->set_flashdata('sukses','Data berhasil diupload');
@@ -234,7 +240,7 @@ public function post_berkas(){
                 $this->session->set_flashdata('error','Gagal diupload');
             }
         }
-        redirect('izin_baru3/'.$id_perizinan);   
+        redirect('izin_baru3/'.$id_perizinan);
     }
 }
 
