@@ -243,7 +243,6 @@ class WorkshopC extends CI_Controller
             'id_jenis_perizinan'    =>  $this->input->post('jenis_perizinan')
         );
         if($id_perizinan = $this->WorkshopM->insert_perizinan($data_izin)){
-
             for ($i=1; $i <= $jumlah_file; $i++){
                 $input_name     = 'files'.$i;
                 $id_berkas_perizinan = 'id_berkas_perizinan'.$i;
@@ -298,7 +297,7 @@ class WorkshopC extends CI_Controller
     }
 
     public function post_update_profil(){
-        
+
     }
 
     public function upload_file($input_name){
