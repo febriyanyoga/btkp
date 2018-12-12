@@ -7,8 +7,8 @@ class Admintu extends CI_Controller
     public function index()
     {
         $this->data['lele'] = 'lel';
+        $this->data['jumlah_workshop'] = $this->GeneralM->get_jumlah_workshop()->num_rows();
         $data['isi'] = $this->load->view('admintu/dashboard_v', $this->data, true);
-        // $data['isi'] = "isi";
         $this->load->view('admintu/Layout', $data);
     }
 

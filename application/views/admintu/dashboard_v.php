@@ -13,7 +13,7 @@
 				<div class="widget-body">
 					<div class="row">
 						<div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
-							<div class="counter">100</div>
+							<div class="counter"><?php echo $jumlah_workshop;?></div>
 							<div class="total-visitors">Jumlah Workshop</div>
 							<a href="<?php echo site_url('#'); ?>">
 								<button type="button" class="btn btn-gradient-03 mr-1 mb-2">Detail</button>
@@ -29,7 +29,7 @@
 				<div class="widget-body">
 					<div class="row">
 						<div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
-							<div class="counter">200</div>
+							<div class="counter"><?php echo $jumlah_perizinan;?></div>
 							<div class="total-visitors">Jumlah Perizinan</div>
 							<a href="<?php echo site_url('#'); ?>">
 								<button type="button" class="btn btn-gradient-03 mr-1 mb-2">Detail</button>
@@ -45,7 +45,7 @@
 				<div class="widget-body">
 					<div class="row">
 						<div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
-							<div class="counter">100</div>
+							<div class="counter"><?php echo $jumlah_produk;?></div>
 							<div class="total-visitors">Jumlah Kapal</div>
 							<a href="<?php echo site_url('#'); ?>">
 								<button type="button" class="btn btn-gradient-03 mr-1 mb-2">Detail</button>
