@@ -64,6 +64,7 @@ $route['logout'] = 'HomeC/logout';
 // workshop
 $route['workshop'] = 'WorkshopC';
 $route['data_perizinan'] = 'WorkshopC/data_perizinan';
+$route['profile'] = 'WorkshopC/profile';
 $route['data_reinspeksi'] = 'WorkshopC/data_reinspeksi';
 $route['pelaporan'] = 'WorkshopC/pelaporan';
 $route['izin_baru'] = 'WorkshopC/perizinan_baru_1';
