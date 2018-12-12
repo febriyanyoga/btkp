@@ -80,11 +80,13 @@ $route['post_update_profil'] 	= 'WorkshopC/post_update_profil';
 
 // $route['izin_baru3'] = 'WorkshopC/perizinan_baru_3';
 $route['izin_perpanjang/(:num)/(:any)'] = 'WorkshopC/perizinan_perpanjang/$1/$2';
+$route['izin_perpanjang_tidak/(:num)/(:any)'] = 'WorkshopC/perizinan_perpanjang_tidak/$1/$2';
 $route['type_approval'] = 'WorkshopC/type_approval';
 
 $route['post_izin_baru1'] = 'WorkshopC/post_izin_baru1';
 $route['post_berkas'] = 'WorkshopC/post_berkas';
 $route['post_berkas_perpanjang'] = 'WorkshopC/post_berkas_perpanjang';
+$route['post_berkas_perpanjang_tidak'] = 'WorkshopC/post_berkas_perpanjang_tidak';
 
 // admin
 $route['admin'] = 'AdminC';
