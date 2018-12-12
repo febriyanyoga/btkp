@@ -131,7 +131,10 @@ class WorkshopC extends CI_Controller
     }
     public function profile()
     {
+        $id_pengguna = $this->session->userdata('id_pengguna');
         $data['title'] = 'BTKP - Profile';
+        $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
+        $this->data['profil'] = $this->GeneralM->get_pengguna($id_pengguna)->row();
         $data['isi'] = $this->load->view('workshop/profile_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }
@@ -209,27 +212,27 @@ class WorkshopC extends CI_Controller
             'id_jenis_perizinan'    =>  $this->input->post('jenis_perizinan')
         );
         if($id_perizinan = $this->WorkshopM->insert_perizinan($data_izin)){
-        for ($i=1; $i <= $jumlah_file; $i++){
-            $input_name     = 'files'.$i;
-            $id_berkas_perizinan = 'id_berkas_perizinan'.$i;
-            $namaFile   = $this->upload_file($input_name);
-            if($namaFile['result'] == 'success'){
-                $data = array(
-                    'id_perizinan'          => $id_perizinan,
-                    'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan),
-                    'nama_file'             => $namaFile['file_name'],
-                    'ukuran_berkas'         => $namaFile['file_size'],
-                );
-                if($this->WorkshopM->insert_detail_berkas($data)){
-                    $this->session->set_flashdata('sukses','Data berhasil diupload');
-                }else{
-                    $this->session->set_flashdata('error','Gagal diupload');
+            for ($i=1; $i <= $jumlah_file; $i++){
+                $input_name     = 'files'.$i;
+                $id_berkas_perizinan = 'id_berkas_perizinan'.$i;
+                $namaFile   = $this->upload_file($input_name);
+                if($namaFile['result'] == 'success'){
+                    $data = array(
+                        'id_perizinan'          => $id_perizinan,
+                        'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan),
+                        'nama_file'             => $namaFile['file_name'],
+                        'ukuran_berkas'         => $namaFile['file_size'],
+                    );
+                    if($this->WorkshopM->insert_detail_berkas($data)){
+                        $this->session->set_flashdata('sukses','Data berhasil diupload');
+                    }else{
+                        $this->session->set_flashdata('error','Gagal diupload');
+                    }
                 }
+                redirect('izin_baru3/'.$id_perizinan);   
             }
-            redirect('izin_baru3/'.$id_perizinan);   
         }
     }
-}
 
     public function post_berkas_perpanjang(){
         $satu = $this->WorkshopM->get_berkas_all()->num_rows();
@@ -292,6 +295,10 @@ class WorkshopC extends CI_Controller
                 redirect_back();
             }
         }
+    }
+
+    public function post_update_profil(){
+        
     }
 
     public function upload_file($input_name){

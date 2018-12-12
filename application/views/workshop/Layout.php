@@ -218,8 +218,8 @@
     	jQuery(document).ready(function ($) {
             $('#myTable').DataTable();
             $('#myTable2').DataTable();
-    		$('#myTable3').DataTable();
-    	});
+            $('#myTable3').DataTable();
+        });
 
 
     </script>
@@ -302,6 +302,7 @@
 	</script>
 	<script language="javascript">
 		$(document).ready(function(){
+           
 	        // City change
 	        $('#propinsi_ws').change(function(){
 		            var propinsi = $(this).val(); //ambil value dr kode_unit

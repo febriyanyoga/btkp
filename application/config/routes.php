@@ -76,6 +76,7 @@ $route['konfirmasi'] = "WorkshopC/konfirmasi_pembayaran";
 $route['detailperizinan/(:num)'] = "WorkshopC/detailperizinan/$1";
 $route['cetak_invoice/(:num)']	= "WorkshopC/cetak_produk/$1";
 $route['print_surat/(:num)']	= "WorkshopC/print_surat/$1";
+$route['post_update_profil'] 	= 'WorkshopC/post_update_profil';
 
 // $route['izin_baru3'] = 'WorkshopC/perizinan_baru_3';
 $route['izin_perpanjang/(:num)/(:any)'] = 'WorkshopC/perizinan_perpanjang/$1/$2';
