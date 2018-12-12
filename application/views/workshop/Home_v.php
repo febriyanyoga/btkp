@@ -256,7 +256,7 @@
 					<div class="row">
 						<div class="col-xl-12">
 							<div class="room-image">
-								<a href="<?php echo site_url('izin_perpanjang'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perpanjang.jpg"
+								<a href="<?php echo site_url('data_perizinan'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perpanjang.jpg"
 									class="img-fluid rounded" alt="..."></a>
 								</div>
 							</div>

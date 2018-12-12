@@ -89,7 +89,7 @@ $html .=
         <td></td>
         <td></td>
         <td style="height:8px;"></td>
-        <td style="text-align:center; font-size:8pt; font-weight:bold; font-family: Arial, Helvetica, sans-serif; vertical-aligns:middle;">'.$perizinan->no_spk.'</td>
+        <td style="text-align:center; font-size:8pt; font-weight:bold; font-family: Arial, Helvetica, sans-serif; vertical-aligns:middle;">No. BTKP'.$perizinan->no_spk.$perizinan->kode_alat.'</td>
     </tr>
     <tr>
         <td></td>

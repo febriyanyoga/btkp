@@ -75,7 +75,25 @@ class WorkshopM extends CI_Model{
 	}
 
 	public function get_berkas_all(){
+		$this->db->where('status = "tampil"');
+		$this->db->where('jenis = "baru"');
 		return $this->db->get('berkas_perizinan');
+	}
+
+	public function get_berkas_all_p(){
+		$this->db->where('status = "tampil"');
+		$this->db->where('jenis = "perpanjang"');
+		return $this->db->get('berkas_perizinan');
+	}
+
+	public function get_berkas_all_by_id($id_perizinan, $id_jenis_alat){
+		$this->db->select('*');
+		$this->db->from('perizinan P');
+		$this->db->join('detail_berkas_perizinan D','P.id_perizinan = D.id_perizinan');
+		$this->db->join('berkas_perizinan B','D.id_berkas_perizinan = B.id_berkas_perizinan');
+		$this->db->where('P.id_perizinan', $id_perizinan);
+		$this->db->where('P.id_jenis_alat', $id_jenis_alat);
+		return $this->db->get();
 	}
 
 	public function insert_detail_berkas($data){

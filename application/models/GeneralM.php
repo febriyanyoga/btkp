@@ -133,4 +133,14 @@ class GeneralM extends CI_Model{
 		$this->db->join('perusahaan S', 'U.id_pengguna = S.id_pengguna','left');
 		return $this->db->get();
 	}
+
+	public function get_jumlah_workshop(){
+		return $this->db->get('perusahaan');
+	}
+	public function get_jumlah_perizinan(){
+		return $this->db->get('perizinan');
+	}
+	public function get_jumlah_produk(){
+		return $this->db->get('jenis_alat_keselamatan');
+	}
 }

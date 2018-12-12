@@ -92,7 +92,7 @@
                                                                 ?>
                                                             </td>
                                                             <td class="td-actions text-center">
-                                                                <a href="<?php echo site_url('izin_baru3/'.$per->id_perizinan); ?>" title="perpanajang perizinan"><i class="ion-share"></i></a>
+                                                                <a href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan"><i class="ion-share"></i></a>
                                                                 <a href="<?php echo site_url('print_surat/'.$per->id_perizinan); ?>" target="_BLANK" title="cetak surat"><i class="la la-sticky-note"></i></a>
                                                                 <a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan;?>" target="_BLANK" title="Cetak bukti Bayar">
                                                                     <i class="la la-print"></i>
@@ -153,7 +153,7 @@
                                                                 ?>
                                                             </td>
                                                             <td class="td-actions text-center">
-                                                                <a href="<?php echo site_url('izin_baru3/'.$per->id_perizinan); ?>" title="perpanajang perizinan"><i class="ion-share"></i></a>
+                                                                <a href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanajang perizinan"><i class="ion-share"></i></a>
                                                                 <a href="<?php echo site_url('print_surat/'.$per->id_perizinan); ?>" target="_BLANK" title="cetak surat"><i class="la la-sticky-note"></i></a>
                                                                 <a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan;?>" target="_BLANK" title="Cetak bukti Bayar">
                                                                     <i class="la la-print"></i>

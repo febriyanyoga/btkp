@@ -78,11 +78,12 @@ $route['cetak_invoice/(:num)']	= "WorkshopC/cetak_produk/$1";
 $route['print_surat/(:num)']	= "WorkshopC/print_surat/$1";
 
 // $route['izin_baru3'] = 'WorkshopC/perizinan_baru_3';
-$route['izin_perpanjang'] = 'WorkshopC/perizinan_perpanjang';
+$route['izin_perpanjang/(:num)/(:any)'] = 'WorkshopC/perizinan_perpanjang/$1/$2';
 $route['type_approval'] = 'WorkshopC/type_approval';
 
 $route['post_izin_baru1'] = 'WorkshopC/post_izin_baru1';
 $route['post_berkas'] = 'WorkshopC/post_berkas';
+$route['post_berkas_perpanjang'] = 'WorkshopC/post_berkas_perpanjang';
 
 // admin
 $route['admin'] = 'AdminC';

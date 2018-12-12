@@ -95,9 +95,7 @@
 													<input type="hidden" name="id_berkas_perizinan<?php echo $i;?>" id="id_berkas_perizinan<?php echo $i;?>" value="<?php echo $ber->id_berkas_perizinan;?>">
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label"><?php echo $ber->nama_berkas?><span class="text-danger ml-2">*</span></label>
-														<i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Akta Pendirian Perusahaan harus mencantumkan kalimat “Jasa Perbaikan alat keselamatan pelayaran” pada bidang usahanya" data-original-title="" title="">
-															Syarat
-														</i>
+														<i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Berkas harus diunggah dengan ukuran maksimal 5 MB(5000 Kb)" data-original-title="" title="">Syarat</i>
 														<div class="custom-file">
 															<!-- <input type="file" class="custom-file-input" id="files<?php echo $i?>" name="files<?php echo $i?>"> -->
 															<input type="file" name="files<?php echo $i?>" class="form-control" required>
