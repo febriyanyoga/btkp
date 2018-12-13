@@ -41,45 +41,26 @@
 													<th class="text-center">No</th>
 													<th class="text-center">Tanggal Pengajuan</th>
 													<th class="text-center">Nama Alat</th>
-                                                    <th class="text-center">Tahun Produksi</th>
+													<th class="text-center">Merk</th>
+                                                    <th class="text-center">Tipe</th>
                                                     <th class="text-center">Perusahaan</th>
-                                                    <th class="text-center">Kode Produksi</th>
-													<!-- <th class="text-center">Status</th> -->
 													<th class="text-center">Aksi</th>
 												</tr>
 											</thead>
 											<tbody>
-												<!-- <?php
-                                                $i = 0;
-                                                foreach ($perizinan as $per) {
-                                                    $id_pengguna = $this->session->userdata('id_pengguna');
-                                                    $own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
-                                                    if ($own_progress == 0) {
-                                                        ++$i; ?> -->
+												
 														<tr>
-															<td class="text-center"><?php echo $i; ?></td>
-															<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
-															<td class="text-center"><?php echo $per->nama_perusahaan; ?></td>
-															<td class="text-center"><?php echo $per->nama_alat; ?></td>
-															<?php
-                                                            $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin)); ?>
-                                                            <td class="text-center"><?php echo $tgl_pengajuan; ?></td>
-                                                            <td></td>
-															<!-- <td class="text-center">
-															</td> -->
+															<td class="text-center">1</td>
+															<td class="text-center">21 November 2018</td>
+															<td class="text-center">Life Jacket</td>
+															<td class="text-center">Samsung</td>
+                                                            <td class="text-center">67A</td>
+                                                            <td class="text-center">PT. AAA</td>
 															<td class="text-center">
-                                                            <!-- 1. muncul tombol verifikasi karo tolak
-                                                            2. nek di klik verifikasi lempar data neng kasie, eng pertanyaan anda yakin
-                                                            3. nek tolak yo dinei alasan -->
 																<a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
 																</a>
 															</td>
 														</tr>
-														<!-- <?php
-                                                    } ?>
-													<?php
-                                                }
-                                                ?> -->
 											</tbody>
 										</table>
 									</div>

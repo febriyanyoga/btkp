@@ -49,7 +49,7 @@
         <!-- End Preloader -->
         <!-- Begin Container -->
         <div class="container-fluid no-padding h-100">
-            <div class="row flex-row h-100" style="background:url(<?php echo base_url(); ?>assets/bg.jpg); background-size: cover;">
+            <div class="row flex-row h-100" style="background:url(<?php echo base_url(); ?>assets/bg6.jpg); background-size: cover;">
                 <!-- Begin Left Content -->
                 <div class="col-xl-3 col-lg-5 col-md-5 col-sm-12 col-12 no-padding">
                     <div class="elisyam-bg background-01">
@@ -103,7 +103,7 @@
                                     <?php 
                                 } 
                                 ?>
-                                <h3 style="font-color: white;">Masuk</h3>
+                                <h1 class="text-center">Form Login</h1> <br>
                                 <form action="<?php echo site_url('login')?>" method="post">
                                     <div class="group material-input">
                                         <input class="form-control" type="email" id="email" name="email_login" required placeholder="Email">
@@ -161,7 +161,7 @@
                                     <?php 
                                 } 
                                 ?>
-                                <h3>Buat akun</h3>
+                                <h1 class="text-center">Form Registrasi</h1> <br>
                                 <form action="<?php echo site_url('daftar')?>" method="post" id="signupForm" >
                                     <div class="group material-input">
                                         <input class="form-control" type="text" id="nama_pengguna" name="nama_pengguna" placeholder="Nama Lengkap">
