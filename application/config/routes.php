@@ -91,6 +91,8 @@ $route['post_berkas_perpanjang_tidak'] = 'WorkshopC/post_berkas_perpanjang_tidak
 
 // admin
 $route['admin'] = 'AdminC';
+$route['datapegawai'] = 'AdminC/datapegawai';
+$route['datauser'] = 'AdminC/datauser';
 
 // tatausaha
 $route['tatausaha'] = 'TatausahaC';

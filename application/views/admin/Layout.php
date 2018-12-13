@@ -71,7 +71,7 @@ Author: SAEROX
 					<div class="navbar-header">
 						<a href="<?php echo site_url('tatausaha')?>" class="navbar-brand">
 							<div class="brand-image brand-big">
-								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" style="width: 70px;" class="logo-big">
+								<img src="<?php echo site_url('AdminC'); ?>assets/logo.png" alt="logo" style="width: 70px;" class="logo-big">
 							</div>
 							<div class="brand-image brand-small">
 								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" class="logo-small">
@@ -218,13 +218,13 @@ Author: SAEROX
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('perizinan'); ?>">
-								<i class="ion-clipboard"></i><span> Data Perizinan</span>
+							<a href="<?php echo site_url('datapegawai'); ?>">
+								<i class="ion-clipboard"></i><span> Data Pegawai</span>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('pengujian'); ?>">
-								<i class="ti ti-write"></i><span> Data Pengujian </span>
+							<a href="<?php echo site_url('datauser'); ?>">
+								<i class="ti ti-write"></i><span> Data User </span>
 							</a>
 						</li>
 						<li>
