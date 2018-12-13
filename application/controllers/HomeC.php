@@ -77,7 +77,7 @@ class HomeC extends CI_Controller{
 						redirect('kasie');
 					}elseif ($user->row()->id_jabatan == 4) {
 						redirect('pimpinan');
-					}elseif ($user->row()->id_jabatan == 5) {
+					}else{
 						redirect('workshop');
 					}
 				}else{

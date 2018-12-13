@@ -35,6 +35,7 @@ class WorkshopC extends CI_Controller
 
     public function data_reinspeksi()
     {
+        workshop_access2();
         $data['title'] = 'BTKP - Data Reinspeksi';
         $data['isi'] = $this->load->view('workshop/datareinspeksi_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
@@ -63,6 +64,7 @@ class WorkshopC extends CI_Controller
 
     public function perizinan_baru_1($id_pengguna = null)
     {
+        workshop_access2();
         $id_pengguna = $this->session->userdata('id_pengguna');
         if($this->WorkshopM->get_perizinan_by_id($id_pengguna)->num_rows() > 0){ //ada perizinan yg belum selesai
             $id_perizinan = $this->WorkshopM->get_perizinan_by_id($id_pengguna)->row()->id_perizinan; //ambil id nya
@@ -138,7 +140,12 @@ class WorkshopC extends CI_Controller
 
     public function type_approval()
     {
+        bukan_workshop_access();
+        $id_pengguna = $this->session->userdata('id_pengguna');
         $data['title'] = 'BTKP - Type Approval';
+        $this->data['pengguna'] = $this->GeneralM->get_pengguna($id_pengguna)->row();
+        // $this->data['alat']     = $this->WorkshopM->get_alat_yg_aktif($id_pengguna)->result();
+        $this->data['alat']     = $this->WorkshopM->get_all_alat($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/Typeapproval_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }
