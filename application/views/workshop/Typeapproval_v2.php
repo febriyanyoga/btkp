@@ -4,7 +4,7 @@
 			<!-- Form -->
 			<div class="widget has-shadow">
 				<div class="widget-header bordered no-actions d-flex align-items-center">
-					<h4>SERTIFIKASI</h4>
+					<h4>Perizinan Baru</h4>
 				</div>
 				<div class="widget-body">
 					<div class="row flex-row justify-content-center">
@@ -13,17 +13,17 @@
 								<div class="step-container">
 									<div class="step-wizard">
 										<div class="progress" style="top:36px;">
-											<div class="progressbar" id="progressbar" style="width: 33%;"></div>
+											<div class="progressbar" style="width: 67%;"></div>
 										</div>
 										<ul>
 											<li>
-												<a href="" class="active show">
+												<a href="">
 													<span class="step">1</span>
 													<span class="title">Step 1</span>
 												</a>
 											</li>
 											<li>
-												<a href="">
+												<a href="" class="active show">
 													<span class="step">2</span>
 													<span class="title">Step 2</span>
 												</a>
@@ -63,30 +63,49 @@
 											<?php 
 										} 
 										?>
-										<form action="<?php echo site_url('post_type_approval1')?>" method="post">
+										<form action="<?php echo site_url('post_pengujian')?>" method="post">
 											<div class="section-title mt-5 mb-3">
-												<h4 class="text-center">DATA PEMOHON</h4>
+												<h4 class="text-center">DATA PERANGKAT</h4>
 												<hr>
 											</div>
 											<div class="form-group row mb-3">
 												<div class="col-xl-6 mb-3">
-													<label class="form-control-label"><b>JENIS INSTANSI</b><span class="text-danger ml-2">*</span></label>
-													<input type="text" value="<?php echo $pengguna->nama_jabatan?>" class="form-control" id="nama_jabatan" name="nama_jabatan" required readonly>
-													<input type="hidden" value="<?php echo $this->session->userdata('id_pengguna')?>" class="form-control" id="id_pengguna" name="id_pengguna" required readonly>
+													<!-- milih dari database -->
+													<label class="form-control-label"><b>NAMA ALAT</b><span class="text-danger ml-2">*</span></label>
+													<select class="form-control">
+														<option>----Pilih Alat----</option>
+														<?php
+														foreach ($alat as $al) {
+															?>
+															<option value="<?php echo $al->id_jenis_alat?>"><?php echo $al->nama_alat?></option>
+															<?php
+														}
+														?>
+													</select>
 												</div>
 												<div class="col-xl-6 mb-3">
-													<label class="form-control-label"><b>NAMA INSTANSI</b><span class="text-danger ml-2">*</span></label>
-													<input type="text" value="" class="form-control" id="nama_perusahaan" name="nama_perusahaan" required>
+													<label class="form-control-label"><b>MERK</b><span class="text-danger ml-2">*</span></label>
+													<input type="text" value="" class="form-control" id="merk" name="merk" required>
 												</div>
 											</div>
 											<div class="form-group row mb-3">
 												<div class="col-xl-6 mb-3">
-													<label class="form-control-label"><b>ALAMAT INSTANSI</b><span class="text-danger ml-2">*</span></label>
-													<textarea class="form-control" id="alamat_perusahaan" name="alamat_perusahaan" rows="3" cols="50" required ></textarea>
+													<label class="form-control-label"><b>MODEL/TIPE</b><span class="text-danger ml-2">*</span></label>
+													<input type="text" value="" class="form-control" id="model_tipe" name="model_tipe" required>
 												</div>
 												<div class="col-xl-6 mb-3">
-													<label class="form-control-label"><b>TELEPON INSTANSI</b><span class="text-danger ml-2">*</span></label>
-													<input type="number" value="" class="form-control" id="no_tlp" name="no_tlp" required>
+													<label class="form-control-label"><b>NEGARA PEMBUAT</b><span class="text-danger ml-2">*</span></label>
+													<input type="text" value="" class="form-control" id="negara" name="negara" required>
+												</div>
+											</div>
+											<div class="form-group row mb-3">
+												<div class="col-xl-6 mb-3">
+													<label class="form-control-label"><b>ALAMAT PABRIKAN</b><span class="text-danger ml-2">*</span></label>
+													<textarea value="" class="form-control" id="alamat_pabrikan" name="alamat_pabrikan" rows="3" cols="50" required></textarea>
+												</div>
+												<div class="col-xl-6 mb-3">
+													<label class="form-control-label"><b>PABRIKAN PEMBUAT</b><span class="text-danger ml-2">*</span></label>
+													<input type="text" value="" class="form-control" id="pabrikan_pembuat" name="pabrikan_pembuat" required>
 												</div>
 											</div>
 											<div class="form-group row mb-3">
@@ -125,32 +144,22 @@
 											</div>
 											<div class="form-group row mb-3">
 												<div class="col-xl-6 mb-3">
-													<label class="form-control-label"><b>EMAIL INSTANSI</b><span class="text-danger ml-2">*</span></label>
-													<input type="email" class="form-control" id="email_perusahaan" name="email_perusahaan" required >
+													<label class="form-control-label"><b>TELEPON</b><span class="text-danger ml-2">*</span></label>
+													<input type="number" class="form-control" id="no_tlp" name="no_tlp" required >
+												</div>
+												<div class="col-xl-6 mb-3">
+													<label class="form-control-label"><b>EMAIL</b><span class="text-danger ml-2">*</span></label>
+													<input type="email" value="" class="form-control" id="email" name="email" required>
+												</div>
+											</div>
+											<div class="form-group row mb-3">
+												<div class="col-xl-6 mb-3">
+													<label class="form-control-label"><b>CATATAN</b><span class="text-danger ml-2">*</span></label>
+													<textarea value="" class="form-control" id="catatan" name="catatan" rows="3" cols="50" required></textarea>
 												</div>
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>FAX</b><span class="text-danger ml-2">*</span></label>
-													<input type="number" value="" class="form-control" id="fax" name="fax" required>
-												</div>
-											</div>
-											<div class="form-group row mb-3">
-												<div class="col-xl-6 mb-3">
-													<label class="form-control-label"><b>NAMA PEMOHON</b><span class="text-danger ml-2">*</span></label>
-													<input type="text" class="form-control" id="nama_pengguna" name="nama_pengguna" required value="<?php echo $pengguna->nama_pengguna?>" readonly>
-												</div>
-												<div class="col-xl-6 mb-3">
-													<label class="form-control-label"><b>JABATAN PEMOHON</b><span class="text-danger ml-2">*</span></label>
-													<input type="text" value="" class="form-control" id="jabatan_pemohon" name="jabatan_pemohon" required>
-												</div>
-											</div>
-											<div class="form-group row mb-3">
-												<div class="col-xl-6 mb-3">
-													<label class="form-control-label"><b>TELEPON PEMOHON</b><span class="text-danger ml-2">*</span></label>
-													<input type="number" class="form-control" id="no_hp" name="no_hp" required value="<?php echo $pengguna->no_hp?>" readonly>
-												</div>
-												<div class="col-xl-6 mb-3">
-													<label class="form-control-label"><b>EMAIL PEMOHON</b><span class="text-danger ml-2">*</span></label>
-													<input type="email" value="<?php echo $pengguna->email_pengguna?>" class="form-control" id="email_pengguna" name="email_pengguna" required readonly>
+													<input type="text" class="form-control" id="FAX" name="FAX" required value="">
 												</div>
 											</div>
 											<ul class="pager wizard text-right">
@@ -167,23 +176,16 @@
 				</div>
 			</div>
 		</div>
+		<!-- End Form -->
 	</div>
-</div>
-<!-- End Form -->
-</div>
 </div>
 </div>
 <!-- End Row -->
-<style type="text/css">
-.panjang{
-	width: 33.333%;
-}
-</style>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		$('#tab1').addClass('active show');
-		$("#progressbar").addClass('panjang');
+		// $("#progressbar").addClass('panjang');
 	});
 </script>

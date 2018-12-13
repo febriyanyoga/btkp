@@ -82,7 +82,13 @@ $route['update_perusahaan'] 	= 'WorkshopC/post_update_perusahaan';
 // $route['izin_baru3'] = 'WorkshopC/perizinan_baru_3';
 $route['izin_perpanjang/(:num)/(:any)'] = 'WorkshopC/perizinan_perpanjang/$1/$2';
 $route['izin_perpanjang_tidak/(:num)/(:any)'] = 'WorkshopC/perizinan_perpanjang_tidak/$1/$2';
-$route['type_approval'] = 'WorkshopC/type_approval';
+$route['type_approval'] 	= 'WorkshopC/type_approval';
+$route['type_approval22'] 	= 'WorkshopC/type_approval2';
+$route['type_approval2/(:num)'] 	= 'WorkshopC/type_approval2/$1';
+$route['type_approval3/(:num)'] 	= 'WorkshopC/type_approval3/$1';
+
+$route['post_type_approval1'] 	= 'WorkshopC/post_type_approval1';
+$route['post_pengujian'] 		= 'WorkshopC/post_pengujian';
 
 $route['post_izin_baru1'] = 'WorkshopC/post_izin_baru1';
 $route['post_berkas'] = 'WorkshopC/post_berkas';

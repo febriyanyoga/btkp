@@ -32,6 +32,12 @@ class WorkshopM extends CI_Model{
 		return $this->db->get('perizinan');
 	}
 
+	public function get_pengujian_by_id($id_pengguna){
+		$this->db->where('id_pengguna', $id_pengguna);
+		$this->db->where('status_pengajuan', 'belum');
+		return $this->db->get('pengujian');
+	}
+
 	// detail perizinan
 	public function get_all_perizinan_by_id($id_perizinan){
 		$this->db->select('*');
