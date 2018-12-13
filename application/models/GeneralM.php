@@ -155,4 +155,23 @@ class GeneralM extends CI_Model{
 		$this->db->where('P.id_pengguna', $id_pengguna);
 		return $this->db->get();
 	}
+
+	public function get_pengguna_only($id_pengguna){
+		$this->db->select('*');
+		$this->db->from('pengguna P');
+		$this->db->where('P.id_pengguna', $id_pengguna);
+		return $this->db->get();
+	}
+
+	public function update_pengguna($id_pengguna, $data){
+		$this->db->where('id_pengguna', $id_pengguna);
+		$this->db->update('pengguna', $data);
+		return TRUE;
+	}
+
+	public function update_perusahaan($id_perusahaan, $data){
+		$this->db->where('id_perusahaan', $id_perusahaan);
+		$this->db->update('perusahaan', $data);
+		return TRUE;
+	}
 }

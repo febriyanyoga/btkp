@@ -123,18 +123,6 @@
 															<div class="col-sm-3 form-control-label d-flex align-items-center">Jenis SPK</div>
 															<div class="col-sm-8 form-control-plaintext"><?php echo $per->nama_alat?></div>
 														</div>
-														<!-- <div class="form-group row mb-5">
-															<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor SPK Lama</div>
-															<div class="col-sm-8 form-control-plaintext">BHSJADKTYUIO</div>
-														</div> -->
-														<!-- <div class="form-group row mb-5">
-															<div class="col-xl-12">
-																<div class="styled-checkbox">
-																	<input type="checkbox" name="checkbox" id="agree">
-																	<label for="agree">I Accept <a href="#">Terms and Conditions</a></label>
-																</div>
-															</div>
-														</div> -->
 													</div>
 													<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseFour">
 														<div class="card-title w-100">4. Dokumen Unggahan</div>
@@ -144,7 +132,7 @@
 														$detail_berkas = $this->TatausahaM->get_berkas_by_id($per->id_perizinan)->result();
 														$i=11;
 														$j=0;
-														foreach ($detail_berkas as $ber) {
+														foreach ($detail_berkas as $ber){
 															$j++;
 															?>
 															<div class="form-group row mb-5">

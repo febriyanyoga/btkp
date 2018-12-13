@@ -80,20 +80,20 @@
 											</div>
 											<div class="form-group row mb-3">
 												<?php 
-												$i=0;
+												$i=1;
 												foreach ($berkas as $ber) {
-													$i++;
 													?>
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label"><?php echo $ber->nama_berkas?></label>
 														<div class="custom-file">
 															<a href="<?php echo base_url('assets/upload/'.$ber->nama_file)?>" target="_BLANK" class="btn btn-sm btn-success">Lihat Dokumen</a>
-															<input type="text" name="id_berkas_perizinan<?php echo $i;?>" id="id_berkas_perizinan<?php echo $i;?>" value="<?php echo $ber->id_berkas_perizinan;?>">
+															<input type="hidden" name="id_berkas_perizinan<?php echo $i;?>" id="id_berkas_perizinan<?php echo $i;?>" value="<?php echo $ber->id_berkas_perizinan;?>">
 															<input type="hidden" name="nama_file<?php echo $i;?>" id="nama_file<?php echo $i;?>" value="<?php echo $ber->nama_file;?>">
 															<input type="hidden" name="ukuran_berkas<?php echo $i;?>" id="ukuran_berkas<?php echo $i;?>" value="<?php echo $ber->ukuran_berkas;?>">
 														</div>
 													</div>
 													<?php
+													$i++;
 												}
 												?>
 											</div>
@@ -102,18 +102,18 @@
 											</div>
 											<div class="form-group row mb-3">
 												<?php 
-												$j=$i+1;
+												$j=$i;
 												foreach ($berkas_perpanjang as $ber_p) {
-													$j++;
 													?>
 													<input type="text" name="id_berkas_perizinan<?php echo $j;?>" id="id_berkas_perizinan<?php echo $j;?>" value="<?php echo $ber_p->id_berkas_perizinan;?>">
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label"><?php echo $ber_p->nama_berkas?></label>
 														<div class="custom-file">
-															<input type="file" name="files<?php echo $j?>" class="form-control" required>
+															<input type="file" name="files<?php echo $j?>" class="form-control">
 														</div>
 													</div>
 													<?php
+													$j++;
 												}
 												?>
 											</div>

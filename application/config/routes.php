@@ -76,7 +76,8 @@ $route['konfirmasi'] = "WorkshopC/konfirmasi_pembayaran";
 $route['detailperizinan/(:num)'] = "WorkshopC/detailperizinan/$1";
 $route['cetak_invoice/(:num)']	= "WorkshopC/cetak_produk/$1";
 $route['print_surat/(:num)']	= "WorkshopC/print_surat/$1";
-$route['post_update_profil'] 	= 'WorkshopC/post_update_profil';
+$route['update_password'] 	= 'WorkshopC/post_update_password';
+$route['update_perusahaan'] 	= 'WorkshopC/post_update_perusahaan';
 
 // $route['izin_baru3'] = 'WorkshopC/perizinan_baru_3';
 $route['izin_perpanjang/(:num)/(:any)'] = 'WorkshopC/perizinan_perpanjang/$1/$2';
@@ -102,6 +103,9 @@ $route['pengujian'] = 'TatausahaC/pengujian';
 $route['persetujuan'] = 'TatausahaC/persetujuan';
 $route['kode_billing'] = 'TatausahaC/post_kode_billing';
 $route['penerbitan'] = 'TatausahaC/post_penerbitan';
+$route['profile_t'] = 'TatausahaC/profile';
+$route['update_password_t'] = 'TatausahaC/post_update_password';
+
 
 // kasie
 $route['kasie'] = 'KasieC';
@@ -109,6 +113,8 @@ $route['izin_kasie'] = 'KasieC/perizinan';
 $route['verifikasi_kasie/(:num)'] = 'KasieC/verifikasi/$1';
 $route['persetujuan_kasie'] = 'KasieC/persetujuan';
 $route['persetujuan_kasie2'] = 'KasieC/persetujuan2';
+$route['profil_k'] = 'KasieC/profile';
+$route['update_password_k'] = 'KasieC/post_update_password';
 
 
 // pimpinan

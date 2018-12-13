@@ -174,7 +174,7 @@ Author: SAEROX
                                     <p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
                                     </li>
 								<li>
-									<a href="db-social.html" class="dropdown-item">
+									<a href="<?php echo site_url('profile_t')?>" class="dropdown-item">
 										Profile
 									</a>
 								</li>

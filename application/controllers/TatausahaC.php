@@ -43,8 +43,55 @@ class TatausahaC extends CI_Controller
         $this->load->view('admintu/Layout', $data);
     }
 
-    // post
+    public function profile()
+    {
+        $id_pengguna = $this->session->userdata('id_pengguna');
+        $data['title'] = 'BTKP - Profil';
+        $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
+        $this->data['profil']       = $this->GeneralM->get_pengguna_only($id_pengguna)->row();
+        $data['isi'] = $this->load->view('admintu/profile_v', $this->data, true);
+        $this->load->view('admintu/Layout', $data);
+    }
 
+    // post
+    public function post_update_password(){
+        $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
+        $this->form_validation->set_rules('email_pengguna', 'Email Pengguna', 'required');
+        $this->form_validation->set_rules('password_lama', 'Password Lama', 'required');
+        $this->form_validation->set_rules('password_baru', 'Password Baru', 'trim|required|matches[konfirmasi_password_baru]');
+        $this->form_validation->set_rules('konfirmasi_password_baru', 'Konfirmasi Password Baru', 'trim|required');
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error','konfirmasi kata sandi baru tidak cocok');
+            redirect_back();
+        }else{
+            $email_pengguna     = $this->input->post('email_pengguna');
+            $password           = $this->input->post('password_lama');
+            $this->db->select('*');
+            $this->db->from('pengguna P');
+            $this->db->where('email_pengguna', $email_pengguna);
+            $this->db->where('password',  md5($password));
+            $user = $this->db->get();
+
+            if($user->num_rows() > 0){
+                $data_update_password = array(
+                    'password' => md5($this->input->post('password_baru')), 
+                );
+                $id_pengguna = $this->input->post('id_pengguna');
+                if($this->GeneralM->update_pengguna($id_pengguna, $data_update_password)){
+                    $this->session->set_flashdata('sukses', 'Password berhasil diubah');
+                    redirect_back();
+                }else{
+                    $this->session->set_flashdata('error', 'Password tidak berhasil diubah');
+                    redirect_back();
+                }
+            }else{
+                $this->session->set_flashdata('error','Password lama tidak sesuai');
+                redirect_back();
+            }
+
+        }
+    }
+    
     public function persetujuan()
     {
         $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
