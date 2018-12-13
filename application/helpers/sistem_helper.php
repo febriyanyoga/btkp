@@ -1,4 +1,18 @@
 <?php 
+if ( ! function_exists('redirect_back')){
+    function redirect_back(){
+        if(isset($_SERVER['HTTP_REFERER']))
+        {
+            header('Location: '.$_SERVER['HTTP_REFERER']);
+        }
+        else
+        {
+            header('Location: http://'.$_SERVER['SERVER_NAME']);
+        }
+        exit;
+    }
+}
+
 if ( ! function_exists('admin_access')){
     function admin_access(){
         $ci=& get_instance();
@@ -42,9 +56,19 @@ if ( ! function_exists('pimpinan_access')){
 if ( ! function_exists('workshop_access')){
     function workshop_access(){
         $ci=& get_instance();
-        if($ci->session->userdata('id_jabatan') != '5'){
+        if($ci->session->userdata('id_jabatan') < 5){
             $ci->session->set_flashdata('error','Anda harus Login terlebih dahulu');
             redirect('logout');
+        }
+    }
+}
+
+if ( ! function_exists('bukan_workshop_access')){
+    function bukan_workshop_access(){
+        $ci=& get_instance();
+        if($ci->session->userdata('id_jabatan') == '5'){
+            $ci->session->set_flashdata('error','Maaf. Anda tidak memiliki akses menu ini');
+            redirect_back();
         }
     }
 }
@@ -60,17 +84,5 @@ if ( ! function_exists('in_access')){
 }
 
 
-if ( ! function_exists('redirect_back')){
-    function redirect_back(){
-        if(isset($_SERVER['HTTP_REFERER']))
-        {
-            header('Location: '.$_SERVER['HTTP_REFERER']);
-        }
-        else
-        {
-            header('Location: http://'.$_SERVER['SERVER_NAME']);
-        }
-        exit;
-    }
-}
+
 

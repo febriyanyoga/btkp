@@ -115,4 +115,32 @@ class WorkshopM extends CI_Model{
 		$this->db->where('P.id_pengguna',$id_pengguna);
 		return $this->db->get();
 	}
+
+
+	// pengujian
+
+	public function get_data_pengguna_pengujian_by_id($id_pengguna){
+		$this->db->select('*');
+		$this->db->from('pengguna P');
+		$this->db->join('perusahaan U','U.id_pengguna = P.id_pengguna','left');
+		$this->db->where('P.id_pengguna',$id_pengguna);
+		return $this->db->get();
+	}
+
+	public function get_alat_yg_aktif($id_pengguna){
+		$now = date('Y-m-d');
+		$this->db->select('*');
+		$this->db->from('perizinan P');
+		$this->db->join('pengguna U', 'P.id_pengguna = U.id_pengguna','left');
+		$this->db->join('jenis_alat_keselamatan J','P.id_jenis_alat = J.id_jenis_alat','left');
+		$this->db->join('jenis_perizinan K','P.id_jenis_perizinan = K.id_jenis_perizinan','left');
+		$this->db->where('U.id_pengguna', $id_pengguna);
+		$this->db->where('P.status_pembayaran = "Paid"');
+		$this->db->where('date(P.tgl_expired) >=', $now);
+		return $this->db->get();
+	}
+
+	public function get_all_alat(){
+		return $this->db->get('jenis_alat_keselamatan');
+	}
 }

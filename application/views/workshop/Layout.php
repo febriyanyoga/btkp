@@ -219,6 +219,8 @@
             $('#myTable').DataTable();
             $('#myTable2').DataTable();
             $('#myTable3').DataTable();
+            $('#myTable4').DataTable();
+            $('#myTable5').DataTable();
         });
 
 

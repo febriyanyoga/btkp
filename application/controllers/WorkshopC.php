@@ -138,7 +138,12 @@ class WorkshopC extends CI_Controller
 
     public function type_approval()
     {
+        bukan_workshop_access();
+        $id_pengguna = $this->session->userdata('id_pengguna');
         $data['title'] = 'BTKP - Type Approval';
+        $this->data['pengguna'] = $this->GeneralM->get_pengguna($id_pengguna)->row();
+        // $this->data['alat']     = $this->WorkshopM->get_alat_yg_aktif($id_pengguna)->result();
+        $this->data['alat']     = $this->WorkshopM->get_all_alat($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/Typeapproval_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }

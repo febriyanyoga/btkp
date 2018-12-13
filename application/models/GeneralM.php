@@ -147,6 +147,7 @@ class GeneralM extends CI_Model{
 	public function get_pengguna($id_pengguna){
 		$this->db->select('*');
 		$this->db->from('pengguna P');
+		$this->db->join('jabatan J','J.id_jabatan = P.id_jabatan','left');
 		$this->db->join('perusahaan R','P.id_pengguna = R.id_pengguna','left');
 		$this->db->join('kelurahan L','R.id_kel_perusahaan = L.id_kelurahan','left');
 		$this->db->join('kecamatan C','L.id_kecamatan = C.id_kecamatan','left');
