@@ -10,7 +10,7 @@ class AdminC extends CI_Controller{
 	}
 	public function index(){
 		$data['title'] = "BTKP - Home";
-		$data['isi'] = $this->load->view('workshop/Home_v',$this->data, TRUE);
-		$this->load->view('workshop/Layout', $data);
+		$data['isi'] = $this->load->view('admin/dashboard_v',$this->data, TRUE);
+		$this->load->view('admin/Layout', $data);
 	}
 }

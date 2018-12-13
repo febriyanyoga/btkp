@@ -237,16 +237,16 @@
 
             $('#alamat_perusahaan_p').keyup(function(){
                 if($('#alamat_perusahaan_p').val() == alamat){
-                    $("kelurahan_pt").removeAttr("required");
-                    $("kecamatan_pt").removeAttr("required");
-                    $("kab_pt").removeAttr("required");
-                    $("propinsi_pt").removeAttr("required");
-
                     $('#pilih_propinsi2').hide();
                     $('#pilih_kab2').hide();
                     $('#pilih_kec2').hide();
                     $('#pilih_kel2').hide();
                 }else{
+                    $("#kelurahan_pt").prop("required", true);
+                    $("#kecamatan_pt").prop("required", true);
+                    $("#kab_pt").prop("required", true);
+                    $("#propinsi_pt").prop("required", true);
+
                     $('#pilih_propinsi2').show();
                     $('#pilih_kab2').show();
                     $('#pilih_kec2').show();
@@ -260,16 +260,16 @@
 
             $('#alamat_workshop_p').keyup(function(){
                 if($('#alamat_workshop_p').val() == alamat2){
-                    $("kelurahan_ws").removeAttr("required");
-                    $("kecamatan_ws").removeAttr("required");
-                    $("kab_ws").removeAttr("required");
-                    $("propinsi_ws").removeAttr("required");
-
                     $('#pilih_propinsi').hide();
                     $('#pilih_kab').hide();
                     $('#pilih_kec').hide();
                     $('#pilih_kel').hide();
                 }else{
+                    $("#kelurahan_ws").prop("required", true);
+                    $("#kecamatan_ws").prop("required", true);
+                    $("#kab_ws").prop("required", true);
+                    $("#propinsi_ws").prop("required", true);
+
                     $('#pilih_propinsi').show();
                     $('#pilih_kab').show();
                     $('#pilih_kec').show();

@@ -87,7 +87,7 @@
 														<label class="form-control-label"><?php echo $ber->nama_berkas?></label>
 														<div class="custom-file">
 															<a href="<?php echo base_url('assets/upload/'.$ber->nama_file)?>" target="_BLANK" class="btn btn-sm btn-success">Lihat Dokumen</a>
-															<input type="text" name="id_berkas_perizinan<?php echo $i;?>" id="id_berkas_perizinan<?php echo $i;?>" value="<?php echo $ber->id_berkas_perizinan;?>">
+															<input type="hidden" name="id_berkas_perizinan<?php echo $i;?>" id="id_berkas_perizinan<?php echo $i;?>" value="<?php echo $ber->id_berkas_perizinan;?>">
 															<input type="hidden" name="nama_file<?php echo $i;?>" id="nama_file<?php echo $i;?>" value="<?php echo $ber->nama_file;?>">
 															<input type="hidden" name="ukuran_berkas<?php echo $i;?>" id="ukuran_berkas<?php echo $i;?>" value="<?php echo $ber->ukuran_berkas;?>">
 														</div>

@@ -366,11 +366,88 @@ class WorkshopC extends CI_Controller
         }
     }
 
-    // public function post_update_profil(){
-    //     $data_update = array(
-    //         '' => , 
-    //     );
-    // }
+    public function post_update_password(){
+        $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
+        $this->form_validation->set_rules('email_pengguna', 'Email Pengguna', 'required');
+        $this->form_validation->set_rules('password_lama', 'Password Lama', 'required');
+        $this->form_validation->set_rules('password_baru', 'Password Baru', 'trim|required|matches[konfirmasi_password_baru]');
+        $this->form_validation->set_rules('konfirmasi_password_baru', 'Konfirmasi Password Baru', 'trim|required');
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error','konfirmasi kata sandi baru tidak cocok');
+            redirect_back();
+        }else{
+            $email_pengguna     = $this->input->post('email_pengguna');
+            $password           = $this->input->post('password_lama');
+            $this->db->select('*');
+            $this->db->from('pengguna P');
+            $this->db->where('email_pengguna', $email_pengguna);
+            $this->db->where('password',  md5($password));
+            $user = $this->db->get();
+
+            if($user->num_rows() > 0){
+                $data_update_password = array(
+                    'password' => md5($this->input->post('password_baru')), 
+                );
+                $id_pengguna = $this->input->post('id_pengguna');
+                if($this->GeneralM->update_pengguna($id_pengguna, $data_update_password)){
+                    $this->session->set_flashdata('sukses', 'Password berhasil diubah');
+                    redirect_back();
+                }else{
+                    $this->session->set_flashdata('error', 'Password tidak berhasil diubah');
+                    redirect_back();
+                }
+            }else{
+                $this->session->set_flashdata('error','Password lama tidak sesuai');
+                redirect_back();
+            }
+
+        }
+    }
+
+    public function post_update_perusahaan(){
+        $this->form_validation->set_rules('id_perusahaan', 'ID Perusahaan', 'required');
+        $this->form_validation->set_rules('email_perusahaan', 'Email Perusahaan','required');
+        $this->form_validation->set_rules('no_tlp', 'No Telpon Perusahaan','required');
+        $this->form_validation->set_rules('alamat_perusahaan_p', 'Alamat Perusahaan');
+        $this->form_validation->set_rules('kelurahan_pt', 'Kelurahan Perusahaan');
+        $this->form_validation->set_rules('alamat_workshop_p', 'Alamat Workshop');
+        $this->form_validation->set_rules('kelurahan_ws', 'Kelurahan Workshhop');
+        $this->form_validation->set_rules('id_kel_workshop', 'Kelurahan Workshhop');
+        $this->form_validation->set_rules('id_kel_perusahaan', 'Kelurahan Perusahaan');
+
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error','Data tidak berhasil disimpan, Cek kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            if($this->input->post('kelurahan_pt') == 0 || $this->input->post('kelurahan_pt') == '0'){
+                $kelurahan_pt = $this->input->post('id_kel_perusahaan');
+            }else{
+                $kelurahan_pt = $this->input->post('kelurahan_pt');
+            }
+
+            if($this->input->post('kelurahan_ws')  == 0 || $this->input->post('kelurahan_ws') == '0'){
+                $kelurahan_ws = $this->input->post('id_kel_workshop');
+            }else{
+                $kelurahan_ws = $this->input->post('kelurahan_ws') ;
+            }
+            $data = array(
+                'email_perusahaan'      => $this->input->post('email_perusahaan'), 
+                'no_tlp'                => $this->input->post('no_tlp'), 
+                'alamat_perusahaan'     => $this->input->post('alamat_perusahaan_p'), 
+                'id_kel_perusahaan'     => $kelurahan_pt, 
+                'alamat_workshop'       => $this->input->post('alamat_workshop_p'), 
+                'id_kel_workshop'       => $kelurahan_ws, 
+            );
+            $id_perusahaan = $this->input->post('id_perusahaan');
+            if($this->GeneralM->update_perusahaan($id_perusahaan, $data)){
+                $this->session->set_flashdata('sukses', 'Data berhasil diubah');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error','Data tidak berhasil diubah, Cek kembali data yang anda masukkan');
+                redirect_back();
+            }
+        }
+    }
 
     public function upload_file($input_name){
         $config['upload_path'] = './assets/upload/'; //path folder
