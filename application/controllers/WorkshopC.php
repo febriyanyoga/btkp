@@ -35,6 +35,7 @@ class WorkshopC extends CI_Controller
 
     public function data_reinspeksi()
     {
+        workshop_access2();
         $data['title'] = 'BTKP - Data Reinspeksi';
         $data['isi'] = $this->load->view('workshop/datareinspeksi_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
@@ -63,6 +64,7 @@ class WorkshopC extends CI_Controller
 
     public function perizinan_baru_1($id_pengguna = null)
     {
+        workshop_access2();
         $id_pengguna = $this->session->userdata('id_pengguna');
         if($this->WorkshopM->get_perizinan_by_id($id_pengguna)->num_rows() > 0){ //ada perizinan yg belum selesai
             $id_perizinan = $this->WorkshopM->get_perizinan_by_id($id_pengguna)->row()->id_perizinan; //ambil id nya

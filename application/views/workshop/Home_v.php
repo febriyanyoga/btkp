@@ -6,9 +6,23 @@
 					<div class="widget no-bg">
 						<div class="widget-body pt-0">
 							<div class="widget29 owl-carousel">
-								<div class="item" data-toggle="modal" data-target="#perizinan">
-									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/perizinan.jpg" alt="...">
-								</div>
+								<?php
+								if($this->session->userdata('id_jabatan') == '5'){
+									?>
+									<div class="item" data-toggle="modal" data-target="#perizinan">
+										<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/perizinan.jpg" alt="...">
+									</div>
+									<?php
+								}else{
+									?>
+									<a href="<?php echo site_url('izin_baru')?>">
+										<div class="item" >
+											<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/perizinan.jpg" alt="...">
+										</div>
+									</a>
+									<?php
+								}
+								?>
 								<div class="item"><a href="<?php echo site_url('type_approval'); ?>">
 									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/type.jpg" alt="..."></a>
 								</div>

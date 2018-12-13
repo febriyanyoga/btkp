@@ -63,6 +63,16 @@ if ( ! function_exists('workshop_access')){
     }
 }
 
+if ( ! function_exists('workshop_access2')){
+    function workshop_access2(){
+        $ci=& get_instance();
+        if($ci->session->userdata('id_jabatan') != 5){
+            $ci->session->set_flashdata('error','Maaf. Anda tidak memiliki akses menu ini');
+            redirect_back();
+        }
+    }
+}
+
 if ( ! function_exists('bukan_workshop_access')){
     function bukan_workshop_access(){
         $ci=& get_instance();
