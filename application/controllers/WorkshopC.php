@@ -29,6 +29,7 @@ class WorkshopC extends CI_Controller
         $id_pengguna = $this->session->userdata('id_pengguna');
         $data['title'] = 'BTKP - Data Perizinan';
         $this->data['perizinan']    = $this->WorkshopM->get_all_perizinan_by_id_pengguna($id_pengguna)->result();
+        $this->data['izin_tolak']   = $this->WorkshopM->get_perizinan_ditolak($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/dataperizinan_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }
@@ -249,8 +250,8 @@ class WorkshopC extends CI_Controller
                         $this->session->set_flashdata('error','Gagal diupload');
                     }
                 }
-                redirect('izin_baru3/'.$id_perizinan);   
             }
+            redirect('izin_baru3/'.$id_perizinan);   
         }
     }
 
