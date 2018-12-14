@@ -239,7 +239,7 @@
 				<h4 class="modal-title">Persetujuan Perizinan</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
-			<form action="<?php echo site_url('persetujuan')?>" method="post">
+			<form action="<?php echo site_url('persetujuan_tolak')?>" method="post">
 				<div class="modal-body">
 					<?php
 					foreach ($detail_berkas as $key) {

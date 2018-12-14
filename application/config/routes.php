@@ -107,6 +107,7 @@ $route['verifikasi/(:num)'] = 'TatausahaC/verifikasi/$1';
 $route['reinspeksi'] = 'TatausahaC/reinspeksion';
 $route['pengujian'] = 'TatausahaC/pengujian';
 $route['persetujuan'] = 'TatausahaC/persetujuan';
+$route['persetujuan_tolak'] = 'TatausahaC/persetujuan_tolak';
 $route['kode_billing'] = 'TatausahaC/post_kode_billing';
 $route['penerbitan'] = 'TatausahaC/post_penerbitan';
 $route['profile_t'] = 'TatausahaC/profile';

@@ -92,7 +92,7 @@ class TatausahaC extends CI_Controller
         }
     }
     
-    public function persetujuan()
+    public function persetujuan_tolak()
     {
         $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
         $this->form_validation->set_rules('id_perizinan', 'ID Perizinan');
@@ -118,6 +118,35 @@ class TatausahaC extends CI_Controller
                 'id_perizinan' => $this->input->post('id_perizinan'),
                 'keterangan' => $ket,
                 'status' => $this->input->post('status'),
+            );
+
+            if ($this->GeneralM->insert_persetujuan($data)) {
+                $this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+                redirect('perizinan');
+            } else {
+                $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function persetujuan()
+    {
+        $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
+        $this->form_validation->set_rules('id_perizinan', 'ID Perizinan');
+        $this->form_validation->set_rules('keterangan', 'keterangan');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            $keterangan=$this->input->post('keterangan');
+
+            $data = array(
+                'id_pengguna'   => $this->input->post('id_pengguna'),
+                'id_perizinan'  => $this->input->post('id_perizinan'),
+                'keterangan'    => $keterangan,
+                'status'        => $this->input->post('status'),
             );
 
             if ($this->GeneralM->insert_persetujuan($data)) {
