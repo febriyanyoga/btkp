@@ -96,16 +96,27 @@ class TatausahaC extends CI_Controller
     {
         $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
         $this->form_validation->set_rules('id_perizinan', 'ID Perizinan');
-        $this->form_validation->set_rules('keterangan', 'keterangan', 'required');
+        $this->form_validation->set_rules('keterangan', 'keterangan');
         $this->form_validation->set_rules('status', 'Status', 'required');
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
-        } else {
+        }else{
+            $keterangan=$this->input->post('keterangan');  
+            $ket="";  
+            $i=1;
+            foreach($keterangan as $ket1){
+                if($ket1!=""){
+                    $nama = $this->TatausahaM->get_berkas_by_id2($i)->row()->nama_berkas;
+                    $ket .= $nama.' : '.$ket1."<br>";  
+                }
+                $i++;
+            } 
+
             $data = array(
                 'id_pengguna' => $this->input->post('id_pengguna'),
                 'id_perizinan' => $this->input->post('id_perizinan'),
-                'keterangan' => $this->input->post('keterangan'),
+                'keterangan' => $ket,
                 'status' => $this->input->post('status'),
             );
 

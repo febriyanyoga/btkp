@@ -32,6 +32,12 @@ class WorkshopM extends CI_Model{
 		return $this->db->get('perizinan');
 	}
 
+	public function get_pengujian_by_id($id_pengguna){
+		$this->db->where('id_pengguna', $id_pengguna);
+		$this->db->where('status_pengajuan', 'belum');
+		return $this->db->get('pengujian');
+	}
+
 	// detail perizinan
 	public function get_all_perizinan_by_id($id_perizinan){
 		$this->db->select('*');
@@ -142,5 +148,21 @@ class WorkshopM extends CI_Model{
 
 	public function get_all_alat(){
 		return $this->db->get('jenis_alat_keselamatan');
+	}
+
+	public function get_perizinan_ditolak($id_pengguna){
+		$this->db->select('*');
+		$this->db->from('pengguna P');
+		$this->db->join('pengguna_perizinan R','P.id_pengguna = R.id_pengguna','left');
+		$this->db->join('perizinan Z','R.id_perizinan = Z.id_perizinan','left');
+		// $this->db->join('jenis_alat_keselamatan K','K.id_jenis_alat = Z.id_jenis_alat','left');
+		$this->db->where('R.status = "ditolak"');
+		return $this->db->get();
+	}
+
+	public function get_perizinan_by_id_perizinan($id_perizinan){
+		$this->db->where('id_perizinan', $id_perizinan);
+		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = perizinan.id_jenis_alat');
+		return $this->db->get('perizinan');
 	}
 }

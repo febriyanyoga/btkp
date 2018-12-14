@@ -69,4 +69,9 @@ class TatausahaM extends CI_Model{
 
 		return $this->db->get();
 	}
+
+	public function get_berkas_by_id2($id_berkas){
+		$this->db->where('id_berkas_perizinan', $id_berkas);
+		return $this->db->get('berkas_perizinan');
+	}
 }
