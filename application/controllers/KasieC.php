@@ -1,4 +1,5 @@
 <?php
+
 defined('BASEPATH') or exit('No direct script access allowed');
 date_default_timezone_set('Asia/Jakarta');
 class KasieC extends CI_Controller{
@@ -152,19 +153,36 @@ class KasieC extends CI_Controller{
         $config['upload_path'] = './assets/upload_survey/'; //path folder
         $config['allowed_types'] = 'jpg|jpeg|pdf|doc|docx';
         $config['max_size'] = '5000'; // max_size in kb
-        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+        $config['encrypt_name'] = true; //Enkripsi nama yang terupload
 
         $this->upload->initialize($config);
-        if(!empty($_FILES[$input_name]['name'])){
-        	if($this->upload->do_upload($input_name)){
-        		$gbr = $this->upload->data();
-        		$return = array('result' => 'success', 'file_name' => $gbr['file_name'], 'file_size' => $gbr['file_size'], 'error' => '');
-        		return $return;
-        	}
-        }else{
-        	$return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
-        	return $return;
-        	echo "Data yang diupload kosong";
+        if (!empty($_FILES[$input_name]['name'])) {
+            if ($this->upload->do_upload($input_name)) {
+                $gbr = $this->upload->data();
+                $return = array('result' => 'success', 'file_name' => $gbr['file_name'], 'file_size' => $gbr['file_size'], 'error' => '');
+
+                return $return;
+            }
+        } else {
+            $return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
+
+            return $return;
+            echo 'Data yang diupload kosong';
         }
+    }
+
+    // Pengujian
+    public function pengujiankasie()
+    {
+        $data['title'] = 'BTKP - Sertifikasi';
+        $data['isi'] = $this->load->view('kasie/pengujian/pengujian_v', $this->data, true);
+        $this->load->view('kasie/Layout', $data);
+    }
+
+    public function verifikasiakhir_pengujian()
+    {
+        $data['title'] = 'BTKP - Verifikasi Permohonan Perizinan';
+        $data['isi'] = $this->load->view('kasie/pengujian/verifikasiakhir_v', $this->data, true);
+        $this->load->view('kasie/Layout', $data);
     }
 }
