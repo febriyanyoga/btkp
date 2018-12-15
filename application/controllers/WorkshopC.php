@@ -255,7 +255,7 @@ class WorkshopC extends CI_Controller
     }
 
     public function post_pengujian(){
-        
+
     }
 
     public function post_izin_baru1(){
@@ -324,6 +324,22 @@ class WorkshopC extends CI_Controller
             }
             redirect('izin_baru3/'.$id_perizinan);   
         }
+    }
+
+    public function post_file_survey(){
+        $id_perizinan = $this->input->post('id_perizinan');
+        $namaFile   = $this->upload_file('file_hasil_survey');
+        if($namaFile['result'] == 'success'){
+            $data = array(
+                'file_hasil_survey'             => $namaFile['file_name'],
+            );
+            if($this->WorkshopM->selesai($id_perizinan, $data)){
+                $this->session->set_flashdata('sukses','Data berhasil diupload');
+            }else{
+                $this->session->set_flashdata('error','Gagal diupload');
+            }
+        }
+        redirect_back();   
     }
 
     public function post_berkas_perpanjang(){

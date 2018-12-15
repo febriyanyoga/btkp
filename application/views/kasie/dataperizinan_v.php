@@ -17,11 +17,34 @@
 					<!-- <h4>Sorting</h4> -->
 					<!-- </div> -->
 					<div class="widget-body">
-						<div class="widget-body sliding-tabs">
-							<ul class="nav nav-tabs" id="example-one" role="tablist">
-								<li class="nav-item">
-									<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi</a>
-								</li>
+						<div class="widget-body sliding-tabs"><?php
+						$data=$this->session->flashdata('sukses');
+						if($data!=""){ 
+							?>
+							<div class="alert alert-success">
+								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+								<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
+								<?=$data;?>
+							</div>
+							<?php 
+						} 
+						?>
+						<?php 
+						$data2=$this->session->flashdata('error');
+						if($data2!=""){ 
+							?>
+							<div class="alert alert-danger">
+								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+								<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
+								<?=$data2;?>
+							</div>
+							<?php 
+						} 
+						?>
+						<ul class="nav nav-tabs" id="example-one" role="tablist">
+							<li class="nav-item">
+								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi</a>
+							</li>
 								<!-- <li class="nav-item">
 									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode Billing</a>
 								</li> -->
@@ -58,25 +81,27 @@
 													$progress_kasie = $this->GeneralM->get_progress_kasie($per->id_perizinan)->num_rows();
 													if($progress_tu > 0){
 														if($progress_kasie == 0){
-															$i++;
-															?>
-															<tr>
-																<td class="text-center"><?php echo $i;?></td>
-																<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
-																<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
-																<td class="text-center"><?php echo $per->nama_alat?></td>
-																<?php
-																// $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
-																$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
+															if($per->file_hasil_survey != ""){
+																$i++;
 																?>
-																<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+																<tr>
+																	<td class="text-center"><?php echo $i;?></td>
+																	<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
+																	<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
+																	<td class="text-center"><?php echo $per->nama_alat?></td>
+																	<?php
+																	// $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+																	$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
+																	?>
+																	<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 
-																<td class="text-center">
-																	<a href="<?php echo site_url('verifikasi_kasie/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
-																	</a>
-																</td>
-															</tr>
-															<?php
+																	<td class="text-center">
+																		<a href="<?php echo site_url('verifikasi_kasie/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+																		</a>
+																	</td>
+																</tr>
+																<?php
+															}
 														}
 													}
 													?>

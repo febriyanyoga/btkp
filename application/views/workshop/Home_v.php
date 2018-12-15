@@ -7,22 +7,22 @@
 						<div class="widget-body pt-0">
 							<div class="widget29 owl-carousel">
 								<?php
-                                if ($this->session->userdata('id_jabatan') == '5') {
-                                    ?>
+								if ($this->session->userdata('id_jabatan') == '5') {
+									?>
 									<div class="item" data-toggle="modal" data-target="#perizinan">
 										<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/1.jpg" alt="...">
 									</div>
 									<?php
-                                } else {
-                                    ?>
+								} else {
+									?>
 									<a href="<?php echo site_url('izin_baru'); ?>">
 										<div class="item" >
 											<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/1.jpg" alt="...">
 										</div>
 									</a>
 									<?php
-                                }
-                                ?>
+								}
+								?>
 								<div class="item"><a href="<?php echo site_url('type_approval'); ?>">
 									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/2.jpg" alt="..."></a>
 								</div>
@@ -46,9 +46,9 @@
 						</div>
 					</div>
 					<?php
-                    $data = $this->session->flashdata('sukses');
-                    if ($data != '') {
-                        ?>
+					$data = $this->session->flashdata('sukses');
+					if ($data != '') {
+						?>
 						<div class="alert alert-success">
 							<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span
 								aria-hidden="true"></span></button>
@@ -56,12 +56,12 @@
 								<?=$data; ?>
 							</div>
 							<?php
-                    }
-                        ?>
+						}
+						?>
 						<?php
-                        $data2 = $this->session->flashdata('error');
-                        if ($data2 != '') {
-                            ?>
+						$data2 = $this->session->flashdata('error');
+						if ($data2 != '') {
+							?>
 							<div class="alert alert-danger">
 								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span
 									aria-hidden="true"></span></button>
@@ -69,8 +69,8 @@
 									<?=$data2; ?>
 								</div>
 								<?php
-                        }
-                            ?>
+							}
+							?>
 						</div>
 					</div>
 					<!-- End Row -->
@@ -102,8 +102,8 @@
 							<div class="widget widget-25 has-shadow">
 								<!-- Begin Widget Header -->
 								<?php
-                                if ($this->session->userdata('id_jabatan') == '5') {
-                                    ?>
+								if ($this->session->userdata('id_jabatan') == '5'){
+									?>
 									<div class="widget-header d-flex align-items-center">
 										<h2>Permohonan SPK</h2>
 									</div>
@@ -118,20 +118,20 @@
 										</ul>
 									</div>
 									<?php
-                                } else {
-                                    ?>
+								}else{
+									?>
 									<div class="widget-header d-flex align-items-center">
 										<h2>Permohonan Pengujian</h2>
 									</div>
 									<?php
-                                }
-                                ?>
+								}
+								?>
 								<!-- End Widget Header -->
 								<div class="widget-body">
 									<div class="table-responsive">
 										<?php
-                                        if ($this->session->userdata('id_jabatan') == '5') {
-                                            ?>
+										if ($this->session->userdata('id_jabatan') == '5') {
+											?>
 											<div class="tab-content pt-3">
 												<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
 													<table id="myTable" class="table mb-0">
@@ -146,191 +146,241 @@
 														</thead>
 														<tbody>
 															<?php
-                                                            foreach ($perizinan as $per) {
-                                                                if ($per->status_pengajuan == 'selesai') {
-                                                                    $ada_status = $this->TatausahaM->cek_status($per->id_perizinan)->num_rows();
+															foreach ($perizinan as $per) {
+																if ($per->status_pengajuan == 'selesai') {
+																	$ada_status = $this->TatausahaM->cek_status($per->id_perizinan)->num_rows();
                                                                     if ($ada_status > 0) { //ada progress
-                                                                        if ($per->status_pembayaran == 'unpaid') {
-                                                                            $status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
-                                                                            if ($status != 'ditolak') {
-                                                                                ?>
-																			<tr>
-																				<td class="text-center"><span class="text-primary">
-																					<?php echo $per->id_perizinan; ?></span></td>
-																					<td class="text-left">
-																						<?php echo $per->nama_alat; ?>
-																					</td>
-																					<?php
-                                                                                    $tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
-																					<td class="text-center">
-																						<?php echo date_indo($tgl_pengajuan); ?>
-																					</td>
-																					<td class="text-center">
-																						<?php
-                                                                                        $status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
-                                                                                $ket = $this->TatausahaM->cek_status($per->id_perizinan)->row()->keterangan;
-                                                                                if ($status == 'ditolak') {
-                                                                                    ?>
-																							<span style="width:100px;" title="<?php echo $ket; ?>"><span class="badge-text badge-text-small danger">Ditolak</span></span>
-																							<?php
-                                                                                } else {
-                                                                                    if ($per->kode_billing != '') {
-                                                                                        if ($per->foto_bukti_trf != '') {
-                                                                                            ?>
-																									<span style="width:100px; " title="pembayaran sedang diverifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu
-																									verifikasi</span></span>
-																									<?php
-                                                                                        } else {
-                                                                                            ?>
-																									<span style="width:100px; " title="silahkan lakukan pembayaran dan konfirmasi"><span style="color: black;"
-																										class="badge-text badge-text-small warning">Menunggu Pembayaran</span></span>
-																										<hr>
-																										<a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan; ?>" class="btn btn-sm btn-info" target="_BLANK">
-																											<i class="la la-print"></i> Invoice
-																										</a>
-																										<?php
-                                                                                        }
-                                                                                    } else {
-                                                                                        ?>
-																									<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
-																									<?php
-                                                                                    }
-                                                                                } ?>
-																						</td>
-																						<td class="text-center">
-																							<?php
-                                                                                            if ($status == 'ditolak') {
-                                                                                                echo '-';
-                                                                                            } else {
-                                                                                                if ($per->kode_billing != '') {
-                                                                                                    if ($per->foto_bukti_trf != '') { //ada foto
-                                                                                        ?>
-																						<span style="width:100px;" title="Menunggu verifikasi pembayran"><span class="badge-text badge-text-small info">
-																						Menunggu Verifikasi</span></span>
-																						<?php
-                                                                                                    } else {
-                                                                                                        ?>
-																						<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $per->id_perizinan; ?>">Konfirmasi
-																						Pembayaran</i>
-																					</a>
-																					<?php
+                                                                    	if ($per->status_pembayaran == 'unpaid') {
+                                                                    		$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
+                                                                    		if ($status != 'ditolak'){
+                                                                    			?>
+                                                                    			<tr>
+                                                                    				<td class="text-center"><span class="text-primary">
+                                                                    					<?php echo $per->id_perizinan; ?></span></td>
+                                                                    					<td class="text-left">
+                                                                    						<?php echo $per->nama_alat; ?>
+                                                                    					</td>
+                                                                    					<?php
+                                                                    					$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
+                                                                    					<td class="text-center">
+                                                                    						<?php echo date_indo($tgl_pengajuan); ?>
+                                                                    					</td>
+                                                                    					<td class="text-center">
+                                                                    						<?php
+                                                                    						$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
+                                                                    						$ket = $this->TatausahaM->cek_status($per->id_perizinan)->row()->keterangan;
+                                                                    						if ($status == 'ditolak') {
+                                                                    							?>
+                                                                    							<span style="width:100px;" title="<?php echo $ket; ?>"><span class="badge-text badge-text-small danger">Ditolak</span></span>
+                                                                    							<?php
+                                                                    						} else {
+                                                                    							if ($per->kode_billing != '') {
+                                                                    								if ($per->foto_bukti_trf != '') {
+                                                                    									?>
+                                                                    									<span style="width:100px; " title="pembayaran sedang diverifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu
+                                                                    									verifikasi</span></span>
+                                                                    									<?php
+                                                                    								} else {
+                                                                    									?>
+                                                                    									<span style="width:100px; " title="silahkan lakukan pembayaran dan konfirmasi">
+                                                                    										<span style="color: black;" class="badge-text badge-text-small warning">Menunggu Pembayaran</span>
+                                                                    									</span><hr>
+                                                                    									<a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan; ?>" class="btn btn-sm btn-info" target="_BLANK"><i class="la la-print"></i> Invoice</a>
+                                                                    									<?php
+                                                                    								}
+                                                                    							} else {
+                                                                    								$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
+                                                                    								if($progress_tu>0){
+                                                                    									if($per->file_hasil_survey == ""){
+                                                                    										?>
+                                                                    										<span style="width:100px; " title="Menunggu file survey diUnggah"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu File Survey</span></span>
+                                                                    										<?php
+                                                                    									}else{
+                                                                    										?>
+                                                                    										<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
+                                                                    										<?php
+                                                                    									}
+                                                                    								}else{
+                                                                    									?>
+                                                                    									<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
+                                                                    									<?php
+                                                                    								}
+                                                                    							}
+                                                                    						} 
+                                                                    						?>
+                                                                    					</td>
+                                                                    					<td class="text-center">
+                                                                    						<?php
+                                                                    						if ($status == 'ditolak') {
+                                                                    							echo '-';
+                                                                    						} else {
+                                                                    								if ($per->kode_billing != '') {// sudah ada kode billing
+                                                                                                    	if ($per->foto_bukti_trf != '') { //ada foto
+                                                                                                    		?>
+                                                                                                    		<span style="width:100px;" title="Menunggu verifikasi pembayran"><span class="badge-text badge-text-small info">
+                                                                                                    		Menunggu Verifikasi</span></span>
+                                                                                                    		<?php
+                                                                                                    	} else {
+                                                                                                    		?>
+                                                                                                    		<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $per->id_perizinan; ?>">Konfirmasi
+                                                                                                    		Pembayaran</i></a>
+                                                                                                    		<?php
+                                                                                                    	}
+                                                                                                    }else {
+                                                                                                    	$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
+                                                                                                    	if($progress_tu>0){
+                                                                                                    		if($per->file_hasil_survey == ""){
+                                                                                                    			?>
+                                                                                                    			<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#file_survey-<?php echo $per->id_perizinan; ?>">Upoad file survey</i></a>
+                                                                                                    			<?php
+                                                                                                    		}else{
+                                                                                                    			echo "-";
+                                                                                                    		}
+                                                                                                    	}else{
+                                                                                                    		echo "-";
+                                                                                                    	}
                                                                                                     }
-                                                                                                }
-                                                                                            } ?>
-																	</td>
-																</tr>
+                                                                                                } 
+                                                                                                ?>
+                                                                                            </td>
+                                                                                        </tr>
 
-																<div class="modal" id="konfirmasi-<?php echo $per->id_perizinan; ?>">
-																	<div class="modal-dialog modal-md">
-																		<div class="modal-content">
-																			<div class="modal-header">
-																				<h4 class="modal-title">Konfirmasi Pembayaran</h4>
-																				<button type="button" class="close" data-dismiss="modal">&times;</button>
-																			</div>
-																			<form action="<?php echo site_url('konfirmasi'); ?>" enctype="multipart/form-data" method="post">
-																				<div class="modal-body">
-																					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
-																					<label for="nama_bank" class="label">Nama Bank : </label>
-																					<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank Anda"
-																					required="required">
+                                                                                        <div class="modal" id="konfirmasi-<?php echo $per->id_perizinan; ?>">
+                                                                                        	<div class="modal-dialog modal-md">
+                                                                                        		<div class="modal-content">
+                                                                                        			<div class="modal-header">
+                                                                                        				<h4 class="modal-title">Konfirmasi Pembayaran</h4>
+                                                                                        				<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                        			</div>
+                                                                                        			<form action="<?php echo site_url('konfirmasi'); ?>" enctype="multipart/form-data" method="post">
+                                                                                        				<div class="modal-body">
+                                                                                        					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
+                                                                                        					<label for="nama_bank" class="label">Nama Bank : </label>
+                                                                                        					<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank Anda"
+                                                                                        					required="required">
 
-																					<label for="atas_nama" class="label">Atas Nama : </label>
-																					<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama bank anda"
-																					required="required">
+                                                                                        					<label for="atas_nama" class="label">Atas Nama : </label>
+                                                                                        					<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama bank anda"
+                                                                                        					required="required">
 
-																					<label for="foto_bukti_trf" class="label">Upload Bukti: </label>
-																					<input type="file" name="foto_bukti_trf" value="" class="form-control" required="required">
-																				</div>
-																				<div class="modal-footer">
-																					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-																					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin data yang dimasukkan sudah benar?')">
-																				</div>
-																			</form>
-																		</div>
-																	</div>
-																</div>
-																<?php
+                                                                                        					<label for="foto_bukti_trf" class="label">Unggah Bukti: </label>
+                                                                                        					<input type="file" name="foto_bukti_trf" value="" class="form-control" required="required">
+                                                                                        				</div>
+                                                                                        				<div class="modal-footer">
+                                                                                        					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+                                                                                        					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin data yang dimasukkan sudah benar?')">
+                                                                                        				</div>
+                                                                                        			</form>
+                                                                                        		</div>
+                                                                                        	</div>
+                                                                                        </div>
+
+                                                                                        <div class="modal" id="file_survey-<?php echo $per->id_perizinan; ?>">
+                                                                                        	<div class="modal-dialog modal-md">
+                                                                                        		<div class="modal-content">
+                                                                                        			<div class="modal-header">
+                                                                                        				<h4 class="modal-title">Unggah file survey</h4>
+                                                                                        				<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                                        			</div>
+                                                                                        			<form action="<?php echo site_url('file_survey'); ?>" enctype="multipart/form-data" method="post">
+                                                                                        				<div class="modal-body">
+                                                                                        					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
+                                                                                        					<label for="nama_bank" class="label">Unggah File : </label>
+                                                                                        					<input type="file" name="file_hasil_survey" value="" class="form-control"
+                                                                                        					required="required">
+                                                                                        				</div>
+                                                                                        				<div class="modal-footer">
+                                                                                        					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+                                                                                        					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin data yang dimasukkan sudah benar?')">
+                                                                                        				</div>
+                                                                                        			</form>
+                                                                                        		</div>
+                                                                                        	</div>
+                                                                                        </div>
+                                                                                        <?php
+                                                                                    }
+                                                                                }
+                                                                            } else {
+                                                                            	?>
+                                                                            	<tr>
+                                                                            		<td class="text-center"><span class="text-primary">
+                                                                            			<?php echo $per->id_perizinan; ?></span>
+                                                                            		</td>
+                                                                            		<td class="text-left">
+                                                                            			<?php echo $per->nama_alat; ?>
+                                                                            		</td>
+                                                                            		<?php
+                                                                            		$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); 
+                                                                            		?>
+                                                                            		<td class="text-center">
+                                                                            			<?php echo date_indo($tgl_pengajuan); ?>
+                                                                            		</td>
+                                                                            		<td class="text-center">
+                                                                            			<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
+                                                                            		</td>
+                                                                            		<td class="text-center">-</td>
+                                                                            	</tr>
+                                                                            	<?php
                                                                             }
                                                                         }
-                                                                    } else {
-                                                                        ?>
-														<tr>
-															<td class="text-center"><span class="text-primary">
-																<?php echo $per->id_perizinan; ?></span></td>
-																<td class="text-left">
-																	<?php echo $per->nama_alat; ?>
-																</td>
-																<?php
-                                                                $tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
-																<td class="text-center">
-																	<?php echo date_indo($tgl_pengajuan); ?>
-																</td>
-																<td class="text-center">
-																	<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
-																</td>
-																<td class="text-center">-</td>
-															</tr>
-															<?php
-                                                                    }
-                                                                }
-                                                            } ?>
-											</tbody>
-										</table>
-									</div>
-									<div class="tab-pane fade show" id="tab-2" role="tabpanel" aria-labelledby="base-tab-2">
-										<table id="myTable2" class="table mb-0">
-											<thead>
-												<tr>
-													<th class="text-center">No. Permohonan</th>
-													<!-- <th class="text-center">Jenis SPK</th> -->
-													<th class="text-center">Tanggal Pengajuan</th>
-													<th class="text-center">Status</th>
-													<th class="text-center">Actions</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td></td>
-													<!-- <td></td> -->
-													<td></td>
-													<td></td>
-													<td></td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-
-								<?php
-                                        } else {
+                                                                    } ?>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                        <div class="tab-pane fade show" id="tab-2" role="tabpanel" aria-labelledby="base-tab-2">
+                                                        	<table id="myTable2" class="table mb-0">
+                                                        		<thead>
+                                                        			<tr>
+                                                        				<th class="text-center">No. Permohonan</th>
+                                                        				<!-- <th class="text-center">Jenis SPK</th> -->
+                                                        				<th class="text-center">Tanggal Pengajuan</th>
+                                                        				<th class="text-center">Status</th>
+                                                        				<th class="text-center">Actions</th>
+                                                        			</tr>
+                                                        		</thead>
+                                                        		<tbody>
+                                                        			<tr>
+                                                        				<td></td>
+                                                        				<!-- <td></td> -->
+                                                        				<td></td>
+                                                        				<td></td>
+                                                        				<td></td>
+                                                        			</tr>
+                                                        		</tbody>
+                                                        	</table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <?php
+                                            } else {
+                                            	?>
+                                            	<table id="myTable3" class="table mb-0">
+                                            		<thead>
+                                            			<tr>
+                                            				<th class="text-center">No. Permohonan</th>
+                                            				<th class="text-center">Tanggal Pengajuan</th>
+                                            				<th class="text-center">Status</th>
+                                            				<th class="text-center">Actions</th>
+                                            			</tr>
+                                            		</thead>
+                                            		<tbody>
+                                            			<tr>
+                                            				<td class="text-center"></td>
+                                            				<td class="text-center"></td>
+                                            				<td class="text-center"></td>
+                                            				<td class="text-center"></td>
+                                            			</tr>
+                                            		</tbody>
+                                            	</table>
+                                            	<?php
+                                            }
                                             ?>
-								<table id="myTable3" class="table mb-0">
-									<thead>
-										<tr>
-											<th class="text-center">No. Permohonan</th>
-											<th class="text-center">Tanggal Pengajuan</th>
-											<th class="text-center">Status</th>
-											<th class="text-center">Actions</th>
-										</tr>
-									</thead>
-									<tbody>
-										<tr>
-											<td class="text-center"></td>
-											<td class="text-center"></td>
-											<td class="text-center"></td>
-											<td class="text-center"></td>
-										</tr>
-									</tbody>
-								</table>
-								<?php
-                                        }
-                            ?>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Row -->
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Row -->
 		<!-- <script type="text/javascript">
 				width = '100%'; // the width of the embedded map in pixels or percentage
 				height = '450'; // the height of the embedded map in pixels or percentage

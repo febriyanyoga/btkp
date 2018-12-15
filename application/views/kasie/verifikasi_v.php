@@ -208,14 +208,16 @@
 									</a>
 									<div id="IconRightCollapseFour" class="card-body collapse" data-parent="#accordion-icon-right">
 										<div class="form-group row mb-5">
-											<div class="col-xl-8">
-												<div class="form-group">
-													<label for="upload"> Upload Dokumen Hasil Survey</label>
-													<input type="file" name="hasil_survey" class="form-control" required="">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" name="hasil_survey" required checked="" id="hasil_survey">
+													<label for="hasil_survey">Hasil Survey</label>
 												</div>
 											</div>
+											<div class="col-xl-8">
+												<a target="_blank" href="<?php echo base_url().'assets/upload/'.$per->file_hasil_survey;?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
+											</div>
 										</div>
-										
 									</div>
 									<div style="display: none;">
 										<input type="hidden" name="id_pengguna" value="<?php echo $this->session->userdata('id_pengguna');?>">
@@ -263,17 +265,17 @@
 					}
 					?>
 					<!-- <label for="keterangan" class="label">Keterangan : </label>
-					<input type="text" name="keterangan" value="" class="form-control" placeholder="keterangan" required="required"> -->
-					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna');?>" >
-					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $id_perizinan;?>">
-					<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
-				</div>
+						<input type="text" name="keterangan" value="" class="form-control" placeholder="keterangan" required="required"> -->
+						<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna');?>" >
+						<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $id_perizinan;?>">
+						<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
+					</div>
 
-				<div class="modal-footer">
-					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success">
-				</div>
-			</form>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+						<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success">
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
