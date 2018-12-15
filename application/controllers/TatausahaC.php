@@ -264,12 +264,15 @@ class TatausahaC extends CI_Controller
     public function pengujian()
     {
         $data['title'] = 'BTKP - Sertifikasi';
+        $this->data['pengujian'] = $this->TatausahaM->get_all_pengujian()->result();
         $data['isi'] = $this->load->view('admintu/pengujian/pengujian_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
     }
-    public function verifikasiawal_pengujian()
+    public function verifikasiawal_pengujian($id_pengujian)
     {
         $data['title'] = 'BTKP - Verifikasi Permohonan Perizinan';
+        $this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
+        $this->data['pengujian'] = $this->TatausahaM->get_pengujian_by_id($id_pengujian)->row();
         $data['isi'] = $this->load->view('admintu/pengujian/verifikasiawal_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
     }

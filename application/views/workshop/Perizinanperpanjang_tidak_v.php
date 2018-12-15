@@ -101,11 +101,11 @@
 												<h4>Berkas Tambahan Perpanjang</h4>
 											</div>
 											<div class="form-group row mb-3">
-												<?php
-                                                $j = $i;
-                                                foreach ($berkas_perpanjang as $ber_p) {
-                                                    ?>
-													<input type="hidden" name="id_berkas_perizinan<?php echo $j; ?>" id="id_berkas_perizinan<?php echo $j; ?>" value="<?php echo $ber_p->id_berkas_perizinan; ?>">
+												<?php 
+												$j=$i;
+												foreach ($berkas_perpanjang as $ber_p) {
+													?>
+													<input type="hidden" name="id_berkas_perizinan<?php echo $j;?>" id="id_berkas_perizinan<?php echo $j;?>" value="<?php echo $ber_p->id_berkas_perizinan;?>">
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label"><?php echo $ber_p->nama_berkas; ?></label>
 														<div class="custom-file">

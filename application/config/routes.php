@@ -72,12 +72,15 @@ $route['izin_baru22'] = 'WorkshopC/perizinan_baru_2';
 $route['izin_baru2/(:num)'] = 'WorkshopC/perizinan_baru_2/$1';
 $route['izin_baru3/(:num)'] = 'WorkshopC/perizinan_baru_3/$1';
 $route['selesai/(:num)'] = 'WorkshopC/selesai/$1';
-$route['konfirmasi'] = 'WorkshopC/konfirmasi_pembayaran';
-$route['detailperizinan/(:num)'] = 'WorkshopC/detailperizinan/$1';
-$route['cetak_invoice/(:num)'] = 'WorkshopC/cetak_produk/$1';
-$route['print_surat/(:num)'] = 'WorkshopC/print_surat/$1';
-$route['update_password'] = 'WorkshopC/post_update_password';
-$route['update_perusahaan'] = 'WorkshopC/post_update_perusahaan';
+$route['konfirmasi'] = "WorkshopC/konfirmasi_pembayaran";
+$route['file_survey'] = "WorkshopC/post_file_survey";
+
+$route['detailperizinan/(:num)'] = "WorkshopC/detailperizinan/$1";
+$route['cetak_invoice/(:num)']	= "WorkshopC/cetak_produk/$1";
+$route['print_surat/(:num)']	= "WorkshopC/print_surat/$1";
+$route['update_password'] 	= 'WorkshopC/post_update_password';
+$route['update_perusahaan'] 	= 'WorkshopC/post_update_perusahaan';
+
 
 // $route['izin_baru3'] = 'WorkshopC/perizinan_baru_3';
 $route['izin_perpanjang/(:num)/(:any)'] = 'WorkshopC/perizinan_perpanjang/$1/$2';
@@ -86,6 +89,7 @@ $route['type_approval'] = 'WorkshopC/type_approval';
 $route['type_approval22'] = 'WorkshopC/type_approval2';
 $route['type_approval2/(:num)'] = 'WorkshopC/type_approval2/$1';
 $route['type_approval3/(:num)'] = 'WorkshopC/type_approval3/$1';
+$route['selesai_p/(:num)'] = 'WorkshopC/selesai_p/$1';
 
 $route['post_type_approval1'] = 'WorkshopC/post_type_approval1';
 $route['post_pengujian'] = 'WorkshopC/post_pengujian';
@@ -112,7 +116,7 @@ $route['kode_billing'] = 'TatausahaC/post_kode_billing';
 $route['penerbitan'] = 'TatausahaC/post_penerbitan';
 $route['profile_t'] = 'TatausahaC/profile';
 $route['update_password_t'] = 'TatausahaC/post_update_password';
-$route['verifikasiawal'] = 'TatausahaC/verifikasiawal_pengujian';
+$route['verifikasiawal/(:num)'] = 'TatausahaC/verifikasiawal_pengujian/$1';
 
 // KASIE
 $route['kasie'] = 'KasieC';

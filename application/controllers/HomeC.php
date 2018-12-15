@@ -18,6 +18,7 @@ class HomeC extends CI_Controller{
 		$this->form_validation->set_rules('nama_pengguna', 'Nama Pengguna', 'required');  
 		$this->form_validation->set_rules('no_hp', 'Nomor Handphone', 'required');  
 		$this->form_validation->set_rules('email_pengguna', 'Email Pengguna', 'required|valid_email|is_unique[pengguna.email_pengguna]');  
+		$this->form_validation->set_rules('jabatan_pengguna', 'Jabatan Pengguna', 'required');  
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[50]|matches[confirm_password]');
 
 		$this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|min_length[6]|max_length[10]'); 
