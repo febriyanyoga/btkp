@@ -69,7 +69,7 @@ Author: SAEROX
 				<div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
 					<!-- Begin Logo -->
 					<div class="navbar-header">
-						<a href="<?php echo site_url('kasie')?>" class="navbar-brand">
+						<a href="<?php echo site_url('kasie'); ?>" class="navbar-brand">
 							<div class="brand-image brand-big">
 								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" style="width: 70px;" class="logo-big">
 							</div>
@@ -174,7 +174,7 @@ Author: SAEROX
                                     <p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
                                     </li>
 								<li>
-									<a href="<?php echo site_url('profil_k')?>" class="dropdown-item">
+									<a href="<?php echo site_url('profil_k'); ?>" class="dropdown-item">
 										Profile
 									</a>
 								</li>
@@ -223,7 +223,7 @@ Author: SAEROX
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('pengujian'); ?>">
+							<a href="<?php echo site_url('pengujiankasie'); ?>">
 								<i class="ti ti-write"></i><span> Data Pengujian </span>
 							</a>
 						</li>
