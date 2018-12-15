@@ -229,7 +229,7 @@ Author: SAEROX
 						</li>
 						<li>
 							<a href="<?php echo site_url('reinspeksi'); ?>">
-								<i class="ti ti-notepad"></i><span> Data Inspeksi</span>
+								<i class="ti ti-notepad"></i><span> Data Re-inspeksi</span>
 							</a>
 						</li>
 					</ul>
