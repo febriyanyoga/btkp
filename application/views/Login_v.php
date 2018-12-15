@@ -49,7 +49,7 @@
         <!-- End Preloader -->
         <!-- Begin Container -->
         <div class="container-fluid no-padding h-100">
-            <div class="row flex-row h-100" style="background:url(<?php echo base_url(); ?>assets/bg6.jpg); background-size: cover;">
+            <div class="row flex-row h-100" style="background:url(<?php echo base_url(); ?>assets/bg.jpg); background-size: cover;">
                 <!-- Begin Left Content -->
                 <div class="col-xl-3 col-lg-5 col-md-5 col-sm-12 col-12 no-padding">
                     <div class="elisyam-bg background-01">
@@ -81,27 +81,27 @@
                             <div role="tabpanel" class="tab-pane show active" id="singin" aria-labelledby="singin-tab">
                                 <?php
                                 $data=$this->session->flashdata('sukses');
-                                if($data!=""){ 
+                                if($data!=""){
                                     ?>
                                     <div class="alert alert-success">
                                         <button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
                                         <h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
                                         <?=$data;?>
                                     </div>
-                                    <?php 
-                                } 
+                                    <?php
+                                }
                                 ?>
-                                <?php 
+                                <?php
                                 $data2=$this->session->flashdata('error');
-                                if($data2!=""){ 
+                                if($data2!=""){
                                     ?>
                                     <div class="alert alert-danger">
                                         <button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
                                         <h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
                                         <?=$data2;?>
                                     </div>
-                                    <?php 
-                                } 
+                                    <?php
+                                }
                                 ?>
                                 <h1 class="text-center">Form Login</h1> <br>
                                 <form action="<?php echo site_url('login')?>" method="post">
@@ -139,27 +139,27 @@
                             <div role="tabpanel" class="tab-pane" id="signup" aria-labelledby="signup-tab">
                                 <?php
                                 $data=$this->session->flashdata('sukses');
-                                if($data!=""){ 
+                                if($data!=""){
                                     ?>
                                     <div class="alert alert-success">
                                         <button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
                                         <h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
                                         <?=$data;?>
                                     </div>
-                                    <?php 
-                                } 
+                                    <?php
+                                }
                                 ?>
-                                <?php 
+                                <?php
                                 $data2=$this->session->flashdata('error');
-                                if($data2!=""){ 
+                                if($data2!=""){
                                     ?>
                                     <div class="alert alert-danger">
                                         <button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
                                         <h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
                                         <?=$data2;?>
                                     </div>
-                                    <?php 
-                                } 
+                                    <?php
+                                }
                                 ?>
                                 <h1 class="text-center">Form Registrasi</h1> <br>
                                 <form action="<?php echo site_url('daftar')?>" method="post" id="signupForm" >
@@ -196,7 +196,7 @@
                                     <div class="group material-input">
                                         <select class="form-control" id="id_jabatan" name="id_jabatan" required="required">
                                             <option value="">----- Pilih Jenis User -----</option>
-                                            <?php 
+                                            <?php
                                             foreach ($jabatan as $jab) {
                                                 if($jab->id_jabatan > 4){
                                                     ?>

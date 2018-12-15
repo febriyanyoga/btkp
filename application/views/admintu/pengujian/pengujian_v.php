@@ -23,10 +23,13 @@
 									<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode Billing</a>
+									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Validasi Pembayaran 1</a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Validasi Pembayaran</a>
+									<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Pembayaran 2</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Validasi Pembayaran 2</a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Penerbitan</a>
@@ -48,7 +51,7 @@
 												</tr>
 											</thead>
 											<tbody>
-												
+
 														<tr>
 															<td class="text-center">1</td>
 															<td class="text-center">21 November 2018</td>
@@ -57,7 +60,9 @@
                                                             <td class="text-center">67A</td>
                                                             <td class="text-center">PT. AAA</td>
 															<td class="text-center">
-																<a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+																<!-- <a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+																</a> -->
+																<a href="<?php echo site_url('verifikasiawal'); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
 																</a>
 															</td>
 														</tr>
@@ -103,7 +108,9 @@
                                                             <!-- 1. muncul tombol verifikasi karo tolak
                                                             2. nek di klik verifikasi lempar data neng kasie, eng pertanyaan anda yakin
                                                             3. nek tolak yo dinei alasan -->
-																<a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+																<!-- <a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+																</a> -->
+																<a href="<?php echo site_url(''); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
 																</a>
 															</td>
 														</tr>

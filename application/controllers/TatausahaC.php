@@ -74,7 +74,7 @@ class TatausahaC extends CI_Controller
 
             if($user->num_rows() > 0){
                 $data_update_password = array(
-                    'password' => md5($this->input->post('password_baru')), 
+                    'password' => md5($this->input->post('password_baru')),
                 );
                 $id_pengguna = $this->input->post('id_pengguna');
                 if($this->GeneralM->update_pengguna($id_pengguna, $data_update_password)){
@@ -91,7 +91,7 @@ class TatausahaC extends CI_Controller
 
         }
     }
-    
+
     public function persetujuan_tolak()
     {
         $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
@@ -102,16 +102,16 @@ class TatausahaC extends CI_Controller
             $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
         }else{
-            $keterangan=$this->input->post('keterangan');  
-            $ket="";  
+            $keterangan=$this->input->post('keterangan');
+            $ket="";
             $i=1;
             foreach($keterangan as $ket1){
                 if($ket1!=""){
                     $nama = $this->TatausahaM->get_berkas_by_id2($i)->row()->nama_berkas;
-                    $ket .= $nama.' : '.$ket1."<br>";  
+                    $ket .= $nama.' : '.$ket1."<br>";
                 }
                 $i++;
-            } 
+            }
 
             $data = array(
                 'id_pengguna' => $this->input->post('id_pengguna'),
@@ -263,8 +263,14 @@ class TatausahaC extends CI_Controller
 
     public function pengujian()
     {
-        $data['title'] = 'BTKP - reinspeksion';
-        $data['isi'] = $this->load->view('admintu/pengujian_v', $this->data, true);
+        $data['title'] = 'BTKP - Sertifikasi';
+        $data['isi'] = $this->load->view('admintu/pengujian/pengujian_v', $this->data, true);
+        $this->load->view('admintu/Layout', $data);
+    }
+    public function verifikasiawal_pengujian()
+    {
+        $data['title'] = 'BTKP - Verifikasi Permohonan Perizinan';
+        $data['isi'] = $this->load->view('admintu/pengujian/verifikasiawal_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
     }
 }

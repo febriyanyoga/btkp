@@ -112,6 +112,7 @@ $route['kode_billing'] = 'TatausahaC/post_kode_billing';
 $route['penerbitan'] = 'TatausahaC/post_penerbitan';
 $route['profile_t'] = 'TatausahaC/profile';
 $route['update_password_t'] = 'TatausahaC/post_update_password';
+$route['verifikasiawal'] = 'TatausahaC/verifikasiawal_pengujian';
 
 
 // kasie
