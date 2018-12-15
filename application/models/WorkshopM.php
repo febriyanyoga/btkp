@@ -19,6 +19,11 @@ class WorkshopM extends CI_Model{
 		return $this->db->insert_id();
 	}
 
+	public function insert_pengujian($data){
+		$this->db->insert('pengujian', $data);
+		return $this->db->insert_id();
+	}
+
 	public function hapus_perusahaan($id_perusahaan){
 		$this->db->where('id_perusahaan', $id_perusahaan);
 		$this->db->delete('perusahaan');
@@ -36,6 +41,26 @@ class WorkshopM extends CI_Model{
 		$this->db->where('id_pengguna', $id_pengguna);
 		$this->db->where('status_pengajuan', 'belum');
 		return $this->db->get('pengujian');
+	}
+
+	public function get_pengujian_by_id2($id_pengujian){
+		$this->db->where('id_pengujian', $id_pengujian);
+		$this->db->join('pengguna','pengguna.id_pengguna = pengujian.id_pengguna');
+		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = pengujian.id_jenis_alat');
+		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
+
+		// $this->db->where('status_pengajuan', 'belum');
+		return $this->db->get('pengujian');
+	}
+
+	public function get_pengujian($id_pengguna){
+		$this->db->select('*');
+		$this->db->from('pengujian');
+		$this->db->join('pengguna','pengguna.id_pengguna = pengujian.id_pengguna');
+		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = pengujian.id_jenis_alat');
+		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
+		$this->db->where('pengujian.id_pengguna', $id_pengguna);
+		return $this->db->get();
 	}
 
 	// detail perizinan
@@ -110,6 +135,12 @@ class WorkshopM extends CI_Model{
 	public function selesai($id_perizinan, $data){
 		$this->db->where('id_perizinan', $id_perizinan);
 		$this->db->update('perizinan', $data);
+		return TRUE;
+	}
+
+	public function selesai_p($id_pengujian, $data){
+		$this->db->where('id_pengujian', $id_perizinan);
+		$this->db->update('pengujian', $data);
 		return TRUE;
 	}
 

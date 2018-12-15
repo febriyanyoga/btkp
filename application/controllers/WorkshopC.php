@@ -19,6 +19,7 @@ class WorkshopC extends CI_Controller
     {
         $data['title'] = 'BTKP - Home';
         $id_pengguna = $this->session->userdata('id_pengguna');
+        $this->data['data_pengujian'] = $this->WorkshopM->get_pengujian($id_pengguna)->result();
         $this->data['perizinan']    = $this->WorkshopM->get_all_perizinan_by_id_pengguna($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/Home_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
@@ -119,8 +120,8 @@ class WorkshopC extends CI_Controller
         $id_pengguna = $this->session->userdata('id_pengguna');
         if($this->WorkshopM->get_pengujian_by_id($id_pengguna)->num_rows() > 0){
             $id_pengujian = $this->WorkshopM->get_pengujian_by_id($id_pengguna)->row()->id_pengujian;
-            if($this->WorkshopM->get_pengujian_by_id($id_pengguna)->tipe != ''){
-                redirect('izin_baru3/'.$id_perizinan);
+            if($this->WorkshopM->get_pengujian_by_id2($id_pengujian)->row()->tipe != ''){
+                redirect('type_approval3/'.$id_pengujian);
             }
         }else{
             $data['title'] = 'BTKP - Type Approval';
@@ -149,13 +150,27 @@ class WorkshopC extends CI_Controller
             $this->load->view('workshop/Layout', $data);
         }
     }
+
+    public function type_approval3($id_pengujian= null)
+    {
+        bukan_workshop_access();
+        $id_pengguna = $this->session->userdata('id_pengguna');
+        $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
+        $this->data['data_pengujian'] = $this->WorkshopM->get_pengujian_by_id2($id_pengujian)->row();
+        $this->data['pengguna']     = $this->GeneralM->get_pengguna($id_pengguna)->row();
+        $this->data['alat']         = $this->WorkshopM->get_all_alat($id_pengguna)->result();
+        $data['title']              = 'BTKP - Type Approval';
+        $data['isi']                = $this->load->view('workshop/Typeapproval_v3', $this->data, true);
+        $this->load->view('workshop/Layout', $data);
+    }
+
     public function perizinan_baru_3($id_perizinan = null)
     {
         $this->data['id_perizinan'] = $id_perizinan;
-        $data['title'] = 'BTKP - Perizinan Baru';
+        $data['title']              = 'BTKP - Perizinan Baru';
         $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
         $this->data['perizinan']    = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->result();
-        $data['isi'] = $this->load->view('workshop/Perizinanbaru_v3', $this->data, true);
+        $data['isi']                = $this->load->view('workshop/Perizinanbaru_v3', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }
 
@@ -255,7 +270,45 @@ class WorkshopC extends CI_Controller
     }
 
     public function post_pengujian(){
+        $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
+        $this->form_validation->set_rules('id_jenis_alat', 'Nama Alat', 'required');
+        $this->form_validation->set_rules('tipe', 'Tipe Alat', 'required');
+        $this->form_validation->set_rules('merk', 'Merk Alat', 'required');
+        $this->form_validation->set_rules('negara_asal', 'Negara Pembuat','required');
+        $this->form_validation->set_rules('pabrikan', 'Pabrikan Pembuat','required');
+        $this->form_validation->set_rules('alamat_pabrikan', 'Alamat Pabrikan Pembuat','required');
+        $this->form_validation->set_rules('kelurahan_pt', 'ID Kelurahan Pabrikan','required');
+        $this->form_validation->set_rules('no_tlp', 'Nomor Telepon','required');
+        $this->form_validation->set_rules('email', 'Email Pabrikan','required');
+        $this->form_validation->set_rules('catatan', 'Catatan','required');
+        $this->form_validation->set_rules('fax_pabrikan', 'Fax Pabrikan','required');
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error','Data anda tidak berhasil disimpan, periksa kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            $data_pengujian = array(
+                'id_pengguna'       => $this->input->post('id_pengguna'), 
+                'id_jenis_alat'     => $this->input->post('id_jenis_alat'), 
+                'tipe'              => $this->input->post('tipe'), 
+                'merk'              => $this->input->post('merk'), 
+                'negara_asal'       => $this->input->post('negara_asal'), 
+                'pabrikan'          => $this->input->post('pabrikan'), 
+                'alamat_pabrikan'   => $this->input->post('alamat_pabrikan'), 
+                'id_kel_pabrikan'   => $this->input->post('kelurahan_pt'), 
+                'telepon'           => $this->input->post('no_tlp'), 
+                'email_pabrikan'    => $this->input->post('email'), 
+                'catatan'           => $this->input->post('catatan'), 
+                'fax_pabrikan'      => $this->input->post('fax_pabrikan'), 
+            );
+            if($id_pengujian = $this->WorkshopM->insert_pengujian($data_pengujian)){
+                $this->session->set_flashdata('sukses','Data berhasil disimpan');
+                redirect('type_approval3/'.$id_pengujian);
+            }else{
+                $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+                redirect_back();
+            }
 
+        }
     }
 
     public function post_izin_baru1(){
@@ -567,6 +620,17 @@ class WorkshopC extends CI_Controller
     public function selesai($id_perizinan){
         $data = array('status_pengajuan' => 'selesai');
         if($this->WorkshopM->selesai($id_perizinan, $data)){
+            $this->session->set_flashdata('sukses', 'Permohonan perizinan berhasil disimpan');
+            redirect('workshop');
+        }else{
+            $this->session->set_flashdata('error', 'Gagal menyelesaikan Permohonan perizinan');
+            redirect_back();
+        }
+    }
+
+    public function selesai_p($id_pengujian){
+        $data = array('status_pengajuan' => 'selesai');
+        if($this->WorkshopM->selesai_p($id_pengujian, $data)){
             $this->session->set_flashdata('sukses', 'Permohonan perizinan berhasil disimpan');
             redirect('workshop');
         }else{

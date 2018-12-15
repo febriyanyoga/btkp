@@ -63,16 +63,17 @@
 											<?php 
 										} 
 										?>
-										<form action="<?php echo site_url('post_pengujian')?>" method="post">
+										<form  method="post" action="<?php echo site_url('post_pengujian')?>">
 											<div class="section-title mt-5 mb-3">
 												<h4 class="text-center">DATA PERANGKAT</h4>
 												<hr>
 											</div>
 											<div class="form-group row mb-3">
+												<input type="hidden" value="<?php echo $this->session->userdata('id_pengguna')?>" class="form-control" id="id_pengguna" name="id_pengguna" required>
 												<div class="col-xl-6 mb-3">
 													<!-- milih dari database -->
 													<label class="form-control-label"><b>NAMA ALAT</b><span class="text-danger ml-2">*</span></label>
-													<select class="form-control">
+													<select class="form-control" name="id_jenis_alat">
 														<option>----Pilih Alat----</option>
 														<?php
 														foreach ($alat as $al) {
@@ -91,11 +92,11 @@
 											<div class="form-group row mb-3">
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>MODEL/TIPE</b><span class="text-danger ml-2">*</span></label>
-													<input type="text" value="" class="form-control" id="model_tipe" name="model_tipe" required>
+													<input type="text" value="" class="form-control" id="tipe" name="tipe" required>
 												</div>
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>NEGARA PEMBUAT</b><span class="text-danger ml-2">*</span></label>
-													<input type="text" value="" class="form-control" id="negara" name="negara" required>
+													<input type="text" value="" class="form-control" id="negara_asal" name="negara_asal" required>
 												</div>
 											</div>
 											<div class="form-group row mb-3">
@@ -105,7 +106,7 @@
 												</div>
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>PABRIKAN PEMBUAT</b><span class="text-danger ml-2">*</span></label>
-													<input type="text" value="" class="form-control" id="pabrikan_pembuat" name="pabrikan_pembuat" required>
+													<input type="text" value="" class="form-control" id="pabrikan" name="pabrikan" required>
 												</div>
 											</div>
 											<div class="form-group row mb-3">
@@ -159,7 +160,7 @@
 												</div>
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>FAX</b><span class="text-danger ml-2">*</span></label>
-													<input type="text" class="form-control" id="FAX" name="FAX" required value="">
+													<input type="number" class="form-control" id="fax_pabrikan" name="fax_pabrikan" required value="">
 												</div>
 											</div>
 											<ul class="pager wizard text-right">

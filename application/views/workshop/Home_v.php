@@ -331,8 +331,8 @@
                                                         	<table id="myTable2" class="table mb-0">
                                                         		<thead>
                                                         			<tr>
+                                                        				<th class="text-center">No</th>
                                                         				<th class="text-center">No. Permohonan</th>
-                                                        				<!-- <th class="text-center">Jenis SPK</th> -->
                                                         				<th class="text-center">Tanggal Pengajuan</th>
                                                         				<th class="text-center">Status</th>
                                                         				<th class="text-center">Actions</th>
@@ -341,7 +341,7 @@
                                                         		<tbody>
                                                         			<tr>
                                                         				<td></td>
-                                                        				<!-- <td></td> -->
+                                                        				<td></td>
                                                         				<td></td>
                                                         				<td></td>
                                                         				<td></td>
@@ -357,19 +357,36 @@
                                             	<table id="myTable3" class="table mb-0">
                                             		<thead>
                                             			<tr>
+                                            				<th class="text-center">No.</th>
                                             				<th class="text-center">No. Permohonan</th>
+                                            				<th class="text-center">Nama Alat</th>
+                                            				<th class="text-center">Tipe/Model Alat</th>
                                             				<th class="text-center">Tanggal Pengajuan</th>
                                             				<th class="text-center">Status</th>
                                             				<th class="text-center">Actions</th>
                                             			</tr>
                                             		</thead>
                                             		<tbody>
-                                            			<tr>
-                                            				<td class="text-center"></td>
-                                            				<td class="text-center"></td>
-                                            				<td class="text-center"></td>
-                                            				<td class="text-center"></td>
-                                            			</tr>
+                                            			<?php
+                                            			$i=0;
+                                            			foreach ($data_pengujian as $ujian) {
+                                            				$i++;
+                                            				$tgl_pengajuan_p = date('Ymd', strtotime($ujian->created_at_ujian));
+                                            				?>
+                                            				<tr>
+                                            					<td class="text-center"><?php echo $i;?></td>
+                                            					<td class="text-center"><?php echo $ujian->id_pengujian.'/'.$tgl_pengajuan_p?></td>
+                                            					<td class="text-center"><?php echo $ujian->nama_alat?></td>
+                                            					<td class="text-center"><?php echo $ujian->tipe?></td>
+                                            					<?php
+                                            					$tgl_pengajuan_u = date('Y-m-d', strtotime($ujian->created_at_ujian));?>
+                                            					<td class="text-center"><?php echo date_indo($tgl_pengajuan_u)?></td>
+                                            					<td class="text-center"><?php echo 'Proses';?></td>
+                                            					<td class="text-center">-</td>
+                                            				</tr>
+                                            				<?php
+                                            			}
+                                            			?>
                                             		</tbody>
                                             	</table>
                                             	<?php

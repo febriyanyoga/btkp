@@ -34,240 +34,230 @@
 					<!-- Begin Invoice Header -->
 					<div class="invoice-header">
 						<?php
-$data = $this->session->flashdata('sukses');
-if ($data != '') {
-    ?>
+						$data = $this->session->flashdata('sukses');
+						if ($data != '') {
+							?>
 							<div class="alert alert-success">
 								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
 								<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
 								<?=$data; ?>
 							</div>
 							<?php
-}
-?>
+						}
+						?>
 						<?php
-$data2 = $this->session->flashdata('error');
-if ($data2 != '') {
-    ?>
+						$data2 = $this->session->flashdata('error');
+						if ($data2 != '') {
+							?>
 							<div class="alert alert-danger">
 								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
 								<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
 								<?=$data2; ?>
 							</div>
 							<?php
-}
-?>
+						}
+						?>
 						<form action="<?php echo site_url('persetujuan'); ?>" method="post" id="form-input-acc">
 							<div id="accordion-icon-right" class="accordion">
-
-									<div class="widget has-shadow">
-										<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne"
-										aria-expanded="true">
-										<div class="card-title w-100"> <b>1. Data Pemohon</b></div>
-									</a>
-									<div id="IconRightCollapseOne" class="card-body collapse show" style="color:black;" data-parent="#accordion-icon-right">
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="1">
-													<label for="1">Jenis Instansi</label>
-												</div>
+								<div class="widget has-shadow">
+									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne"
+									aria-expanded="true">
+									<div class="card-title w-100"> <b>1. Data Pemohon</b></div>
+								</a>
+								<div id="IconRightCollapseOne" class="card-body collapse show" style="color:black;" data-parent="#accordion-icon-right">
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required>
+												<label for="1">Jenis Instansi</label>
 											</div>
-											<div class="col-xl-8">Manufaktur</div>
 										</div>
-										<div class="form-group row mb-5">
-
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="2">
-													<label for="2">Nama Instansi</label>
-												</div>
-											</div>
-											<div class="col-xl-8">PT. ABA</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="3">
-													<label for="3">Alamat Instansi </label>
-												</div>
-											</div>
-											<div class="col-xl-8">JL.ancil</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="4">
-													<label for="4">Telepon</label>
-												</div>
-											</div>
-											<div class="col-xl-8">0987654</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="5">
-													<label for="5">ax</label>
-												</div>
-											</div>
-											<div class="col-xl-8">2342</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="5">
-													<label for="5">email</label>
-												</div>
-											</div>
-											<div class="col-xl-8">aa@gmail.com</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" name="checkbox" required id="6">
-													<label for="6">Nomor Pemohon</label>
-												</div>
-											</div>
-											<div class="col-xl-8">sd</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="7">
-													<label for="7">Jabatan Pemohon</label>
-												</div>
-											</div>
-											<div class="col-xl-8">Admin GA</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="8">
-													<label for="8">Telepon Pemohon</label>
-												</div>
-											</div>
-											<div class="col-xl-8">09876</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="8">
-													<label for="8">Email Pemohon</label>
-												</div>
-											</div>
-											<div class="col-xl-8">asd@g.com</div>
-										</div>
-
+										<div class="col-xl-8"><?php echo $pengujian->nama_jabatan?></div>
 									</div>
-									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
-										<div class="card-title w-100">2. Data Perangkat</div>
-									</a>
-									<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="9">
-													<label for="9">Nama Alat</label>
-												</div>
+									<div class="form-group row mb-5">
+
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required>
+												<label for="2">Nama Instansi</label>
 											</div>
-											<div class="col-xl-8">Life Jacket</div>
 										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="9">
-													<label for="9">Merk</label>
-												</div>
-											</div>
-											<div class="col-xl-8">ESD</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="9">
-													<label for="9">Model/Tipe</label>
-												</div>
-											</div>
-											<div class="col-xl-8">y567</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="9">
-													<label for="9">Negara Pembuat</label>
-												</div>
-											</div>
-											<div class="col-xl-8">Indonesia</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="9">
-													<label for="9">Alamat Pabrikan</label>
-												</div>
-											</div>
-											<div class="col-xl-8">Indonesia</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="9">
-													<label for="9">Pabrik Pembuat</label>
-												</div>
-											</div>
-											<div class="col-xl-8">Indonesia</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="9">
-													<label for="9">Telepon</label>
-												</div>
-											</div>
-											<div class="col-xl-8">0987678</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="9">
-													<label for="9">Email</label>
-												</div>
-											</div>
-											<div class="col-xl-8">asd@gmail.com</div>
-										</div>
-										<div class="form-group row mb-5">
-											<div class="col-xl-4">
-												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="9">
-													<label for="9">Fax</label>
-												</div>
-											</div>
-											<div class="col-xl-8">352</div>
-										</div>
+										<div class="col-xl-8"><?php echo $pengujian->nama_perusahaan?></div>
 									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required>
+												<?php
+												$alamat_pt_detail = $this->WorkshopM->detail_alamat($pengujian->id_kel_perusahaan)->row();
+												?>
+												<label for="3">Alamat Instansi </label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->alamat_perusahaan.'<br>'.$alamat_pt_detail->nama_kelurahan.', '.$alamat_pt_detail->nama_kecamatan.', '.$alamat_pt_detail->nama_kabupaten_kota.', '.$alamat_pt_detail->nama_propinsi;?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required>
+												<label for="4">Telepon</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->no_tlp?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required>
+												<label for="5">Fax</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->fax?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required>
+												<label for="5">email</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->email_perusahaan?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" name="checkbox" required>
+												<label for="6">Nomor Telepon Pemohon</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->no_hp?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required>
+												<label for="7">Jabatan Pemohon</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->jabatan_pengguna?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required>
+												<label for="8">Email Pemohon</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->email_pengguna?></div>
 									</div>
 
-									<div class="text-right">
-										<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lolos</a>
-										<a href="" id="btn-tidak-lengkap" class="btn btn-success mr-1 mb-2" data-toggle="modal" data-target="#inputtagihan">Lolos</a>
-										<!-- <input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Memenuhi" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')"> -->
+								</div>
+								<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
+									<div class="card-title w-100">2. Data Perangkat</div>
+								</a>
+								<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="9">
+												<label for="9">Nama Alat</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->nama_alat?></div>
 									</div>
-
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="9">
+												<label for="9">Merk</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->merk?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="9">
+												<label for="9">Model/Tipe</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->tipe?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="9">
+												<label for="9">Negara Pembuat</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->negara_asal?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="9">
+												<label for="9">Alamat Pabrikan</label>
+												<?php
+												$alamat_pabrik = $this->WorkshopM->detail_alamat($pengujian->id_kel_pabrikan)->row();
+												?>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->alamat_pabrikan.'<br>'.$alamat_pabrik->nama_kelurahan.', '.$alamat_pabrik->nama_kecamatan.', '.$alamat_pabrik->nama_kabupaten_kota.', '.$alamat_pabrik->nama_propinsi;?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="9">
+												<label for="9">Pabrik Pembuat</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->pabrikan?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="9">
+												<label for="9">Telepon</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->telepon?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="9">
+												<label for="9">Email</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->email_pabrikan?></div>
+									</div>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="9">
+												<label for="9">Fax</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->fax_pabrikan?></div>
+									</div>
+								</div>
 							</div>
-						</form>
-					</div>
+
+							<div class="text-right">
+								<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lolos</a>
+								<a href="" id="btn-tidak-lengkap" class="btn btn-success mr-1 mb-2" data-toggle="modal" data-target="#inputtagihan">Lolos</a>
+								<!-- <input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Memenuhi" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')"> -->
+							</div>
+
+						</div>
+					</form>
 				</div>
-				<!-- End Invoice Header -->
-				<!-- End Table -->
 			</div>
-			<!-- End Invoice Container -->
-			<!-- Begin Invoice Footer -->
-			<!-- End Invoice Footer -->
 		</div>
 	</div>
 </div>
 </div>
-
+</div>
 <div class="modal" id="izin_berkas">
 	<div class="modal-dialog modal-md">
 		<div class="modal-content">
@@ -277,19 +267,10 @@ if ($data2 != '') {
 			</div>
 			<form action="" method="post">
 				<div class="modal-body">
-					<!-- <?php
-foreach ($detail_berkas as $key) {
-    ?> -->
-						<label for="<?php echo $key->nama_berkas; ?>" class="label"><?php echo $key->nama_berkas; ?> : </label>
-						<input type="text" name="keterangan[]" value="" class="form-control" placeholder="keterangan">
-						<?php
-}
-?>
-					<!-- <label for="keterangan" class="label">Keterangan : </label>
-					<input type="text" name="keterangan" value="" class="form-control" placeholder="keterangan" required="required"> -->
+					<label for="keterangan" class="label">Keterangan : </label>
+					<textarea type="text" name="keterangan"class="form-control" placeholder="Keterangan . . ." required="required"></textarea>
 					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna'); ?>" >
-					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $id_perizinan; ?>">
-					<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
+					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
 				</div>
 
 				<div class="modal-footer">
@@ -302,40 +283,44 @@ foreach ($detail_berkas as $key) {
 </div>
 
 <div class="modal" id="inputtagihan">
-                                                        				<div class="modal-dialog modal-md">
-                                                        					<div class="modal-content">
-                                                        						<div class="modal-header">
-                                                        							<h4 class="modal-title">Masukkan Kode Billing</h4>
-                                                        							<button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                        						</div>
-                                                        						<form action="<?php echo site_url('kode_billing'); ?>" method="post">
-                                                        							<div class="modal-body">
-                                                        								<label for="kode_billing" class="label">Kode Billing : </label>
-                                                        								<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
-                                                                                        <label for="bank_btkp" class="label">Bank BTKP : </label>
-                                                                                        <select class="form-control" name="id_bank_btkp">
-                                                                                            <option value="">---Pilih Bank---</option>
-                                                                                            <?php
-foreach ($bank_btkp as $bank) {
-    ?>
-                                                                                                <option value="<?php echo $bank->id_bank_btkp; ?>"><?php echo $bank->nama_bank; ?></option>
-                                                                                                <?php
-}
-?>
-                                                                                        </select>
+	<div class="modal-dialog modal-md">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h4 class="modal-title">Setujui dan Masukkan Kode Billing</h4>
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+			</div>
+			<form action="<?php echo site_url('kode_billing'); ?>" method="post">
+				<div class="modal-body">
+					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna'); ?>" >
+					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
+					<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
 
-                                                        								<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
-                                                                                        <label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
-                                                                                        <input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
-                                                                                        <label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
-                                                                                        <input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
 
-                                                        							</div>
-                                                        							<div class="modal-footer">
-                                                        								<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-                                                        								<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode billing yang dimasukkan sudah benar?')">
-                                                        							</div>
-                                                        						</form>
-                                                        					</div>
-                                                        				</div>
-                                                        			</div>
+					<label for="kode_billing" class="label">Kode Billing : </label>
+					<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
+					<label for="bank_btkp" class="label">Bank BTKP : </label>
+					<select class="form-control" name="id_bank_btkp">
+						<option value="">---Pilih Bank---</option>
+						<?php
+						foreach ($bank_btkp as $bank) {
+							?>
+							<option value="<?php echo $bank->id_bank_btkp; ?>"><?php echo $bank->nama_bank; ?></option>
+							<?php
+						}
+						?>
+					</select>
+					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
+					<label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
+					<input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
+					<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
+					<input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode billing yang dimasukkan sudah benar?')">
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+</div>

@@ -89,6 +89,7 @@ $route['type_approval'] = 'WorkshopC/type_approval';
 $route['type_approval22'] = 'WorkshopC/type_approval2';
 $route['type_approval2/(:num)'] = 'WorkshopC/type_approval2/$1';
 $route['type_approval3/(:num)'] = 'WorkshopC/type_approval3/$1';
+$route['selesai_p/(:num)'] = 'WorkshopC/selesai_p/$1';
 
 $route['post_type_approval1'] = 'WorkshopC/post_type_approval1';
 $route['post_pengujian'] = 'WorkshopC/post_pengujian';
@@ -115,7 +116,7 @@ $route['kode_billing'] = 'TatausahaC/post_kode_billing';
 $route['penerbitan'] = 'TatausahaC/post_penerbitan';
 $route['profile_t'] = 'TatausahaC/profile';
 $route['update_password_t'] = 'TatausahaC/post_update_password';
-$route['verifikasiawal'] = 'TatausahaC/verifikasiawal_pengujian';
+$route['verifikasiawal/(:num)'] = 'TatausahaC/verifikasiawal_pengujian/$1';
 
 // KASIE
 $route['kasie'] = 'KasieC';

@@ -208,6 +208,12 @@
                                         </select>
                                         <label for="id_jabatan" class="error"></label>
                                     </div>
+                                     <div class="group material-input">
+                                        <input class="form-control" type="text" id="jabatan_pengguna" name="jabatan_pengguna" placeholder="Jabatan Pengguna">
+                                        <span class="highlight"></span>
+                                        <span class="bar"></span>
+                                        <label for="jabatan_pengguna" class="error"></label>
+                                    </div>
                                     <div class="row">
                                         <div class="col text-left">
                                             <div class="styled-checkbox">
@@ -306,6 +312,9 @@
                         required: true,
                         email: true
                     },
+                    jabatan_pengguna: {
+                        required: true,
+                    },
                     agree: 'required',
                     id_jabatan : 'required'
                 },
@@ -324,6 +333,9 @@
                     email_pengguna : {
                         required : 'Silahkan isi alamat email anda',
                         email : 'Alamat email tidak valid',
+                    },
+                    jabatan_pengguna : {
+                        required : 'Silahkan isi jabatan anda anda',
                     },
                     agree : 'Silahkan setujui syarat dan ketentuan kami',
                     id_jabatan : 'Silahkan Pilih jenis user'
