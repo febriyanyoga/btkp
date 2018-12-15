@@ -254,8 +254,16 @@
 			</div>
 			<form action="<?php echo site_url('persetujuan_kasie2')?>" method="post">
 				<div class="modal-body">
-					<label for="keterangan" class="label">Keterangan : </label>
-					<input type="text" name="keterangan" value="" class="form-control" placeholder="keterangan" required="required">
+					<?php
+					foreach ($detail_berkas as $key) {
+						?>
+						<label for="<?php echo $key->nama_berkas?>" class="label"><?php echo $key->nama_berkas?> : </label>
+						<input type="text" name="keterangan[]" value="" class="form-control" placeholder="keterangan">
+						<?php
+					}
+					?>
+					<!-- <label for="keterangan" class="label">Keterangan : </label>
+					<input type="text" name="keterangan" value="" class="form-control" placeholder="keterangan" required="required"> -->
 					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna');?>" >
 					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $id_perizinan;?>">
 					<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
