@@ -25,18 +25,22 @@
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3"
-								aria-selected="false">Pembayaran 2</a>
+								aria-selected="false">Pengujian</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4"
-								aria-selected="false">Validasi Pembayaran 2</a>
+								aria-selected="false">Pembayaran 2</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5"
-								aria-selected="false">Penerbitan</a>
+								aria-selected="false">Validasi Pembayaran 2</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="base-tab-6" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6"
+								aria-selected="false">Penerbitan</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="base-tab-7" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6"
 								aria-selected="false">Data Sertifikasi</a>
 							</li>
 						</ul>
@@ -143,8 +147,8 @@
 													<td class="text-center">PT. AAA</td>
 													<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>
 													<td class="text-center">
-														input kode biling podo karo sg pengujian
-														<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling"><i class="la la-plus"></i>Kode Billing</i>
+														modal upload dokumen
+														<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling"><i class="la la-plus"></i>Hasil Pengujian</i>
 														</a>
 													</td>
 												</tr>
@@ -155,6 +159,40 @@
 								<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="base-tab-4">
 									<div class="table-responsive">
 										<table id="myTable4" class="table mb-0">
+											<thead>
+												<tr>
+													<th class="text-center">No</th>
+													<th class="text-center">Tanggal Pengajuan</th>
+													<th class="text-center">Nama Alat</th>
+													<th class="text-center">Merk</th>
+													<th class="text-center">Tipe</th>
+													<th class="text-center">Perusahaan</th>
+													<th class="text-center">Status</th>
+													<th class="text-center">Aksi</th>
+												</tr>
+											</thead>
+											<tbody>
+												<tr>
+													<td class="text-center">1</td>
+													<td class="text-center">21 November 2018</td>
+													<td class="text-center">Life Jacket</td>
+													<td class="text-center">Samsung</td>
+													<td class="text-center">67A</td>
+													<td class="text-center">PT. AAA</td>
+													<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>
+													<td class="text-center">
+														input kode biling podo karo sg pengujian
+														<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling"><i class="la la-plus"></i>Kode Billing</i>
+														</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="tab-5" role="tabpanel" aria-labelledby="base-tab-5">
+									<div class="table-responsive">
+										<table id="myTable5" class="table mb-0">
 											<thead>
 												<tr>
 													<th class="text-center">No</th>
@@ -187,9 +225,9 @@
 										</table>
 									</div>
 								</div>
-								<div class="tab-pane fade" id="tab-5" role="tabpanel" aria-labelledby="base-tab-4">
+								<div class="tab-pane fade" id="tab-6" role="tabpanel" aria-labelledby="base-tab-6">
 									<div class="table-responsive">
-										<table id="myTable5" class="table mb-0">
+										<table id="myTable6" class="table mb-0">
 											<thead>
 												<tr>
 													<th class="text-center">No</th>
@@ -223,9 +261,9 @@
 										</table>
 									</div>
 								</div>
-								<div class="tab-pane fade" id="tab-6" role="tabpanel" aria-labelledby="base-tab-4">
+								<div class="tab-pane fade" id="tab-7" role="tabpanel" aria-labelledby="base-tab-7">
 									<div class="table-responsive">
-										<table id="myTable6" class="table mb-0">
+										<table id="myTable7" class="table mb-0">
 											<thead>
 												<tr>
 													<th class="text-center">No</th>
