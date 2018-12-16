@@ -99,6 +99,10 @@ $route['post_berkas'] = 'WorkshopC/post_berkas';
 $route['post_berkas_perpanjang'] = 'WorkshopC/post_berkas_perpanjang';
 $route['post_berkas_perpanjang_tidak'] = 'WorkshopC/post_berkas_perpanjang_tidak';
 
+$route['pilihworkshop1'] = 'WorkshopC/pilihworkshop1';
+$route['pilihworkshop2'] = 'WorkshopC/pilihworkshop2';
+$route['pilihworkshop3'] = 'WorkshopC/pilihworkshop3';
+
 // admin
 $route['admin'] = 'AdminC';
 $route['datapegawai'] = 'AdminC/datapegawai';

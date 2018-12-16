@@ -61,26 +61,25 @@
 										</thead>
 										<tbody>
 											<?php
-											$i=0;
-											foreach ($pengujian as $ujian) {
-												$i++;
-												$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
-												?>
+                                            $i = 0;
+                                            foreach ($pengujian as $ujian) {
+                                                ++$i;
+                                                $tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian)); ?>
 												<tr>
-													<td class="text-center"><?php echo $i;?></td>
-													<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
-													<td class="text-center"><?php echo $ujian->nama_alat?></td>
-													<td class="text-center"><?php echo $ujian->merk?></td>
-													<td class="text-center"><?php echo $ujian->tipe?></td>
-													<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
+													<td class="text-center"><?php echo $i; ?></td>
+													<td class="text-center"><?php echo date_indo($tgl_pengajuan); ?></td>
+													<td class="text-center"><?php echo $ujian->nama_alat; ?></td>
+													<td class="text-center"><?php echo $ujian->merk; ?></td>
+													<td class="text-center"><?php echo $ujian->tipe; ?></td>
+													<td class="text-center"><?php echo $ujian->nama_perusahaan; ?></td>
 													<td class="text-center">
 														<a href="<?php echo site_url('verifikasiawal/'.$ujian->id_pengujian); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
 														</a>
 													</td>
 												</tr>
 												<?php
-											}
-											?>
+                                            }
+                                            ?>
 										</tbody>
 									</table>
 								</div>
