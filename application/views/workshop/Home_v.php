@@ -190,7 +190,7 @@
                                                                     								}
                                                                     							} else {
                                                                     								$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
-                                                                    								if($progress_tu>0){
+                                                                    								if($progress_tu > 0){
                                                                     									if($per->file_hasil_survey == ""){
                                                                     										?>
                                                                     										<span style="width:100px; " title="Menunggu file survey diUnggah"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu File Survey</span></span>
@@ -369,22 +369,115 @@
                                             		<tbody>
                                             			<?php
                                             			$i=0;
+                                            			$j=0;
                                             			foreach ($data_pengujian as $ujian) {
-                                            				$i++;
-                                            				$tgl_pengajuan_p = date('Ymd', strtotime($ujian->created_at_ujian));
-                                            				?>
-                                            				<tr>
-                                            					<td class="text-center"><?php echo $i;?></td>
-                                            					<td class="text-center"><?php echo $ujian->id_pengujian.'/'.$tgl_pengajuan_p?></td>
-                                            					<td class="text-center"><?php echo $ujian->nama_alat?></td>
-                                            					<td class="text-center"><?php echo $ujian->tipe?></td>
-                                            					<?php
-                                            					$tgl_pengajuan_u = date('Y-m-d', strtotime($ujian->created_at_ujian));?>
-                                            					<td class="text-center"><?php echo date_indo($tgl_pengajuan_u)?></td>
-                                            					<td class="text-center"><?php echo 'Proses';?></td>
-                                            					<td class="text-center">-</td>
-                                            				</tr>
-                                            				<?php
+                                            				if($ujian->status_pengajuan == 'selesai'){
+                                            					$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
+                                            					$tgl_pengajuan_p = date('Ymd', strtotime($ujian->created_at_ujian));
+                                            					if($ada_status > 0){
+                                            						$status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row()->status;
+                                            						if($status != 'ditolak'){
+                                            							$i++;
+                                            							?>
+                                            							<tr>
+                                            								<td class="text-center"><?php echo $i;?></td>
+                                            								<td class="text-center"><?php echo $ujian->id_pengujian.'/'.$tgl_pengajuan_p?></td>
+                                            								<td class="text-center"><?php echo $ujian->nama_alat?></td>
+                                            								<td class="text-center"><?php echo $ujian->tipe?></td>
+                                            								<?php
+                                            								$tgl_pengajuan_u = date('Y-m-d', strtotime($ujian->created_at_ujian));
+                                            								?>
+                                            								<td class="text-center"><?php echo date_indo($tgl_pengajuan_u)?></td>
+                                            								<td class="text-center">
+                                            									<?php
+                                            									if($ujian->foto_bukti_trf_1 != ""){
+                                            										if($ujian->status_pembayaran_1 == "paid"){
+                                            											if($ujian->file_hasil_pengujian != ""){
+                                            												?>
+                                            												<span style="width:100px;"><span class="badge-text badge-text-small default">Proses</span></span>
+                                            												<?php
+                                            											}else{
+                                            												?>
+                                            												<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Verifikasi Pembayaran Berhasil</span></span>
+                                            												<?php
+                                            											}
+                                            										}else{
+                                            											?>
+                                            											<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Verifikasi Pembayaran</span></span>
+                                            											<?php
+                                            										}
+                                            									}else{
+                                            										?>
+                                            										<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Pembayaran</span></span>
+                                            										<hr>
+                                            										<a href="<?php echo site_url('cetak_invoice_ujian/').$ujian->id_pengujian; ?>" class="btn btn-sm btn-info" target="_BLANK"><i class="la la-print"></i> Invoice</a>
+                                            										<?php
+                                            									}
+                                            									?>
+                                            								</td>
+                                            								<td class="text-center">
+                                            									<?php
+                                            									if($ujian->foto_bukti_trf_1 != ""){
+                                            										echo "-";
+                                            									}else{
+                                            										?>
+                                            										<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ujian->id_pengujian; ?>">Konfirmasi</a>
+                                            										<?php
+                                            									}
+                                            									?>
+                                            								</td>
+                                            							</tr>
+
+                                            							<div class="modal" id="konfirmasi-<?php echo $ujian->id_pengujian; ?>">
+                                            								<div class="modal-dialog modal-md">
+                                            									<div class="modal-content">
+                                            										<div class="modal-header">
+                                            											<h4 class="modal-title">Konfirmasi Pembayaran</h4>
+                                            											<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            										</div>
+                                            										<form action="<?php echo site_url('konfirmasi_ujian_1'); ?>" enctype="multipart/form-data" method="post">
+                                            											<div class="modal-body">
+                                            												<input type="text" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
+                                            												<label for="nama_bank" class="label">Nama Bank : </label>
+                                            												<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank Anda"
+                                            												required="required">
+
+                                            												<label for="atas_nama" class="label">Atas Nama : </label>
+                                            												<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama bank anda"
+                                            												required="required">
+
+                                            												<label for="foto_bukti_trf" class="label">Unggah Bukti: </label>
+                                            												<input type="file" name="foto_bukti_trf" value="" class="form-control" required="required">
+                                            											</div>
+                                            											<div class="modal-footer">
+                                            												<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+                                            												<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin data yang dimasukkan sudah benar?')">
+                                            											</div>
+                                            										</form>
+                                            									</div>
+                                            								</div>
+                                            							</div>
+                                            							<?php
+                                            						}
+                                            					}elseif($ada_status == 0){
+                                            						$j++;
+                                            						?>
+                                            						<tr>
+                                            							<td class="text-center"><?php echo $j;?></td>
+                                            							<td class="text-center"><?php echo $ujian->id_pengujian.'/'.$tgl_pengajuan_p?></td>
+                                            							<td class="text-center"><?php echo $ujian->nama_alat?></td>
+                                            							<td class="text-center"><?php echo $ujian->tipe?></td>
+                                            							<?php
+                                            							$tgl_pengajuan_u = date('Y-m-d', strtotime($ujian->created_at_ujian));?>
+                                            							<td class="text-center"><?php echo date_indo($tgl_pengajuan_u)?></td>
+                                            							<td class="text-center">
+                                            								<span style="width:100px;"><span class="badge-text badge-text-small default">Proses</span></span>
+                                            							</td>
+                                            							<td class="text-center">-</td>
+                                            						</tr>
+                                            						<?php
+                                            					}
+                                            				}
                                             			}
                                             			?>
                                             		</tbody>
@@ -397,88 +490,74 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- End Row -->
-		<!-- <script type="text/javascript">
-				width = '100%'; // the width of the embedded map in pixels or percentage
-				height = '450'; // the height of the embedded map in pixels or percentage
-				border = '1'; // the width of the border around the map (zero means no border)
-				shownames = 'false'; // to display ship names on the map (true or false)
-				latitude = '37.4460'; // the latitude of the center of the map, in decimal degrees
-				longitude = '24.9467'; // the longitude of the center of the map, in decimal degrees
-				zoom = '9'; // the zoom level of the map (values between 2 and 17)
-				maptype = '1'; // use 0 for Normal Map, 1 for Satellite, 2 for OpenStreetMap
-				trackvessel = '0'; // MMSI of a vessel (note: vessel will be displayed only if within range of the system) - overrides "zoom" option
-				fleet = ''; // the registered email address of a user-defined fleet (user's default fleet is used)
-			</script>
-			<script type="text/javascript" src="//www.marinetraffic.com/js/embed.js"></script> -->
-		</div>
-		<!-- End Col -->
-	</div>
-	<!-- End Row -->
-</div>
-<!-- End Container -->
-<!-- Begin Living Room Modal -->
-<div id="perizinan" class="modal fade">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content room-details">
-			<div class="modal-header border-0">
-				<h2 class="modal-title">PERIZINAN</h2>
-				<button type="button" class="close" data-dismiss="modal">
-					<span aria-hidden="true">×</span>
-					<span class="sr-only">close</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<div class="row">
-					<div class="col-xl-12">
-						<div class="room-image">
-							<a href="<?php echo site_url('izin_baru'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perizinanbaru.jpg"
-								class="img-fluid rounded" alt="..."></a>
-							</div>
-						</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-xl-12">
-							<div class="room-image">
-								<a href="<?php echo site_url('data_perizinan'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perpanjang.jpg"
-									class="img-fluid rounded" alt="..."></a>
-								</div>
-							</div>
-						</div>
-						<br>
-						<div class="row">
-							<div class="col-xl-12">
-								<div class="room-image">
-									<a href="<?php echo site_url('data_perizinan'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/dataspk.jpg"
-										class="img-fluid rounded" alt="..."></a>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- End Living Room Modal -->
+                    </div>
+                    <!-- End Col -->
+                </div>
+                <!-- End Row -->
+            </div>
+            <!-- End Container -->
+            <!-- Begin Living Room Modal -->
+            <div id="perizinan" class="modal fade">
+            	<div class="modal-dialog modal-dialog-centered">
+            		<div class="modal-content room-details">
+            			<div class="modal-header border-0">
+            				<h2 class="modal-title">PERIZINAN</h2>
+            				<button type="button" class="close" data-dismiss="modal">
+            					<span aria-hidden="true">×</span>
+            					<span class="sr-only">close</span>
+            				</button>
+            			</div>
+            			<div class="modal-body">
+            				<div class="row">
+            					<div class="col-xl-12">
+            						<div class="room-image">
+            							<a href="<?php echo site_url('izin_baru'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perizinanbaru.jpg"
+            								class="img-fluid rounded" alt="..."></a>
+            							</div>
+            						</div>
+            					</div>
+            					<br>
+            					<div class="row">
+            						<div class="col-xl-12">
+            							<div class="room-image">
+            								<a href="<?php echo site_url('data_perizinan'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/perpanjang.jpg"
+            									class="img-fluid rounded" alt="..."></a>
+            								</div>
+            							</div>
+            						</div>
+            						<br>
+            						<div class="row">
+            							<div class="col-xl-12">
+            								<div class="room-image">
+            									<a href="<?php echo site_url('data_perizinan'); ?>"><img src="<?php echo base_url(); ?>assets/app/img/menu/dataspk.jpg"
+            										class="img-fluid rounded" alt="..."></a>
+            									</div>
+            								</div>
+            							</div>
+            						</div>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
+            		<!-- End Living Room Modal -->
 
-		<div id="bayartagihan" class="modal fade">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title">Form cetak sertifikat</h4>
-						<button type="button" class="close" data-dismiss="modal">
-							<span aria-hidden="true">×</span>
-							<span class="sr-only">close</span>
-						</button>
-					</div>
-					<div class="modal-body">
+            		<div id="bayartagihan" class="modal fade">
+            			<div class="modal-dialog modal-lg">
+            				<div class="modal-content">
+            					<div class="modal-header">
+            						<h4 class="modal-title">Form cetak sertifikat</h4>
+            						<button type="button" class="close" data-dismiss="modal">
+            							<span aria-hidden="true">×</span>
+            							<span class="sr-only">close</span>
+            						</button>
+            					</div>
+            					<div class="modal-body">
 
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save</button>
-					</div>
-				</div>
-			</div>
-		</div>
+            					</div>
+            					<div class="modal-footer">
+            						<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
+            						<button type="button" class="btn btn-primary">Save</button>
+            					</div>
+            				</div>
+            			</div>
+            		</div>

@@ -53,6 +53,20 @@ class WorkshopM extends CI_Model{
 		return $this->db->get('pengujian');
 	}
 
+	public function cek_bank_btkp($id_bank_btkp){
+		$this->db->where('id_bank_btkp',$id_bank_btkp);
+		return $this->db->get('bank_btkp');
+	}
+
+	public function cek_status($id_pengujian){
+		$this->db->select('*');
+		$this->db->from('pengguna_pengujian');
+		$this->db->where('id_pengujian', $id_pengujian);
+		$this->db->order_by('id_pengguna_pengujian','DESC');
+		$this->db->limit('1');
+		return $this->db->get();
+	}
+
 	public function get_pengujian($id_pengguna){
 		$this->db->select('*');
 		$this->db->from('pengujian');
@@ -139,7 +153,7 @@ class WorkshopM extends CI_Model{
 	}
 
 	public function selesai_p($id_pengujian, $data){
-		$this->db->where('id_pengujian', $id_perizinan);
+		$this->db->where('id_pengujian', $id_pengujian);
 		$this->db->update('pengujian', $data);
 		return TRUE;
 	}

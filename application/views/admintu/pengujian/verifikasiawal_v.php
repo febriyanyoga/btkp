@@ -100,7 +100,7 @@
 										<div class="col-xl-4">
 											<div class="styled-checkbox">
 												<input type="checkbox" checked name="checkbox" required>
-												<label for="4">Telepon</label>
+												<label for="4">Telepon Instansi</label>
 											</div>
 										</div>
 										<div class="col-xl-8"><?php echo $pengujian->no_tlp?></div>
@@ -289,7 +289,7 @@
 				<h4 class="modal-title">Setujui dan Masukkan Kode Billing</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
-			<form action="<?php echo site_url('kode_billing'); ?>" method="post">
+			<form action="<?php echo site_url('verifikasi_1_terima'); ?>" method="post">
 				<div class="modal-body">
 					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna'); ?>" >
 					<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
@@ -323,5 +323,4 @@
 			</form>
 		</div>
 	</div>
-</div>
 </div>

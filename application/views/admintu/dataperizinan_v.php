@@ -75,8 +75,9 @@
 												$i = 0;
 												foreach ($perizinan as $per) {
 													$id_pengguna = $this->session->userdata('id_pengguna');
-													$own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
-													if ($own_progress == 0 && $per->status_pengajuan == 'selesai') {
+													// $own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
+													$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
+													if ($progress_tu == 0 && $per->status_pengajuan == 'selesai') {
 														++$i; ?>
 														<tr>
 															<td class="text-center"><?php echo $i; ?></td>

@@ -17,11 +17,11 @@
 						<ul class="nav nav-tabs" id="example-one" role="tablist">
 							<li class="nav-item">
 								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1"
-								 aria-selected="true">Verifikasi</a>
+								aria-selected="true">Verifikasi</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
-								 aria-selected="false">Data Sertifikasi</a>
+								aria-selected="false">Data Sertifikasi</a>
 							</li>
 						</ul>
 						<div class="tab-content pt-3">
@@ -35,31 +35,41 @@
 												<th class="text-center">Nama Alat</th>
 												<th class="text-center">Merk</th>
 												<th class="text-center">Tipe</th>
-												<th class="text-center">Perusahaan</th>
+												<th class="text-center">Instansi</th>
 												<th class="text-center">Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
-
-											<tr>
-												<td class="text-center">1</td>
-												<td class="text-center">21 November 2018</td>
-												<td class="text-center">Life Jacket</td>
-												<td class="text-center">Samsung</td>
-												<td class="text-center">67A</td>
-												<td class="text-center">PT. AAA</td>
-												<td class="text-center">
-													<a href="<?php echo site_url('verifikasiakhir'); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
-													</a>
-												</td>
-											</tr>
+											<?php 
+											$i=1;
+											foreach ($pengujian as $ujian) {
+												if($ujian->file_hasil_pengujian != ""){
+													$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
+													?>
+													<tr>
+														<td class="text-center"><?php echo $i;?></td>
+														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+														<td class="text-center"><?php echo $ujian->nama_alat?></td>
+														<td class="text-center"><?php echo $ujian->merk?></td>
+														<td class="text-center"><?php echo $ujian->tipe?></td>
+														<td class="text-center"><?php echo $ujian->nama_perusahaan?> </td>
+														<td class="text-center">
+															<a href="<?php echo site_url('verifikasiakhir/'.$ujian->id_pengujian); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+															</a>
+														</td>
+													</tr>
+													<?php
+													$i++;
+												}
+											}
+											?>
 										</tbody>
 									</table>
 								</div>
 							</div>
 							<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="base-tab-2">
-							<div class="table-responsive">
-								<table id="myTable2" class="table mb-0">
+								<div class="table-responsive">
+									<table id="myTable2" class="table mb-0">
 										<thead>
 											<tr>
 												<th class="text-center">No</th>
@@ -73,7 +83,6 @@
 											</tr>
 										</thead>
 										<tbody>
-
 											<tr>
 												<td class="text-center">1</td>
 												<td class="text-center">21 November 2018</td>

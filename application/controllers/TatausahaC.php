@@ -187,6 +187,71 @@ class TatausahaC extends CI_Controller
         }
     }
 
+    public function verifikasi_1_terima(){
+        $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
+        $this->form_validation->set_rules('id_pengujian', 'ID Pengujian');
+        $this->form_validation->set_rules('keterangan', 'keterangan');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+
+        $this->form_validation->set_rules('kode_billing', 'Kode Billing', 'required');
+        $this->form_validation->set_rules('id_bank_btkp', 'Bank BTKP', 'required');
+        $this->form_validation->set_rules('jumlah_tagihan', 'Jumlah Tagihan', 'required');
+        $this->form_validation->set_rules('masa_berlaku_billing', 'Masa Berlaku Billing', 'required');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            $keterangan=$this->input->post('keterangan');
+
+            $data = array(
+                'id_pengguna'   => $this->input->post('id_pengguna'),
+                'id_pengujian'  => $this->input->post('id_pengujian'),
+                'keterangan'    => $keterangan,
+                'status'        => $this->input->post('status'),
+            );
+
+            $id_pengujian = $this->input->post('id_pengujian');
+            $data_billing = array(
+                'kode_billing_1'          => $this->input->post('kode_billing'),
+                'id_bank_btkp_1'          => $this->input->post('id_bank_btkp'),
+                'jumlah_tagihan_1'        => $this->input->post('jumlah_tagihan'),
+                'masa_berlaku_billing_1'  => $this->input->post('masa_berlaku_billing'),
+            );
+
+            if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
+                $this->TatausahaM->insert_billing_ujian($id_pengujian, $data_billing);
+                $this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+                redirect('pengujian');
+            } else {
+                $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function validasi_1(){
+        $this->form_validation->set_rules('id_pengujian', 'ID Pengujian','required');
+        $this->form_validation->set_rules('status_pembayaran_1', 'Status Pembayaran','required');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            $id_pengujian = $this->input->post('id_pengujian');
+            $data = array(
+                'status_pembayaran_1' => $this->input->post('status_pembayaran_1'), 
+            );
+            if($this->WorkshopM->selesai_p($id_pengujian, $data)){
+                $this->session->set_flashdata('sukses', 'Validasi berhasil');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
+                redirect_back();
+            }
+        }
+    }
+
     public function post_kode_billing(){
         $this->form_validation->set_rules('id_perizinan', 'ID Perizinan','required');
         $this->form_validation->set_rules('kode_billing', 'Kode Billing', 'required');
@@ -303,5 +368,45 @@ class TatausahaC extends CI_Controller
         $this->data['pengujian'] = $this->TatausahaM->get_pengujian_by_id($id_pengujian)->row();
         $data['isi'] = $this->load->view('admintu/pengujian/verifikasiawal_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
+    }
+
+    public function hasil_uji(){
+        $upload = $this->upload_file('hasil_pengujian');
+        if($upload['result'] == 'success'){
+            $data = array(
+                'file_hasil_pengujian' => $upload['file_name'],
+            );
+            $id_pengujian = $this->input->post('id_pengujian');
+            if($this->WorkshopM->selesai_p($id_pengujian, $data)) {
+                $this->session->set_flashdata('sukses', 'Dokumen hasil pengujian berhasil diunggah');
+                redirect_back();
+            } else {
+                $this->session->set_flashdata('error', 'Dokumen hasil pengujian tidak berhasil diunggah');
+                redirect_back();
+            }
+        }else{
+            $this->session->set_flashdata('error', 'Dokumen hasil pengujian tidak berhasil diunggah');
+            redirect_back();
+        }
+    }
+
+    public function upload_file($input_name){
+        $config['upload_path'] = './assets/img/hasil_uji/'; //path folder
+        $config['allowed_types'] = 'jpg|jpeg|pdf|doc|docx|png';
+        $config['max_size'] = '5000'; // max_size in kb
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $this->upload->initialize($config);
+        if(!empty($_FILES[$input_name]['name'])){
+            if($this->upload->do_upload($input_name)){
+                $gbr = $this->upload->data();
+                $return = array('result' => 'success', 'file_name' => $gbr['file_name'], 'file_size' => $gbr['file_size'], 'error' => '');
+                return $return;
+            }
+        }else{
+            $return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
+            return $return;
+            echo "Data yang diupload kosong";
+        }
     }
 }
