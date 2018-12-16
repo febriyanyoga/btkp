@@ -26,6 +26,11 @@
 								<div class="item"><a href="<?php echo site_url('type_approval'); ?>">
 									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/2.jpg" alt="..."></a>
 								</div>
+								<!-- dinggo kapal -->
+								<div class="item"><a href="<?php echo site_url('pilihworkshop1'); ?>">
+									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/3.jpg" alt="..."></a>
+								</div>
+								<!-- dinggo workshop -->
 								<div class="item"><a href="<?php echo site_url('data_reinspeksi'); ?>">
 									<img class="img-fluid" src="<?php echo base_url(); ?>assets/app/img/menu/3.jpg" alt="..."></a>
 								</div>
@@ -206,7 +211,7 @@
                                                                     									<?php
                                                                     								}
                                                                     							}
-                                                                    						} 
+                                                                    						}
                                                                     						?>
                                                                     					</td>
                                                                     					<td class="text-center">
@@ -240,7 +245,7 @@
                                                                                                     		echo "-";
                                                                                                     	}
                                                                                                     }
-                                                                                                } 
+                                                                                                }
                                                                                                 ?>
                                                                                             </td>
                                                                                         </tr>
@@ -310,7 +315,7 @@
                                                                             			<?php echo $per->nama_alat; ?>
                                                                             		</td>
                                                                             		<?php
-                                                                            		$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); 
+                                                                            		$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
                                                                             		?>
                                                                             		<td class="text-center">
                                                                             			<?php echo date_indo($tgl_pengajuan); ?>
@@ -552,7 +557,26 @@
             						</button>
             					</div>
             					<div class="modal-body">
+            					</div>
+            					<div class="modal-footer">
+            						<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
+            						<button type="button" class="btn btn-primary">Save</button>
+            					</div>
+            				</div>
+            			</div>
+            		</div>
 
+            		<div id="pilihworkshop" class="modal fade">
+            			<div class="modal-dialog modal-lg">
+            				<div class="modal-content">
+            					<div class="modal-header">
+            						<h4 class="modal-title">Pilih Workshop</h4>
+            						<button type="button" class="close" data-dismiss="modal">
+            							<span aria-hidden="true">×</span>
+            							<span class="sr-only">close</span>
+            						</button>
+            					</div>
+            					<div class="modal-body">
             					</div>
             					<div class="modal-footer">
             						<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>

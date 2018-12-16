@@ -36,20 +36,6 @@ class WorkshopC extends CI_Controller
         $this->load->view('workshop/Layout', $data);
     }
 
-    public function data_reinspeksi()
-    {
-        workshop_access2();
-        $data['title'] = 'BTKP - Data Reinspeksi';
-        $data['isi'] = $this->load->view('workshop/datareinspeksi_v', $this->data, true);
-        $this->load->view('workshop/Layout', $data);
-    }
-
-    public function pelaporan()
-    {
-        $data['title'] = 'BTKP - Data Pelaporan';
-        $data['isi'] = $this->load->view('workshop/pelaporan_v', $this->data, true);
-        $this->load->view('workshop/Layout', $data);
-    }
 
     public function detailperizinan($id_perizinan)
     {
@@ -201,7 +187,7 @@ class WorkshopC extends CI_Controller
         $this->load->view('workshop/Layout', $data);
     }
 
-    
+
     public function profile()
     {
         $id_pengguna = $this->session->userdata('id_pengguna');
@@ -288,18 +274,18 @@ class WorkshopC extends CI_Controller
             redirect_back();
         }else{
             $data_pengujian = array(
-                'id_pengguna'       => $this->input->post('id_pengguna'), 
-                'id_jenis_alat'     => $this->input->post('id_jenis_alat'), 
-                'tipe'              => $this->input->post('tipe'), 
-                'merk'              => $this->input->post('merk'), 
-                'negara_asal'       => $this->input->post('negara_asal'), 
-                'pabrikan'          => $this->input->post('pabrikan'), 
-                'alamat_pabrikan'   => $this->input->post('alamat_pabrikan'), 
-                'id_kel_pabrikan'   => $this->input->post('kelurahan_pt'), 
-                'telepon'           => $this->input->post('no_tlp'), 
-                'email_pabrikan'    => $this->input->post('email'), 
-                'catatan'           => $this->input->post('catatan'), 
-                'fax_pabrikan'      => $this->input->post('fax_pabrikan'), 
+                'id_pengguna'       => $this->input->post('id_pengguna'),
+                'id_jenis_alat'     => $this->input->post('id_jenis_alat'),
+                'tipe'              => $this->input->post('tipe'),
+                'merk'              => $this->input->post('merk'),
+                'negara_asal'       => $this->input->post('negara_asal'),
+                'pabrikan'          => $this->input->post('pabrikan'),
+                'alamat_pabrikan'   => $this->input->post('alamat_pabrikan'),
+                'id_kel_pabrikan'   => $this->input->post('kelurahan_pt'),
+                'telepon'           => $this->input->post('no_tlp'),
+                'email_pabrikan'    => $this->input->post('email'),
+                'catatan'           => $this->input->post('catatan'),
+                'fax_pabrikan'      => $this->input->post('fax_pabrikan'),
             );
             if($id_pengujian = $this->WorkshopM->insert_pengujian($data_pengujian)){
                 $this->session->set_flashdata('sukses','Data berhasil disimpan');
@@ -376,7 +362,7 @@ class WorkshopC extends CI_Controller
                     }
                 }
             }
-            redirect('izin_baru3/'.$id_perizinan);   
+            redirect('izin_baru3/'.$id_perizinan);
         }
     }
 
@@ -393,7 +379,7 @@ class WorkshopC extends CI_Controller
                 $this->session->set_flashdata('error','Gagal diupload');
             }
         }
-        redirect_back();   
+        redirect_back();
     }
 
     public function post_berkas_perpanjang(){
@@ -414,9 +400,9 @@ class WorkshopC extends CI_Controller
                 if($namaFile['result'] == 'success'){
                     $data = array(
                         'id_perizinan'          => $id_perizinan,
-                        'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan), 
+                        'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan),
                         'nama_file'             => $namaFile['file_name'],
-                        'ukuran_berkas'         => $namaFile['file_size'], 
+                        'ukuran_berkas'         => $namaFile['file_size'],
                     );
                     if($this->WorkshopM->insert_detail_berkas($data)){
                         $this->session->set_flashdata('sukses','Data berhasil diupload');
@@ -426,7 +412,7 @@ class WorkshopC extends CI_Controller
                 }else{
                 }
             }
-            redirect('izin_baru3/'.$id_perizinan);   
+            redirect('izin_baru3/'.$id_perizinan);
         }
     }
 
@@ -450,10 +436,10 @@ class WorkshopC extends CI_Controller
                 $ukuran_berkas          = $this->input->post($ukuran_berkas);
                 // $namaFile   = $this->upload_file($input_name);
                 $data = array(
-                    'id_perizinan'          => $id_perizinan, 
-                    'id_berkas_perizinan'   => $id_berkas_perizinan, 
-                    'nama_file'             => $nama_file, 
-                    'ukuran_berkas'         => $ukuran_berkas, 
+                    'id_perizinan'          => $id_perizinan,
+                    'id_berkas_perizinan'   => $id_berkas_perizinan,
+                    'nama_file'             => $nama_file,
+                    'ukuran_berkas'         => $ukuran_berkas,
                 );
 
                 if($this->WorkshopM->insert_detail_berkas($data)){
@@ -469,10 +455,10 @@ class WorkshopC extends CI_Controller
                 $namaFile   = $this->upload_file($input_name);
                 if($namaFile['result'] == 'success'){
                     $data = array(
-                        'id_perizinan'          => $id_perizinan, 
-                        'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan), 
-                        'nama_file'             => $namaFile['file_name'], 
-                        'ukuran_berkas'         => $namaFile['file_size'], 
+                        'id_perizinan'          => $id_perizinan,
+                        'id_berkas_perizinan'   => $this->input->post($id_berkas_perizinan),
+                        'nama_file'             => $namaFile['file_name'],
+                        'ukuran_berkas'         => $namaFile['file_size'],
                     );
                     if($this->WorkshopM->insert_detail_berkas($data)){
                         $this->session->set_flashdata('sukses','Data berhasil diupload');
@@ -482,7 +468,7 @@ class WorkshopC extends CI_Controller
                 }
             }
             $this->session->set_flashdata('sukses','Data berhasil diupload');
-            redirect('izin_baru3/'.$id_perizinan);   
+            redirect('izin_baru3/'.$id_perizinan);
         }
     }
 
@@ -564,7 +550,7 @@ class WorkshopC extends CI_Controller
 
             if($user->num_rows() > 0){
                 $data_update_password = array(
-                    'password' => md5($this->input->post('password_baru')), 
+                    'password' => md5($this->input->post('password_baru')),
                 );
                 $id_pengguna = $this->input->post('id_pengguna');
                 if($this->GeneralM->update_pengguna($id_pengguna, $data_update_password)){
@@ -609,12 +595,12 @@ class WorkshopC extends CI_Controller
                 $kelurahan_ws = $this->input->post('kelurahan_ws') ;
             }
             $data = array(
-                'email_perusahaan'      => $this->input->post('email_perusahaan'), 
-                'no_tlp'                => $this->input->post('no_tlp'), 
-                'alamat_perusahaan'     => $this->input->post('alamat_perusahaan_p'), 
-                'id_kel_perusahaan'     => $kelurahan_pt, 
-                'alamat_workshop'       => $this->input->post('alamat_workshop_p'), 
-                'id_kel_workshop'       => $kelurahan_ws, 
+                'email_perusahaan'      => $this->input->post('email_perusahaan'),
+                'no_tlp'                => $this->input->post('no_tlp'),
+                'alamat_perusahaan'     => $this->input->post('alamat_perusahaan_p'),
+                'id_kel_perusahaan'     => $kelurahan_pt,
+                'alamat_workshop'       => $this->input->post('alamat_workshop_p'),
+                'id_kel_workshop'       => $kelurahan_ws,
             );
             $id_perusahaan = $this->input->post('id_perusahaan');
             if($this->GeneralM->update_perusahaan($id_perusahaan, $data)){
@@ -681,5 +667,36 @@ class WorkshopC extends CI_Controller
     public function print_surat($id_perizinan){
         $this->data['perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
         $this->load->view('workshop/print_surat',$this->data);
+    }
+
+    // Reinspeksi
+    public function data_reinspeksi()
+    {
+        workshop_access2();
+        $data['title'] = 'BTKP - Data Reinspeksi';
+        $data['isi'] = $this->load->view('workshop/reinspeksi/datareinspeksi_v', $this->data, true);
+        $this->load->view('workshop/Layout', $data);
+    }
+
+    public function pilihworkshop1()
+    {
+        workshop_access2();
+        $data['title'] = 'BTKP - Pilih Workshop';
+        $data['isi'] = $this->load->view('workshop/reinspeksi/pilihworkshop1_v', $this->data, true);
+        $this->load->view('workshop/Layout', $data);
+    }
+    public function pilihworkshop2()
+    {
+        workshop_access2();
+        $data['title'] = 'BTKP - Pilih Workshop';
+        $data['isi'] = $this->load->view('workshop/reinspeksi/pilihworkshop2_v', $this->data, true);
+        $this->load->view('workshop/Layout', $data);
+    }
+    public function pilihworkshop3()
+    {
+        workshop_access2();
+        $data['title'] = 'BTKP - Pilih Workshop';
+        $data['isi'] = $this->load->view('workshop/reinspeksi/pilihworkshop3_v', $this->data, true);
+        $this->load->view('workshop/Layout', $data);
     }
 }
