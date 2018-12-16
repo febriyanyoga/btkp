@@ -117,6 +117,7 @@ $route['penerbitan'] = 'TatausahaC/post_penerbitan';
 $route['profile_t'] = 'TatausahaC/profile';
 $route['update_password_t'] = 'TatausahaC/post_update_password';
 $route['verifikasiawal/(:num)'] = 'TatausahaC/verifikasiawal_pengujian/$1';
+$route['verifikasi_1_tolak'] = 'TatausahaC/verifikasi_1_tolak';
 
 // KASIE
 $route['kasie'] = 'KasieC';

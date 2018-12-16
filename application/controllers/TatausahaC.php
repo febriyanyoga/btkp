@@ -159,6 +159,34 @@ class TatausahaC extends CI_Controller
         }
     }
 
+    public function verifikasi_1_tolak(){
+        $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
+        $this->form_validation->set_rules('id_pengujian', 'ID Pengujian');
+        $this->form_validation->set_rules('keterangan', 'keterangan');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            $keterangan=$this->input->post('keterangan');
+
+            $data = array(
+                'id_pengguna'   => $this->input->post('id_pengguna'),
+                'id_pengujian'  => $this->input->post('id_pengujian'),
+                'keterangan'    => $keterangan,
+                'status'        => $this->input->post('status'),
+            );
+
+            if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
+                $this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+                redirect('pengujian');
+            } else {
+                $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+                redirect_back();
+            }
+        }
+    }
+
     public function post_kode_billing(){
         $this->form_validation->set_rules('id_perizinan', 'ID Perizinan','required');
         $this->form_validation->set_rules('kode_billing', 'Kode Billing', 'required');

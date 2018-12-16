@@ -63,6 +63,11 @@ class GeneralM extends CI_Model{
 		return TRUE;
 	}
 
+	public function insert_persetujuan_pengujian($data){
+		$this->db->insert('pengguna_pengujian', $data);
+		return TRUE;
+	}
+
 	public function get_own_progress($id_pengguna, $id_perizinan){ //perizinan yang di verifikasi kasie
 		$this->db->select('*');
 		$this->db->from('pengguna_perizinan');

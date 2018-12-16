@@ -5,6 +5,30 @@
 			<div class="d-flex align-items-center">
 				<h2 class="page-header-title">Data Pengujian dan Sertifikasi</h2>
 			</div>
+			<?php
+			$data=$this->session->flashdata('sukses');
+			if($data!=""){ 
+				?>
+				<div class="alert alert-success">
+					<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+					<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
+					<?=$data;?>
+				</div>
+				<?php 
+			} 
+			?>
+			<?php 
+			$data2=$this->session->flashdata('error');
+			if($data2!=""){ 
+				?>
+				<div class="alert alert-danger">
+					<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+					<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
+					<?=$data2;?>
+				</div>
+				<?php 
+			} 
+			?>
 		</div>
 	</div>
 	<!-- End Page Header -->
@@ -51,7 +75,7 @@
 												<th class="text-center">Nama Alat</th>
 												<th class="text-center">Merk</th>
 												<th class="text-center">Tipe</th>
-												<th class="text-center">Perusahaan</th>
+												<th class="text-center">Instansi</th>
 												<th class="text-center">Aksi</th>
 											</tr>
 										</thead>
@@ -59,22 +83,24 @@
 											<?php
 											$i=0;
 											foreach ($pengujian as $ujian) {
-												$i++;
-												$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
-												?>
-												<tr>
-													<td class="text-center"><?php echo $i;?></td>
-													<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
-													<td class="text-center"><?php echo $ujian->nama_alat?></td>
-													<td class="text-center"><?php echo $ujian->merk?></td>
-													<td class="text-center"><?php echo $ujian->tipe?></td>
-													<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
-													<td class="text-center">
-														<a href="<?php echo site_url('verifikasiawal/'.$ujian->id_pengujian); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
-														</a>
-													</td>
-												</tr>
-												<?php
+												if($ujian->status_pengajuan == 'selesai'){
+													$i++;
+													$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
+													?>
+													<tr>
+														<td class="text-center"><?php echo $i;?></td>
+														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+														<td class="text-center"><?php echo $ujian->nama_alat?></td>
+														<td class="text-center"><?php echo $ujian->merk?></td>
+														<td class="text-center"><?php echo $ujian->tipe?></td>
+														<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
+														<td class="text-center">
+															<a href="<?php echo site_url('verifikasiawal/'.$ujian->id_pengujian); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+															</a>
+														</td>
+													</tr>
+													<?php
+												}
 											}
 											?>
 										</tbody>

@@ -265,14 +265,14 @@
 				<h4 class="modal-title">Persetujuan Perizinan</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
-			<form action="" method="post">
+			<form action="<?php echo site_url('verifikasi_1_tolak')?>" method="post">
 				<div class="modal-body">
 					<label for="keterangan" class="label">Keterangan : </label>
 					<textarea type="text" name="keterangan"class="form-control" placeholder="Keterangan . . ." required="required"></textarea>
 					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna'); ?>" >
-					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
+					<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
+					<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
 				</div>
-
 				<div class="modal-footer">
 					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
 					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success">
@@ -292,8 +292,9 @@
 			<form action="<?php echo site_url('kode_billing'); ?>" method="post">
 				<div class="modal-body">
 					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna'); ?>" >
-					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
-					<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
+					<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
+					<input type="hidden" name="status" class="form-control" placeholder="" value="diterima" required="required">
+					<input type="hidden" name="keterangan" class="form-control" value="Memenuhi Syarat" required="required">
 
 
 					<label for="kode_billing" class="label">Kode Billing : </label>
@@ -309,7 +310,7 @@
 						}
 						?>
 					</select>
-					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
+					<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
 					<label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
 					<input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
 					<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
