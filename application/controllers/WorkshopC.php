@@ -530,6 +530,35 @@ class WorkshopC extends CI_Controller
         }
     }
 
+    public function konfirmasi_pembayaran_2(){
+        $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required');
+        $this->form_validation->set_rules('atas_nama', 'Atas Nama', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else {
+            $upload = $this->upload_file('foto_bukti_trf');
+            if($upload['result'] == 'success'){
+                $data = array(
+                    'nama_bank_2'      => $this->input->post('nama_bank'),
+                    'atas_nama_2'      => $this->input->post('atas_nama'),
+                    'foto_bukti_trf_2' => $upload['file_name'],
+                );
+                $id_pengujian = $this->input->post('id_pengujian');
+                if($this->WorkshopM->selesai_p($id_pengujian, $data)) {
+                    $this->session->set_flashdata('sukses', 'Konfirmasi pembayaran berhasil diunggah');
+                    redirect_back();
+                } else {
+                    $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah 1');
+                    redirect_back();
+                }
+            }else{
+                $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah 2');
+                redirect_back();
+            }
+        }
+    }
+
     public function post_update_password(){
         $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
         $this->form_validation->set_rules('email_pengguna', 'Email Pengguna', 'required');
@@ -664,9 +693,19 @@ class WorkshopC extends CI_Controller
         $this->load->view('workshop/invoice_v_pengujian',$this->data);
     }
 
+    public function cetak_invoice_ujian2($id_pengujian){
+        $this->data['pengujian'] = $this->WorkshopM->get_pengujian_by_id2($id_pengujian)->row();
+        $this->load->view('workshop/invoice_v_pengujian2',$this->data);
+    }
+
     public function print_surat($id_perizinan){
         $this->data['perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
         $this->load->view('workshop/print_surat',$this->data);
+    }
+
+    public function print_sertifikat_pengujian($id_pengujian){
+        $this->data['pengujian'] = $this->WorkshopM->get_pengujian_by_id2($id_pengujian)->row();
+        $this->load->view('workshop/print_surat_pengujian',$this->data);
     }
 
     // Reinspeksi

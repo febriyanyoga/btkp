@@ -297,9 +297,27 @@
                                                                 <td class="text-center"><?php echo $ujian->tipe?></td>
                                                                 <td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
                                                                 <td class="text-center">
-
+                                                                    <?php
+                                                                    $tgl_expired = date('Y-m-d', strtotime($ujian->tgl_expired));
+                                                                    $sekarang = date('Y-m-d');
+                                                                    if($sekarang > $tgl_expired){
+                                                                        ?>
+                                                                        <span style="width:100px;"><span class="badge-text badge-text-small info">aktif</span></span>
+                                                                        <?php
+                                                                    }else{
+                                                                        ?>
+                                                                        <span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span>
+                                                                        <?php
+                                                                    }
+                                                                    ?>
                                                                 </td>
-                                                                <td class="td-actions text-center"></td>
+                                                                <td class="td-actions text-center">
+                                                                    <a href="<?php echo site_url('print_sertifikat_pengujian/'.$ujian->id_pengujian); ?>" target="_BLANK" title="cetak sertifikat"><i class="la la-sticky-note"></i></a>
+                                                                    <a href="<?php echo site_url('print_label/'.$ujian->id_pengujian); ?>" target="_BLANK" title="Cetak Label"><i class="la la-sticky-note"></i></a>
+                                                                    <hr>
+                                                                    <a href="<?php echo site_url('cetak_invoice_ujian/').$ujian->id_pengujian;?>" target="_BLANK" title="Cetak bukti Bayar tagihan pengujian lab"><i class="la la-print"></i></a>
+                                                                    <a href="<?php echo site_url('cetak_invoice_ujian2/').$ujian->id_pengujian;?>" target="_BLANK" title="Cetak bukti Bayar tagihan pencetakan label"><i class="la la-print"></i></a>
+                                                                </td>
                                                             </tr>
                                                             <?php
                                                             $i++;

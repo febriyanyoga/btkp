@@ -183,8 +183,38 @@ class KasieC extends CI_Controller{
     public function verifikasiakhir_pengujian($id_pengujian)
     {
     	$data['title'] = 'BTKP - Verifikasi Permohonan Perizinan';
-        $this->data['pengujian'] = $this->TatausahaM->get_pengujian_by_id($id_pengujian)->row();
+    	$this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
+    	$this->data['pengujian'] = $this->TatausahaM->get_pengujian_by_id($id_pengujian)->row();
     	$data['isi'] = $this->load->view('kasie/pengujian/verifikasiakhir_v', $this->data, true);
     	$this->load->view('kasie/Layout', $data);
+    }
+
+    public function verifikasi_akhir(){
+    	$this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
+    	$this->form_validation->set_rules('id_pengujian', 'ID Pengujian','required');
+    	$this->form_validation->set_rules('keterangan', 'keterangan');
+    	$this->form_validation->set_rules('status', 'Status', 'required');
+    	if ($this->form_validation->run() == false) {
+    		$this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+    		redirect_back();
+    	}else{
+    		$keterangan=$this->input->post('keterangan');
+
+    		$data = array(
+    			'id_pengguna'   => $this->input->post('id_pengguna'),
+    			'id_pengujian'  => $this->input->post('id_pengujian'),
+    			'keterangan'    => $keterangan,
+    			'status'        => $this->input->post('status'),
+    		);
+
+    		if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
+    			$this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+    			redirect('pengujiankasie');
+    		} else {
+    			$this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+    			redirect('pengujiankasie');
+    			// redirect_back();
+    		}
+    	}
     }
 }

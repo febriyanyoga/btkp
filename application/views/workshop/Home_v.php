@@ -368,7 +368,7 @@
                                             				<th class="text-center">Tipe/Model Alat</th>
                                             				<th class="text-center">Tanggal Pengajuan</th>
                                             				<th class="text-center">Status</th>
-                                            				<th class="text-center">Actions</th>
+                                            				<th class="text-center">Aksi</th>
                                             			</tr>
                                             		</thead>
                                             		<tbody>
@@ -377,110 +377,162 @@
                                             			$j=0;
                                             			foreach ($data_pengujian as $ujian) {
                                             				if($ujian->status_pengajuan == 'selesai'){
-                                            					$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
-                                            					$tgl_pengajuan_p = date('Ymd', strtotime($ujian->created_at_ujian));
-                                            					if($ada_status > 0){
-                                            						$status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row()->status;
-                                            						if($status != 'ditolak'){
-                                            							$i++;
-                                            							?>
-                                            							<tr>
-                                            								<td class="text-center"><?php echo $i;?></td>
-                                            								<td class="text-center"><?php echo $ujian->id_pengujian.'/'.$tgl_pengajuan_p?></td>
-                                            								<td class="text-center"><?php echo $ujian->nama_alat?></td>
-                                            								<td class="text-center"><?php echo $ujian->tipe?></td>
-                                            								<?php
-                                            								$tgl_pengajuan_u = date('Y-m-d', strtotime($ujian->created_at_ujian));
+                                            					if($ujian->status_pembayaran_2 != 'paid'){
+                                            						$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
+                                            						$tgl_pengajuan_p = date('Ymd', strtotime($ujian->created_at_ujian));
+                                            						if($ada_status > 0){
+                                            							$status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row()->status;
+                                            							if($status != 'ditolak'){
+                                            								$i++;
                                             								?>
-                                            								<td class="text-center"><?php echo date_indo($tgl_pengajuan_u)?></td>
-                                            								<td class="text-center">
+                                            								<tr>
+                                            									<td class="text-center"><?php echo $i;?></td>
+                                            									<td class="text-center"><?php echo $ujian->id_pengujian.'/'.$tgl_pengajuan_p?></td>
+                                            									<td class="text-center"><?php echo $ujian->nama_alat?></td>
+                                            									<td class="text-center"><?php echo $ujian->tipe?></td>
                                             									<?php
-                                            									if($ujian->foto_bukti_trf_1 != ""){
-                                            										if($ujian->status_pembayaran_1 == "paid"){
-                                            											if($ujian->file_hasil_pengujian != ""){
-                                            												?>
-                                            												<span style="width:100px;"><span class="badge-text badge-text-small default">Proses</span></span>
-                                            												<?php
+                                            									$tgl_pengajuan_u = date('Y-m-d', strtotime($ujian->created_at_ujian));
+                                            									?>
+                                            									<td class="text-center"><?php echo date_indo($tgl_pengajuan_u)?></td>
+                                            									<td class="text-center">
+                                            										<?php
+                                            										if($ujian->foto_bukti_trf_1 != ""){
+                                            											if($ujian->status_pembayaran_1 == "paid"){
+                                            												if($ujian->file_hasil_pengujian != ""){
+                                            													if($ujian->kode_billing_2 != "" && $ujian->foto_bukti_trf_2 ==""){
+                                            														?>
+                                            														<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Pembayaran</span></span>
+                                            														<hr>
+                                            														<a href="<?php echo site_url('cetak_invoice_ujian2/').$ujian->id_pengujian; ?>" class="btn btn-sm btn-info" target="_BLANK"><i class="la la-print"></i> Invoice</a>
+                                            														<?php
+                                            													}else{
+                                            														if ($ujian->no_awal =="") {
+                                            															?>
+                                            															<span title="Proses validasi pembayaran dan penerbitan" style="width:100px;"><span class="badge-text badge-text-small warning">Proses</span></span>
+                                            															<?php
+                                            														}else{
+                                            															?>
+                                            															<span style="width:100px;"><span class="badge-text badge-text-small default">Proses</span></span>
+                                            															<?php
+                                            														}
+                                            													}
+                                            												}else{
+                                            													?>
+                                            													<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Verifikasi Pembayaran Berhasil</span></span>
+                                            													<?php
+                                            												}
                                             											}else{
                                             												?>
-                                            												<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Verifikasi Pembayaran Berhasil</span></span>
+                                            												<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Verifikasi Pembayaran</span></span>
                                             												<?php
                                             											}
                                             										}else{
                                             											?>
-                                            											<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Verifikasi Pembayaran</span></span>
+                                            											<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Pembayaran</span></span>
+                                            											<hr>
+                                            											<a href="<?php echo site_url('cetak_invoice_ujian/').$ujian->id_pengujian; ?>" class="btn btn-sm btn-info" target="_BLANK"><i class="la la-print"></i> Invoice</a>
                                             											<?php
                                             										}
-                                            									}else{
                                             										?>
-                                            										<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Pembayaran</span></span>
-                                            										<hr>
-                                            										<a href="<?php echo site_url('cetak_invoice_ujian/').$ujian->id_pengujian; ?>" class="btn btn-sm btn-info" target="_BLANK"><i class="la la-print"></i> Invoice</a>
+                                            									</td>
+                                            									<td class="text-center">
                                             										<?php
-                                            									}
-                                            									?>
-                                            								</td>
-                                            								<td class="text-center">
-                                            									<?php
-                                            									if($ujian->foto_bukti_trf_1 != ""){
-                                            										echo "-";
-                                            									}else{
+                                            										if($ujian->foto_bukti_trf_1 != ""){
+                                            											if($ujian->kode_billing_2 != "" && $ujian->foto_bukti_trf_2 == ""){
+                                            												?>
+                                            												<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi2-<?php echo $ujian->id_pengujian; ?>">Konfirmasi</a>
+                                            												<?php
+                                            											}else{
+                                            												echo "-";
+                                            											}
+                                            										}else{
+                                            											?>
+                                            											<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ujian->id_pengujian; ?>">Konfirmasi</a>
+                                            											<?php
+                                            										}
                                             										?>
-                                            										<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ujian->id_pengujian; ?>">Konfirmasi</a>
-                                            										<?php
-                                            									}
-                                            									?>
-                                            								</td>
-                                            							</tr>
+                                            									</td>
+                                            								</tr>
 
-                                            							<div class="modal" id="konfirmasi-<?php echo $ujian->id_pengujian; ?>">
-                                            								<div class="modal-dialog modal-md">
-                                            									<div class="modal-content">
-                                            										<div class="modal-header">
-                                            											<h4 class="modal-title">Konfirmasi Pembayaran</h4>
-                                            											<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            								<div class="modal" id="konfirmasi-<?php echo $ujian->id_pengujian; ?>">
+                                            									<div class="modal-dialog modal-md">
+                                            										<div class="modal-content">
+                                            											<div class="modal-header">
+                                            												<h4 class="modal-title">Konfirmasi Pembayaran</h4>
+                                            												<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            											</div>
+                                            											<form action="<?php echo site_url('konfirmasi_ujian_1'); ?>" enctype="multipart/form-data" method="post">
+                                            												<div class="modal-body">
+                                            													<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
+                                            													<label for="nama_bank" class="label">Nama Bank : </label>
+                                            													<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank Anda"
+                                            													required="required">
+
+                                            													<label for="atas_nama" class="label">Atas Nama : </label>
+                                            													<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama bank anda"
+                                            													required="required">
+
+                                            													<label for="foto_bukti_trf" class="label">Unggah Bukti: </label>
+                                            													<input type="file" name="foto_bukti_trf" value="" class="form-control" required="required">
+                                            												</div>
+                                            												<div class="modal-footer">
+                                            													<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+                                            													<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin data yang dimasukkan sudah benar?')">
+                                            												</div>
+                                            											</form>
                                             										</div>
-                                            										<form action="<?php echo site_url('konfirmasi_ujian_1'); ?>" enctype="multipart/form-data" method="post">
-                                            											<div class="modal-body">
-                                            												<input type="text" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
-                                            												<label for="nama_bank" class="label">Nama Bank : </label>
-                                            												<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank Anda"
-                                            												required="required">
-
-                                            												<label for="atas_nama" class="label">Atas Nama : </label>
-                                            												<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama bank anda"
-                                            												required="required">
-
-                                            												<label for="foto_bukti_trf" class="label">Unggah Bukti: </label>
-                                            												<input type="file" name="foto_bukti_trf" value="" class="form-control" required="required">
-                                            											</div>
-                                            											<div class="modal-footer">
-                                            												<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-                                            												<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin data yang dimasukkan sudah benar?')">
-                                            											</div>
-                                            										</form>
                                             									</div>
                                             								</div>
-                                            							</div>
+
+                                            								<div class="modal" id="konfirmasi2-<?php echo $ujian->id_pengujian; ?>">
+                                            									<div class="modal-dialog modal-md">
+                                            										<div class="modal-content">
+                                            											<div class="modal-header">
+                                            												<h4 class="modal-title">Konfirmasi Pembayaran</h4>
+                                            												<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            											</div>
+                                            											<form action="<?php echo site_url('konfirmasi_ujian_2'); ?>" enctype="multipart/form-data" method="post">
+                                            												<div class="modal-body">
+                                            													<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
+                                            													<label for="nama_bank" class="label">Nama Bank : </label>
+                                            													<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank Anda"
+                                            													required="required">
+
+                                            													<label for="atas_nama" class="label">Atas Nama : </label>
+                                            													<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama bank anda"
+                                            													required="required">
+
+                                            													<label for="foto_bukti_trf" class="label">Unggah Bukti: </label>
+                                            													<input type="file" name="foto_bukti_trf" value="" class="form-control" required="required">
+                                            												</div>
+                                            												<div class="modal-footer">
+                                            													<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+                                            													<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin data yang dimasukkan sudah benar?')">
+                                            												</div>
+                                            											</form>
+                                            										</div>
+                                            									</div>
+                                            								</div>
+                                            								<?php
+                                            							}
+                                            						}elseif($ada_status == 0){
+                                            							$j++;
+                                            							?>
+                                            							<tr>
+                                            								<td class="text-center"><?php echo $j;?></td>
+                                            								<td class="text-center"><?php echo $ujian->id_pengujian.'/'.$tgl_pengajuan_p?></td>
+                                            								<td class="text-center"><?php echo $ujian->nama_alat?></td>
+                                            								<td class="text-center"><?php echo $ujian->tipe?></td>
+                                            								<?php
+                                            								$tgl_pengajuan_u = date('Y-m-d', strtotime($ujian->created_at_ujian));?>
+                                            								<td class="text-center"><?php echo date_indo($tgl_pengajuan_u)?></td>
+                                            								<td class="text-center">
+                                            									<span style="width:100px;"><span class="badge-text badge-text-small default">Proses</span></span>
+                                            								</td>
+                                            								<td class="text-center">-</td>
+                                            							</tr>
                                             							<?php
                                             						}
-                                            					}elseif($ada_status == 0){
-                                            						$j++;
-                                            						?>
-                                            						<tr>
-                                            							<td class="text-center"><?php echo $j;?></td>
-                                            							<td class="text-center"><?php echo $ujian->id_pengujian.'/'.$tgl_pengajuan_p?></td>
-                                            							<td class="text-center"><?php echo $ujian->nama_alat?></td>
-                                            							<td class="text-center"><?php echo $ujian->tipe?></td>
-                                            							<?php
-                                            							$tgl_pengajuan_u = date('Y-m-d', strtotime($ujian->created_at_ujian));?>
-                                            							<td class="text-center"><?php echo date_indo($tgl_pengajuan_u)?></td>
-                                            							<td class="text-center">
-                                            								<span style="width:100px;"><span class="badge-text badge-text-small default">Proses</span></span>
-                                            							</td>
-                                            							<td class="text-center">-</td>
-                                            						</tr>
-                                            						<?php
                                             					}
                                             				}
                                             			}

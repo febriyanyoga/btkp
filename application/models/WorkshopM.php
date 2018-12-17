@@ -49,7 +49,7 @@ class WorkshopM extends CI_Model{
 		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = pengujian.id_jenis_alat');
 		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
 
-		// $this->db->where('status_pengajuan', 'belum');
+		// $this->db->where('pengujian.id_pengujian',$id_pengujian);
 		return $this->db->get('pengujian');
 	}
 

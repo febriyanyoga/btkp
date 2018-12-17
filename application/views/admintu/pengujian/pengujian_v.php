@@ -57,14 +57,10 @@
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5"
-								aria-selected="false">Validasi Pembayaran 2</a>
+								aria-selected="false">Validasi Pembayaran 2 dan Penerbitan</a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="base-tab-6" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6"
-								aria-selected="false">Penerbitan</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="base-tab-7" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6"
 								aria-selected="false">Data Sertifikasi</a>
 							</li>
 						</ul>
@@ -158,6 +154,7 @@
 																		<h4 class="modal-title">Validasi Pembayaran</h4>
 																		<button type="button" class="close" data-dismiss="modal">&times;</button>
 																	</div>
+
 																	<form action="<?php echo site_url('validasi_1'); ?>" method="post">
 																		<div class="modal-body">
 																			<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
@@ -312,7 +309,7 @@
                                                         						<h4 class="modal-title">Masukkan Kode Billing</h4>
                                                         						<button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         					</div>
-                                                        					<form action="<?php echo site_url('kode_billing_2'); ?>" method="post">
+                                                        					<form action="<?php echo site_url('kode_billing_2')?>" method="post">
                                                         						<div class="modal-body">
                                                         							<label for="kode_billing_2" class="label">Kode Billing : </label>
                                                         							<input type="number" name="kode_billing_2" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
@@ -329,8 +326,8 @@
                                                         							</select>
 
                                                         							<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
-                                                        							<label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
-                                                        							<input type="number" name="jumlah_tagihan2" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
+                                                        							<label for="jumlah_tagihan_2" class="label">Jumlah Tagihan: </label>
+                                                        							<input type="number" name="jumlah_tagihan_2" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
                                                         							<label for="masa_berlaku_billing_2" class="label">Masa Berlaku Sampai: </label>
                                                         							<input type="date" name="masa_berlaku_billing_2" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
 
@@ -365,26 +362,76 @@
                             					<th class="text-center">Merk</th>
                             					<th class="text-center">Tipe</th>
                             					<th class="text-center">Perusahaan</th>
-                            					<th class="text-center">Status</th>
+                            					<!-- <th class="text-center">Status</th> -->
                             					<th class="text-center">Aksi</th>
                             				</tr>
                             			</thead>
                             			<tbody>
+                            				<?php 
+                            				$i=0;
+                            				foreach ($pengujian as $ujian) {
+                            					if($ujian->foto_bukti_trf_2 != "" && $ujian->status_pembayaran_2 != 'paid'){
+                            						$i++;
+                            						$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
+                            						?>
+                            						<tr>
+                            							<td class="text-center"><?php echo $i;?></td>
+                            							<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+                            							<td class="text-center"><?php echo $ujian->nama_alat?></td>
+                            							<td class="text-center"><?php echo $ujian->merk?></td>
+                            							<td class="text-center"><?php echo $ujian->tipe?></td>
+                            							<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
+                            							<!-- <td class="text-center"><a</td> -->
+                            							<td class="text-center">
+                            								<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian?>"><i class="la la-pencil"></i>Validasi</i></a>
+                            							</td>
+                            						</tr>
 
-                            				<tr>
-                            					<td class="text-center">1</td>
-                            					<td class="text-center">21 November 2018</td>
-                            					<td class="text-center">Life Jacket</td>
-                            					<td class="text-center">Samsung</td>
-                            					<td class="text-center">67A</td>
-                            					<td class="text-center">PT. AAA</td>
-                            					<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>
-                            					<td class="text-center">
-                            						modal validasi podo karo pengujian
-                            						<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling"><i class="la la-pencil"></i>Validasi</i>
-                            						</a>
-                            					</td>
-                            				</tr>
+                            						<div class="modal" id="kode_biling2-<?php echo $ujian->id_pengujian?>">
+                            							<div class="modal-dialog modal-md">
+                            								<div class="modal-content">
+                            									<div class="modal-header">
+                            										<h4 class="modal-title">Validasi Pembayaran</h4>
+                            										<button type="button" class="close" data-dismiss="modal">&times;</button>
+                            									</div>
+
+                            									<form action="<?php echo site_url('validasi_2'); ?>" method="post">
+                            										<div class="modal-body">
+                            											<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
+                            											<label for="keterangan" class="label">Bank Transfer : </label>
+                            											<input type="text" name="nama_bank" value="<?php echo $ujian->nama_bank_2; ?>" class="form-control" required="required" readonly>
+                            											<label for="keterangan" class="label">Atas Nama : </label>
+                            											<input type="text" name="atas_nama" value="<?php echo $ujian->atas_nama_2; ?>" class="form-control" required="required" readonly>
+                            											<label for="" class="label">Foto Bukti Transfer : </label><br>
+                            											<img style="max-width: 470px;" src="<?php echo base_url().'assets/upload/'.$ujian->foto_bukti_trf_2;?>"><br>
+                            											<label for="status_pembayaran_2" class="label">Status Pembayaran : </label>
+                            											<select class="form-control" name="status_pembayaran_2">
+                            												<option value="paid">Telah Dibayar</option>
+                            												<option value="unpaid">Belum Dibayar</option>
+                            											</select>
+                            											<hr>
+                            											<label for="tgl_terbit" class="label">Tanggal Terbit : </label>
+                            											<input type="date" name="tgl_terbit" value="" class="form-control" required="required">
+                            											<label for="tgl_expired	" class="label">Tanggal Berakhir : </label>
+                            											<input type="date" name="tgl_expired" value="" class="form-control" required="required">
+                            											<label for="no_awal" class="label">Nomor Label Awal : </label>
+                            											<input type="number" name="no_awal" value="" class="form-control" required="required">
+                            											<label for="no_akhir" class="label">Nomor Label Akhir : </label>
+                            											<input type="number" name="no_akhir" value="" class="form-control" required="required">
+
+                            										</div>
+                            										<div class="modal-footer">
+                            											<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+                            											<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin akan validasi pembayaran ini dan menerbitkan sertifikat?')">
+                            										</div>
+                            									</form>
+                            								</div>
+                            							</div>
+                            						</div>
+                            						<?php
+                            					}
+                            				}
+                            				?>
                             			</tbody>
                             		</table>
                             	</div>
@@ -401,59 +448,35 @@
                             					<th class="text-center">Tipe</th>
                             					<th class="text-center">Perusahaan</th>
                             					<th class="text-center">Status</th>
-                            					<th class="text-center">Aksi</th>
-                            				</tr>
-                            			</thead>
-                            			<tbody>
-
-                            				<tr>
-                            					<td class="text-center">1</td>
-                            					<td class="text-center">21 November 2018</td>
-                            					<td class="text-center">Life Jacket</td>
-                            					<td class="text-center">Samsung</td>
-                            					<td class="text-center">67A</td>
-                            					<td class="text-center">PT. AAA</td>
-                            					<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>
-                            					<td class="text-center">
-                            						modal penerbitan podo karo pengujian
-                            						ditambah 2 field = no.mulai , no. akhir
-                            						<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling"><i class="la la-pencil"></i>Penerbitan</i>
-                            						</a>
-                            					</td>
-                            				</tr>
-                            			</tbody>
-                            		</table>
-                            	</div>
-                            </div>
-                            <div class="tab-pane fade" id="tab-7" role="tabpanel" aria-labelledby="base-tab-7">
-                            	<div class="table-responsive">
-                            		<table id="myTable7" class="table mb-0">
-                            			<thead>
-                            				<tr>
-                            					<th class="text-center">No</th>
-                            					<th class="text-center">Tanggal Pengajuan</th>
-                            					<th class="text-center">Nama Alat</th>
-                            					<th class="text-center">Merk</th>
-                            					<th class="text-center">Tipe</th>
-                            					<th class="text-center">Perusahaan</th>
-                            					<th class="text-center">Status</th>
                             					<th class="text-center">Masa Berlaku</th>
                             				</tr>
                             			</thead>
                             			<tbody>
-
-                            				<tr>
-                            					<td class="text-center">1</td>
-                            					<td class="text-center">21 November 2018</td>
-                            					<td class="text-center">Life Jacket</td>
-                            					<td class="text-center">Samsung</td>
-                            					<td class="text-center">67A</td>
-                            					<td class="text-center">PT. AAA</td>
-                            					<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>
-                            					<td class="text-center">
-                            						22 Desember 2018- 22 Desember 2019
-                            					</td>
-                            				</tr>
+                            				<?php 
+                            				$i=0;
+                            				foreach ($pengujian as $ujian) {
+                            					if($ujian->status_pembayaran_1 == "paid" && $ujian->status_pembayaran_2 == 'paid'){
+                            						$i++;
+                            						$tgl_pengajuan 	= date('Y-m-d', strtotime($ujian->created_at_ujian));
+                            						$tgl_terbit 	= date('Y-m-d', strtotime($ujian->tgl_terbit));
+                            						$tgl_expired 	= date('Y-m-d', strtotime($ujian->tgl_expired));
+                            						?>
+                            						<tr>
+                            							<td class="text-center"><?php echo $i;?></td>
+                            							<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+                            							<td class="text-center"><?php echo $ujian->nama_alat?></td>
+                            							<td class="text-center"><?php echo $ujian->merk?></td>
+                            							<td class="text-center"><?php echo $ujian->tipe?></td>
+                            							<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
+                            							<td class="text-center"><span style="width:100px; "><span class="badge-text badge-text-small success">Diterima</span></span></td>
+                            							<td class="text-center">
+                            								<?php echo date_indo($tgl_terbit).' - '.date_indo($tgl_expired);?>
+                            							</td>
+                            						</tr>
+                            						<?php
+                            					}
+                            				}
+                            				?>
                             			</tbody>
                             		</table>
                             	</div>
