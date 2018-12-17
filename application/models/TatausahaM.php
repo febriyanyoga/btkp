@@ -40,9 +40,16 @@ class TatausahaM extends CI_Model{
 		$this->db->where('P.id_perizinan', $id_perizinan);
 		return $this->db->get();
 	}
+
 	public function insert_billing($id_perizinan, $data){
 		$this->db->where('id_perizinan', $id_perizinan);
 		$this->db->update('perizinan',$data);
+		return TRUE;
+	}
+
+	public function insert_billing_ujian($id_pengujian, $data){
+		$this->db->where('id_pengujian', $id_pengujian);
+		$this->db->update('pengujian',$data);
 		return TRUE;
 	}
 

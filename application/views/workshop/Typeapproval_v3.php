@@ -68,34 +68,34 @@
 										</div>
 										<div id="accordion-icon-right" class="accordion">
 											<div class="widget has-shadow">
-												<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne" aria-expanded="true"><div class="card-title w-100">1. Identitas Perusahaan</div></a>
+												<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne" aria-expanded="true"><div class="card-title w-100">1. Identitas Instansi</div></a>
 												<div id="IconRightCollapseOne" class="card-body collapse show" data-parent="#accordion-icon-right">
 													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Nama Perusahaan</div>
+														<div class="col-sm-3 form-control-label d-flex align-items-center">Nama Instansi</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->nama_perusahaan?></div>
 													</div>
 													<div class="form-group row mb-5">
 														<?php
 														$alamat_pt_detail = $this->WorkshopM->detail_alamat($data_pengujian->id_kel_perusahaan)->row();
 														?>
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Kantor Perusahaan</div>
+														<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Kantor Instansi</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->alamat_perusahaan.'<br>'.$alamat_pt_detail->nama_kelurahan.', '.$alamat_pt_detail->nama_kecamatan.', '.$alamat_pt_detail->nama_kabupaten_kota.', '.$alamat_pt_detail->nama_propinsi;?></div>
 													</div>
 												</div>
 												<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
-													<div class="card-title w-100">2. Informasi Kontak Perusahaan</div>
+													<div class="card-title w-100">2. Informasi Kontak Instansi</div>
 												</a>
 												<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
 													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor Telepon Perusahaan</div>
+														<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor Telepon Instansi</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->no_tlp?></div>
 													</div>
 													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Email Perusahaan</div>
+														<div class="col-sm-3 form-control-label d-flex align-items-center">Email Instansi</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->email_perusahaan?></div>
 													</div>
 													<div class="form-group row mb-5">
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Fax Perusahaan</div>
+														<div class="col-sm-3 form-control-label d-flex align-items-center">Fax Instansi</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->fax?></div>
 													</div>
 												</div>

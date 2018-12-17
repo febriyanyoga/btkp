@@ -354,7 +354,7 @@ table th, table td {
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9x53YKSU8UMKkk-Y9duGKfflBGI-rjbNUNAMmBax-b2-UJOxC" style="max-width: 100px; position: absolute; left: 35px; top: 15px;">
       <div style="font-size: 20px; font-weight: bold;">
         <span>Balai Teknologi Kelautan dan Perlayaran<hr>
-          <span style="text-align: right; right: 30px; position: absolute; font-size: 12pt;">#TG<?php echo $perizinan->kode_billing;?>/INV</span>
+          <span style="text-align: right; right: 30px; position: absolute; font-size: 12pt;">#TG<?php echo $pengujian->kode_billing_1;?>/INV</span>
         </div>
         <div>
           <span>Jl. Raya Ancol Baru No. 1 Kalijabat, Tanjung Priok</span><br>
@@ -369,7 +369,7 @@ table th, table td {
       <table >
         <tr> <th style="background-color: #e6e7e7; border-bottom: 0px solid; text-align: center; font-size:16px; font-weight: bold; color:#555;">
           <?php 
-          $tgl_berlaku   = date('Y-m-d', strtotime($perizinan->masa_berlaku_billing));
+          $tgl_berlaku   = date('Y-m-d', strtotime($pengujian->masa_berlaku_billing_1));
           echo longdate_indo($tgl_berlaku);
           ?>
         </th></tr>
@@ -379,14 +379,17 @@ table th, table td {
     <section id="items">
       <table style="margin-top: -45px;" >
         <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Lakukan Pembayaran Sebesar :</th></tr>
-        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;"><?php echo "Rp".number_format($perizinan->jumlah_tagihan, 0,',','.').",-";?></th></tr>
+        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;"><?php echo "Rp".number_format($pengujian->jumlah_tagihan_1, 0,',','.').",-";?></th></tr>
       </table>
     </section>
 
 
     <section id="items">
       <table style="margin-top: -45px;">
-        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Transfer dapat dilakukan ke nomor rekening Account <?php echo $perizinan->nama_bank?> berikut ini :</th></tr>
+        <?php
+        $bank = $this->WorkshopM->cek_bank_btkp($pengujian->id_bank_btkp_1)->row();
+        ?>
+        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Transfer dapat dilakukan ke nomor rekening Account <?php echo $bank->nama_bank?> berikut ini :</th></tr>
         <tr><th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;">8608121710958300</th></tr>
       </table>
     </section>
@@ -395,12 +398,12 @@ table th, table td {
     <section id="items">
       <table style="margin-top: -45px;" >
         <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Dengan Nomor Billing  :</th></tr>
-        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;"><?php echo $perizinan->kode_billing?></th></tr>
+        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;"><?php echo $pengujian->kode_billing_1?></th></tr>
       </table>
     </section>
 
     <section id="invoice-title-number">
-      <span id="number">Berikut adalah rincian tagihan pembayaran :</span>
+      <span id="number">Berikut adalah rincian tagihan pembayaran Jasa Pengujian Lab:</span>
     </section>
 
     <div class="clearfix"></div>
@@ -409,38 +412,28 @@ table th, table td {
         <tr>
           <th  style="text-align: left;">Nama Perusahaan</th>
           <th  style="text-align: left; width: 40px;">:</th>
-          <th  style="text-align: left;"><?php echo $perizinan->nama_perusahaan?></th>
+          <th  style="text-align: left;"><?php echo $pengujian->nama_perusahaan?></th>
         </tr>
         <tr>
           <th  style="text-align: left;">Nama Alat</th>
           <th  style="text-align: left; width: 40px;">:</th>
-          <th  style="text-align: left;"><?php echo $perizinan->nama_alat?></th>
+          <th  style="text-align: left;"><?php echo $pengujian->nama_alat?></th>
         </tr>
-        <?php 
-        if($perizinan->status_pembayaran == 'paid'){
-          ?>
-          <tr>
-            <th  style="text-align: left;">Nomor Sertifikat</th>
-            <th  style="text-align: left; width: 40px;">:</th>
-            <th  style="text-align: left;">
-              <?php
-              echo $perizinan->no_spk;
-              ?>
-            </th>
-          </tr>
-          <tr>
-            <th  style="text-align: left;">Masa Berlaku</th>
-            <th  style="text-align: left; width: 40px;">:</th>
-            <?php
-            $tgl_terbit   = date('Y-m-d', strtotime($perizinan->tgl_terbit));
-            $tgl_expired  = date('Y-m-d', strtotime($perizinan->tgl_expired));
-
-            ?>
-            <th  style="text-align: left;"><?php echo date_indo($tgl_terbit).' <b>sampai</b> '.date_indo($tgl_expired);?></th>
-          </tr>
-          <?php
-        }
-        ?>
+        <tr>
+          <th  style="text-align: left;">Merk Alat</th>
+          <th  style="text-align: left; width: 40px;">:</th>
+          <th  style="text-align: left;"><?php echo $pengujian->merk?></th>
+        </tr>
+        <tr>
+          <th  style="text-align: left;">Tipe Alat</th>
+          <th  style="text-align: left; width: 40px;">:</th>
+          <th  style="text-align: left;"><?php echo $pengujian->tipe?></th>
+        </tr>
+        <tr>
+          <th  style="text-align: left;">Nama Pabrikan</th>
+          <th  style="text-align: left; width: 40px;">:</th>
+          <th  style="text-align: left;"><?php echo $pengujian->pabrikan?></th>
+        </tr>
        <!--  <tr>
           <td  style="text-align: center;">Adminis</td>
           <td  style="text-align: center;">2</td>
@@ -470,7 +463,7 @@ table th, table td {
     </section>
 
     <?php
-    if($perizinan->status_pembayaran == 'paid'){
+    if($pengujian->status_pembayaran_1 == 'paid'){
       ?>
       <img style="max-width: 265px; margin-top: -315px; margin-left: 600px;"  src="<?php echo base_url()?>assets/img/lunas.png">
       <?php

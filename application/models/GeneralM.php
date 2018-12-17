@@ -63,6 +63,11 @@ class GeneralM extends CI_Model{
 		return TRUE;
 	}
 
+	public function insert_persetujuan_pengujian($data){
+		$this->db->insert('pengguna_pengujian', $data);
+		return TRUE;
+	}
+
 	public function get_own_progress($id_pengguna, $id_perizinan){ //perizinan yang di verifikasi kasie
 		$this->db->select('*');
 		$this->db->from('pengguna_perizinan');
@@ -105,6 +110,26 @@ class GeneralM extends CI_Model{
 		$this->db->where('U.id_jabatan = "2"'); //tu
 		$this->db->where('P.id_perizinan', $id_perizinan);
 		$this->db->where('P.status = "diterima"');
+		return $this->db->get();
+	}
+
+	public function get_array_progress_ujian($id_pengujian){
+		$this->db->select('*');
+		$this->db->from('pengguna_pengujian P');
+		$this->db->join('pengguna U','P.id_pengguna = U.id_pengguna','left');
+		$this->db->where('U.id_jabatan = "2"'); //tu
+		$this->db->where('P.id_pengujian', $id_pengujian);
+		// $this->db->where('P.status = "diterima"');
+		return $this->db->get();
+	}
+
+	public function get_array_progress_ujian_kasie($id_pengujian){
+		$this->db->select('*');
+		$this->db->from('pengguna_pengujian P');
+		$this->db->join('pengguna U','P.id_pengguna = U.id_pengguna','left');
+		$this->db->where('U.id_jabatan = "3"'); //kasie
+		$this->db->where('P.id_pengujian', $id_pengujian);
+		// $this->db->where('P.status = "diterima"');
 		return $this->db->get();
 	}
 

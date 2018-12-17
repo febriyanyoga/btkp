@@ -157,32 +157,34 @@ class KasieC extends CI_Controller{
 
         $this->upload->initialize($config);
         if (!empty($_FILES[$input_name]['name'])) {
-            if ($this->upload->do_upload($input_name)) {
-                $gbr = $this->upload->data();
-                $return = array('result' => 'success', 'file_name' => $gbr['file_name'], 'file_size' => $gbr['file_size'], 'error' => '');
+        	if ($this->upload->do_upload($input_name)) {
+        		$gbr = $this->upload->data();
+        		$return = array('result' => 'success', 'file_name' => $gbr['file_name'], 'file_size' => $gbr['file_size'], 'error' => '');
 
-                return $return;
-            }
+        		return $return;
+        	}
         } else {
-            $return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
+        	$return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
 
-            return $return;
-            echo 'Data yang diupload kosong';
+        	return $return;
+        	echo 'Data yang diupload kosong';
         }
     }
 
     // Pengujian
     public function pengujiankasie()
     {
-        $data['title'] = 'BTKP - Sertifikasi';
-        $data['isi'] = $this->load->view('kasie/pengujian/pengujian_v', $this->data, true);
-        $this->load->view('kasie/Layout', $data);
+    	$data['title'] = 'BTKP - Sertifikasi';
+    	$this->data['pengujian'] = $this->TatausahaM->get_all_pengujian()->result();
+    	$data['isi'] = $this->load->view('kasie/pengujian/pengujian_v', $this->data, true);
+    	$this->load->view('kasie/Layout', $data);
     }
 
-    public function verifikasiakhir_pengujian()
+    public function verifikasiakhir_pengujian($id_pengujian)
     {
-        $data['title'] = 'BTKP - Verifikasi Permohonan Perizinan';
-        $data['isi'] = $this->load->view('kasie/pengujian/verifikasiakhir_v', $this->data, true);
-        $this->load->view('kasie/Layout', $data);
+    	$data['title'] = 'BTKP - Verifikasi Permohonan Perizinan';
+        $this->data['pengujian'] = $this->TatausahaM->get_pengujian_by_id($id_pengujian)->row();
+    	$data['isi'] = $this->load->view('kasie/pengujian/verifikasiakhir_v', $this->data, true);
+    	$this->load->view('kasie/Layout', $data);
     }
 }

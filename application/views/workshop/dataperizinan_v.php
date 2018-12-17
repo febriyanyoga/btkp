@@ -257,10 +257,10 @@
                             ?>
                             <ul class="nav nav-tabs" id="example-one" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Perizinan Aktif</a>
+                                    <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Pengujian Diterima</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Perizinan Tidak Aktif</a>
+                                    <a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Pengujian Ditolak</a>
                                 </li>
                             </ul>
                             <div class="tab-content pt-3">
@@ -270,150 +270,90 @@
                                             <thead>
                                                 <tr class="text-center">
                                                     <th>No</th>
-                                                    <th>No.Izin</th>
-                                                    <th>SPK</th>
-                                                    <th>Tanggal Mulai</th>
-                                                    <th>Tanggal Berakhir</th>
+                                                    <th>Tgl Pengajuan</th>
+                                                    <th>Nama Alat</th>
+                                                    <th>Merk</th>
+                                                    <th>Tipe</th>
+                                                    <th>Nama Instansi</th>
                                                     <th><span style="width:100px;">Status</span></th>
                                                     <th>Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                                                $i=0;
-                                                foreach ($perizinan as $per) {
-                                                    if($per->status_pembayaran == 'paid'){
-                                                        $tgl_terbit = date('Y-m-d', strtotime($per->tgl_terbit));
-                                                        $tgl_expired = date('Y-m-d', strtotime($per->tgl_expired));
-                                                        $sekarang = date('Y-m-d');
-                                                        if($sekarang < $tgl_expired){
-                                                            $i++;
+                                                <?php 
+                                                $i=1;
+                                                foreach ($pengujian as $ujian) {
+                                                    $tgl_pengajuan_p = date('Y-m-d', strtotime($ujian->created_at_ujian));
+                                                    $ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
+                                                    if($ada_status > 0){
+                                                        $status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row()->status;
+                                                        if($status != 'ditolak'){
                                                             ?>
                                                             <tr class="text-center">
                                                                 <td class="text-center"><?php echo $i;?></td>
-                                                                <td class="text-center"><span class="text-primary"><?php echo $per->no_spk?></span></td>
-                                                                <td class="text-center"><?php echo $per->nama_alat?></td>
-                                                                <td class="text-center"><?php echo date_indo($tgl_terbit)?></td>
-                                                                <td class="text-center"><?php echo date_indo($tgl_expired)?></td>
+                                                                <td class="text-center"><?php echo date_indo($tgl_pengajuan_p)?></td>
+                                                                <td class="text-center"><?php echo $ujian->nama_alat?></td>
+                                                                <td class="text-center"><?php echo $ujian->merk?></td>
+                                                                <td class="text-center"><?php echo $ujian->tipe?></td>
+                                                                <td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
                                                                 <td class="text-center">
-                                                                    <?php
-                                                                    if($sekarang > $tgl_expired){
-                                                                        ?>
-                                                                        <span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span>
-                                                                        <?php
-                                                                    }else{
-                                                                        ?>
-                                                                        <span style="width:100px;"><span class="badge-text badge-text-small info">aktif</span></span>
-                                                                        <?php
-                                                                    }
-                                                                    ?>
-                                                                </td>
-                                                                <td class="td-actions text-center">
-                                                                    <a data-toggle="modal" data-target="#modal<?php echo $per->id_perizinan;?>" title="perpanjang perizinan"><i class="ion-share"></i></a>
-                                                                    <!-- <a href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan"><i class="ion-share"></i></a> -->
-                                                                    <a href="<?php echo site_url('print_surat/'.$per->id_perizinan); ?>" target="_BLANK" title="cetak surat"><i class="la la-sticky-note"></i></a>
-                                                                    <a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan;?>" target="_BLANK" title="Cetak bukti Bayar">
-                                                                        <i class="la la-print"></i>
-                                                                    </a>
-                                                                </td>
-                                                            </tr>
 
-                                                            <div class="modal" id="modal<?php echo $per->id_perizinan;?>">
-                                                                <div class="modal-dialog modal-md">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h4 class="modal-title">Apakah Anda ingin memperbarui Lampiran Dokumen Pendukung?</h4>
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <a class="btn btn-md btn-success" href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan">Ya</a>
-                                                                            <a class="btn btn-md btn-danger" href="<?php echo site_url('izin_perpanjang_tidak/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan">Tidak</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
+                                                                </td>
+                                                                <td class="td-actions text-center"></td>
+                                                            </tr>
                                                             <?php
+                                                            $i++;
                                                         }
                                                     }
                                                 }
-                                                ?> 
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade show" id="tab-2" role="tabpanel" aria-labelledby="base-tab-2">
                                     <div class="table-responsive">
-                                        <table id="myTable2" class="table mb-0">
+                                        <table id="myTable4" class="table mb-0">
                                             <thead>
                                                 <tr class="text-center">
                                                     <th>No</th>
-                                                    <th>No.Izin</th>
-                                                    <th>SPK</th>
-                                                    <th>Tanggal Mulai</th>
-                                                    <th>Tanggal Berakhir</th>
+                                                    <th>Tgl Pengajuan</th>
+                                                    <th>Nama Alat</th>
+                                                    <th>Merk</th>
+                                                    <th>Tipe</th>
+                                                    <th>Nama Instansi</th>
                                                     <th><span style="width:100px;">Status</span></th>
-                                                    <th>Aksi</th>
+                                                    <!-- <th>Aksi</th> -->
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <?php
-                                                $i=0;
-                                                foreach ($perizinan as $per) {
-                                                    if($per->status_pembayaran == 'paid'){
-                                                        $tgl_terbit = date('Y-m-d', strtotime($per->tgl_terbit));
-                                                        $tgl_expired = date('Y-m-d', strtotime($per->tgl_expired));
-                                                        $sekarang = date('Y-m-d');
-                                                        if($sekarang > $tgl_expired){
-                                                            $i++;
+                                                <?php 
+                                                $i=1;
+                                                foreach ($pengujian as $ujian) {
+                                                    $ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
+                                                    if($ada_status > 0){
+                                                        $status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row()->status;
+                                                        $tgl_pengajuan_p = date('Y-m-d', strtotime($ujian->created_at_ujian));
+                                                        if($status == "ditolak"){
                                                             ?>
                                                             <tr class="text-center">
                                                                 <td class="text-center"><?php echo $i;?></td>
-                                                                <td class="text-center"><span class="text-primary"><?php echo $per->no_spk?></span></td>
-                                                                <td class="text-center"><?php echo $per->nama_alat?></td>
-                                                                <td class="text-center"><?php echo date_indo($tgl_terbit)?></td>
-                                                                <td class="text-center"><?php echo date_indo($tgl_expired)?></td>
+                                                                <td class="text-center"><?php echo date_indo($tgl_pengajuan_p)?></td>
+                                                                <td class="text-center"><?php echo $ujian->nama_alat?></td>
+                                                                <td class="text-center"><?php echo $ujian->merk?></td>
+                                                                <td class="text-center"><?php echo $ujian->tipe?></td>
+                                                                <td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
                                                                 <td class="text-center">
-                                                                    <?php
-                                                                    if($sekarang > $tgl_expired){
-                                                                        ?>
-                                                                        <span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span>
-                                                                        <?php
-                                                                    }else{
-                                                                        ?>
-                                                                        <span style="width:100px;"><span class="badge-text badge-text-small info">aktif</span></span>
-                                                                        <?php
-                                                                    }
-                                                                    ?>
+                                                                    <span style="width:100px;"><span class="badge-text badge-text-small danger">Ditolak</span></span>
                                                                 </td>
-                                                                <td class="td-actions text-center">
-                                                                    <a data-toggle="modal" data-target="#modal2<?php echo $per->id_perizinan;?>" title="perpanjang perizinan"><i class="ion-share"></i></a>
-                                                                    <!-- <a href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan"><i class="ion-share"></i></a> -->
-                                                                    <a href="<?php echo site_url('print_surat/'.$per->id_perizinan); ?>" target="_BLANK" title="cetak surat"><i class="la la-sticky-note"></i></a>
-                                                                    <a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan;?>" target="_BLANK" title="Cetak bukti Bayar">
-                                                                        <i class="la la-print"></i>
-                                                                    </a>
-                                                                </td>
+                                                                <!-- <td class="td-actions text-center"></td> -->
                                                             </tr>
-
-                                                            <div class="modal" id="modal2<?php echo $per->id_perizinan;?>">
-                                                                <div class="modal-dialog modal-md">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h4 class="modal-title">Apakah Anda ingin memperbarui Lampiran Dokumen Pendukung?</h4>
-                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <a class="btn btn-md btn-success" href="<?php echo site_url('izin_perpanjang/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan">Ya</a>
-                                                                            <a class="btn btn-md btn-danger" href="<?php echo site_url('izin_perpanjang_tidak/'.$per->id_perizinan.'/'.$per->id_jenis_alat); ?>" title="perpanjang perizinan">Tidak</a>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                            </div>
                                                             <?php
+                                                            $i++;
                                                         }
                                                     }
                                                 }
-                                                ?> 
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
