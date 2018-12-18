@@ -232,11 +232,38 @@ class TatausahaC extends CI_Controller
         }
     }
 
-    public function validasi_1()
-    {
-        $this->form_validation->set_rules('id_pengujian', 'ID Pengujian', 'required');
-        $this->form_validation->set_rules('status_pembayaran_1', 'Status Pembayaran', 'required');
+    public function kode_billing_2(){
+        $this->form_validation->set_rules('kode_billing_2', 'Kode Billing', 'required');
+        $this->form_validation->set_rules('id_bank_btkp_2', 'Bank BTKP', 'required');
+        $this->form_validation->set_rules('jumlah_tagihan_2', 'Jumlah Tagihan', 'required');
+        $this->form_validation->set_rules('masa_berlaku_billing_2', 'Masa Berlaku Billing', 'required');
 
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Data tidak berhasil disimpan, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+
+            $id_pengujian = $this->input->post('id_pengujian');
+            $data_billing = array(
+                'kode_billing_2'          => $this->input->post('kode_billing_2'),
+                'id_bank_btkp_2'          => $this->input->post('id_bank_btkp_2'),
+                'jumlah_tagihan_2'        => $this->input->post('jumlah_tagihan_2'),
+                'masa_berlaku_billing_2'  => $this->input->post('masa_berlaku_billing_2'),
+            );
+
+            if ($this->TatausahaM->insert_billing_ujian($id_pengujian, $data_billing)) {
+                $this->session->set_flashdata('sukses', 'Data berhasil disimpan');
+                redirect('pengujian');
+            } else {
+                $this->session->set_flashdata('error', 'Data tidak berhasil disimpan, cek kembali data yang anda masukkan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function validasi_1(){
+        $this->form_validation->set_rules('id_pengujian', 'ID Pengujian','required');
+        $this->form_validation->set_rules('status_pembayaran_1', 'Status Pembayaran','required');
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
@@ -279,6 +306,100 @@ class TatausahaC extends CI_Controller
                 redirect_back();
             } else {
                 $this->session->set_flashdata('error', 'Data tidak berhasil disimpan, cek kembali data yang anda masukkan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function validasi_2(){
+        $this->form_validation->set_rules('id_pengujian', 'ID Pengujian','required');
+        $this->form_validation->set_rules('status_pembayaran_2', 'Status Pembayaran','required');
+        $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit','required');
+        $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired','required');
+        $this->form_validation->set_rules('no_awal', 'No Label Awal','required');
+        $this->form_validation->set_rules('no_akhir', 'No Label Akhir','required');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            $id_pengujian = $this->input->post('id_pengujian');
+            $th = date('Y');//th sekarang
+            $tgl = $th.'12'.'31'; //tgl bandingin
+            if($this->TatausahaM->get_last_ujian_terbit($tgl)->num_rows() > 0){
+                $nomor_sblm = $this->TatausahaM->get_last_ujian_terbit($tgl)->row()->no_spk;
+                $no_spk = $nomor_sblm+1;
+            }else{
+                $no_spk = 1;
+            }
+
+            $kode_alat = $this->WorkshopM->get_pengujian_by_id2($id_pengujian)->row()->kode_alat;
+            if($no_spk < 10){
+                $no_spk = '000'.$no_spk;
+            }elseif($no_spk <= 100){
+                $no_spk ='00'.$no_spk;
+            }elseif($no_spk < 1000){
+                $no_spk = '0'.$no_spk;
+            }elseif($no_spk >= 1000) {
+                $no_spk = $no_spk;
+            }
+
+            $no_awal    = $this->input->post('no_awal');
+            $no_akhir   = $this->input->post('no_akhir');
+
+            if($no_awal < 10){
+                $no_awal = '000'.$no_awal;
+            }elseif($no_awal <= 100){
+                $no_awal ='00'.$no_spk;
+            }elseif($no_awal < 1000){
+                $no_awal = '0'.$no_awal;
+            }elseif($no_awal >= 1000) {
+                $no_awal = $no_awal;
+            }
+
+            if($no_akhir < 10){
+                $no_akhir = '000'.$no_akhir;
+            }elseif($no_akhir <= 100){
+                $no_akhir ='00'.$no_akhir;
+            }elseif($no_akhir < 1000){
+                $no_akhir = '0'.$no_akhir;
+            }elseif($no_akhir >= 1000) {
+                $no_akhir = $no_akhir;
+            }
+
+            $barcode = $kode_alat.$no_spk.date('y');
+            $data = array(
+                'status_pembayaran_2'   => $this->input->post('status_pembayaran_2'), 
+                'kode_barcode'          => $barcode, 
+                'no_spk'                => $no_spk, 
+                'tgl_terbit'            => $this->input->post('tgl_terbit'), 
+                'tgl_expired'           => $this->input->post('tgl_expired'), 
+                'no_awal'               => $no_awal, 
+                'no_akhir'              => $no_akhir, 
+            );
+
+            $this->load->library('ciqrcode'); //pemanggilan library QR CODE
+            $config['cacheable']    = true; //boolean, the default is true
+            $config['cachedir']     = './application/cache/'; //string, the default is application/cache/
+            $config['errorlog']     = './application/logs/'; //string, the default is application/logs/
+            $config['imagedir']     = './assets/img/qrcode/'; //direktori penyimpanan qr code
+            $config['quality']      = true; //boolean, the default is true
+            $config['size']         = '1024'; //interger, the default is 1024
+            $config['black']        = array(224,255,255); // array, default is array(255,255,255)
+            $config['white']        = array(70,130,180); // array, default is array(0,0,0)
+            $this->ciqrcode->initialize($config);
+            $image_name=$barcode.'.png'; //buat name dari qr code sesuai dengan nim
+            $params['data'] = $barcode; //data yang akan di jadikan QR CODE
+            $params['level'] = 'H'; //H=High
+            $params['size'] = 10;
+            $params['savename'] = FCPATH.$config['imagedir'].$image_name; //simpan image QR CODE ke folder assets/images/
+            $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
+
+            if($this->WorkshopM->selesai_p($id_pengujian, $data)){
+                $this->session->set_flashdata('sukses', 'Validasi berhasil');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
                 redirect_back();
             }
         }
@@ -369,6 +490,7 @@ class TatausahaC extends CI_Controller
     {
         $data['title'] = 'BTKP - Sertifikasi';
         $this->data['pengujian'] = $this->TatausahaM->get_all_pengujian()->result();
+        $this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
         $data['isi'] = $this->load->view('admintu/pengujian/pengujian_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
     }

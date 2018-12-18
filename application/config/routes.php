@@ -74,12 +74,16 @@ $route['izin_baru3/(:num)'] 	= 'WorkshopC/perizinan_baru_3/$1';
 $route['selesai/(:num)'] 		= 'WorkshopC/selesai/$1';
 $route['konfirmasi'] 			= 'WorkshopC/konfirmasi_pembayaran';
 $route['konfirmasi_ujian_1'] 	= 'WorkshopC/konfirmasi_pembayaran_1';
+$route['konfirmasi_ujian_2'] 	= 'WorkshopC/konfirmasi_pembayaran_2';
 $route['file_survey'] 			= 'WorkshopC/post_file_survey';
 
 $route['detailperizinan/(:num)'] 		= 'WorkshopC/detailperizinan/$1';
 $route['cetak_invoice/(:num)']			= 'WorkshopC/cetak_produk/$1';
 $route['cetak_invoice_ujian/(:num)'] 	= 'WorkshopC/cetak_invoice_ujian/$1';
+$route['cetak_invoice_ujian2/(:num)'] 	= 'WorkshopC/cetak_invoice_ujian2/$1';
 $route['print_surat/(:num)']			= 'WorkshopC/print_surat/$1';
+$route['print_sertifikat_pengujian/(:num)']	= 'WorkshopC/print_sertifikat_pengujian/$1';
+$route['print_label/(:num)']			= 'WorkshopC/print_label/$1';
 $route['update_password'] 				= 'WorkshopC/post_update_password';
 $route['update_perusahaan'] 			= 'WorkshopC/post_update_perusahaan';
 
@@ -120,6 +124,7 @@ $route['pengujian'] = 'TatausahaC/pengujian';
 $route['persetujuan'] = 'TatausahaC/persetujuan';
 $route['persetujuan_tolak'] = 'TatausahaC/persetujuan_tolak';
 $route['kode_billing'] = 'TatausahaC/post_kode_billing';
+$route['kode_billing_2'] = 'TatausahaC/kode_billing_2';
 $route['penerbitan'] = 'TatausahaC/post_penerbitan';
 $route['profile_t'] = 'TatausahaC/profile';
 $route['update_password_t'] = 'TatausahaC/post_update_password';
@@ -127,6 +132,7 @@ $route['verifikasiawal/(:num)'] = 'TatausahaC/verifikasiawal_pengujian/$1';
 $route['verifikasi_1_tolak'] = 'TatausahaC/verifikasi_1_tolak';
 $route['verifikasi_1_terima'] = 'TatausahaC/verifikasi_1_terima';
 $route['validasi_1'] 		= 'TatausahaC/validasi_1';
+$route['validasi_2'] 		= 'TatausahaC/validasi_2';
 $route['hasil_uji'] 		= 'TatausahaC/hasil_uji';
 // KASIE
 $route['kasie'] = 'KasieC';
@@ -140,6 +146,7 @@ $route['update_password_k'] = 'KasieC/post_update_password';
 // pengujian
 $route['pengujiankasie'] = 'KasieC/pengujiankasie';
 $route['verifikasiakhir/(:num)'] = 'KasieC/verifikasiakhir_pengujian/$1';
+$route['verifikasi_akhir'] = 'KasieC/verifikasi_akhir';
 
 // pimpinan
 $route['pimpinan'] = 'PimpinanC';

@@ -77,6 +77,17 @@ class TatausahaM extends CI_Model{
 		return $this->db->get();
 	}
 
+	public function get_last_ujian_terbit($tgl){
+		$this->db->select('*');
+		$this->db->from('pengujian');
+		$this->db->where('DATE(tgl_terbit) <= ',$tgl);
+		$this->db->where('status_pembayaran_1 = "paid" AND status_pembayaran_2 = "paid"');
+		$this->db->order_by('id_pengujian','DESC');
+		$this->db->limit('1');
+
+		return $this->db->get();
+	}
+
 	public function get_berkas_by_id2($id_berkas){
 		$this->db->where('id_berkas_perizinan', $id_berkas);
 		return $this->db->get('berkas_perizinan');

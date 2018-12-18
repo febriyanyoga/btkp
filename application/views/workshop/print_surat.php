@@ -9,7 +9,7 @@ class MYPDF extends TCPDF {
         // disable auto-page-break
 		$this->SetAutoPageBreak(false, 0);
         // set bacground image
-		$img_file = K_PATH_IMAGES.'back-sertif-2.jpg';
+		$img_file = K_PATH_IMAGES.'back-sertif-2-2.jpg';
 		$this->Image($img_file, 0, 0, 210, 297, '', '', '', false, 300, '', false, false, 0);
         // restore auto-page-break status
 		$this->SetAutoPageBreak($auto_page_break, $bMargin);
@@ -89,7 +89,7 @@ $html .=
         <td></td>
         <td></td>
         <td style="height:8px;"></td>
-        <td style="text-align:center; font-size:8pt; font-weight:bold; font-family: Arial, Helvetica, sans-serif; vertical-aligns:middle;">No. BTKP'.$perizinan->no_spk.$perizinan->kode_alat.'</td>
+        <td style="text-align:center; font-size:8pt; font-weight:bold; font-family: Arial, Helvetica, sans-serif; vertical-aligns:middle;"></td>
     </tr>
     <tr>
         <td></td>
@@ -312,12 +312,12 @@ $html2 =
     	<td style="width:2%;"></td>
     </tr>
     <tr>
-    	<td style="width:20%; height:52px;"></td>
-		<td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize;height: 10px;">
-		</td>
-		<td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize;">
-		</td>
-    	<td style="width:2%;"></td>
+        <td style="width:20%; height:52px;"></td>
+        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize;height: 10px;">
+        </td>
+        <td style="width:25%; text-align:center; vertical-aligns:middle; font-size:17pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; color:gray;">Tanda <br>Tangan
+        </td>
+        <td style="width:2%;"></td>
     </tr>
     <tr>
     	<td style="width:2%;"></td>
