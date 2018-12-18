@@ -232,8 +232,18 @@
 									<span class="highlight"></span>
 									<span class="bar"></span>
 									<label for="jabatan_pengguna" class="error"></label>
-								</div>
-								<div class="row">
+                                </div>
+                                <div class="group material-input">
+											<center>
+												<?= $cap_img ?>
+											</center>
+										</div>
+										<div>
+											<!-- <label>Masukkan captcha</label> -->
+											<input class="form-control" type="text" id="captcha" name="captcha" required placeholder="Masukkan captcha">
+										</div>
+
+								<div class="row mt-3">
 									<div class="col text-left">
 										<div class="styled-checkbox">
 											<input type="checkbox" name="agree" id="agree" value="setuju">
