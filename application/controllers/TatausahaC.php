@@ -47,48 +47,48 @@ class TatausahaC extends CI_Controller
     {
         $id_pengguna = $this->session->userdata('id_pengguna');
         $data['title'] = 'BTKP - Profil';
-        $this->data['provinsi']     = $this->GeneralM->get_all_provinsi();
-        $this->data['profil']       = $this->GeneralM->get_pengguna_only($id_pengguna)->row();
+        $this->data['provinsi'] = $this->GeneralM->get_all_provinsi();
+        $this->data['profil'] = $this->GeneralM->get_pengguna_only($id_pengguna)->row();
         $data['isi'] = $this->load->view('admintu/profile_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
     }
 
     // post
-    public function post_update_password(){
+    public function post_update_password()
+    {
         $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
         $this->form_validation->set_rules('email_pengguna', 'Email Pengguna', 'required');
         $this->form_validation->set_rules('password_lama', 'Password Lama', 'required');
         $this->form_validation->set_rules('password_baru', 'Password Baru', 'trim|required|matches[konfirmasi_password_baru]');
         $this->form_validation->set_rules('konfirmasi_password_baru', 'Konfirmasi Password Baru', 'trim|required');
-        if($this->form_validation->run() == FALSE){
-            $this->session->set_flashdata('error','konfirmasi kata sandi baru tidak cocok');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'konfirmasi kata sandi baru tidak cocok');
             redirect_back();
-        }else{
-            $email_pengguna     = $this->input->post('email_pengguna');
-            $password           = $this->input->post('password_lama');
+        } else {
+            $email_pengguna = $this->input->post('email_pengguna');
+            $password = $this->input->post('password_lama');
             $this->db->select('*');
             $this->db->from('pengguna P');
             $this->db->where('email_pengguna', $email_pengguna);
-            $this->db->where('password',  md5($password));
+            $this->db->where('password', md5($password));
             $user = $this->db->get();
 
-            if($user->num_rows() > 0){
+            if ($user->num_rows() > 0) {
                 $data_update_password = array(
                     'password' => md5($this->input->post('password_baru')),
                 );
                 $id_pengguna = $this->input->post('id_pengguna');
-                if($this->GeneralM->update_pengguna($id_pengguna, $data_update_password)){
+                if ($this->GeneralM->update_pengguna($id_pengguna, $data_update_password)) {
                     $this->session->set_flashdata('sukses', 'Password berhasil diubah');
                     redirect_back();
-                }else{
+                } else {
                     $this->session->set_flashdata('error', 'Password tidak berhasil diubah');
                     redirect_back();
                 }
-            }else{
-                $this->session->set_flashdata('error','Password lama tidak sesuai');
+            } else {
+                $this->session->set_flashdata('error', 'Password lama tidak sesuai');
                 redirect_back();
             }
-
         }
     }
 
@@ -101,16 +101,16 @@ class TatausahaC extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
-        }else{
-            $keterangan=$this->input->post('keterangan');
-            $ket="";
-            $i=1;
-            foreach($keterangan as $ket1){
-                if($ket1!=""){
+        } else {
+            $keterangan = $this->input->post('keterangan');
+            $ket = '';
+            $i = 1;
+            foreach ($keterangan as $ket1) {
+                if ($ket1 != '') {
                     $nama = $this->TatausahaM->get_berkas_by_id2($i)->row()->nama_berkas;
-                    $ket .= $nama.' : '.$ket1."<br>";
+                    $ket .= $nama.' : '.$ket1.'<br>';
                 }
-                $i++;
+                ++$i;
             }
 
             $data = array(
@@ -139,14 +139,14 @@ class TatausahaC extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
-        }else{
-            $keterangan=$this->input->post('keterangan');
+        } else {
+            $keterangan = $this->input->post('keterangan');
 
             $data = array(
-                'id_pengguna'   => $this->input->post('id_pengguna'),
-                'id_perizinan'  => $this->input->post('id_perizinan'),
-                'keterangan'    => $keterangan,
-                'status'        => $this->input->post('status'),
+                'id_pengguna' => $this->input->post('id_pengguna'),
+                'id_perizinan' => $this->input->post('id_perizinan'),
+                'keterangan' => $keterangan,
+                'status' => $this->input->post('status'),
             );
 
             if ($this->GeneralM->insert_persetujuan($data)) {
@@ -159,7 +159,8 @@ class TatausahaC extends CI_Controller
         }
     }
 
-    public function verifikasi_1_tolak(){
+    public function verifikasi_1_tolak()
+    {
         $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
         $this->form_validation->set_rules('id_pengujian', 'ID Pengujian');
         $this->form_validation->set_rules('keterangan', 'keterangan');
@@ -167,14 +168,14 @@ class TatausahaC extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
-        }else{
-            $keterangan=$this->input->post('keterangan');
+        } else {
+            $keterangan = $this->input->post('keterangan');
 
             $data = array(
-                'id_pengguna'   => $this->input->post('id_pengguna'),
-                'id_pengujian'  => $this->input->post('id_pengujian'),
-                'keterangan'    => $keterangan,
-                'status'        => $this->input->post('status'),
+                'id_pengguna' => $this->input->post('id_pengguna'),
+                'id_pengujian' => $this->input->post('id_pengujian'),
+                'keterangan' => $keterangan,
+                'status' => $this->input->post('status'),
             );
 
             if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
@@ -187,7 +188,8 @@ class TatausahaC extends CI_Controller
         }
     }
 
-    public function verifikasi_1_terima(){
+    public function verifikasi_1_terima()
+    {
         $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
         $this->form_validation->set_rules('id_pengujian', 'ID Pengujian');
         $this->form_validation->set_rules('keterangan', 'keterangan');
@@ -201,22 +203,22 @@ class TatausahaC extends CI_Controller
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
-        }else{
-            $keterangan=$this->input->post('keterangan');
+        } else {
+            $keterangan = $this->input->post('keterangan');
 
             $data = array(
-                'id_pengguna'   => $this->input->post('id_pengguna'),
-                'id_pengujian'  => $this->input->post('id_pengujian'),
-                'keterangan'    => $keterangan,
-                'status'        => $this->input->post('status'),
+                'id_pengguna' => $this->input->post('id_pengguna'),
+                'id_pengujian' => $this->input->post('id_pengujian'),
+                'keterangan' => $keterangan,
+                'status' => $this->input->post('status'),
             );
 
             $id_pengujian = $this->input->post('id_pengujian');
             $data_billing = array(
-                'kode_billing_1'          => $this->input->post('kode_billing'),
-                'id_bank_btkp_1'          => $this->input->post('id_bank_btkp'),
-                'jumlah_tagihan_1'        => $this->input->post('jumlah_tagihan'),
-                'masa_berlaku_billing_1'  => $this->input->post('masa_berlaku_billing'),
+                'kode_billing_1' => $this->input->post('kode_billing'),
+                'id_bank_btkp_1' => $this->input->post('id_bank_btkp'),
+                'jumlah_tagihan_1' => $this->input->post('jumlah_tagihan'),
+                'masa_berlaku_billing_1' => $this->input->post('masa_berlaku_billing'),
             );
 
             if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
@@ -230,30 +232,32 @@ class TatausahaC extends CI_Controller
         }
     }
 
-    public function validasi_1(){
-        $this->form_validation->set_rules('id_pengujian', 'ID Pengujian','required');
-        $this->form_validation->set_rules('status_pembayaran_1', 'Status Pembayaran','required');
+    public function validasi_1()
+    {
+        $this->form_validation->set_rules('id_pengujian', 'ID Pengujian', 'required');
+        $this->form_validation->set_rules('status_pembayaran_1', 'Status Pembayaran', 'required');
 
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
-        }else{
+        } else {
             $id_pengujian = $this->input->post('id_pengujian');
             $data = array(
-                'status_pembayaran_1' => $this->input->post('status_pembayaran_1'), 
+                'status_pembayaran_1' => $this->input->post('status_pembayaran_1'),
             );
-            if($this->WorkshopM->selesai_p($id_pengujian, $data)){
+            if ($this->WorkshopM->selesai_p($id_pengujian, $data)) {
                 $this->session->set_flashdata('sukses', 'Validasi berhasil');
                 redirect_back();
-            }else{
+            } else {
                 $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
                 redirect_back();
             }
         }
     }
 
-    public function post_kode_billing(){
-        $this->form_validation->set_rules('id_perizinan', 'ID Perizinan','required');
+    public function post_kode_billing()
+    {
+        $this->form_validation->set_rules('id_perizinan', 'ID Perizinan', 'required');
         $this->form_validation->set_rules('kode_billing', 'Kode Billing', 'required');
         $this->form_validation->set_rules('id_bank_btkp', 'Bank BTKP', 'required');
         $this->form_validation->set_rules('jumlah_tagihan', 'Jumlah Tagihan', 'required');
@@ -264,9 +268,9 @@ class TatausahaC extends CI_Controller
         } else {
             $id_perizinan = $this->input->post('id_perizinan');
             $data = array(
-                'kode_billing'      => $this->input->post('kode_billing'),
-                'id_bank_btkp'      => $this->input->post('id_bank_btkp'),
-                'jumlah_tagihan'    => $this->input->post('jumlah_tagihan'),
+                'kode_billing' => $this->input->post('kode_billing'),
+                'id_bank_btkp' => $this->input->post('id_bank_btkp'),
+                'jumlah_tagihan' => $this->input->post('jumlah_tagihan'),
                 'masa_berlaku_billing' => $this->input->post('masa_berlaku_billing'),
             );
 
@@ -280,7 +284,8 @@ class TatausahaC extends CI_Controller
         }
     }
 
-    public function post_penerbitan(){
+    public function post_penerbitan()
+    {
         $this->form_validation->set_rules('status_pembayaran', 'Status Pembayaran');
         // $this->form_validation->set_rules('nomor_spk', 'Nomor SPK', 'required');
         $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit', 'required');
@@ -290,46 +295,46 @@ class TatausahaC extends CI_Controller
             redirect_back();
         } else {
             $id_perizinan = $this->input->post('id_perizinan');
-            $th = date('Y');//th sekarang
+            $th = date('Y'); //th sekarang
             $tgl = $th.'12'.'31'; //tgl bandingin
 
-            if($this->TatausahaM->get_last_izin_terbit($tgl)->num_rows() > 0){
+            if ($this->TatausahaM->get_last_izin_terbit($tgl)->num_rows() > 0) {
                 $nomor_sblm = $this->TatausahaM->get_last_izin_terbit($tgl)->row()->no_spk;
-                $no_spk = $nomor_sblm+1;
-            }else{
+                $no_spk = $nomor_sblm + 1;
+            } else {
                 $no_spk = 1;
             }
 
             $kode_alat = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row()->kode_alat;
-            if($no_spk < 10){
+            if ($no_spk < 10) {
                 $no_spk = '000'.$no_spk;
-            }elseif($no_spk >= 10){
-                $no_spk ='00'.$no_spk;
-            }elseif($no_spk >= 100){
+            } elseif ($no_spk >= 10) {
+                $no_spk = '00'.$no_spk;
+            } elseif ($no_spk >= 100) {
                 $no_spk = '0'.$no_spk;
-            }elseif($no_spk >= 1000) {
+            } elseif ($no_spk >= 1000) {
                 $no_spk = $no_spk;
             }
             $barcode = $kode_alat.$no_spk.date('y');
 
             $data = array(
                 'status_pembayaran' => $this->input->post('status_pembayaran'),
-                'no_spk'            => $no_spk,
-                'kode_barcode'      => $barcode,
-                'tgl_terbit'        => $this->input->post('tgl_terbit'),
-                'tgl_expired'       => $this->input->post('tgl_expired'),
+                'no_spk' => $no_spk,
+                'kode_barcode' => $barcode,
+                'tgl_terbit' => $this->input->post('tgl_terbit'),
+                'tgl_expired' => $this->input->post('tgl_expired'),
             );
             $this->load->library('ciqrcode'); //pemanggilan library QR CODE
-            $config['cacheable']    = true; //boolean, the default is true
-            $config['cachedir']     = './application/cache/'; //string, the default is application/cache/
-            $config['errorlog']     = './application/logs/'; //string, the default is application/logs/
-            $config['imagedir']     = './assets/img/qrcode/'; //direktori penyimpanan qr code
-            $config['quality']      = true; //boolean, the default is true
-            $config['size']         = '1024'; //interger, the default is 1024
-            $config['black']        = array(224,255,255); // array, default is array(255,255,255)
-            $config['white']        = array(70,130,180); // array, default is array(0,0,0)
+            $config['cacheable'] = true; //boolean, the default is true
+            $config['cachedir'] = './application/cache/'; //string, the default is application/cache/
+            $config['errorlog'] = './application/logs/'; //string, the default is application/logs/
+            $config['imagedir'] = './assets/img/qrcode/'; //direktori penyimpanan qr code
+            $config['quality'] = true; //boolean, the default is true
+            $config['size'] = '1024'; //interger, the default is 1024
+            $config['black'] = array(224, 255, 255); // array, default is array(255,255,255)
+            $config['white'] = array(70, 130, 180); // array, default is array(0,0,0)
             $this->ciqrcode->initialize($config);
-            $image_name=$barcode.'.png'; //buat name dari qr code sesuai dengan nim
+            $image_name = $barcode.'.png'; //buat name dari qr code sesuai dengan nim
             $params['data'] = $barcode; //data yang akan di jadikan QR CODE
             $params['level'] = 'H'; //H=High
             $params['size'] = 10;
@@ -337,7 +342,6 @@ class TatausahaC extends CI_Controller
             $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
 
             if ($this->WorkshopM->selesai($id_perizinan, $data)) {
-
                 $this->session->set_flashdata('sukses', 'Data Penerbitan berhasil dimasukkan');
                 redirect_back();
             } else {
@@ -347,10 +351,17 @@ class TatausahaC extends CI_Controller
         }
     }
 
-    public function reinspeksion()
+    public function reinspeksi()
     {
         $data['title'] = 'BTKP - reinspeksion';
-        $data['isi'] = $this->load->view('admintu/datareinspeksi_v', $this->data, true);
+        $data['isi'] = $this->load->view('admintu/reinspeksi/datareinspeksi_v', $this->data, true);
+        $this->load->view('admintu/Layout', $data);
+    }
+
+    public function verifikasiawalinspeksi()
+    {
+        $data['title'] = 'BTKP - reinspeksion';
+        $data['isi'] = $this->load->view('admintu/reinspeksi/verifikasiawal_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
     }
 
@@ -361,6 +372,7 @@ class TatausahaC extends CI_Controller
         $data['isi'] = $this->load->view('admintu/pengujian/pengujian_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
     }
+
     public function verifikasiawal_pengujian($id_pengujian)
     {
         $data['title'] = 'BTKP - Verifikasi Permohonan Perizinan';
@@ -370,43 +382,47 @@ class TatausahaC extends CI_Controller
         $this->load->view('admintu/Layout', $data);
     }
 
-    public function hasil_uji(){
+    public function hasil_uji()
+    {
         $upload = $this->upload_file('hasil_pengujian');
-        if($upload['result'] == 'success'){
+        if ($upload['result'] == 'success') {
             $data = array(
                 'file_hasil_pengujian' => $upload['file_name'],
             );
             $id_pengujian = $this->input->post('id_pengujian');
-            if($this->WorkshopM->selesai_p($id_pengujian, $data)) {
+            if ($this->WorkshopM->selesai_p($id_pengujian, $data)) {
                 $this->session->set_flashdata('sukses', 'Dokumen hasil pengujian berhasil diunggah');
                 redirect_back();
             } else {
                 $this->session->set_flashdata('error', 'Dokumen hasil pengujian tidak berhasil diunggah');
                 redirect_back();
             }
-        }else{
+        } else {
             $this->session->set_flashdata('error', 'Dokumen hasil pengujian tidak berhasil diunggah');
             redirect_back();
         }
     }
 
-    public function upload_file($input_name){
+    public function upload_file($input_name)
+    {
         $config['upload_path'] = './assets/img/hasil_uji/'; //path folder
         $config['allowed_types'] = 'jpg|jpeg|pdf|doc|docx|png';
         $config['max_size'] = '5000'; // max_size in kb
-        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+        $config['encrypt_name'] = true; //Enkripsi nama yang terupload
 
         $this->upload->initialize($config);
-        if(!empty($_FILES[$input_name]['name'])){
-            if($this->upload->do_upload($input_name)){
+        if (!empty($_FILES[$input_name]['name'])) {
+            if ($this->upload->do_upload($input_name)) {
                 $gbr = $this->upload->data();
                 $return = array('result' => 'success', 'file_name' => $gbr['file_name'], 'file_size' => $gbr['file_size'], 'error' => '');
+
                 return $return;
             }
-        }else{
+        } else {
             $return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
+
             return $return;
-            echo "Data yang diupload kosong";
+            echo 'Data yang diupload kosong';
         }
     }
 }
