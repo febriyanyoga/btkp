@@ -37,34 +37,32 @@
 $data = $this->session->flashdata('sukses');
 if ($data != '') {
     ?>
-						<div class="alert alert-success">
-							<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span
-								 aria-hidden="true"></span></button>
-							<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
-							<?=$data; ?>
-						</div>
-						<?php
+							<div class="alert alert-success">
+								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+								<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
+								<?=$data; ?>
+							</div>
+							<?php
 }
 ?>
 						<?php
 $data2 = $this->session->flashdata('error');
 if ($data2 != '') {
     ?>
-						<div class="alert alert-danger">
-							<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span
-								 aria-hidden="true"></span></button>
-							<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
-							<?=$data2; ?>
-						</div>
-						<?php
+							<div class="alert alert-danger">
+								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+								<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
+								<?=$data2; ?>
+							</div>
+							<?php
 }
 ?>
 						<form action="<?php echo site_url('persetujuan'); ?>" method="post" id="form-input-acc">
 							<div id="accordion-icon-right" class="accordion">
 
-								<div class="widget has-shadow">
-									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne"
-									 aria-expanded="true">
+									<div class="widget has-shadow">
+										<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne"
+										aria-expanded="true">
 										<div class="card-title w-100"> 1. Data Workshop</div>
 									</a>
 									<div id="IconRightCollapseOne" class="card-body collapse show" style="color:black;" data-parent="#accordion-icon-right">
@@ -147,9 +145,9 @@ if ($data2 != '') {
 											</div>
 											<div class="col-xl-8">0987</div>
 										</div>
-									</div>
+										</div>
 
-									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapse3">
+										<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapse3">
 										<div class="card-title w-100">3. Data Alat</div>
 									</a>
 									<div id="IconRightCollapse3" class="card-body collapse" data-parent="#accordion-icon-right">
@@ -171,14 +169,14 @@ if ($data2 != '') {
 											</div>
 											<div class="col-xl-8">ESD</div>
 										</div>
-									</div>
+										</div>
 									<div class="text-right">
-										<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tolak</a>
-										<!-- <a href="" id="btn-tidak-lengkap" class="btn btn-success mr-1 mb-2" data-toggle="modal" data-target="#inputtagihan">Lolos</a> -->
-										<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Konfirmasi"
-										 onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')">
+										<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lolos</a>
+										<a href="" id="btn-tidak-lengkap" class="btn btn-success mr-1 mb-2" data-toggle="modal" data-target="#inputtagihan">Lolos</a>
+										<!-- <input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Memenuhi" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')"> -->
 									</div>
-								</div>
+
+							</div>
 						</form>
 					</div>
 				</div>
@@ -205,15 +203,14 @@ if ($data2 != '') {
 					<!-- <?php
 foreach ($detail_berkas as $key) {
     ?> -->
-					<label for="<?php echo $key->nama_berkas; ?>" class="label">
-						<?php echo $key->nama_berkas; ?> : </label>
-					<input type="text" name="keterangan[]" value="" class="form-control" placeholder="keterangan">
-					<?php
+						<label for="<?php echo $key->nama_berkas; ?>" class="label"><?php echo $key->nama_berkas; ?> : </label>
+						<input type="text" name="keterangan[]" value="" class="form-control" placeholder="keterangan">
+						<?php
 }
 ?>
 					<!-- <label for="keterangan" class="label">Keterangan : </label>
 					<input type="text" name="keterangan" value="" class="form-control" placeholder="keterangan" required="required"> -->
-					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna'); ?>">
+					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna'); ?>" >
 					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $id_perizinan; ?>">
 					<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
 				</div>
@@ -228,45 +225,40 @@ foreach ($detail_berkas as $key) {
 </div>
 
 <div class="modal" id="inputtagihan">
-	<div class="modal-dialog modal-md">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Masukkan Kode Billing</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			<form action="<?php echo site_url('kode_billing'); ?>" method="post">
-				<div class="modal-body">
-					<label for="kode_billing" class="label">Kode Billing : </label>
-					<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing"
-					 required="required">
-					<label for="bank_btkp" class="label">Bank BTKP : </label>
-					<select class="form-control" name="id_bank_btkp">
-						<option value="">---Pilih Bank---</option>
-						<?php
+                                                        				<div class="modal-dialog modal-md">
+                                                        					<div class="modal-content">
+                                                        						<div class="modal-header">
+                                                        							<h4 class="modal-title">Masukkan Kode Billing</h4>
+                                                        							<button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        						</div>
+                                                        						<form action="<?php echo site_url('kode_billing'); ?>" method="post">
+                                                        							<div class="modal-body">
+                                                        								<label for="kode_billing" class="label">Kode Billing : </label>
+                                                        								<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
+                                                                                        <label for="bank_btkp" class="label">Bank BTKP : </label>
+                                                                                        <select class="form-control" name="id_bank_btkp">
+                                                                                            <option value="">---Pilih Bank---</option>
+                                                                                            <?php
 foreach ($bank_btkp as $bank) {
     ?>
-						<option value="<?php echo $bank->id_bank_btkp; ?>">
-							<?php echo $bank->nama_bank; ?>
-						</option>
-						<?php
+                                                                                                <option value="<?php echo $bank->id_bank_btkp; ?>"><?php echo $bank->nama_bank; ?></option>
+                                                                                                <?php
 }
 ?>
-					</select>
+                                                                                        </select>
 
-					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
-					<label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
-					<input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan"
-					 required="required">
-					<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
-					<input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku"
-					 required="required">
+                                                        								<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
+                                                                                        <label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
+                                                                                        <input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
+                                                                                        <label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
+                                                                                        <input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
 
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode billing yang dimasukkan sudah benar?')">
-				</div>
-			</form>
-		</div>
-	</div>
-</div>
+                                                        							</div>
+                                                        							<div class="modal-footer">
+                                                        								<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+                                                        								<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode billing yang dimasukkan sudah benar?')">
+                                                        							</div>
+                                                        						</form>
+                                                        					</div>
+                                                        				</div>
+                                                        			</div>
