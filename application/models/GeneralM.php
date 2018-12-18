@@ -68,6 +68,11 @@ class GeneralM extends CI_Model{
 		return TRUE;
 	}
 
+	public function insert_persetujuan_inspeksi($data){
+		$this->db->insert('pengguna_inspeksi', $data);
+		return TRUE;
+	}
+
 	public function get_own_progress($id_pengguna, $id_perizinan){ //perizinan yang di verifikasi kasie
 		$this->db->select('*');
 		$this->db->from('pengguna_perizinan');
@@ -110,6 +115,16 @@ class GeneralM extends CI_Model{
 		$this->db->where('U.id_jabatan = "2"'); //tu
 		$this->db->where('P.id_perizinan', $id_perizinan);
 		$this->db->where('P.status = "diterima"');
+		return $this->db->get();
+	}
+
+	public function get_array_progress_inspeksi($id_inspeksi){
+		$this->db->select('*');
+		$this->db->from('pengguna_inspeksi P');
+		$this->db->join('pengguna U','P.id_pengguna = U.id_pengguna','left');
+		$this->db->where('U.id_jabatan = "2"'); //tu
+		$this->db->where('P.id_inspeksi', $id_inspeksi);
+		// $this->db->where('P.status = "diterima"');
 		return $this->db->get();
 	}
 

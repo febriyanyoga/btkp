@@ -334,7 +334,7 @@ $pdf->writeHTML($html2, true, false, true, false, '');
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('example_051.pdf', 'I');
+$pdf->Output('sertifikat-spk-'.$perizinan->kode_barcode.'.pdf', 'I');
 
 //============================================================+
 // END OF FILE

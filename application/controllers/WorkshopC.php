@@ -718,11 +718,19 @@ class WorkshopC extends CI_Controller
         $this->load->view('workshop/print_label',$this->data);
     }
 
+    public function cetak_ins($id_inspeksi){
+        $this->data['inspeksi'] = $this->WorkshopM->get_inspeksi_all_by_id_inspeksi($id_inspeksi)->row();
+        $this->load->view('workshop/print_ins',$this->data);
+    }
+
     // Reinspeksi
     public function data_reinspeksi()
     {
         workshop_access2();
+        $id_pengguna   = $this->session->userdata('id_pengguna');
         $data['title'] = 'BTKP - Data Reinspeksi';
+        $this->data['alat']     = $this->WorkshopM->get_all_alat($id_pengguna)->result();
+        $this->data['data_inspeksi']     = $this->WorkshopM->get_inspeksi_by_id_pengguna($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/reinspeksi/datareinspeksi_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
     }
@@ -747,5 +755,105 @@ class WorkshopC extends CI_Controller
         $data['title'] = 'BTKP - Pilih Workshop';
         $data['isi'] = $this->load->view('workshop/reinspeksi/pilihworkshop3_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
+    }
+
+    public function post_inspeksi(){
+        $this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
+        $this->form_validation->set_rules('nama_kapal', 'Nama Kapal', 'required');
+        $this->form_validation->set_rules('flag', 'Flag', 'required');
+        $this->form_validation->set_rules('imo', 'Imo number', 'required');
+        $this->form_validation->set_rules('telp_kapal', 'Telepon Kapal','required');
+        $this->form_validation->set_rules('id_jenis_alat', 'Alat','required');
+        $this->form_validation->set_rules('jumlah_alat', 'Jumlah alat','required');
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error','Data anda tidak berhasil disimpan, periksa kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            $upload = $this->upload_file('file_permohonan');
+            if($upload['result'] == 'success'){
+                $data_inspeksi = array(
+                    'id_pengguna'       => $this->input->post('id_pengguna'),
+                    'nama_kapal'        => $this->input->post('nama_kapal'),
+                    'flag'              => $this->input->post('flag'),
+                    'imo'               => $this->input->post('imo'),
+                    'telp_kapal'        => $this->input->post('telp_kapal'),
+                    'id_jenis_alat'     => $this->input->post('id_jenis_alat'),
+                    'jumlah_alat'       => $this->input->post('jumlah_alat'),
+                    'file_permohonan'   => $upload['file_name'],
+                );
+
+                if($id_pengujian = $this->WorkshopM->insert_inspeksi($data_inspeksi)){
+                    $this->session->set_flashdata('sukses','Data berhasil disimpan');
+                    redirect_back();
+                }else{
+                    $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+                    redirect_back();
+                }
+            }else{
+                $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function post_proses_reinspeksi(){
+        $this->form_validation->set_rules('id_inspeksi', 'ID Inspeksi', 'required');
+        $this->form_validation->set_rules('status', 'Status', 'required');
+        $this->form_validation->set_rules('catatan', 'Catatan', 'required');
+
+        if($this->form_validation->run() == FALSE){
+            $this->session->set_flashdata('error','Data anda tidak berhasil disimpan, periksa kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            $upload = $this->upload_file('file_hasil_survey');
+            if($upload['result'] == 'success'){
+                $data_inspeksi = array(
+                    'status_reinspeksi' => $this->input->post('status'),
+                    'catatan'           => $this->input->post('catatan'),
+                    'file_hasil_survey' => $upload['file_name'],
+                );
+
+                $id_inspeksi = $this->input->post('id_inspeksi');
+
+                if($id_pengujian = $this->WorkshopM->selesai_i($id_inspeksi, $data_inspeksi)){
+                    $this->session->set_flashdata('sukses','Data berhasil disimpan');
+                    redirect_back();
+                }else{
+                    $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+                    redirect_back();
+                }
+            }else{
+                $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+                redirect_back();
+            }
+        }
+    }
+    public function konfirmasi_ins(){
+        $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required');
+        $this->form_validation->set_rules('atas_nama', 'Atas Nama', 'required');
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else {
+            $upload = $this->upload_file('foto_bukti_trf');
+            if($upload['result'] == 'success'){
+                $data = array(
+                    'nama_bank'      => $this->input->post('nama_bank'),
+                    'atas_nama'      => $this->input->post('atas_nama'),
+                    'foto_bukti_trf' => $upload['file_name'],
+                );
+                $id_inspeksi = $this->input->post('id_inspeksi');
+                if($this->WorkshopM->selesai_i($id_inspeksi, $data)) {
+                    $this->session->set_flashdata('sukses', 'Konfirmasi pembayaran berhasil diunggah');
+                    redirect_back();
+                } else {
+                    $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah');
+                    redirect_back();
+                }
+            }else{
+                $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah');
+                redirect_back();
+            }
+        }
     }
 }
