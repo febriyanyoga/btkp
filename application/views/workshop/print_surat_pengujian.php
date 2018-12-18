@@ -99,13 +99,6 @@ $html .=
 
 
 $pdf->writeHTML($html, true, false, true, false, '');
-
-$tgl_berlaku   = date('Y-m-d', strtotime($pengujian->created_at_ujian));
-$tgl_berakhir  = date('Y-m-d', strtotime($pengujian->tgl_expired));
-$tgl_terbit  = date('Y-m-d', strtotime($pengujian->tgl_terbit));
-$sekarang		= date('Y-m-d');
-$alamat_pt_detail = $this->WorkshopM->detail_alamat($pengujian->id_kel_perusahaan)->row();
-$alamat = $pengujian->alamat_perusahaan.'<br>'.ucfirst(strtolower($alamat_pt_detail->nama_kelurahan)).', '.strtolower($alamat_pt_detail->nama_kecamatan).', '.strtolower($alamat_pt_detail->nama_kabupaten_kota).', '.$alamat_pt_detail->nama_propinsi;
 $html2 =
 '<table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
 	<tr>
@@ -136,158 +129,168 @@ $html2 =
        	<td colspan="4" style="text-align:center; font-size:14pt; font-weight:bold; font-family: Times New Roman;  text-transform: capitalize; text-decoration: underline;">SERTIFIKAT/CERTIFICATE</td>
     </tr>
     <tr>
-       	<td colspan="4" style="text-align:center; font-size:14pt; font-weight:bold; font-family: Times New Roman; text-transform: capitalize; text-decoration: underline;">NOMOR : '.$pengujian->kode_alat.'/BTKP/'.$pengujian->no_spk.'</td>
+       	<td colspan="4" style="text-align:center; font-size:14pt; font-weight:bold; font-family: Times New Roman; text-transform: capitalize; text-decoration: underline; height:36px;">NOMOR : '.$pengujian->kode_alat.'/BTKP/'.$pengujian->no_spk.'</td>
     </tr>
 </table>';
     $pdf->writeHTML($html2, true, false, true, false, '');
 
 
 
+    $alamat_pt_detail = $this->WorkshopM->detail_alamat($pengujian->id_kel_perusahaan)->row();
+    $tgl_expired  = date('Y-m-d', strtotime($pengujian->tgl_expired));
+    $tgl_terbit = date('Y-m-d', strtotime($pengujian->tgl_terbit));
 
-    $html3 = '<table cellspacing="0" cellpadding="0" border="1" style="width:100%;">
+    $html3 = '<table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
     <tr>
-    	<td style="width:2%;"></td>
-       	<td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%; height:53px;">
-		</td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%; height:53px;">
-        </td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%; height:53px;">
-        </td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%; height:53px;">
-        </td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%; height:53px;">
-        </td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%; height:53px;">
-        </td>
-    	<td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;">Referensi<br><span style="font-style:italic;font-size:8pt;">Reference</span></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;">'.$pengujian->nama_jabatan.'</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;">PLG / ID<br><span style="font-style:italic;font-size:8pt;">Client’s ID</span></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;">'.$pengujian->id_pengguna.'</td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%; font-style:italic;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%; font-style:italic;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;"></td>
+        <td style="text-align:left; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;"></td>
+        <td style="text-align:left; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;"></td>
+        <td style="text-align:left; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;">Jenis Perangkat<br><span style="font-style:italic;font-size:8pt;">Name of Equipment</span></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;">'.$pengujian->nama_alat.'</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;">Diajukan Oleh<br><span style="font-style:italic;font-size:8pt;">Proposed by</span></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;">'.$pengujian->nama_perusahaan.'</td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;font-style:italic;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;">Buatan<br><span style="font-style:italic;font-size:8pt;">Country of Origin</span></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;">'.$pengujian->negara_asal.'</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%; height:80px;">Alamat<br><span style="font-style:italic;font-size:8pt;">Address</span></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;">'.$pengujian->alamat_perusahaan.', '.$alamat_pt_detail->nama_kelurahan.', '.$alamat_pt_detail->nama_kecamatan.', '.$alamat_pt_detail->nama_kabupaten_kota.', '.$alamat_pt_detail->nama_propinsi.'</td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;">Merek<br><span style="font-style:italic;font-size:8pt;">Trade</span></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;">'.$pengujian->merk.'</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;">Tanggal Terbit<br><span style="font-style:italic;font-size:8pt;">Date of Issue</span></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;">'.date_indo($tgl_terbit).'</td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;">Model/Tipe<br><span style="font-style:italic;font-size:8pt;">Model/Type</span></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;">'.$pengujian->tipe.'</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;">Masa Berlaku<br><span style="font-style:italic;font-size:8pt;">Valid Lines</span></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:</td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;">'.date_indo($tgl_expired).'</td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="width:2%;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
+        <td style="width:6%;"></td>
     </tr>
     <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;">:lele</td>
-        <td colspan="4" style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:71%; height:55px;"></td>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
+        <td style="width:6%;"></td>
     </tr>
-    
+    <tr>
+        <td style="width:6%;"></td>
+        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;">Label Perangkat<br><span style="font-style:italic;font-size:8pt;">Label of Equipment</span></td>
+        <td style="text-align:center; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:10%;">:</td>
+        <td colspan="4" style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:59%;">'.$pengujian->no_awal.'-'.$pengujian->no_akhir.' '.$pengujian->kode_alat. $pengujian->no_spk.'</td>
+    </tr>
+    <tr>
+        <td style="width:6%;"></td>
+        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;"></td>
+        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td colspan="4" style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:67%;"></td>
+    </tr>
+    <tr>
+        <td style="width:6%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:19%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:24%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:18%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:2%;"></td>
+        <td style="text-align:left; font-size:9pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:23%;"></td>
+        <td style="width:6%;"></td>
+    </tr>
+    <tr>
+        <td style="width:6%;"></td>
+        <td colspan="5" style="text-align:center; font-size:10pt; font-family: Times New Roman;  text-transform: capitalize; width:88%; font-weight:bold;">A.N DIREKTUR JENDERAL PERHUBUNGAN LAUT<br>KEPALA BALAI TEKNOLOGI KESELAMATAN PELAYARAN</td>
+        <td style="width:6%;"></td>
+    </tr>
     </table>';
     $pdf->writeHTML($html3, true, false, true, false, '');
-
-
     $html4 = '<table cellspacing="0" cellpadding="0" border="0" style="width:100%;">
-    <tr>
-        <td style="width:2%;"></td>
-        <td style="text-align:center; font-size:10pt; font-family: Times New Roman;  text-transform: capitalize; width:96%;font-weight:bold;">A.N DIREKTUR JENDERAL PERHUBUNGAN LAUT</td>
-        <td style="width:2%;"></td>
-    </tr>
-    <tr>
-    	<td style="width:2%;"></td>
-		<td colspan="3" style="text-align:center; font-size:11pt; font-family: Times New Roman;  text-transform: capitalize; width:96%; font-weight:bold;">KEPALA BALAI TEKNOLOGI KESELAMATAN PELAYARAN</td>
-    	<td style="width:2%;"></td>
-    </tr>
-    <tr>
-    	<td style="width:2%;"></td>
-		<td colspan="3" style="text-align:justify; font-size:11pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:96%;"></td>
-    	<td style="width:2%;"></td>
-    </tr>    
     <tr>
     	<td style="width:2%;"></td>
 		<td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:48%; height: 5px;">
@@ -323,7 +326,7 @@ $html2 =
     	<td style="width:20%; height:52px;"></td>
 		<td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize;height: 10px;">
 		</td>
-		<td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize;">
+		<td style="width:25%; text-align:center; vertical-aligns:middle; font-size:17pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; color:gray;">Tanda <br>Tangan
 		</td>
     	<td style="width:2%;"></td>
     </tr>

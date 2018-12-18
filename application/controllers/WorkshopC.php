@@ -28,7 +28,12 @@ class WorkshopC extends CI_Controller
     public function data_perizinan()
     {
         $id_pengguna = $this->session->userdata('id_pengguna');
-        $data['title'] = 'BTKP - Data Perizinan';
+
+        if($this->session->userdata('id_jabatan') == 5){
+            $data['title'] = 'BTKP - Data Perizinan';
+        }else{
+            $data['title'] = 'BTKP - Data Pengujian';
+        }
         $this->data['pengujian']    = $this->WorkshopM->get_pengujian($id_pengguna)->result();
         $this->data['perizinan']    = $this->WorkshopM->get_all_perizinan_by_id_pengguna($id_pengguna)->result();
         $this->data['izin_tolak']   = $this->WorkshopM->get_perizinan_ditolak($id_pengguna)->result();
@@ -706,6 +711,11 @@ class WorkshopC extends CI_Controller
     public function print_sertifikat_pengujian($id_pengujian){
         $this->data['pengujian'] = $this->WorkshopM->get_pengujian_by_id2($id_pengujian)->row();
         $this->load->view('workshop/print_surat_pengujian',$this->data);
+    }
+
+    public function print_label($id_pengujian){
+        $this->data['pengujian'] = $this->WorkshopM->get_pengujian_by_id2($id_pengujian)->row();
+        $this->load->view('workshop/print_label',$this->data);
     }
 
     // Reinspeksi

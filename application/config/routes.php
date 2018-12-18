@@ -83,6 +83,7 @@ $route['cetak_invoice_ujian/(:num)'] 	= 'WorkshopC/cetak_invoice_ujian/$1';
 $route['cetak_invoice_ujian2/(:num)'] 	= 'WorkshopC/cetak_invoice_ujian2/$1';
 $route['print_surat/(:num)']			= 'WorkshopC/print_surat/$1';
 $route['print_sertifikat_pengujian/(:num)']	= 'WorkshopC/print_sertifikat_pengujian/$1';
+$route['print_label/(:num)']			= 'WorkshopC/print_label/$1';
 $route['update_password'] 				= 'WorkshopC/post_update_password';
 $route['update_perusahaan'] 			= 'WorkshopC/post_update_perusahaan';
 

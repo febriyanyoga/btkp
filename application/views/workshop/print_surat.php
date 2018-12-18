@@ -312,12 +312,12 @@ $html2 =
     	<td style="width:2%;"></td>
     </tr>
     <tr>
-    	<td style="width:20%; height:52px;"></td>
-		<td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize;height: 10px;">
-		</td>
-		<td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize;">
-		</td>
-    	<td style="width:2%;"></td>
+        <td style="width:20%; height:52px;"></td>
+        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize;height: 10px;">
+        </td>
+        <td style="width:25%; text-align:center; vertical-aligns:middle; font-size:17pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; color:gray;">Tanda <br>Tangan
+        </td>
+        <td style="width:2%;"></td>
     </tr>
     <tr>
     	<td style="width:2%;"></td>
