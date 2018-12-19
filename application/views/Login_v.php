@@ -277,12 +277,7 @@
 				</div>
 			</div>
 		</div>
-	</body>
-
-	</html>
-
 	<!-- End Container -->
-
 	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
 	<!-- Begin Vendor Js -->
 	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
@@ -353,10 +348,16 @@
 						required: 'Silahkan isi jabatan anda anda',
 					},
 					agree: 'Silahkan setujui syarat dan ketentuan kami',
+
 					id_jabatan: 'Silahkan Pilih jenis user',
 					captcha2 : 'Silahkan masukkan kode Captcha'
+
 				}
 			});
 		});
 	</script>
 				<!-- End Page Snippets -->
+	<!-- End Page Snippets -->
+</body>
+
+</html>
