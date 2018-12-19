@@ -24,7 +24,7 @@ $pdf = new MYPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8',
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('BTKP');
-$pdf->SetTitle('Sertifikat');
+$pdf->SetTitle('Sertifikat pengujian');
 // $pdf->SetSubject('TCPDF Tutorial');
 // $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 
@@ -345,7 +345,7 @@ $pdf->writeHTML($html4, true, false, true, false, '');
 // ---------------------------------------------------------
 
 //Close and output PDF document
-$pdf->Output('example_051.pdf', 'I');
+$pdf->Output('sertifikat-pengujian-'.$pengujian->kode_barcode.'.pdf', 'I');
 
 //============================================================+
 // END OF FILE

@@ -24,6 +24,11 @@ class WorkshopM extends CI_Model{
 		return $this->db->insert_id();
 	}
 
+	public function insert_inspeksi($data){
+		$this->db->insert('inspeksi', $data);
+		return $this->db->insert_id();
+	}
+
 	public function hapus_perusahaan($id_perusahaan){
 		$this->db->where('id_perusahaan', $id_perusahaan);
 		$this->db->delete('perusahaan');
@@ -159,6 +164,12 @@ class WorkshopM extends CI_Model{
 		return TRUE;
 	}
 
+	public function selesai_i($id_inspeksi, $data){
+		$this->db->where('id_inspeksi', $id_inspeksi);
+		$this->db->update('inspeksi', $data);
+		return TRUE;
+	}
+
 	public function get_data_pengguna_by_id($id_pengguna){
 		$this->db->select('*');
 		$this->db->from('pengguna P');
@@ -210,5 +221,29 @@ class WorkshopM extends CI_Model{
 		$this->db->where('id_perizinan', $id_perizinan);
 		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = perizinan.id_jenis_alat');
 		return $this->db->get('perizinan');
+	}
+
+	public function get_inspeksi_by_id_pengguna($id_pengguna){
+		$this->db->where('inspeksi.id_pengguna', $id_pengguna);
+		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = inspeksi.id_jenis_alat');
+		$this->db->join('pengguna','pengguna.id_pengguna = inspeksi.id_pengguna');
+		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
+		return $this->db->get('inspeksi');
+	}
+
+	public function get_inspeksi_all(){
+		// $this->db->where('inspeksi.id_pengguna', $id_pengguna);
+		$this->db->join('pengguna','pengguna.id_pengguna = inspeksi.id_pengguna');
+		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = inspeksi.id_jenis_alat');
+		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
+		return $this->db->get('inspeksi');
+	}
+
+	public function get_inspeksi_all_by_id_inspeksi($id_inspeksi){
+		$this->db->where('inspeksi.id_inspeksi', $id_inspeksi);
+		$this->db->join('pengguna','pengguna.id_pengguna = inspeksi.id_pengguna');
+		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = inspeksi.id_jenis_alat');
+		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
+		return $this->db->get('inspeksi');
 	}
 }

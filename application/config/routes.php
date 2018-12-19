@@ -108,6 +108,11 @@ $route['post_berkas_perpanjang_tidak'] = 'WorkshopC/post_berkas_perpanjang_tidak
 $route['pilihworkshop1'] = 'WorkshopC/pilihworkshop1';
 $route['pilihworkshop2'] = 'WorkshopC/pilihworkshop2';
 $route['pilihworkshop3'] = 'WorkshopC/pilihworkshop3';
+$route['post_proses'] = 'WorkshopC/post_proses_reinspeksi';
+$route['post_inspeksi'] = 'WorkshopC/post_inspeksi';
+$route['konfirmasi_ins'] = 'WorkshopC/konfirmasi_ins';
+$route['cetak_ins/(:num)'] 	= 'WorkshopC/cetak_ins/$1';
+
 
 // admin
 $route['admin'] = 'AdminC';
@@ -115,11 +120,13 @@ $route['datapegawai'] = 'AdminC/datapegawai';
 $route['datauser'] = 'AdminC/datauser';
 
 // tatausaha
+$route['validasi_ins'] = 'TatausahaC/validasi_ins';
+$route['post_kode_inspeksi'] = 'TatausahaC/kode_billing_inspeksi';
 $route['tatausaha'] = 'TatausahaC';
 $route['perizinan'] = 'TatausahaC/perizinan';
 $route['verifikasi/(:num)'] = 'TatausahaC/verifikasi/$1';
 $route['reinspeksi'] = 'TatausahaC/reinspeksi';
-$route['verifikasiawalinspeksi'] = 'TatausahaC/verifikasiawalinspeksi';
+$route['verifikasiawalinspeksi/(:num)'] = 'TatausahaC/verifikasiawalinspeksi/$1';
 $route['pengujian'] = 'TatausahaC/pengujian';
 $route['persetujuan'] = 'TatausahaC/persetujuan';
 $route['persetujuan_tolak'] = 'TatausahaC/persetujuan_tolak';
@@ -134,6 +141,9 @@ $route['verifikasi_1_terima'] = 'TatausahaC/verifikasi_1_terima';
 $route['validasi_1'] 		= 'TatausahaC/validasi_1';
 $route['validasi_2'] 		= 'TatausahaC/validasi_2';
 $route['hasil_uji'] 		= 'TatausahaC/hasil_uji';
+$route['post_verif_ins'] 	= 'TatausahaC/post_verif_ins';
+$route['penerbitan_ins'] 	= 'TatausahaC/post_penerbitan_ins';
+
 // KASIE
 $route['kasie'] = 'KasieC';
 // perizinan
