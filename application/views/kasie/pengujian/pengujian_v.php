@@ -5,45 +5,69 @@
 			<div class="d-flex align-items-center">
 				<h2 class="page-header-title">Data Pengujian dan Sertifikasi</h2>
 			</div>
-		</div>
-	</div>
-	<!-- End Page Header -->
-	<div class="row">
-		<div class="col-xl-12">
-			<!-- Sorting -->
-			<div class="widget has-shadow">
-				<div class="widget-body">
-					<div class="widget-body sliding-tabs">
-						<ul class="nav nav-tabs" id="example-one" role="tablist">
-							<li class="nav-item">
-								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1"
-								aria-selected="true">Verifikasi</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
-								aria-selected="false">Data Sertifikasi</a>
-							</li>
-						</ul>
-						<div class="tab-content pt-3">
-							<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
-								<div class="table-responsive">
-									<table id="myTable" class="table mb-0">
-										<thead>
-											<tr>
-												<th class="text-center">No</th>
-												<th class="text-center">Tanggal Pengajuan</th>
-												<th class="text-center">Nama Alat</th>
-												<th class="text-center">Merk</th>
-												<th class="text-center">Tipe</th>
-												<th class="text-center">Instansi</th>
-												<th class="text-center">Aksi</th>
-											</tr>
-										</thead>
-										<tbody>
-											<?php 
-											$i=1;
-											foreach ($pengujian as $ujian) {
-												if($ujian->file_hasil_pengujian != ""){
+            <?php
+            $data=$this->session->flashdata('sukses');
+            if($data!=""){ 
+                ?>
+                <div class="alert alert-success">
+                    <button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+                    <h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
+                    <?=$data;?>
+                </div>
+                <?php 
+            } 
+            ?>
+            <?php 
+            $data2=$this->session->flashdata('error');
+            if($data2!=""){ 
+                ?>
+                <div class="alert alert-danger">
+                    <button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
+                    <h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
+                    <?=$data2;?>
+                </div>
+                <?php 
+            } 
+            ?>
+        </div>
+    </div>
+    <!-- End Page Header -->
+    <div class="row">
+      <div class="col-xl-12">
+         <!-- Sorting -->
+         <div class="widget has-shadow">
+            <div class="widget-body">
+               <div class="widget-body sliding-tabs">
+                  <ul class="nav nav-tabs" id="example-one" role="tablist">
+                     <li class="nav-item">
+                        <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1"
+                        aria-selected="true">Verifikasi</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
+                        aria-selected="false">Data Sertifikasi</a>
+                    </li>
+                </ul>
+                <div class="tab-content pt-3">
+                 <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
+                    <div class="table-responsive">
+                       <table id="myTable" class="table mb-0">
+                          <thead>
+                             <tr>
+                                <th class="text-center">No</th>
+                                <th class="text-center">Tanggal Pengajuan</th>
+                                <th class="text-center">Nama Alat</th>
+                                <th class="text-center">Merk</th>
+                                <th class="text-center">Tipe</th>
+                                <th class="text-center">Instansi</th>
+                                <th class="text-center">Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                         <?php 
+                         $i=1;
+                         foreach ($pengujian as $ujian) {
+                            if($ujian->file_hasil_pengujian != ""){
                                                     $progress_kasie = $this->GeneralM->get_array_progress_ujian_kasie($ujian->id_pengujian)->num_rows(); //jumlah perizinan yang di acc kasie
                                                     if($progress_kasie == 0){
                                                     	$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));

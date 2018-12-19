@@ -302,11 +302,11 @@
                                                                     $sekarang = date('Y-m-d');
                                                                     if($sekarang > $tgl_expired){
                                                                         ?>
-                                                                        <span style="width:100px;"><span class="badge-text badge-text-small info">aktif</span></span>
+                                                                        <span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span>
                                                                         <?php
                                                                     }else{
                                                                         ?>
-                                                                        <span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span>
+                                                                        <span style="width:100px;"><span class="badge-text badge-text-small info">aktif</span></span>
                                                                         <?php
                                                                     }
                                                                     ?>

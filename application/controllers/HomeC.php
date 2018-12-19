@@ -23,28 +23,32 @@ class HomeC extends CI_Controller{
 
 		$this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|min_length[6]|max_length[10]'); 
 		$this->form_validation->set_message('is_unique', 'Data %s sudah dipakai'); 
-
-		if($this->form_validation->run() == FALSE){
-			$this->session->set_flashdata('error','Data anda tidak berhasil disimpan, silahkan cek kembali data yang anda masukkan');
-			redirect_back();
-		}else{
-			$data = array(
-				'nama_pengguna' 	=> $this->input->post('nama_pengguna'),
-				'email_pengguna' 	=> $this->input->post('email_pengguna'),
-				'no_hp' 			=> $this->input->post('no_hp'),
-				'id_jabatan' 		=> $this->input->post('id_jabatan'),
-				'password' 			=> md5($this->input->post('password')),
-			);
-
-			if($this->LoginM->insert('pengguna', $data)){
-				// $this->send($email_akun, $email_encryption);
-				$this->session->set_flashdata('sukses','Data anda berhasil disimpan, cek email konfirmasi untuk mengaktifkan akun. Jika email tidak ada dikotak masuk, silahkan cek folder spam Anda.');
-				redirect('home');
-
-			}else{
-				$this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+		if($this->LoginM->check_captcha2() == TRUE){
+			if($this->form_validation->run() == FALSE){
+				$this->session->set_flashdata('error','Data anda tidak berhasil disimpan, silahkan cek kembali data yang anda masukkan');
 				redirect_back();
+			}else{
+				$data = array(
+					'nama_pengguna' 	=> $this->input->post('nama_pengguna'),
+					'email_pengguna' 	=> $this->input->post('email_pengguna'),
+					'no_hp' 			=> $this->input->post('no_hp'),
+					'id_jabatan' 		=> $this->input->post('id_jabatan'),
+					'password' 			=> md5($this->input->post('password')),
+				);
+
+				if($this->LoginM->insert('pengguna', $data)){
+				// $this->send($email_akun, $email_encryption);
+					$this->session->set_flashdata('sukses','Data anda berhasil disimpan, cek email konfirmasi untuk mengaktifkan akun. Jika email tidak ada dikotak masuk, silahkan cek folder spam Anda.');
+					redirect('home');
+
+				}else{
+					$this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+					redirect_back();
+				}
 			}
+		}else{
+			$this->session->set_flashdata('error','Captcha salah');
+			redirect_back();
 		}
 	}
 	function post_login(){
@@ -66,6 +70,7 @@ class HomeC extends CI_Controller{
 						'jabatan'   	=> $user->row()->nama_jabatan,
 						'id_jabatan'	=> $user->row()->id_jabatan,
 						'status'    	=> $user->row()->status,
+						'jabatan_pemohon'  => $user->row()->jabatan_pemohon,
 						'id_pengguna'  	=> $user->row()->id_pengguna,
 						'logged_in' 	=> TRUE,
 					);

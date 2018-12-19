@@ -19,6 +19,7 @@ class WorkshopC extends CI_Controller
     {
         $data['title'] = 'BTKP - Home';
         $id_pengguna = $this->session->userdata('id_pengguna');
+        $this->data['data_inspeksi']     = $this->WorkshopM->get_inspeksi_by_id_pengguna($id_pengguna)->result();
         $this->data['data_pengujian'] = $this->WorkshopM->get_pengujian($id_pengguna)->result();
         $this->data['perizinan']    = $this->WorkshopM->get_all_perizinan_by_id_pengguna($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/Home_v', $this->data, true);
