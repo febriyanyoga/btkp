@@ -129,7 +129,7 @@
 											foreach ($pengujian as $ujian) {
 												$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
 												if($ada_status > 0){
-													if($ujian->foto_bukti_trf_1 != "" && $ujian->status_pembayaran_1 == ""){
+													if($ujian->foto_bukti_trf_1 != "" && $ujian->status_pembayaran_1 == "unpaid"){
 														// $status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row();
 														$i++;
 														$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
@@ -208,7 +208,7 @@
 											foreach ($pengujian as $ujian) {
 												$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
 												if($ada_status > 0){
-													if($ujian->foto_bukti_trf_1 != "" && $ujian->status_pembayaran_1 != "" && $ujian->file_hasil_pengujian == ""){
+													if($ujian->foto_bukti_trf_1 != "" && $ujian->status_pembayaran_1 != "unpaid" && $ujian->file_hasil_pengujian == ""){
 														// $status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row();
 														$i++;
 														$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
@@ -279,7 +279,7 @@
 											foreach ($pengujian as $ujian) {
 												$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
 												if($ada_status > 0){
-													if($ujian->foto_bukti_trf_1 != "" && $ujian->status_pembayaran_1 != "" && $ujian->file_hasil_pengujian != "" && $ujian->kode_billing_2 == ""){
+													if($ujian->foto_bukti_trf_1 != "" && $ujian->status_pembayaran_1 != "unpaid" && $ujian->file_hasil_pengujian != "" && $ujian->kode_billing_2 == ""){
 														// $status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row();
                                                         $progress_kasie = $this->GeneralM->get_array_progress_ujian_kasie($ujian->id_pengujian)->num_rows(); //jumlah perizinan yang di acc kasie
                                                         if($progress_kasie > 0){

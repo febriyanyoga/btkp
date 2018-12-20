@@ -55,6 +55,23 @@ class LoginM extends CI_Model{
     	return false;
     }
 
+    public function check_captcha2(){  //post captcha
+        $expiration = time() - 3600;
+        $sql = 'DELETE FROM captcha WHERE captcha_time < ?';
+        $binds = array($expiration);
+        $query = $this->db->query($sql, $binds);
+
+        $sql = 'SELECT COUNT(*) AS count FROM captcha WHERE word = ? AND ip_address = ? AND captcha_time > ?';
+        $binds = array($_POST['captcha2'], $this->input->ip_address(), $expiration);
+        $query = $this->db->query($sql, $binds);
+        $row = $query->row();
+
+        if ($row->count > 0) {
+            return true;
+        }
+        return false;
+    }
+
     // ambil nama jabatan untuk register
     public function get_jabatan(){
     	$this->db->select('*');

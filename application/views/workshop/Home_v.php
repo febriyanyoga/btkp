@@ -118,7 +118,7 @@
 												<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">SPK</a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Inspeksi </a>
+												<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Inspeksi</a>
 											</li>
 										</ul>
 									</div>
@@ -335,19 +335,32 @@
                                                         			<tr>
                                                         				<th class="text-center">No</th>
                                                         				<th class="text-center">No. Permohonan</th>
+                                                        				<th class="text-center">Kapal</th>
                                                         				<th class="text-center">Tanggal Pengajuan</th>
                                                         				<th class="text-center">Status</th>
                                                         				<th class="text-center">Actions</th>
                                                         			</tr>
                                                         		</thead>
                                                         		<tbody>
-                                                        			<tr>
-                                                        				<td></td>
-                                                        				<td></td>
-                                                        				<td></td>
-                                                        				<td></td>
-                                                        				<td></td>
-                                                        			</tr>
+                                                        			<?php
+                                                        			$i=1;
+                                                        			foreach ($data_inspeksi as $ins) {
+                                                        				if($ins->status_pembayaran == 'unpaid' && $ins->kode_barcode != ""){
+                                                        					$tgl_pengajuan_ins = date('Y-m-d', strtotime($ins->created_at_inspeksi));
+                                                        					?>
+                                                        					<tr>
+                                                        						<td class="text-center"><?php echo $i;?></td>
+                                                        						<td class="text-center"><?php echo $ins->id_inspeksi.'/'.date('Y/m/d', strtotime($ins->created_at_inspeksi))?></td>
+                                                        						<td class="text-center"><?php echo $ins->nama_kapal?></td>
+                                                        						<td class="text-center"><?php echo date_indo($tgl_pengajuan_ins)?></td>
+                                                        						<td class="text-center"><span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Proses</span></span></td>
+                                                        						<td class="text-center">-</td>
+                                                        					</tr>
+                                                        					<?php
+                                                        					$i++;
+                                                        				}
+                                                        			}
+                                                        			?>
                                                         		</tbody>
                                                         	</table>
                                                         </div>

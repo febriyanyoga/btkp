@@ -109,7 +109,7 @@
 												<th class="text-center">Workshop</th>
 												<th class="text-center">Alat</th>
 												<th class="text-center">Kapal</th>
-												<th class="text-center">Hasil</th>
+												<th class="text-center">Catatan</th>
 												<th class="text-center">Aksi</th>
 											</tr>
 										</thead>
@@ -128,11 +128,10 @@
 														<td class="text-center"><?php echo $ins->nama_perusahaan?></td>
 														<td class="text-center"><?php echo $ins->nama_alat?></td>
 														<td class="text-center"><?php echo $ins->nama_kapal?></td>
+														<td class="text-center"><?php echo $ins->catatan?></td>
 														<td class="text-center">
-															<a href="<?php echo base_url().'assets/upload/'.$ins->file_hasil_survey;?>" target="_BLANK" class="btn btn-primary btn-md"><i class="la la-pencil" title="Lihat dokumen hasil survey"></i>Dokumen</i></a>
-														</td>
-														<td class="text-center">
-															<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling-<?php echo $ins->id_inspeksi; ?>"><i class="la la-pencil"></i>Kode Billing</i></a>
+															<a title="Lihat Dokumen" href="<?php echo base_url().'assets/upload/'.$ins->file_hasil_survey;?>" target="_BLANK"><i class="la la-eye" title="Lihat dokumen hasil survey"></i> Dokumen</i></a><hr>
+															<a href="#" title="Masukkan Kode Billing" data-toggle="modal" data-target="#kode_biling-<?php echo $ins->id_inspeksi; ?>"><i class="la la-pencil"></i> Kode Billing</i></a>
 														</td>
 													</tr>
 
