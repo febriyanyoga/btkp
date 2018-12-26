@@ -1,11 +1,4 @@
 <!DOCTYPE html>
-<!--
-Item Name: Elisyam - Web App & Admin Dashboard Template
-Version: 1.5
-Author: SAEROX
-
-** A license must be purchased in order to legally use this template for your project **
--->
 <html lang="en">
 
 <head>
@@ -14,16 +7,6 @@ Author: SAEROX
 	<title><?php echo $title; ?></title>
 	<meta name="description" content="Elisyam is a Web App and Admin Dashboard Template built with Bootstrap 4">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<!-- Google Fonts -->
-	<!-- <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
-	<script>
-		WebFont.load({
-			google: {"families":["Montserrat:400,500,600,700","Noto+Sans:400,700"]},
-			active: function() {
-				sessionStorage.fonts = true;
-			}
-		});
-	</script> -->
 	<!-- Favicon -->
 	<link rel="apple-touch-icon" sizes="180x180" href="<?php echo base_url(); ?>assets/app/img/apple-touch-icon.png">
 	<link rel="icon" type="image/png" sizes="32x32" href="<?php echo base_url(); ?>assets/app/img/favicon-32x32.png">
@@ -36,13 +19,10 @@ Author: SAEROX
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/themify/css/themify-icons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/meteocons/css/meteocons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/owl-carousel/owl.carousel.min.css">
-	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/owl-carousel/owl.theme.min.css">
+
 	<!-- tabel -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/datatables/datatables.min.css">
-	<!-- Tweaks for older IEs-->
-	<!--[if lt IE 9]>
-        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
     </head>
 <body id="page-top">
 	<!-- Begin Preloader -->
@@ -69,7 +49,7 @@ Author: SAEROX
 				<div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
 					<!-- Begin Logo -->
 					<div class="navbar-header">
-						<a href="<?php echo site_url('tatausaha')?>" class="navbar-brand">
+						<a href="<?php echo site_url('tatausaha'); ?>" class="navbar-brand">
 							<div class="brand-image brand-big">
 								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" style="width: 70px;" class="logo-big">
 							</div>
@@ -174,7 +154,7 @@ Author: SAEROX
                                     <p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
                                     </li>
 								<li>
-									<a href="<?php echo site_url('profile_t')?>" class="dropdown-item">
+									<a href="<?php echo site_url('profile_t'); ?>" class="dropdown-item">
 										Profile
 									</a>
 								</li>

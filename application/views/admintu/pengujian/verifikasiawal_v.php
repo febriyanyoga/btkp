@@ -34,29 +34,29 @@
 					<!-- Begin Invoice Header -->
 					<div class="invoice-header">
 						<?php
-						$data = $this->session->flashdata('sukses');
-						if ($data != '') {
-							?>
+                        $data = $this->session->flashdata('sukses');
+                        if ($data != '') {
+                            ?>
 							<div class="alert alert-success">
 								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
 								<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
 								<?=$data; ?>
 							</div>
 							<?php
-						}
-						?>
+                        }
+                        ?>
 						<?php
-						$data2 = $this->session->flashdata('error');
-						if ($data2 != '') {
-							?>
+                        $data2 = $this->session->flashdata('error');
+                        if ($data2 != '') {
+                            ?>
 							<div class="alert alert-danger">
 								<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span aria-hidden="true"></span></button>
 								<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
 								<?=$data2; ?>
 							</div>
 							<?php
-						}
-						?>
+                        }
+                        ?>
 						<form action="<?php echo site_url('persetujuan'); ?>" method="post" id="form-input-acc">
 							<div id="accordion-icon-right" class="accordion">
 								<div class="widget has-shadow">
@@ -72,7 +72,7 @@
 												<label for="1">Jenis Instansi</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->nama_jabatan?></div>
+										<div class="col-xl-8"><?php echo $pengujian->nama_jabatan; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 
@@ -82,19 +82,19 @@
 												<label for="2">Nama Instansi</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->nama_perusahaan?></div>
+										<div class="col-xl-8"><?php echo $pengujian->nama_perusahaan; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
 											<div class="styled-checkbox">
 												<input type="checkbox" checked name="checkbox" required>
 												<?php
-												$alamat_pt_detail = $this->WorkshopM->detail_alamat($pengujian->id_kel_perusahaan)->row();
-												?>
+                                                $alamat_pt_detail = $this->WorkshopM->detail_alamat($pengujian->id_kel_perusahaan)->row();
+                                                ?>
 												<label for="3">Alamat Instansi </label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->alamat_perusahaan.'<br>'.$alamat_pt_detail->nama_kelurahan.', '.$alamat_pt_detail->nama_kecamatan.', '.$alamat_pt_detail->nama_kabupaten_kota.', '.$alamat_pt_detail->nama_propinsi;?></div>
+										<div class="col-xl-8"><?php echo $pengujian->alamat_perusahaan.'<br>'.$alamat_pt_detail->nama_kelurahan.', '.$alamat_pt_detail->nama_kecamatan.', '.$alamat_pt_detail->nama_kabupaten_kota.', '.$alamat_pt_detail->nama_propinsi; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -103,7 +103,7 @@
 												<label for="4">Telepon Instansi</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->no_tlp?></div>
+										<div class="col-xl-8"><?php echo $pengujian->no_tlp; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -112,7 +112,7 @@
 												<label for="5">Fax</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->fax?></div>
+										<div class="col-xl-8"><?php echo $pengujian->fax; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -121,7 +121,7 @@
 												<label for="5">email</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->email_perusahaan?></div>
+										<div class="col-xl-8"><?php echo $pengujian->email_perusahaan; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -130,7 +130,7 @@
 												<label for="6">Nomor Telepon Pemohon</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->no_hp?></div>
+										<div class="col-xl-8"><?php echo $pengujian->no_hp; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -139,7 +139,7 @@
 												<label for="7">Jabatan Pemohon</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->jabatan_pengguna?></div>
+										<div class="col-xl-8"><?php echo $pengujian->jabatan_pengguna; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -148,7 +148,7 @@
 												<label for="8">Email Pemohon</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->email_pengguna?></div>
+										<div class="col-xl-8"><?php echo $pengujian->email_pengguna; ?></div>
 									</div>
 
 								</div>
@@ -163,7 +163,7 @@
 												<label for="9">Nama Alat</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->nama_alat?></div>
+										<div class="col-xl-8"><?php echo $pengujian->nama_alat; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -172,7 +172,7 @@
 												<label for="9">Merk</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->merk?></div>
+										<div class="col-xl-8"><?php echo $pengujian->merk; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -181,7 +181,7 @@
 												<label for="9">Model/Tipe</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->tipe?></div>
+										<div class="col-xl-8"><?php echo $pengujian->tipe; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -190,7 +190,7 @@
 												<label for="9">Negara Pembuat</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->negara_asal?></div>
+										<div class="col-xl-8"><?php echo $pengujian->negara_asal; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -198,11 +198,11 @@
 												<input type="checkbox" checked name="checkbox" required id="9">
 												<label for="9">Alamat Pabrikan</label>
 												<?php
-												$alamat_pabrik = $this->WorkshopM->detail_alamat($pengujian->id_kel_pabrikan)->row();
-												?>
+                                                $alamat_pabrik = $this->WorkshopM->detail_alamat($pengujian->id_kel_pabrikan)->row();
+                                                ?>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->alamat_pabrikan.'<br>'.$alamat_pabrik->nama_kelurahan.', '.$alamat_pabrik->nama_kecamatan.', '.$alamat_pabrik->nama_kabupaten_kota.', '.$alamat_pabrik->nama_propinsi;?></div>
+										<div class="col-xl-8"><?php echo $pengujian->alamat_pabrikan.'<br>'.$alamat_pabrik->nama_kelurahan.', '.$alamat_pabrik->nama_kecamatan.', '.$alamat_pabrik->nama_kabupaten_kota.', '.$alamat_pabrik->nama_propinsi; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -211,7 +211,7 @@
 												<label for="9">Pabrik Pembuat</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->pabrikan?></div>
+										<div class="col-xl-8"><?php echo $pengujian->pabrikan; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -220,7 +220,7 @@
 												<label for="9">Telepon</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->telepon?></div>
+										<div class="col-xl-8"><?php echo $pengujian->telepon; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -229,7 +229,7 @@
 												<label for="9">Email</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->email_pabrikan?></div>
+										<div class="col-xl-8"><?php echo $pengujian->email_pabrikan; ?></div>
 									</div>
 									<div class="form-group row mb-5">
 										<div class="col-xl-4">
@@ -238,7 +238,7 @@
 												<label for="9">Fax</label>
 											</div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->fax_pabrikan?></div>
+										<div class="col-xl-8"><?php echo $pengujian->fax_pabrikan; ?></div>
 									</div>
 								</div>
 							</div>
@@ -257,7 +257,6 @@
 	</div>
 </div>
 </div>
-</div>
 <div class="modal" id="izin_berkas">
 	<div class="modal-dialog modal-md">
 		<div class="modal-content">
@@ -265,7 +264,7 @@
 				<h4 class="modal-title">Persetujuan Perizinan</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
-			<form action="<?php echo site_url('verifikasi_1_tolak')?>" method="post">
+			<form action="<?php echo site_url('verifikasi_1_tolak'); ?>" method="post">
 				<div class="modal-body">
 					<label for="keterangan" class="label">Keterangan : </label>
 					<textarea type="text" name="keterangan"class="form-control" placeholder="Keterangan . . ." required="required"></textarea>
@@ -303,12 +302,12 @@
 					<select class="form-control" name="id_bank_btkp">
 						<option value="">---Pilih Bank---</option>
 						<?php
-						foreach ($bank_btkp as $bank) {
-							?>
+                        foreach ($bank_btkp as $bank) {
+                            ?>
 							<option value="<?php echo $bank->id_bank_btkp; ?>"><?php echo $bank->nama_bank; ?></option>
 							<?php
-						}
-						?>
+                        }
+                        ?>
 					</select>
 					<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
 					<label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>

@@ -37,7 +37,7 @@
 </style>
 </head>
 
-<body class="bg-white">
+<body style="background:url(<?php echo base_url(); ?>assets/bgauth.jpg); background-size: cover;">
 	<!-- Begin Preloader -->
 	<div id="preloader">
 		<div class="canvas">
@@ -48,9 +48,9 @@
 	<!-- End Preloader -->
 	<!-- Begin Container -->
 	<div class="container-fluid no-padding h-100">
-		<div class="row flex-row h-100" style="background:url(<?php echo base_url(); ?>assets/bgauth.jpg); background-size: cover;">
+		<div class="row flex-row h-100">
 			<!-- Begin Left Content -->
-			<div class="col-xl-3 col-lg-5 col-md-5 col-sm-12 col-12 no-padding">
+			<div class="col-xl-3 col-lg-5 col-md-5 col-sm-12 col-12">
 				<div class="elisyam-bg background-01">
 					<div class="elisyam-overlay overlay-08"></div>
 					<div class="authentication-col-content-2 mx-auto text-center">
@@ -59,13 +59,18 @@
 								<img src="<?php echo base_url(); ?>assets/app/img/logo.png" alt="logo">
 							</a>
 						</div>
-						<h1>Aplikasi</h1>
-						<span class="description">
+						<h1>Aplikasi</h1> <br>
+						<h2 style="color:white;">
 							Keselamatan Pelayaran
-						</span>
+						</h2>
 						<ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
 							<li><a class="active" data-toggle="tab" href="#singin" role="tab" id="singin-tab" data-easein="zoomInUp">Masuk</a></li>
 							<li><a data-toggle="tab" href="#signup" role="tab" id="signup-tab" data-easein="zoomInRight">Daftar</a></li>
+						</ul>
+						<br>
+						<ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
+							<li><a class="active" data-toggle="tab" href="#singin">Bahasa Indonesia</a></li>
+							<li><a data-toggle="tab" href="#signup">English</a></li>
 						</ul>
 					</div>
 				</div>
@@ -79,38 +84,38 @@
 						<!-- Begin Sign In -->
 						<div role="tabpanel" class="tab-pane show active" id="singin" aria-labelledby="singin-tab">
 							<?php
-							$data=$this->session->flashdata('sukses');
-							if($data!=""){
-								?>
+                            $data = $this->session->flashdata('sukses');
+                            if ($data != '') {
+                                ?>
 								<div class="alert alert-success" id="alert-success">
 									<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span
 										aria-hidden="true"></span></button>
 										<h3 style="color: white;"><i class="fa fa-check-circle"></i> Sukses!</h3>
-										<?=$data;?>
+										<?=$data; ?>
 									</div>
 									<?php
-								}
-								?>
+                            }
+                                ?>
 								<?php
-								$data2=$this->session->flashdata('error');
-								if($data2!=""){
-									?>
+                                $data2 = $this->session->flashdata('error');
+                                if ($data2 != '') {
+                                    ?>
 									<div class="alert alert-danger" id="alert-danger">
 										<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span
 											aria-hidden="true"></span></button>
 											<h3 style="color: white;"><i class="fa fa-check-circle"></i> Gagal!</h3>
-											<?=$data2;?>
+											<?=$data2; ?>
 										</div>
 										<?php
-									}
-									?>
+                                }
+                                    ?>
 
 									<div class="widget has-shadow">
 										<div class="widget-header">
 											<h1 class="text-center">Form Login</h1> <br>
 										</div>
 										<div class="widget-body">
-											<form action="<?php echo site_url('login')?>" method="post">
+											<form action="<?php echo site_url('login'); ?>" method="post">
 												<div>
 													<label class="form-control-label" >Email<span class="text-danger ml-2">*</span></label>
 													<input class="form-control" type="email" id="email" name="email_login" required placeholder="Email">
@@ -123,7 +128,7 @@
 												<br>
 												<div class="group material-input">
 													<center>
-														<?=$cap_img?>
+														<?=$cap_img; ?>
 													</center>
 												</div>
 												<div>
@@ -147,69 +152,75 @@
 								<div role="tabpanel" class="tab-pane" id="signup" aria-labelledby="signup-tab">
 									<div class="widget has-shadow">
 										<div class="widget-header">
-											<h1 class="text-center">Form Registrasi</h1> <br>
+											<h3 class="text-center">Form Registrasi</h3>
 										</div>
 										<div class="widget-body">
-											<form action="<?php echo site_url('daftar')?>" method="post" id="signupForm">
-												<div class="group material-input">
-													<input class="form-control" type="text" id="nama_pengguna" name="nama_pengguna" placeholder="Nama Lengkap">
+											<form action="<?php echo site_url('daftar'); ?>" method="post" id="signupForm">
+											<div class="form-group row mb-3">
+											<div class="col-xl-6 mb-3">
+													<input class="form-control" type="text" id="nama_pengguna" name="nama_pengguna" placeholder="Nama">
 													<span class="highlight"></span>
 													<span class="bar"></span>
 													<label for="nama_pengguna" class="error"></label>
 												</div>
-												<div class="group material-input">
+												<div class="col-xl-6 mb-3">
 													<input class="form-control" type="email" id="email_pengguna" name="email_pengguna" placeholder="Alamat Email">
 													<span class="highlight"></span>
 													<span class="bar"></span>
 													<label for="email_pengguna" class="error"></label>
 												</div>
-												<div class="group material-input">
+												</div>
+												<div class="form-group row mb-3">
+												<div class="col-xl-6 mb-3">
+													<select class="form-control" id="id_jabatan" name="id_jabatan" required="required">
+														<option value="">----- Pilih Instansi -----</option>
+														<?php
+                                                        foreach ($jabatan as $jab) {
+                                                            if ($jab->id_jabatan > 4) {
+                                                                ?>
+																<option value="<?php echo $jab->id_jabatan; ?>">
+																	<?php echo $jab->nama_jabatan; ?>
+																</option>
+																<?php
+                                                            }
+                                                        }
+                                                        ?>
+													</select>
+													<label for="id_jabatan" class="error"></label>
+												</div>
+											<div class="col-xl-6 mb-3">
 													<input class="form-control" type="number" id="no_hp" name="no_hp" placeholder="Nomor Handphone">
 													<span class="highlight"></span>
 													<span class="bar"></span>
 													<label for="no_hp" class="error"></label>
 												</div>
-												<div class="group material-input">
+												</div>
+												<div class="form-group row mb-3">
+												<div class="col-xl-6 mb-3">
 													<input class="form-control" type="password" id="password" name="password" placeholder="Password">
 													<span class="highlight"></span>
 													<span class="bar"></span>
 													<label for="password" class="error"></label>
 												</div>
-												<div class="group material-input">
+												<div class="col-xl-6 mb-3">
 													<input class="form-control" type="password" id="confirm_password" name="confirm_password" placeholder="Konfrimasi Password">
 													<span class="highlight"></span>
 													<span class="bar"></span>
 													<label for="confirm_password" class="error"></label>
 												</div>
-												<div class="group material-input">
-													<select class="form-control" id="id_jabatan" name="id_jabatan" required="required">
-														<option value="">----- Pilih Jenis User -----</option>
-														<?php
-														foreach ($jabatan as $jab) {
-															if($jab->id_jabatan > 4){
-																?>
-																<option value="<?php echo $jab->id_jabatan?>">
-																	<?php echo $jab->nama_jabatan?>
-																</option>
-																<?php
-															}
-														}
-														?>
-													</select>
-													<label for="id_jabatan" class="error"></label>
 												</div>
-												<div class="group material-input">
+												<!-- <div>
 													<input class="form-control" type="text" id="jabatan_pengguna" name="jabatan_pengguna" placeholder="Jabatan Pengguna">
 													<span class="highlight"></span>
 													<span class="bar"></span>
 													<label for="jabatan_pengguna" class="error"></label>
-												</div>
-												<div class="group material-input">
+												</div> -->
+												<div>
 													<center>
-														<?= $cap_img ?>
+														<?= $cap_img; ?>
 													</center>
-												</div>
-												<div class="group material-input">
+												</div> <br>
+												<div>
 													<input class="form-control" type="text" id="captcha2" name="captcha2" placeholder="Masukkan captcha">
 													<span class="highlight"></span>
 													<span class="bar"></span>
@@ -236,7 +247,7 @@
 						</div>
 						<!-- End Form -->
 					</div>
-				</div>
+				<!-- </div> -->
 				<!-- End Right Content -->
 			</div>
 			<!-- End Row -->
@@ -258,7 +269,7 @@
 							<li>3. Syarat 3</li>
 							<li>4. Syarat 4</li>
 							<li>5. Syarat 5</li>
-							
+
 						</ol>
 						<br>
 						<h5>Ketentuan</h5>
@@ -268,7 +279,7 @@
 							<li>3. Ketentuan 3</li>
 							<li>4. Ketentuan 4</li>
 							<li>5. Ketentuan 5</li>
-							
+
 						</ol>
 					</div>
 					<div class="modal-footer">
