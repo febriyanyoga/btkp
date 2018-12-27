@@ -128,6 +128,14 @@ class GeneralM extends CI_Model{
 		return $this->db->get();
 	}
 
+	public function get_array_progress_inspeksi_all($id_inspeksi){
+		$this->db->select('*');
+		$this->db->from('pengguna_inspeksi P');
+		$this->db->join('pengguna U','P.id_pengguna = U.id_pengguna','left');
+		$this->db->where('P.id_inspeksi', $id_inspeksi);
+		return $this->db->get();
+	}
+
 	public function get_array_progress_inspeksi_setuju($id_inspeksi){
 		$this->db->select('*');
 		$this->db->from('pengguna_inspeksi P');
