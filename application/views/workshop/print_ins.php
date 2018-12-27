@@ -162,7 +162,7 @@ $html2 =
         <td colspan="" style="width:1%;text-align:center; font-size:12pt; font-weight:bold; text-decoration: underline; font-family:Times New Roman; text-transform: capitalize; font-style:italic;height:38px;"></td>
 
         <td colspan="" style="width:41%;text-align:center; font-size:9pt;font-family:Arial; text-transform: capitalize;height:38px;">Classification Society:
-            <br><span style="font-size:10pt;">BV / BKI</span>
+            <br><span style="font-size:10pt;">'.$inspeksi->klasifikasi.'</span>
         </td>
 
         <td colspan="" style="width:1%;text-align:center; font-size:12pt; font-weight:bold; text-decoration: underline; font-family:Times New Roman; text-transform: capitalize; font-style:italic;height:38px;"></td>

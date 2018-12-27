@@ -119,7 +119,7 @@
 									foreach ($data_inspeksi as $ins) {
 										$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 										$alamat_ws = $this->WorkshopM->detail_alamat($ins->id_kel_workshop)->row();
-										$progress_tu = $this->GeneralM->get_array_progress_inspeksi($ins->id_inspeksi)->num_rows();
+										$progress_tu = $this->GeneralM->get_array_progress_inspeksi_setuju($ins->id_inspeksi)->num_rows();
 										if($progress_tu > 0 ){
 											if($ins->status_pembayaran == 'unpaid'){
 												?>
@@ -287,7 +287,7 @@
 													if($ins->no_spk == ""){
 														echo "-";
 													}else{
-														echo $ins->no_spk.'-'.$ins->kode_alat.'-'.date('Y');
+														echo $ins->no_spk.'-'.$ins->kode_alat.'-'.date('Y', strtotime($ins->tgl_terbit));
 													}
 													?>
 
@@ -304,7 +304,7 @@
 														<?php
 													}else{
 														?>
-														<span style="width:100px;"><span class="badge-text badge-text-small success">Remark</span></span>
+														<span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span>
 														<?php
 													}
 													?>

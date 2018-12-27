@@ -285,12 +285,12 @@
 														<?php 
 														if($ins->no_spk != ""){
 															?>
-															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>
+															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterbitkan</span></span></td>
 															<td class="text-center">-</td>
 															<?php
 														}else{
 															?>
-															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterbitkan</span></span></td>
+															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>
 															<td class="text-center">
 																<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#penerbitan-<?php echo $ins->id_inspeksi?>"><i class="la la-pencil"></i>Penerbitan</i>
 																</a>
@@ -310,6 +310,8 @@
 																<form action="<?php echo site_url('penerbitan_ins'); ?>" method="post">
 																	<div class="modal-body">
 																		<input type="hidden" name="id_inspeksi" class="form-control" required="required" value="<?php echo $ins->id_inspeksi; ?>">
+																		<label for="klasifikasi" class="label">Klasifikasi : </label>
+																		<input type="text" name="klasifikasi" value="" class="form-control" required="required">
 																		<label for="keterangan" class="label">Tanggal Terbit  : </label>
 																		<input type="date" name="tgl_terbit" value="" class="form-control" required="required">
 																		<label for="keterangan" class="label">Tanggal Expired  : </label>

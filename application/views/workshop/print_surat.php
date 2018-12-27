@@ -143,7 +143,7 @@ $html2 =
     </tr>
     <tr>
        	<td colspan="4" style="text-align:center; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  height:20px;">
-       	Nomor : '.$perizinan->kode_alat.'/'.$perizinan->no_spk.'/'.date("y").'
+       	Nomor : '.$perizinan->kode_alat.'/'.$perizinan->no_spk.'/'.date("y", strtotime($perizinan->tgl_terbit)).'
 		</td>
     </tr>
     <tr>

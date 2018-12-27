@@ -82,6 +82,7 @@ class TatausahaM extends CI_Model{
 		$this->db->from('inspeksi');
 		$this->db->where('DATE(tgl_terbit) <= ',$tgl);
 		$this->db->where('status_pembayaran = "Paid"');
+		$this->db->where('no_spk != ""');
 		$this->db->order_by('id_inspeksi','DESC');
 		$this->db->limit('1');
 

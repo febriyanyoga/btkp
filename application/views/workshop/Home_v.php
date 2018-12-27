@@ -345,19 +345,22 @@
                                                         			<?php
                                                         			$i=1;
                                                         			foreach ($data_inspeksi as $ins) {
-                                                        				if($ins->status_pembayaran == 'unpaid' && $ins->kode_barcode != ""){
-                                                        					$tgl_pengajuan_ins = date('Y-m-d', strtotime($ins->created_at_inspeksi));
-                                                        					?>
-                                                        					<tr>
-                                                        						<td class="text-center"><?php echo $i;?></td>
-                                                        						<td class="text-center"><?php echo $ins->id_inspeksi.'/'.date('Y/m/d', strtotime($ins->created_at_inspeksi))?></td>
-                                                        						<td class="text-center"><?php echo $ins->nama_kapal?></td>
-                                                        						<td class="text-center"><?php echo date_indo($tgl_pengajuan_ins)?></td>
-                                                        						<td class="text-center"><span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Proses</span></span></td>
-                                                        						<td class="text-center">-</td>
-                                                        					</tr>
-                                                        					<?php
-                                                        					$i++;
+                                                        				$progress_tu = $this->GeneralM->get_array_progress_inspeksi_tolak($ins->id_inspeksi)->num_rows();
+                                                        				if($ins->status_pembayaran == 'unpaid' && $ins->kode_barcode == ""){
+                                                        					if($progress_tu == 0){
+                                                        						$tgl_pengajuan_ins = date('Y-m-d', strtotime($ins->created_at_inspeksi));
+                                                        						?>
+                                                        						<tr>
+                                                        							<td class="text-center"><?php echo $i;?></td>
+                                                        							<td class="text-center"><?php echo $ins->id_inspeksi.'/'.date('Y/m/d', strtotime($ins->created_at_inspeksi))?></td>
+                                                        							<td class="text-center"><?php echo $ins->nama_kapal?></td>
+                                                        							<td class="text-center"><?php echo date_indo($tgl_pengajuan_ins)?></td>
+                                                        							<td class="text-center"><span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Proses</span></span></td>
+                                                        							<td class="text-center">-</td>
+                                                        						</tr>
+                                                        						<?php
+                                                        						$i++;
+                                                        					}
                                                         				}
                                                         			}
                                                         			?>
