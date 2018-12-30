@@ -23,7 +23,7 @@
 	<!-- tabel -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/datatables/datatables.min.css">
 
-    </head>
+</head>
 <body id="page-top">
 	<!-- Begin Preloader -->
 	<div id="preloader">
@@ -73,8 +73,8 @@
 						<!-- End Search -->
 						<!-- Begin Notifications -->
 						<li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
-							 aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="la la-bell animated infinite swing"></i><span
-								 class="badge-pulse"></span></a>
+							aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="la la-bell animated infinite swing"></i><span
+							class="badge-pulse"></span></a>
 							<ul aria-labelledby="notifications" class="dropdown-menu notification">
 								<li>
 									<div class="notifications-header">
@@ -143,16 +143,16 @@
 						<!-- End Notifications -->
 						<!-- User -->
 						<li class="nav-item dropdown"><a id="user" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
-							 aria-haspopup="true" aria-expanded="false" class="nav-link"><img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg"
-								 alt="..." class="avatar rounded-circle"></a>
+							aria-haspopup="true" aria-expanded="false" class="nav-link"><img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg"
+							alt="..." class="avatar rounded-circle"></a>
 							<ul aria-labelledby="user" class="user-size dropdown-menu">
 								<li class="welcome">
 									<a href="#" class="edit-profil"><i class="la la-gear"></i></a>
 									<img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg" alt="..." class="rounded-circle">
 								</li>
-                                <li>
-                                    <p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
-                                    </li>
+								<li>
+									<p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
+								</li>
 								<li>
 									<a href="<?php echo site_url('profile_t'); ?>" class="dropdown-item">
 										Profile
@@ -220,31 +220,35 @@
 			<div class="content-inner compact" style="background:url(<?php echo base_url(); ?>assets/bg.jpg); background-size: cover;">
 				<!-- Begin Jumbotron -->
 
-    				<!-- End Jumbotron -->
-    				<?php echo $isi; ?>
-    				<!-- Begin Page Footer-->
-    				<footer class="main-footer">
-    					<div class="row">
-    						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-center">
-    							<p class="text-gradient-02">Design By Soepomo 84</p>
-    						</div>
-    						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-xl-end justify-content-lg-end justify-content-md-end justify-content-center">
-    							<ul class="nav">
-    								<li class="nav-item">
-    									<a class="nav-link" href="documentation.html">Bantuan</a>
-    								</li>
-    							</ul>
-    						</div>
-    					</div>
-    				</footer>
-    				<!-- End Page Footer -->
-    				<a href="#" class="go-top"><i class="la la-arrow-up"></i></a>
+				<!-- End Jumbotron -->
+				<?php echo $isi; ?>
+				<!-- Begin Page Footer-->
+				<footer class="main-footer">
+					<div class="row">
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-center">
+							<p class="text-gradient-02">Design By Soepomo 84</p>
+						</div>
+						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-xl-end justify-content-lg-end justify-content-md-end justify-content-center">
+							<ul class="nav">
+								<li class="nav-item">
+									<a class="nav-link" href="documentation.html">Bantuan</a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</footer>
+				<!-- End Page Footer -->
+				<a href="#" class="go-top"><i class="la la-arrow-up"></i></a>
 
-</div>
-<!-- End Content -->
-</div>
-<!-- End Page Content -->
-</div>
+			</div>
+			<!-- End Content -->
+		</div>
+		<!-- End Page Content -->
+	</div>
+
+</body>
+
+</html>
 <!-- Begin Vendor Js -->
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
@@ -274,28 +278,45 @@
 <!-- End Page Vendor Js -->
 
 <script>
-  $.noConflict();
-  jQuery(document).ready(function ($) {
-     $('#myTable').DataTable();
-     $('#myTable2').DataTable();
-     $('#myTable3').DataTable();
-     $('#myTable4').DataTable();
-     $('#myTable5').DataTable();
-     $('#myTable6').DataTable();
-     $('#myTable7').DataTable();
-     $('#myTable8').DataTable();
- });
+	$.noConflict();
+	jQuery(document).ready(function ($) {
+		$('#myTable').DataTable();
+		$('#myTable2').DataTable();
+		$('#myTable3').DataTable();
+		$('#myTable4').DataTable();
+		$('#myTable5').DataTable();
+		$('#myTable6').DataTable();
+		$('#myTable7').DataTable();
+		$('#myTable8').DataTable();
+	});
 
 
 </script>
 <!-- Popover -->
 <script>
-  $(function () {
-     $('[data-toggle="popover"]').popover()
- })
+
+	$(function () {
+		$('[data-toggle="popover"]').popover()
+	})
 
 </script>
 
-</body>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#label_ket_pembayaran').hide();
+		$('#input_ket_pembayaran').hide();
 
-</html>
+		$('#status_pembayaran').change(function(){
+			var status = $("#status_pembayaran").val();
+			if(status == 'unpaid'){
+				$('#label_ket_pembayaran').show();
+				$('#input_ket_pembayaran').show();
+				$("#input_ket_pembayaran").prop("required", true);
+			}else if(status == 'paid'){
+				$('#label_ket_pembayaran').hide();
+				$('#input_ket_pembayaran').hide();
+				$("#input_ket_pembayaran").removeAttr("required");
+			}
+		});
+	});
+</script>

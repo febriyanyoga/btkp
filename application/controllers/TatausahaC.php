@@ -614,10 +614,20 @@ class TatausahaC extends CI_Controller
             $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
         } else {
-            $id_inspeksi = $this->input->post('id_inspeksi');
-            $data = array(
-                'status_pembayaran' => $this->input->post('status_pembayaran'),
-            );
+            $id_inspeksi        = $this->input->post('id_inspeksi');
+            $status_pembayaran  = $this->input->post('status_pembayaran');
+            if($status_pembayaran == 'paid'){
+                $data = array(
+                    'status_pembayaran' => $this->input->post('status_pembayaran'),
+                    'ket_pembayaran'    => $this->input->post('ket_pembayaran'),
+                );
+            }else{
+                $data = array(
+                    'status_pembayaran' => $this->input->post('status_pembayaran'),
+                    'ket_pembayaran'    => $this->input->post('ket_pembayaran'),
+                    'foto_bukti_trf'    => '',
+                );              
+            }
             if ($this->WorkshopM->selesai_i($id_inspeksi, $data)) {
                 $this->session->set_flashdata('sukses', 'Validasi berhasil');
                 redirect_back();
@@ -630,6 +640,7 @@ class TatausahaC extends CI_Controller
 
     public function post_penerbitan_ins()
     {
+        $this->form_validation->set_rules('klasifikasi', 'Klasifikasi', 'required');
         $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit', 'required');
         $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired', 'required');
         if ($this->form_validation->run() == false) {
@@ -644,7 +655,7 @@ class TatausahaC extends CI_Controller
                 $nomor_sblm = $this->TatausahaM->get_last_ins_terbit($tgl)->row()->no_spk;
                 $no_spk = $nomor_sblm + 1;
             } else {
-                $no_spk = 1;
+                $no_spk = 20;
             }
 
             $kode_alat = $this->WorkshopM->get_inspeksi_all_by_id_inspeksi($id_inspeksi)->row()->kode_alat;
@@ -660,10 +671,11 @@ class TatausahaC extends CI_Controller
             $barcode = $kode_alat.$no_spk.date('y');
 
             $data = array(
-                'no_spk' => $no_spk,
-                'kode_barcode' => $barcode,
-                'tgl_terbit' => $this->input->post('tgl_terbit'),
-                'tgl_expired' => $this->input->post('tgl_expired'),
+                'no_spk'        => $no_spk,
+                'kode_barcode'  => $barcode,
+                'klasifikasi'   => $this->input->post('klasifikasi'),
+                'tgl_terbit'    => $this->input->post('tgl_terbit'),
+                'tgl_expired'   => $this->input->post('tgl_expired'),
             );
             $this->load->library('ciqrcode'); //pemanggilan library QR CODE
             $config['cacheable'] = true; //boolean, the default is true

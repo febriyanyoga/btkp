@@ -162,7 +162,7 @@ $html2 =
         <td colspan="" style="width:1%;text-align:center; font-size:12pt; font-weight:bold; text-decoration: underline; font-family:Times New Roman; text-transform: capitalize; font-style:italic;height:38px;"></td>
 
         <td colspan="" style="width:41%;text-align:center; font-size:9pt;font-family:Arial; text-transform: capitalize;height:38px;">Classification Society:
-            <br><span style="font-size:10pt;">BV / BKI</span>
+            <br><span style="font-size:10pt;">'.$inspeksi->klasifikasi.'</span>
         </td>
 
         <td colspan="" style="width:1%;text-align:center; font-size:12pt; font-weight:bold; text-decoration: underline; font-family:Times New Roman; text-transform: capitalize; font-style:italic;height:38px;"></td>
@@ -204,7 +204,25 @@ $html2 =
     </tr>
     <tr>
         <td style="width:2%;"></td>
-        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:48%; height: 200px;">
+        <td style="text-align:center; font-size:16pt; font-family: Times New Roman;  text-transform: capitalize; width:96%;font-weight:bold;">
+        </td>
+        <td style="width:2%;"></td>
+    </tr>
+    <tr>
+        <td style="width:2%;"></td>
+        <td style="text-align:center; font-size:12pt; font-family: Times New Roman;  text-transform: capitalize; width:96%;">Result
+        </td>
+        <td style="width:2%;"></td>
+    </tr>
+    <tr>
+        <td style="width:2%;"></td>
+        <td style="text-align:center; font-size:12pt; font-family: Times New Roman;  text-transform: capitalize; width:96%;font-weight:bold; text-decoration:underline; font-style:italic;">'.$inspeksi->hasil_inspeksi.'
+        </td>
+        <td style="width:2%;"></td>
+    </tr>
+    <tr>
+        <td style="width:2%;"></td>
+        <td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:48%; height: 150px;">
         </td>
         <td style="width:2%;"></td>
 

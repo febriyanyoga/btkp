@@ -55,6 +55,10 @@
 								<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4"
 								aria-selected="false">Penerbitan</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5"
+								aria-selected="false">Data Inspeksi Ditolak</a>
+							</li>
 						</ul>
 						<div class="tab-content pt-3">
 							<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
@@ -128,10 +132,24 @@
 														<td class="text-center"><?php echo $ins->nama_perusahaan?></td>
 														<td class="text-center"><?php echo $ins->nama_alat?></td>
 														<td class="text-center"><?php echo $ins->nama_kapal?></td>
-														<td class="text-center"><?php echo $ins->catatan?></td>
 														<td class="text-center">
-															<a title="Lihat Dokumen" href="<?php echo base_url().'assets/upload/'.$ins->file_hasil_survey;?>" target="_BLANK"><i class="la la-eye" title="Lihat dokumen hasil survey"></i> Dokumen</i></a><hr>
-															<a href="#" title="Masukkan Kode Billing" data-toggle="modal" data-target="#kode_biling-<?php echo $ins->id_inspeksi; ?>"><i class="la la-pencil"></i> Kode Billing</i></a>
+															<?php echo $ins->catatan?>
+															<hr>
+															<?php
+															if($ins->hasil_inspeksi == 'Remark'){
+																?>
+																<span style="width:100px;"><span class="badge-text badge-text-small success"><i class="ti ti-check"></i> <?php echo $ins->hasil_inspeksi?></span></span>
+																<?php
+															}else{
+																?>
+																<span style="width:100px;"><span class="badge-text badge-text-small danger"><i class="ti ti-close"></i> <?php echo $ins->hasil_inspeksi?></span></span>
+																<?php
+															}
+															?>
+														</td>
+														<td class="text-center">
+															<a title="Lihat dokumen hasil survey" href="<?php echo base_url().'assets/upload/'.$ins->file_hasil_survey;?>" target="_BLANK" class="badge-text badge-text-md info"><i class="la la-eye" ></i> Dokumen</i></a><hr>
+															<a href="#" title="Masukkan Kode Billing" data-toggle="modal" data-target="#kode_biling-<?php echo $ins->id_inspeksi; ?>" class="badge-text badge-text-md info"><i class="la la-pencil"></i> Kode Billing</i></a>
 														</td>
 													</tr>
 
@@ -233,10 +251,12 @@
 																		<label for="" class="label">Foto Bukti Transfer : </label><br>
 																		<img style="max-width: 470px;" src="<?php echo base_url().'assets/upload/'.$ins->foto_bukti_trf;?>"><br>
 																		<label for="status_pembayaran" class="label">Status Pembayaran : </label>
-																		<select class="form-control" name="status_pembayaran">
+																		<select id="status_pembayaran" class="form-control" name="status_pembayaran">
 																			<option value="paid">Telah Dibayar</option>
 																			<option value="unpaid">Belum Dibayar</option>
 																		</select>
+																		<label id="label_ket_pembayaran" for="ket_pembayaran" class="label">Keterangan : </label>
+																		<input id="input_ket_pembayaran" type="text" name="ket_pembayaran" value="" class="form-control">
 																	</div>
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
@@ -285,12 +305,12 @@
 														<?php 
 														if($ins->no_spk != ""){
 															?>
-															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>
+															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterbitkan</span></span></td>
 															<td class="text-center">-</td>
 															<?php
 														}else{
 															?>
-															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterbitkan</span></span></td>
+															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>
 															<td class="text-center">
 																<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#penerbitan-<?php echo $ins->id_inspeksi?>"><i class="la la-pencil"></i>Penerbitan</i>
 																</a>
@@ -310,6 +330,8 @@
 																<form action="<?php echo site_url('penerbitan_ins'); ?>" method="post">
 																	<div class="modal-body">
 																		<input type="hidden" name="id_inspeksi" class="form-control" required="required" value="<?php echo $ins->id_inspeksi; ?>">
+																		<label for="klasifikasi" class="label">Klasifikasi : </label>
+																		<input type="text" name="klasifikasi" value="" class="form-control" required="required">
 																		<label for="keterangan" class="label">Tanggal Terbit  : </label>
 																		<input type="date" name="tgl_terbit" value="" class="form-control" required="required">
 																		<label for="keterangan" class="label">Tanggal Expired  : </label>
@@ -329,6 +351,53 @@
 											?>
 										</tbody>
 									</table>
+								</div>
+							</div>
+							<div class="tab-pane fade" id="tab-5" role="tabpanel" aria-labelledby="base-tab-5">
+								<div class="widget-body">
+									<div class="table-responsive">
+										<table id="myTable5" class="table mb-0">
+											<thead>
+												<tr>
+													<th>No.</th>
+													<th class="text-center">Kapal</th>
+													<th class="text-center">Jenis Alat</th>
+													<th class="text-center">Tanggal Permohonan</th>
+													<th class="text-center">Hasil</th>
+													<th class="text-center">Keterangan</th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												$i=1;
+												foreach ($data_inspeksi as $ins) {
+													$progress_tu = $this->GeneralM->get_array_progress_inspeksi_tolak($ins->id_inspeksi)->num_rows();
+													$progress_all = $this->GeneralM->get_array_progress_inspeksi_all($ins->id_inspeksi)->num_rows();
+													if($progress_all > 0 && $progress_tu > 0){
+														$keterangan = $this->GeneralM->get_array_progress_inspeksi_all($ins->id_inspeksi)->row()->keterangan;
+
+														$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
+														?>
+														<tr>
+															<td><?php echo $i?></td>
+															<td class="text-center"><?php echo $ins->nama_kapal?></td>
+															<td class="text-center"><?php echo $ins->nama_alat?></td>
+															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+															<td class="text-center">
+																<span style="width:100px;"><span class="badge-text badge-text-small danger">Ditolak</span></span>
+															</td>
+															<td class="text-center" style="font-weight: bold; color: black;">
+																<?php echo $keterangan?>
+															</td>
+														</tr>
+														<?php
+														$i++;
+													}
+												}
+												?>
+											</tbody>
+										</table>
+									</div>
 								</div>
 							</div>
 						</div>

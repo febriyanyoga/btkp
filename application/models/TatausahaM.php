@@ -71,6 +71,7 @@ class TatausahaM extends CI_Model{
 		$this->db->from('perizinan');
 		$this->db->where('DATE(tgl_terbit) <= ',$tgl);
 		$this->db->where('status_pembayaran = "Paid"');
+		$this->db->where('no_spk != ""');
 		$this->db->order_by('id_perizinan','DESC');
 		$this->db->limit('1');
 
@@ -82,6 +83,7 @@ class TatausahaM extends CI_Model{
 		$this->db->from('inspeksi');
 		$this->db->where('DATE(tgl_terbit) <= ',$tgl);
 		$this->db->where('status_pembayaran = "Paid"');
+		$this->db->where('no_spk != ""');
 		$this->db->order_by('id_inspeksi','DESC');
 		$this->db->limit('1');
 
@@ -93,6 +95,7 @@ class TatausahaM extends CI_Model{
 		$this->db->from('pengujian');
 		$this->db->where('DATE(tgl_terbit) <= ',$tgl);
 		$this->db->where('status_pembayaran_1 = "paid" AND status_pembayaran_2 = "paid"');
+		$this->db->where('no_spk != ""');
 		$this->db->order_by('id_pengujian','DESC');
 		$this->db->limit('1');
 

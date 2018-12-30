@@ -171,11 +171,11 @@ $html2 =
     <tr>
         <td style="width:17.5%; height:53px;"></td>
         <td style="text-align:center; font-size:12pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:22%; color:white;">
-            '.$pengujian->id_pengujian.'/BTKP/'.date('Y').'<br>'.$pengujian->no_spk.'/'.$pengujian->kode_alat.'/'.$pengujian->id_pengujian.'/'.date('Y').'
+            '.$pengujian->id_pengujian.'/BTKP/'.date('Y', strtotime($pengujian->tgl_terbit)).'<br>'.$pengujian->no_spk.'/'.$pengujian->kode_alat.'/'.$pengujian->id_pengujian.'/'.date('Y', strtotime($pengujian->tgl_terbit)).'
         </td>
         <td style="text-align:center; font-size:12pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:21.5%; "></td>
         <td style="text-align:center; font-size:12pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:22.5%;color:#26255e;">
-            '.$pengujian->id_pengujian.'/BTKP/'.date('Y').'<br>'.$pengujian->no_spk.'/'.$pengujian->kode_alat.'/'.$pengujian->id_pengujian.'/'.date('Y').'
+            '.$pengujian->id_pengujian.'/BTKP/'.date('Y', strtotime($pengujian->tgl_terbit)).'<br>'.$pengujian->no_spk.'/'.$pengujian->kode_alat.'/'.$pengujian->id_pengujian.'/'.date('Y', strtotime($pengujian->tgl_terbit)).'
         </td>
         <td style="width:17%;"></td>
     </tr>

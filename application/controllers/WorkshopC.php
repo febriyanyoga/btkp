@@ -704,6 +704,16 @@ class WorkshopC extends CI_Controller
         $this->load->view('workshop/invoice_v_pengujian2',$this->data);
     }
 
+    public function cetak_tagihan_ins($id_inspeksi){
+        $this->data['inspeksi'] = $this->WorkshopM->get_inspeksi_all_by_id_inspeksi($id_inspeksi)->row();
+        $this->load->view('workshop/invoice_v_ins',$this->data);
+    }
+
+    public function cetak_bukti_bayar_ins($id_inspeksi){
+        $this->data['inspeksi'] = $this->WorkshopM->get_inspeksi_all_by_id_inspeksi($id_inspeksi)->row();
+        $this->load->view('workshop/invoice_v_ins',$this->data);
+    }
+
     public function print_surat($id_perizinan){
         $this->data['perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
         $this->load->view('workshop/print_surat',$this->data);
@@ -801,6 +811,7 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('id_inspeksi', 'ID Inspeksi', 'required');
         $this->form_validation->set_rules('status', 'Status', 'required');
         $this->form_validation->set_rules('catatan', 'Catatan', 'required');
+        $this->form_validation->set_rules('hasil', 'Hasil', 'required');
 
         if($this->form_validation->run() == FALSE){
             $this->session->set_flashdata('error','Data anda tidak berhasil disimpan, periksa kembali data yang anda masukkan');
@@ -809,6 +820,7 @@ class WorkshopC extends CI_Controller
             $upload = $this->upload_file('file_hasil_survey');
             if($upload['result'] == 'success'){
                 $data_inspeksi = array(
+                    'hasil_inspeksi'    => $this->input->post('hasil'),
                     'status_reinspeksi' => $this->input->post('status'),
                     'catatan'           => $this->input->post('catatan'),
                     'file_hasil_survey' => $upload['file_name'],
@@ -817,6 +829,7 @@ class WorkshopC extends CI_Controller
                 $id_inspeksi = $this->input->post('id_inspeksi');
 
                 if($id_pengujian = $this->WorkshopM->selesai_i($id_inspeksi, $data_inspeksi)){
+
                     $this->session->set_flashdata('sukses','Data berhasil disimpan');
                     redirect_back();
                 }else{

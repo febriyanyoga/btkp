@@ -84,9 +84,9 @@
 						<!-- Begin Sign In -->
 						<div role="tabpanel" class="tab-pane show active" id="singin" aria-labelledby="singin-tab">
 							<?php
-                            $data = $this->session->flashdata('sukses');
-                            if ($data != '') {
-                                ?>
+							$data = $this->session->flashdata('sukses');
+							if ($data != '') {
+								?>
 								<div class="alert alert-success" id="alert-success">
 									<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span
 										aria-hidden="true"></span></button>
@@ -94,12 +94,12 @@
 										<?=$data; ?>
 									</div>
 									<?php
-                            }
-                                ?>
+								}
+								?>
 								<?php
-                                $data2 = $this->session->flashdata('error');
-                                if ($data2 != '') {
-                                    ?>
+								$data2 = $this->session->flashdata('error');
+								if ($data2 != '') {
+									?>
 									<div class="alert alert-danger" id="alert-danger">
 										<button style="position: relative;" type="button" class="close" data-dismiss="alert" aria-label="Close"> <span
 											aria-hidden="true"></span></button>
@@ -107,8 +107,8 @@
 											<?=$data2; ?>
 										</div>
 										<?php
-                                }
-                                    ?>
+									}
+									?>
 
 									<div class="widget has-shadow">
 										<div class="widget-header">
@@ -156,58 +156,70 @@
 										</div>
 										<div class="widget-body">
 											<form action="<?php echo site_url('daftar'); ?>" method="post" id="signupForm">
-											<div class="form-group row mb-3">
-											<div class="col-xl-6 mb-3">
-													<input class="form-control" type="text" id="nama_pengguna" name="nama_pengguna" placeholder="Nama">
-													<span class="highlight"></span>
-													<span class="bar"></span>
-													<label for="nama_pengguna" class="error"></label>
+												<div class="form-group row">
+													<div class="col-xl-6">
+														<div class="group material-input">
+															<input class="form-control" type="text" id="nama_pengguna" name="nama_pengguna" placeholder="Nama">
+															<span class="highlight"></span>
+															<span class="bar"></span>
+															<label for="nama_pengguna" class="error"></label>
+														</div>
+													</div>
+													<div class="col-xl-6">
+														<div class="group material-input">
+															<input class="form-control" type="email" id="email_pengguna" name="email_pengguna" placeholder="Alamat Email">
+															<span class="highlight"></span>
+															<span class="bar"></span>
+															<label for="email_pengguna" class="error"></label>
+														</div>
+													</div>
 												</div>
-												<div class="col-xl-6 mb-3">
-													<input class="form-control" type="email" id="email_pengguna" name="email_pengguna" placeholder="Alamat Email">
-													<span class="highlight"></span>
-													<span class="bar"></span>
-													<label for="email_pengguna" class="error"></label>
-												</div>
-												</div>
-												<div class="form-group row mb-3">
-												<div class="col-xl-6 mb-3">
-													<select class="form-control" id="id_jabatan" name="id_jabatan" required="required">
-														<option value="">----- Pilih Instansi -----</option>
-														<?php
-                                                        foreach ($jabatan as $jab) {
-                                                            if ($jab->id_jabatan > 4) {
-                                                                ?>
-																<option value="<?php echo $jab->id_jabatan; ?>">
-																	<?php echo $jab->nama_jabatan; ?>
-																</option>
+												<div class="form-group row">
+													<div class="col-xl-6">
+														<div class="group material-input">
+															<!-- <label>Pilih jenis user</label><br> -->
+															<select class="form-control" id="id_jabatan" name="id_jabatan" required="required" title="pilih jenis user">
 																<?php
-                                                            }
-                                                        }
-                                                        ?>
-													</select>
-													<label for="id_jabatan" class="error"></label>
+																foreach ($jabatan as $jab) {
+																	if ($jab->id_jabatan > 4) {
+																		?>
+																		<option value="<?php echo $jab->id_jabatan; ?>">
+																			<?php echo $jab->nama_jabatan; ?>
+																		</option>
+																		<?php
+																	}
+																}
+																?>
+															</select>
+															<label for="id_jabatan" class="error"></label>
+														</div>
+													</div>
+													<div class="col-xl-6">
+														<div class="group material-input">
+															<input class="form-control" type="number" id="no_hp" name="no_hp" placeholder="Nomor Handphone">
+															<span class="highlight"></span>
+															<span class="bar"></span>
+															<label for="no_hp" class="error"></label>
+														</div>
+													</div>
 												</div>
-											<div class="col-xl-6 mb-3">
-													<input class="form-control" type="number" id="no_hp" name="no_hp" placeholder="Nomor Handphone">
-													<span class="highlight"></span>
-													<span class="bar"></span>
-													<label for="no_hp" class="error"></label>
-												</div>
-												</div>
-												<div class="form-group row mb-3">
-												<div class="col-xl-6 mb-3">
-													<input class="form-control" type="password" id="password" name="password" placeholder="Password">
-													<span class="highlight"></span>
-													<span class="bar"></span>
-													<label for="password" class="error"></label>
-												</div>
-												<div class="col-xl-6 mb-3">
-													<input class="form-control" type="password" id="confirm_password" name="confirm_password" placeholder="Konfrimasi Password">
-													<span class="highlight"></span>
-													<span class="bar"></span>
-													<label for="confirm_password" class="error"></label>
-												</div>
+												<div class="form-group row">
+													<div class="col-xl-6">
+														<div class="group material-input">
+															<input class="form-control" type="password" id="password" name="password" placeholder="Password">
+															<span class="highlight"></span>
+															<span class="bar"></span>
+															<label for="password" class="error"></label>
+														</div>
+													</div>
+													<div class="col-xl-6">
+														<div class="group material-input">
+															<input class="form-control" type="password" id="confirm_password" name="confirm_password" placeholder="Konfrimasi Password">
+															<span class="highlight"></span>
+															<span class="bar"></span>
+															<label for="confirm_password" class="error"></label>
+														</div>
+													</div>
 												</div>
 												<!-- <div>
 													<input class="form-control" type="text" id="jabatan_pengguna" name="jabatan_pengguna" placeholder="Jabatan Pengguna">
@@ -221,12 +233,14 @@
 													</center>
 												</div> <br>
 												<div>
-													<input class="form-control" type="text" id="captcha2" name="captcha2" placeholder="Masukkan captcha">
-													<span class="highlight"></span>
-													<span class="bar"></span>
-													<label for="captcha2" class="error"></label>
+													<div class="group material-input">
+														<input class="form-control" type="text" id="captcha2" name="captcha2" placeholder="Masukkan captcha">
+														<span class="highlight"></span>
+														<span class="bar"></span>
+														<label for="captcha2" class="error"></label>
+													</div>
 												</div>
-												<div class="row mt-3">
+												<div class="row">
 													<div class="col text-left">
 														<div class="styled-checkbox">
 															<input type="checkbox" name="agree" id="agree" value="setuju">
@@ -247,128 +261,128 @@
 						</div>
 						<!-- End Form -->
 					</div>
-				<!-- </div> -->
-				<!-- End Right Content -->
+					<!-- </div> -->
+					<!-- End Right Content -->
+				</div>
+				<!-- End Row -->
 			</div>
-			<!-- End Row -->
-		</div>
 
-		<!-- modal syarat dan ketentuan -->
-		<div class="modal fade" id="syarat" tabindex="-1" role="dialog" aria-labelledby="editskpa">
-			<div class="modal-dialog modal-lg" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="exampleModalLabel1">Syarat dan Ketentuan</h4>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<div class="modal-body">
-						<h5>Syarat</h5>
-						<ol type="1">
-							<li>1. Syarat 1</li>
-							<li>2. Syarat 2</li>
-							<li>3. Syarat 3</li>
-							<li>4. Syarat 4</li>
-							<li>5. Syarat 5</li>
+			<!-- modal syarat dan ketentuan -->
+			<div class="modal fade" id="syarat" tabindex="-1" role="dialog" aria-labelledby="editskpa">
+				<div class="modal-dialog modal-lg" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h4 class="modal-title" id="exampleModalLabel1">Syarat dan Ketentuan</h4>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						</div>
+						<div class="modal-body">
+							<h5>Syarat</h5>
+							<ol type="1">
+								<li>1. Syarat 1</li>
+								<li>2. Syarat 2</li>
+								<li>3. Syarat 3</li>
+								<li>4. Syarat 4</li>
+								<li>5. Syarat 5</li>
 
-						</ol>
-						<br>
-						<h5>Ketentuan</h5>
-						<ol type="1">
-							<li>1. Ketentuan 1</li>
-							<li>2. Ketentuan 2</li>
-							<li>3. Ketentuan 3</li>
-							<li>4. Ketentuan 4</li>
-							<li>5. Ketentuan 5</li>
+							</ol>
+							<br>
+							<h5>Ketentuan</h5>
+							<ol type="1">
+								<li>1. Ketentuan 1</li>
+								<li>2. Ketentuan 2</li>
+								<li>3. Ketentuan 3</li>
+								<li>4. Ketentuan 4</li>
+								<li>5. Ketentuan 5</li>
 
-						</ol>
-					</div>
-					<div class="modal-footer">
+							</ol>
+						</div>
+						<div class="modal-footer">
 
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	<!-- End Container -->
-	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
-	<!-- Begin Vendor Js -->
-	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
-	<!-- End Vendor Js -->
-	<!-- Begin Page Vendor Js -->
-	<!-- <script src="<?php echo base_url(); ?>assets/app/vendors/js/app/app.min.js"></script> -->
-	<!-- End Page Vendor Js -->
-	<!-- Begin Page Snippets -->
-	<script src="<?php echo base_url(); ?>assets/app/js/components/tabs/animated-tabs.min.js"></script>
-	<script type="text/javascript">
-		$(window).on("load", function () {
-			$(".loader").fadeOut();
-			$("#preloader").delay(350).fadeOut("slow");
-		});
-	</script>
-	<script src="<?php echo base_url(); ?>assets/app/js/validate/jquery-3.1.1.js"></script>
-	<script src="<?php echo base_url(); ?>assets/app/js/validate/jquery.js"></script>
-	<script src="<?php echo base_url(); ?>assets/app/js/validate/jquery.validate.js"></script>
-	<script type="text/javascript">
-		$().ready(function () {
-			$("#alert-success").fadeTo(2000, 500).slideUp(500, function(){
-				$("#alert-success").slideUp(500);
-			});
-			$("#alert-danger").fadeTo(2000, 500).slideUp(500, function(){
-				$("#alert-danger").slideUp(500);
-			});
-			$('#signupForm').validate({
-				rules: {
-					nama_pengguna: 'required',
-					no_hp: 'required',
-					captcha2 :'required',
-					password: {
-						required: true,
-						minlength: 6
-					},
-					confirm_password: {
-						required: true,
-						minlength: 6,
-						equalTo: '#password'
-					},
-					email_pengguna: {
-						required: true,
-						email: true
-					},
-					jabatan_pengguna: {
-						required: true,
-					},
-					agree: 'required',
-					id_jabatan: 'required'
-				},
-				messages: {
-					nama_pengguna: 'Silahkan isi Nama Anda',
-					no_hp: 'Silahkan isi nomor telfon Anda',
-					password: {
-						required: 'Silahkan isi password Anda',
-						minlength: 'Silahkan isi password Anda minimal 6 karakter'
-					},
-					confirm_password: {
-						required: 'Silahkan isi password Anda',
-						minlength: 'Silahkan isi password Anda minimal 6 karakter',
-						equalTo: 'Kata sandi tidak cocok'
-					},
-					email_pengguna: {
-						required: 'Silahkan isi alamat email anda',
-						email: 'Alamat email tidak valid',
-					},
-					jabatan_pengguna: {
-						required: 'Silahkan isi jabatan anda anda',
-					},
-					agree: 'Silahkan setujui syarat dan ketentuan kami',
+			<!-- End Container -->
+			<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
+			<!-- Begin Vendor Js -->
+			<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
+			<!-- End Vendor Js -->
+			<!-- Begin Page Vendor Js -->
+			<!-- <script src="<?php echo base_url(); ?>assets/app/vendors/js/app/app.min.js"></script> -->
+			<!-- End Page Vendor Js -->
+			<!-- Begin Page Snippets -->
+			<script src="<?php echo base_url(); ?>assets/app/js/components/tabs/animated-tabs.min.js"></script>
+			<script type="text/javascript">
+				$(window).on("load", function () {
+					$(".loader").fadeOut();
+					$("#preloader").delay(350).fadeOut("slow");
+				});
+			</script>
+			<script src="<?php echo base_url(); ?>assets/app/js/validate/jquery-3.1.1.js"></script>
+			<script src="<?php echo base_url(); ?>assets/app/js/validate/jquery.js"></script>
+			<script src="<?php echo base_url(); ?>assets/app/js/validate/jquery.validate.js"></script>
+			<script type="text/javascript">
+				$().ready(function () {
+					$("#alert-success").fadeTo(2000, 500).slideUp(500, function(){
+						$("#alert-success").slideUp(500);
+					});
+					$("#alert-danger").fadeTo(2000, 500).slideUp(500, function(){
+						$("#alert-danger").slideUp(500);
+					});
+					$('#signupForm').validate({
+						rules: {
+							nama_pengguna: 'required',
+							no_hp: 'required',
+							captcha2 :'required',
+							password: {
+								required: true,
+								minlength: 6
+							},
+							confirm_password: {
+								required: true,
+								minlength: 6,
+								equalTo: '#password'
+							},
+							email_pengguna: {
+								required: true,
+								email: true
+							},
+							jabatan_pengguna: {
+								required: true,
+							},
+							agree: 'required',
+							id_jabatan: 'required'
+						},
+						messages: {
+							nama_pengguna: 'Silahkan isi Nama Anda',
+							no_hp: 'Silahkan isi nomor telfon Anda',
+							password: {
+								required: 'Silahkan isi password Anda',
+								minlength: 'Silahkan isi password Anda minimal 6 karakter'
+							},
+							confirm_password: {
+								required: 'Silahkan isi password Anda',
+								minlength: 'Silahkan isi password Anda minimal 6 karakter',
+								equalTo: 'Kata sandi tidak cocok'
+							},
+							email_pengguna: {
+								required: 'Silahkan isi alamat email anda',
+								email: 'Alamat email tidak valid',
+							},
+							jabatan_pengguna: {
+								required: 'Silahkan isi jabatan anda anda',
+							},
+							agree: 'Silahkan setujui syarat dan ketentuan kami',
 
-					id_jabatan: 'Silahkan Pilih jenis user',
-					captcha2 : 'Silahkan masukkan kode Captcha'
+							id_jabatan: 'Silahkan Pilih jenis user',
+							captcha2 : 'Silahkan masukkan kode Captcha'
 
-				}
-			});
-		});
-	</script>
-				<!-- End Page Snippets -->
-	<!-- End Page Snippets -->
-</body>
+						}
+					});
+				});
+			</script>
+			<!-- End Page Snippets -->
+			<!-- End Page Snippets -->
+		</body>
 
-</html>
+		</html>
