@@ -147,9 +147,17 @@
 																	<span class="badge-text badge-text-small default" title="Menunggu validasi pembayaran dan penerbitan">Menunggu Validasi Pembayaran</span>
 																	<?php
 																}else{
-																	?>
-																	<span class="badge-text badge-text-small default" title="Menunggu kode billing untuk pembayaran">Menunggu Pembayaran</span>
-																	<?php
+																	if($ins->ket_pembayaran != ""){
+																		?>
+																		<span>Pembayaran tidak tervalidasi</span>
+																		<hr>
+																		<span style="font-style: italic; color: red;"><?php echo $ins->ket_pembayaran?></span>
+																		<?php
+																	}else{
+																		?>
+																		<span class="badge-text badge-text-small default" title="Silahkan melakukan pembayaran sesuai tagihan">Menunggu Pembayaran</span>
+																		<?php
+																	}
 																}
 															}else{
 																?>
@@ -174,9 +182,18 @@
 																	?>
 																	<a href="<?php echo site_url('cetak_tagihan_ins/'.$ins->id_inspeksi)?>" title="Cetak Sertifikat" target="_BLANK"><i class="la la-print" ></i> Cetak tagihan</i></a>
 																	<hr>
-																	<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ins->id_inspeksi?>"><i class="la la-pencil"></i>Konfirmasi Pembayaran</i>
-																	</a>
 																	<?php
+																	if($ins->ket_pembayaran != ''){
+																		?>
+																		<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ins->id_inspeksi?>"><i class="la la-refresh"></i>Konfirmasi Ulang Pembayaran</i>
+																		</a>
+																		<?php
+																	}else{
+																		?>
+																		<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ins->id_inspeksi?>"><i class="la la-pencil"></i>Konfirmasi Pembayaran</i>
+																		</a>
+																		<?php
+																	}
 																}
 															}else{
 																echo "-";
@@ -322,7 +339,6 @@
 														echo "-";
 													}else{
 														?>
-														<!-- <a href="" class="btn btn-success btn-md"><i class="la la-eye"></i>Lihat</i></a> -->
 														<a href="<?php echo site_url('cetak_bukti_bayar_ins/'.$ins->id_inspeksi)?>" title="Cetak Bukti Bayar" target="_BLANK"><i class="la la-print" ></i> Cetak Bukti bayar</i></a>
 														<hr>
 														<a href="<?php echo site_url('cetak_ins/'.$ins->id_inspeksi)?>" title="Cetak Sertifikat" target="_BLANK"><i class="la la-print" ></i> Cetak</i></a>

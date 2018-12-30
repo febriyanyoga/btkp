@@ -614,10 +614,20 @@ class TatausahaC extends CI_Controller
             $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
         } else {
-            $id_inspeksi = $this->input->post('id_inspeksi');
-            $data = array(
-                'status_pembayaran' => $this->input->post('status_pembayaran'),
-            );
+            $id_inspeksi        = $this->input->post('id_inspeksi');
+            $status_pembayaran  = $this->input->post('status_pembayaran');
+            if($status_pembayaran == 'paid'){
+                $data = array(
+                    'status_pembayaran' => $this->input->post('status_pembayaran'),
+                    'ket_pembayaran'    => $this->input->post('ket_pembayaran'),
+                );
+            }else{
+                $data = array(
+                    'status_pembayaran' => $this->input->post('status_pembayaran'),
+                    'ket_pembayaran'    => $this->input->post('ket_pembayaran'),
+                    'foto_bukti_trf'    => '',
+                );              
+            }
             if ($this->WorkshopM->selesai_i($id_inspeksi, $data)) {
                 $this->session->set_flashdata('sukses', 'Validasi berhasil');
                 redirect_back();

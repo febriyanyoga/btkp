@@ -251,10 +251,12 @@
 																		<label for="" class="label">Foto Bukti Transfer : </label><br>
 																		<img style="max-width: 470px;" src="<?php echo base_url().'assets/upload/'.$ins->foto_bukti_trf;?>"><br>
 																		<label for="status_pembayaran" class="label">Status Pembayaran : </label>
-																		<select class="form-control" name="status_pembayaran">
+																		<select id="status_pembayaran" class="form-control" name="status_pembayaran">
 																			<option value="paid">Telah Dibayar</option>
 																			<option value="unpaid">Belum Dibayar</option>
 																		</select>
+																		<label id="label_ket_pembayaran" for="ket_pembayaran" class="label">Keterangan : </label>
+																		<input id="input_ket_pembayaran" type="text" name="ket_pembayaran" value="" class="form-control">
 																	</div>
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>

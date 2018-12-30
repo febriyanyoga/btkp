@@ -329,6 +329,7 @@
                             			<thead>
                             				<tr>
                             					<th class="text-center">No</th>
+                            					<th class="text-center">No. Sertifikat</th>
                             					<th class="text-center">Jenis Izin</th>
                             					<th class="text-center">Perusahaan</th>
                             					<th class="text-center">Alat SPK</th>
@@ -345,7 +346,8 @@
                             					if ($per->status_pembayaran == 'paid') {
                             						++$i; ?>
                             						<tr>
-                            							<td class="text-center"><?php echo $i; ?></td>
+                            							<td class="text-center"><?php echo $i;?></td>
+                            							<td class="text-center"><?php echo $per->kode_alat.'/'.$per->no_spk.'/'.date('y', strtotime($per->tgl_terbit)); ?></td>
                             							<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
                             							<td class="text-center"><?php echo $per->nama_perusahaan; ?></td>
                             							<td class="text-center"><?php echo $per->nama_alat; ?></td>
