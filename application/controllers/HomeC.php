@@ -18,14 +18,13 @@ class HomeC extends CI_Controller{
 		$this->form_validation->set_rules('nama_pengguna', 'Nama Pengguna', 'required');  
 		$this->form_validation->set_rules('no_hp', 'Nomor Handphone', 'required');  
 		$this->form_validation->set_rules('email_pengguna', 'Email Pengguna', 'required|valid_email|is_unique[pengguna.email_pengguna]');  
-		$this->form_validation->set_rules('jabatan_pengguna', 'Jabatan Pengguna', 'required');  
+		$this->form_validation->set_rules('id_jabatan', 'Jabatan Pengguna', 'required');  
 		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[50]|matches[confirm_password]');
-
 		$this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|min_length[6]|max_length[10]'); 
 		$this->form_validation->set_message('is_unique', 'Data %s sudah dipakai'); 
 		if($this->LoginM->check_captcha2() == TRUE){
 			if($this->form_validation->run() == FALSE){
-				$this->session->set_flashdata('error','Data anda tidak berhasil disimpan, silahkan cek kembali data yang anda masukkan');
+				$this->session->set_flashdata('error','Data anda tidak berhasil disimpan, alamat email sudah dipakai');
 				redirect_back();
 			}else{
 				$data = array(
