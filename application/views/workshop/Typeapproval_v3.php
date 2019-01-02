@@ -123,13 +123,26 @@
 														<div class="col-sm-3 form-control-label d-flex align-items-center">Nama Pabrikan</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->pabrikan?></div>
 													</div>
-													<div class="form-group row mb-5">
-														<?php
-														$alamat_p_detail = $this->WorkshopM->detail_alamat($data_pengujian->id_kel_pabrikan)->row();
+													<?php
+													if($data_pengujian->negara_asal == 'Indonesia' || $data_pengujian->negara_asal == 'indonesia'){
 														?>
-														<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Pabrikan</div>
-														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->alamat_pabrikan.'<br>'.$alamat_p_detail->nama_kelurahan.', '.$alamat_p_detail->nama_kecamatan.', '.$alamat_p_detail->nama_kabupaten_kota.', '.$alamat_p_detail->nama_propinsi;?></div>
-													</div>
+														<div class="form-group row mb-5">
+															<?php
+															$alamat_p_detail = $this->WorkshopM->detail_alamat($data_pengujian->id_kel_pabrikan)->row();
+															?>
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Pabrikan</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->alamat_pabrikan.'<br>'.$alamat_p_detail->nama_kelurahan.', '.$alamat_p_detail->nama_kecamatan.', '.$alamat_p_detail->nama_kabupaten_kota.', '.$alamat_p_detail->nama_propinsi;?></div>
+														</div>
+														<?php
+													}else{
+														?>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Alamat Pabrikan</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->alamat_pabrikan?></div>
+														</div>
+														<?php
+													}
+													?>
 													<div class="form-group row mb-5">
 														<div class="col-sm-3 form-control-label d-flex align-items-center">Telepon Pabrikan</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->telepon?></div>

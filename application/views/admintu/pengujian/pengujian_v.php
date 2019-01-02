@@ -63,6 +63,10 @@
 								<a class="nav-link" id="base-tab-6" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6"
 								aria-selected="false">Data Sertifikasi</a>
 							</li>
+							<li class="nav-item">
+								<a class="nav-link" id="base-tab-7" data-toggle="tab" href="#tab-7" role="tab" aria-controls="tab-7"
+								aria-selected="false">Data Sertifikasi ditolak</a>
+							</li>
 						</ul>
 						<div class="tab-content pt-3">
 							<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
@@ -70,8 +74,8 @@
 									<table id="myTable" class="table mb-0">
 										<thead>
 											<tr>
-												<th class="text-center">No</th>
-												<th class="text-center">Tanggal Pengajuan</th>
+												<th class="text-center">No. Permohonan</th>
+												<th class="text-center">Tgl Pengajuan</th>
 												<th class="text-center">Nama Alat</th>
 												<th class="text-center">Merk</th>
 												<th class="text-center">Tipe</th>
@@ -89,7 +93,9 @@
 													$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
 													?>
 													<tr>
-														<td class="text-center"><?php echo $i;?></td>
+														<td class="text-center"><span class="text-primary">
+															<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+														</td>
 														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 														<td class="text-center"><?php echo $ujian->nama_alat?></td>
 														<td class="text-center"><?php echo $ujian->merk?></td>
@@ -113,12 +119,12 @@
 									<table id="myTable2" class="table mb-0">
 										<thead>
 											<tr>
-												<th class="text-center">No</th>
-												<th class="text-center">Tanggal Pengajuan</th>
+												<th class="text-center">No. Permohonan</th>
+												<th class="text-center">Tgl Pengajuan</th>
 												<th class="text-center">Nama Alat</th>
 												<th class="text-center">Merk</th>
 												<th class="text-center">Tipe</th>
-												<th class="text-center">Perusahaan</th>
+												<th class="text-center">Instansi</th>
 												<!-- <th class="text-center">Status</th> -->
 												<th class="text-center">Aksi</th>
 											</tr>
@@ -135,7 +141,9 @@
 														$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
 														?>
 														<tr>
-															<td class="text-center"><?php echo $i;?></td>
+															<td class="text-center"><span class="text-primary">
+																<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+															</td>
 															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 															<td class="text-center"><?php echo $ujian->nama_alat?></td>
 															<td class="text-center"><?php echo $ujian->merk?></td>
@@ -143,7 +151,7 @@
 															<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
 															<!-- <td class="text-center">status</td> -->
 															<td class="text-center">
-																<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling-<?php echo $ujian->id_pengujian?>"><i class="la la-pencil"></i>Validasi</i></a>
+																<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling-<?php echo $ujian->id_pengujian?>"><i class="la la-pencil"></i>Validasi</i></a>
 															</td>
 														</tr>
 
@@ -165,10 +173,12 @@
 																			<label for="" class="label">Foto Bukti Transfer : </label><br>
 																			<img style="max-width: 470px;" src="<?php echo base_url().'assets/upload/'.$ujian->foto_bukti_trf_1;?>"><br>
 																			<label for="status_pembayaran" class="label">Status Pembayaran : </label>
-																			<select class="form-control" name="status_pembayaran_1">
+																			<select class="form-control" name="status_pembayaran_1" id="status_pembayaran_1">
 																				<option value="paid">Telah Dibayar</option>
 																				<option value="unpaid">Belum Dibayar</option>
-																			</select>
+																			</select><br>
+																			<label id="label_ket_pembayaran_1" for="ket_pembayaran_1" class="label">Keterangan : </label>
+																			<input id="input_ket_pembayaran_1" type="text" name="ket_pembayaran_1" value="" class="form-control">
 																		</div>
 																		<div class="modal-footer">
 																			<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
@@ -192,12 +202,12 @@
 									<table id="myTable3" class="table mb-0">
 										<thead>
 											<tr>
-												<th class="text-center">No</th>
-												<th class="text-center">Tanggal Pengajuan</th>
+												<th class="text-center">No. Permohonan</th>
+												<th class="text-center">Tgl Pengajuan</th>
 												<th class="text-center">Nama Alat</th>
 												<th class="text-center">Merk</th>
 												<th class="text-center">Tipe</th>
-												<th class="text-center">Perusahaan</th>
+												<th class="text-center">Instansi</th>
 												<!-- <th class="text-center">Status</th> -->
 												<th class="text-center">Aksi</th>
 											</tr>
@@ -214,7 +224,9 @@
 														$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
 														?>
 														<tr>
-															<td class="text-center"><?php echo $i;?></td>
+															<td class="text-center"><span class="text-primary">
+																<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+															</td>
 															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 															<td class="text-center"><?php echo $ujian->nama_alat?></td>
 															<td class="text-center"><?php echo $ujian->merk?></td>
@@ -222,7 +234,7 @@
 															<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
 															<!-- <td class="text-center">status</td> -->
 															<td class="text-center">
-																<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#hasil_uji-<?php echo $ujian->id_pengujian?>"><i class="la la-plus"></i>Hasil Pengujian</i>
+																<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#hasil_uji-<?php echo $ujian->id_pengujian?>"><i class="la la-plus"></i>Hasil Pengujian</i>
 																</a>
 															</td>
 														</tr>
@@ -263,12 +275,12 @@
 									<table id="myTable4" class="table mb-0">
 										<thead>
 											<tr>
-												<th class="text-center">No</th>
-												<th class="text-center">Tanggal Pengajuan</th>
+												<th class="text-center">No. Permohonan</th>
+												<th class="text-center">Tgl Pengajuan</th>
 												<th class="text-center">Nama Alat</th>
 												<th class="text-center">Merk</th>
 												<th class="text-center">Tipe</th>
-												<th class="text-center">Perusahaan</th>
+												<th class="text-center">Instansi</th>
 												<th class="text-center">Status</th>
 												<th class="text-center">Aksi</th>
 											</tr>
@@ -289,7 +301,9 @@
                                                         		$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
                                                         		?>
                                                         		<tr>
-                                                        			<td class="text-center"><?php echo $i;?></td>
+                                                        			<td class="text-center"><span class="text-primary">
+                                                        				<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                                                        			</td>
                                                         			<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
                                                         			<td class="text-center"><?php echo $ujian->nama_alat?></td>
                                                         			<td class="text-center"><?php echo $ujian->merk?></td>
@@ -297,7 +311,7 @@
                                                         			<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
                                                         			<td class="text-center">status</td>
                                                         			<td class="text-center">
-                                                        				<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian; ?>"><i class="la la-plus"></i>Kode Billing</i>
+                                                        				<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian; ?>"><i class="la la-plus"></i>Kode Billing</i>
                                                         				</a>
                                                         			</td>
                                                         		</tr>
@@ -356,12 +370,12 @@
                             		<table id="myTable5" class="table mb-0">
                             			<thead>
                             				<tr>
-                            					<th class="text-center">No</th>
-                            					<th class="text-center">Tanggal Pengajuan</th>
+                            					<th class="text-center">No. Permohonan</th>
+                            					<th class="text-center">Tgl Pengajuan</th>
                             					<th class="text-center">Nama Alat</th>
                             					<th class="text-center">Merk</th>
                             					<th class="text-center">Tipe</th>
-                            					<th class="text-center">Perusahaan</th>
+                            					<th class="text-center">Instansi</th>
                             					<!-- <th class="text-center">Status</th> -->
                             					<th class="text-center">Aksi</th>
                             				</tr>
@@ -375,7 +389,9 @@
                             						$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
                             						?>
                             						<tr>
-                            							<td class="text-center"><?php echo $i;?></td>
+                            							<td class="text-center"><span class="text-primary">
+                            								<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                            							</td>
                             							<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
                             							<td class="text-center"><?php echo $ujian->nama_alat?></td>
                             							<td class="text-center"><?php echo $ujian->merk?></td>
@@ -383,7 +399,7 @@
                             							<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
                             							<!-- <td class="text-center"><a</td> -->
                             							<td class="text-center">
-                            								<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian?>"><i class="la la-pencil"></i>Validasi</i></a>
+                            								<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian?>"><i class="la la-pencil"></i>Validasi</i></a>
                             							</td>
                             						</tr>
 
@@ -398,26 +414,28 @@
                             									<form action="<?php echo site_url('validasi_2'); ?>" method="post">
                             										<div class="modal-body">
                             											<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
-                            											<label for="keterangan" class="label">Bank Transfer : </label>
+                            											<label for="nama_bank" class="label">Bank Transfer : </label>
                             											<input type="text" name="nama_bank" value="<?php echo $ujian->nama_bank_2; ?>" class="form-control" required="required" readonly>
-                            											<label for="keterangan" class="label">Atas Nama : </label>
+                            											<label for="atas_nama" class="label">Atas Nama : </label>
                             											<input type="text" name="atas_nama" value="<?php echo $ujian->atas_nama_2; ?>" class="form-control" required="required" readonly>
                             											<label for="" class="label">Foto Bukti Transfer : </label><br>
                             											<img style="max-width: 470px;" src="<?php echo base_url().'assets/upload/'.$ujian->foto_bukti_trf_2;?>"><br>
                             											<label for="status_pembayaran_2" class="label">Status Pembayaran : </label>
-                            											<select class="form-control" name="status_pembayaran_2">
+                            											<select class="form-control" name="status_pembayaran_2" id="status_pembayaran_2">
                             												<option value="paid">Telah Dibayar</option>
                             												<option value="unpaid">Belum Dibayar</option>
-                            											</select>
+                            											</select><br>
+                            											<label id="label_ket_pembayaran_2" for="ket_pembayaran_2" class="label">Keterangan : </label>
+                            											<input id="input_ket_pembayaran_2" type="text" name="ket_pembayaran_2" value="" class="form-control">
                             											<hr>
-                            											<label for="tgl_terbit" class="label">Tanggal Terbit : </label>
-                            											<input type="date" name="tgl_terbit" value="" class="form-control" required="required">
-                            											<label for="tgl_expired	" class="label">Tanggal Berakhir : </label>
-                            											<input type="date" name="tgl_expired" value="" class="form-control" required="required">
-                            											<label for="no_awal" class="label">Nomor Label Awal : </label>
-                            											<input type="number" name="no_awal" value="" class="form-control" required="required">
-                            											<label for="no_akhir" class="label">Nomor Label Akhir : </label>
-                            											<input type="number" name="no_akhir" value="" class="form-control" required="required">
+                            											<label for="tgl_terbit" class="label" id="label_tgl_terbit">Tanggal Terbit : </label>
+                            											<input type="date" name="tgl_terbit" id="input_tgl_terbit" value="" class="form-control">
+                            											<label for="tgl_expired	" class="label" id="label_tgl_expired">Tanggal Berakhir : </label>
+                            											<input type="date" name="tgl_expired" value="" class="form-control" id="input_tgl_expired">
+                            											<label for="no_awal" class="label" id="label_no_awal">Nomor Label Awal : </label>
+                            											<input type="number" name="no_awal" id="input_no_awal" value="" class="form-control">
+                            											<label for="no_akhir" class="label" id="label_no_akhir">Nomor Label Akhir : </label>
+                            											<input type="number" name="no_akhir" id="input_no_akhir" value="" class="form-control">
 
                             										</div>
                             										<div class="modal-footer">
@@ -441,14 +459,15 @@
                             		<table id="myTable6" class="table mb-0">
                             			<thead>
                             				<tr>
-                            					<th class="text-center">No</th>
-                            					<th class="text-center">Tanggal Pengajuan</th>
+                            					<th class="text-center">No. Permohonan</th>
+                            					<th class="text-center">No. Sertifikat</th>
+                            					<th class="text-center">Tgl Pengajuan</th>
                             					<th class="text-center">Nama Alat</th>
                             					<th class="text-center">Merk</th>
                             					<th class="text-center">Tipe</th>
-                            					<th class="text-center">Perusahaan</th>
+                            					<th class="text-center">Instansi</th>
                             					<th class="text-center">Status</th>
-                            					<th class="text-center">Masa Berlaku</th>
+                            					<th class="text-center" style="width: 250px;">Masa Berlaku</th>
                             				</tr>
                             			</thead>
                             			<tbody>
@@ -462,18 +481,86 @@
                             						$tgl_expired 	= date('Y-m-d', strtotime($ujian->tgl_expired));
                             						?>
                             						<tr>
-                            							<td class="text-center"><?php echo $i;?></td>
+                            							<td class="text-center"><span class="text-primary">
+                            								<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                            							</td>
+                            							<td class="text-center"><span class="text-primary">
+                            								<?php echo $ujian->kode_alat.'/BTKP/'.$ujian->no_spk; ?></span>
+                            							</td>
                             							<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
                             							<td class="text-center"><?php echo $ujian->nama_alat?></td>
                             							<td class="text-center"><?php echo $ujian->merk?></td>
                             							<td class="text-center"><?php echo $ujian->tipe?></td>
                             							<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
-                            							<td class="text-center"><span style="width:100px; "><span class="badge-text badge-text-small success">Diterima</span></span></td>
                             							<td class="text-center">
-                            								<?php echo date_indo($tgl_terbit).' - '.date_indo($tgl_expired);?>
+                            								<?php
+                            								$tgl_expired = date('Y-m-d', strtotime($ujian->tgl_expired));
+                            								$sekarang = date('Y-m-d');
+                            								if($sekarang > $tgl_expired){
+                            									?>
+                            									<span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span>
+                            									<?php
+                            								}else{
+                            									?>
+                            									<span style="width:100px;"><span class="badge-text badge-text-small info">aktif</span></span>
+                            									<?php
+                            								}
+                            								?>
+                            							</td>
+                            							<td class="text-center">
+                            								<?php echo date_indo($tgl_terbit).' <br><b>Sampai</b><br> '.date_indo($tgl_expired);?>
                             							</td>
                             						</tr>
                             						<?php
+                            					}
+                            				}
+                            				?>
+                            			</tbody>
+                            		</table>
+                            	</div>
+                            </div>
+                            <div class="tab-pane fade" id="tab-7" role="tabpanel" aria-labelledby="base-tab-7">
+                            	<div class="table-responsive">
+                            		<table id="myTable7" class="table mb-0">
+                            			<thead>
+                            				<tr>
+                            					<th class="text-center">No. Permohonan</th>
+                            					<th class="text-center">Tanggal Pengajuan</th>
+                            					<th class="text-center">Nama Alat</th>
+                            					<th class="text-center">Merk</th>
+                            					<th class="text-center">Tipe</th>
+                            					<th class="text-center">Perusahaan</th>
+                            					<th class="text-center">Keterangan</th>
+                            				</tr>
+                            			</thead>
+                            			<tbody>
+                            				<?php 
+                            				$i=1;
+                            				foreach ($pengujian_tolak as $ujian) {
+                            					$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
+                            					if($ada_status > 0){
+                            						$status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row()->status;
+                            						$tgl_pengajuan_p = date('Y-m-d', strtotime($ujian->created_at_ujian));
+                            						if($status == "ditolak"){
+                            							?>
+                            							<tr class="text-center">
+                            								<td class="text-center"><span class="text-primary">
+                            									<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                            								</td>
+                            								<td class="text-center"><?php echo date_indo($tgl_pengajuan_p)?></td>
+                            								<td class="text-center"><?php echo $ujian->nama_alat?></td>
+                            								<td class="text-center"><?php echo $ujian->merk?></td>
+                            								<td class="text-center"><?php echo $ujian->tipe?></td>
+                            								<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
+                            								<td class="text-center" style="color: red;">
+                            									<!-- <span style="width:100px;"><span class="badge-text badge-text-small danger">Ditolak</span></span> -->
+                            									<?php echo $ujian->keterangan?>
+                            								</td>
+                            								<!-- <td class="td-actions text-center"></td> -->
+                            							</tr>
+                            							<?php
+                            							$i++;
+                            						}
                             					}
                             				}
                             				?>
@@ -490,3 +577,84 @@
     </div>
     <!-- End Row -->
 </div>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#label_ket_pembayaran_1').hide();
+		$('#input_ket_pembayaran_1').hide();
+
+		$('#status_pembayaran_1').change(function(){
+			var status = $("#status_pembayaran_1").val();
+			if(status == 'unpaid'){
+				$('#label_ket_pembayaran_1').show();
+				$('#input_ket_pembayaran_1').show();
+				$("#input_ket_pembayaran_1").prop("required", true);
+			}else if(status == 'paid'){
+				$('#label_ket_pembayaran_1').hide();
+				$('#input_ket_pembayaran_1').hide();
+				$("#input_ket_pembayaran_1").removeAttr("required");
+			}
+		});
+	});
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#label_ket_pembayaran_2').hide();
+		$('#input_ket_pembayaran_2').hide();
+
+		$('#input_tgl_terbit').prop("required", true);
+		$('#input_tgl_expired').prop("required", true);
+		$('#input_no_awal').prop("required", true);
+		$('#input_no_akhir').prop("required", true);
+
+		$('#status_pembayaran_2').change(function(){
+			var status = $('#status_pembayaran_2').val();
+			if(status == 'unpaid'){
+				$('#label_ket_pembayaran_2').show();
+				$('#input_ket_pembayaran_2').show();
+				$("#input_ket_pembayaran_2").prop("required", true);
+
+				$('#label_tgl_terbit').hide();
+				$('#input_tgl_terbit').hide();
+				$('#input_tgl_terbit').removeAttr("required");
+
+				$('#label_tgl_expired').hide();
+				$('#input_tgl_expired').hide();
+				$('#input_tgl_expired').removeAttr("required");
+
+				$('#label_no_awal').hide();
+				$('#input_no_awal').hide();
+				$('#input_no_awal').removeAttr("required");
+
+				$('#label_no_akhir').hide();
+				$('#input_no_akhir').hide();
+				$('#input_no_akhir').removeAttr("required");
+
+
+
+			}else if(status == 'paid'){
+				$('#label_ket_pembayaran_2').hide();
+				$('#input_ket_pembayaran_2').hide();
+				$("#input_ket_pembayaran_2").removeAttr("required");
+
+				$('#label_tgl_terbit').show();
+				$('#input_tgl_terbit').show();
+				$('#input_tgl_terbit').prop("required", true);
+
+				$('#label_tgl_expired').show();
+				$('#input_tgl_expired').show();
+				$('#input_tgl_expired').prop("required", true);
+
+				$('#label_no_awal').show();
+				$('#input_no_awal').show();
+				$('#input_no_awal').prop("required", true);
+
+				$('#label_no_akhir').show();
+				$('#input_no_akhir').show();
+				$('#input_no_akhir').prop("required", true);
+			}
+		});
+	});
+</script>

@@ -52,7 +52,10 @@
 									<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Validasi Pembayaran</a>
 								</li> -->
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Penerbitan</a>
+									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Data SPK</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Perizinan Ditolak</a>
 								</li>
 							</ul>
 							<div class="tab-content pt-3">
@@ -61,7 +64,7 @@
 										<table id="myTable" class="table mb-0">
 											<thead>
 												<tr>
-													<th class="text-center">No</th>
+													<th class="text-center">No. Permohonan</th>
 													<th class="text-center">Jenis Izin</th>
 													<th class="text-center">Perusahaan</th>
 													<th class="text-center">Alat SPK</th>
@@ -85,7 +88,9 @@
 																$i++;
 																?>
 																<tr>
-																	<td class="text-center"><?php echo $i;?></td>
+																	<td class="text-center"><span class="text-primary">
+																		<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+																	</td>
 																	<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
 																	<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
 																	<td class="text-center"><?php echo $per->nama_alat?></td>
@@ -117,7 +122,8 @@
 										<table id="myTable4" class="table mb-0">
 											<thead>
 												<tr>
-													<th class="text-center">No</th>
+													<th class="text-center">No. Permohonan</th>
+													<th class="text-center">No. Sertifikat</th>
 													<th class="text-center">Jenis Izin</th>
 													<th class="text-center">Perusahaan</th>
 													<th class="text-center">Alat SPK</th>
@@ -135,7 +141,10 @@
 														$i++;
 														?>
 														<tr>
-															<td class="text-center"><?php echo $i;?></td>
+															<td class="text-center"><span class="text-primary">
+																<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+															</td>
+															<td class="text-center"><span class="text-primary"><?php echo $per->kode_alat.'/'.$per->no_spk.'/'.date('y', strtotime($per->tgl_terbit)) ?></span></td>
 															<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
 															<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
 															<td class="text-center"><?php echo $per->nama_alat?></td>
@@ -146,17 +155,67 @@
 															$tgl_expired 	= date('Y-m-d', strtotime($per->tgl_expired));
 															?>
 															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+															<?php
+															$tgl_expired 	= date('Y-m-d', strtotime($per->tgl_expired));
+															$sekarang 		= date('Y-m-d');
+															if($sekarang <= $tgl_expired){
+																?>
+																<td class="text-center">
+																	<span style="width:100px;" title="perizinan aktif"><span class="badge-text badge-text-small success"> Aktif</span></span>
+																</td>
+																<?php
+															}else{
+																?>
+																<td class="text-center">
+																	<span style="width:100px;" title="perizinan tidak aktif"><span class="badge-text badge-text-small danger">Tidak Aktif</span></span>
+																</td>
+																<?php
+															}
+															?>
 															<td class="text-center">
-																<span style="width:100px;" title="Sudah input billing"><span class="badge-text badge-text-small success"> Aktif</span></span>
-															</td>
-															<td class="text-center">
-																<?php echo date_indo($tgl_terbit).' sampai '.date_indo($tgl_expired);?>
+																<?php echo date_indo($tgl_terbit).' <br><b>sampai</b><br> '.date_indo($tgl_expired);?>
 															</td>
 														</tr>
 														<?php
 													}
 													?>
 													<?php
+												}
+												?>
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="tab-pane fade show" id="tab-5" role="tabpanel" aria-labelledby="base-tab-5">
+									<div class="table-responsive">
+										<table id="myTable5" class="table mb-0">
+											<thead>
+												<tr class="text-center">
+													<th>No. Permohonan</th>
+													<th>Nama Alat</th>
+													<th>Tanggal Permohonan</th>
+													<th><span style="width:100px;">Status</span></th>
+													<th><span style="width:100px;">Keterangan</span></th>
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												$i=1;
+												foreach ($izin_tolak as $tolak) {
+													$izin = date('Y-m-d', strtotime($tolak->created_at_izin));
+													$nama_alat = $this->WorkshopM->get_perizinan_by_id_perizinan($tolak->id_perizinan)->row()->nama_alat;
+													?>
+													<tr>
+														<td class="text-center"><span class="text-primary">
+															<?php echo $tolak->id_perizinan.'/'.date('Ymd', strtotime($tolak->created_at_izin)); ?></span>
+														</td>
+														<td class="text-center"><?php echo $nama_alat?></td>
+														<td class="text-center"><?php echo date_indo($izin)?></td>
+														<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small danger"><?php echo $tolak->status?></span></span></td>
+														<td style="text-align: justify-all;"><?php echo $tolak->keterangan?></td>
+													</tr>
+													<?php
+													$i++;
 												}
 												?>
 											</tbody>

@@ -32,6 +32,9 @@
       <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/owl-carousel/owl.theme.min.css">
       <!-- tabel -->
       <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/datatables/datatables.min.css">
+      
+      <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
+      <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
       <!-- Tweaks for older IEs-->
 	<!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -186,8 +189,6 @@
 
     </html>
     <!-- Begin Vendor Js -->
-    <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
     <!-- End Vendor Js -->
     <!-- Begin Page Vendor Js -->

@@ -90,14 +90,34 @@
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">No. Akta Perusahaan</label>
                             <div class="col-lg-6">
-                                <input name="akta_perusahaan" id="akta_perusahaan" type="text" class="form-control" placeholder="No. Akta Perusahaan" value="<?php echo $profil->akta_perusahaan?>" readonly>
+                                <?php 
+                                if($profil->akta_perusahaan != ''){
+                                    ?>
+                                    <input name="akta_perusahaan" id="akta_perusahaan" type="text" class="form-control" placeholder="No. Akta Perusahaan" value="<?php echo $profil->akta_perusahaan?>" readonly>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <input name="akta_perusahaan" id="akta_perusahaan" type="text" class="form-control" placeholder="No. Akta Perusahaan" value="<?php echo $profil->akta_perusahaan?>">
+                                    <?php
+                                }
+                                ?>
                                 <input name="id_perusahaan" id="id_perusahaan" type="hidden" class="form-control" placeholder="No. Akta Perusahaan" value="<?php echo $profil->id_perusahaan?>" readonly>
                             </div>
                         </div>
                         <div class="form-group row d-flex align-items-center mb-5">
                             <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">Nama Perusahaan</label>
                             <div class="col-lg-6">
-                                <input name="nama_perusahaan" id="nama_perusahaan" type="text" class="form-control" placeholder="Nama Perusahaan" value="<?php echo $profil->nama_perusahaan?>" readonly>
+                                <?php 
+                                if($profil->akta_perusahaan != ''){
+                                    ?>
+                                    <input name="nama_perusahaan" id="nama_perusahaan" type="text" class="form-control" placeholder="Nama Perusahaan" value="<?php echo $profil->nama_perusahaan?>" readonly>
+                                    <?php
+                                }else{
+                                    ?>
+                                    <input name="nama_perusahaan" id="nama_perusahaan" type="text" class="form-control" placeholder="Nama Perusahaan" value="<?php echo $profil->nama_perusahaan?>">
+                                    <?php
+                                }
+                                ?>
                             </div>
                         </div>
                         <div class="form-group row d-flex align-items-center mb-5">

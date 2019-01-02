@@ -140,7 +140,7 @@
 												</div>
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>JABATAN PEMOHON</b><span class="text-danger ml-2">*</span></label>
-													<input type="text" value="" class="form-control" id="jabatan_pemohon" name="jabatan_pemohon" value="<?php echo $pengguna->jabatan_pemohon;?>" required>
+													<input type="text" value="" class="form-control" id="jabatan_pemohon" name="jabatan_pemohon" value="" required>
 												</div>
 											</div>
 											<div class="form-group row mb-3">

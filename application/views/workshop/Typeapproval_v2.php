@@ -109,7 +109,7 @@
 													<input type="text" value="" class="form-control" id="pabrikan" name="pabrikan" required>
 												</div>
 											</div>
-											<div class="form-group row mb-3">
+											<div class="form-group row mb-3" id="alamat_pabrikan_detail">
 												<div class="col-xl-3 mb-3">
 													<label class="form-control-label"><b>PROPINSI</b><span class="text-danger ml-2">*</span></label>
 													<select class="form-control" id="propinsi_pt" name="propinsi_pt" required >
@@ -181,12 +181,26 @@
 	</div>
 </div>
 </div>
-<!-- End Row -->
-<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
+
 <script type="text/javascript">
 	$(document).ready(function(){
-		$('#tab1').addClass('active show');
-		// $("#progressbar").addClass('panjang');
+		$('#alamat_pabrikan_detail').hide();
+
+		$('#negara_asal').keyup(function(){
+			var negara = $("#negara_asal").val();
+			if(negara == 'Indonesia' || negara == 'indonesia'){
+				$('#alamat_pabrikan_detail').show();
+				$("#propinsi_pt").prop("required", true);
+				$("#kab_pt").prop("required", true);
+				$("#kecamatan_pt").prop("required", true);
+				$("#kelurahan_pt").prop("required", true);
+			}else if(negara != 'Indonesia' || negara != 'indonesia'){
+				$('#alamat_pabrikan_detail').hide();
+				$("#propinsi_pt").removeAttr("required");
+				$("#kab_pt").removeAttr("required");
+				$("#kecamatan_pt").removeAttr("required");
+				$("#kelurahan_pt").removeAttr("required");
+			}
+		});
 	});
 </script>

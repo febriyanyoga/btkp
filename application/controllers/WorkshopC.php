@@ -20,7 +20,7 @@ class WorkshopC extends CI_Controller
         $data['title'] = 'BTKP - Home';
         $id_pengguna = $this->session->userdata('id_pengguna');
         $this->data['data_inspeksi']     = $this->WorkshopM->get_inspeksi_by_id_pengguna($id_pengguna)->result();
-        $this->data['data_pengujian'] = $this->WorkshopM->get_pengujian($id_pengguna)->result();
+        $this->data['data_pengujian'] = $this->WorkshopM->get_pengujian_data($id_pengguna)->result();
         $this->data['perizinan']    = $this->WorkshopM->get_all_perizinan_by_id_pengguna($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/Home_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
@@ -35,7 +35,8 @@ class WorkshopC extends CI_Controller
         }else{
             $data['title'] = 'BTKP - Data Pengujian';
         }
-        $this->data['pengujian']    = $this->WorkshopM->get_pengujian($id_pengguna)->result();
+        $this->data['pengujian']            = $this->WorkshopM->get_pengujian_data($id_pengguna)->result();
+        $this->data['pengujian_tolak']      = $this->WorkshopM->get_pengujian_tolak($id_pengguna)->result();
         $this->data['perizinan']    = $this->WorkshopM->get_all_perizinan_by_id_pengguna($id_pengguna)->result();
         $this->data['izin_tolak']   = $this->WorkshopM->get_perizinan_ditolak($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/dataperizinan_v', $this->data, true);
@@ -250,7 +251,7 @@ class WorkshopC extends CI_Controller
                 'id_kel_perusahaan'         => $this->input->post('kelurahan_pt'),
                 'email_perusahaan'          => $this->input->post('email_perusahaan'),
                 'fax'                       => $this->input->post('fax'),
-                // 'jabatan'                   => $this->input->post('jabatan_pemohon')
+                'jabatan_pengguna'          => $this->input->post('jabatan_pemohon')
             );
             if($insert_id = $this->WorkshopM->insert_perusahaan($data)){
                 $this->session->set_flashdata('sukses','Data anda berhasil disimpan');
@@ -270,7 +271,7 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('negara_asal', 'Negara Pembuat','required');
         $this->form_validation->set_rules('pabrikan', 'Pabrikan Pembuat','required');
         $this->form_validation->set_rules('alamat_pabrikan', 'Alamat Pabrikan Pembuat','required');
-        $this->form_validation->set_rules('kelurahan_pt', 'ID Kelurahan Pabrikan','required');
+        $this->form_validation->set_rules('kelurahan_pt', 'ID Kelurahan Pabrikan');
         $this->form_validation->set_rules('no_tlp', 'Nomor Telepon','required');
         $this->form_validation->set_rules('email', 'Email Pabrikan','required');
         $this->form_validation->set_rules('catatan', 'Catatan','required');

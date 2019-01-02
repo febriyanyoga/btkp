@@ -54,6 +54,9 @@
 								<li class="nav-item">
 									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Data SPK</a>
 								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Perizinan Ditolak</a>
+								</li>
 							</ul>
 							<div class="tab-content pt-3">
 								<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
@@ -61,7 +64,7 @@
 										<table id="myTable" class="table mb-0">
 											<thead>
 												<tr>
-													<th class="text-center">No</th>
+													<th class="text-center">No. Permohonan</th>
 													<th class="text-center">Jenis Izin</th>
 													<th class="text-center">Perusahaan</th>
 													<th class="text-center">Alat SPK</th>
@@ -75,12 +78,14 @@
 												$i = 0;
 												foreach ($perizinan as $per) {
 													$id_pengguna = $this->session->userdata('id_pengguna');
-													// $own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
+													$progress_tu_all = $this->GeneralM->get_progress_tu($per->id_perizinan)->num_rows();
 													$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
-													if ($progress_tu == 0 && $per->status_pengajuan == 'selesai') {
+													if ($progress_tu_all == 0 && $per->status_pengajuan == 'selesai') {
 														++$i; ?>
 														<tr>
-															<td class="text-center"><?php echo $i; ?></td>
+															<td class="text-center"><span class="text-primary">
+																<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+															</td>
 															<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
 															<td class="text-center"><?php echo $per->nama_perusahaan; ?></td>
 															<td class="text-center"><?php echo $per->nama_alat; ?></td>
@@ -109,7 +114,7 @@
 										<table id="myTable2" class="table mb-0">
 											<thead>
 												<tr>
-													<th class="text-center">No</th>
+													<th class="text-center">No. Permohonan</th>
 													<th class="text-center">Jenis Izin</th>
 													<th class="text-center">Perusahaan</th>
 													<th class="text-center">Alat SPK</th>
@@ -131,7 +136,9 @@
                                                         		if ($status != 'ditolak') {
                                                         			++$i; ?>
                                                         			<tr>
-                                                        				<td class="text-center"><?php echo $i; ?></td>
+                                                        				<td class="text-center"><span class="text-primary">
+                                                        					<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+                                                        				</td>
                                                         				<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
                                                         				<td class="text-center"><?php echo $per->nama_perusahaan; ?></td>
                                                         				<td class="text-center"><?php echo $per->nama_alat; ?></td>
@@ -187,24 +194,24 @@
                                                         							<div class="modal-body">
                                                         								<label for="kode_billing" class="label">Kode Billing : </label>
                                                         								<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
-                                                                                        <label for="bank_btkp" class="label">Bank BTKP : </label>
-                                                                                        <select class="form-control" name="id_bank_btkp">
-                                                                                            <option value="">---Pilih Bank---</option>
-                                                                                            <?php
-                                                                                            foreach ($bank_btkp as $bank ) {
-                                                                                                ?>
-                                                                                                <option value="<?php echo $bank->id_bank_btkp?>"><?php echo $bank->nama_bank?></option>
-                                                                                                <?php
-                                                                                            }
-                                                                                            ?>
-                                                                                        </select>
-                                                                                        
+                                                        								<label for="bank_btkp" class="label">Bank BTKP : </label>
+                                                        								<select class="form-control" name="id_bank_btkp">
+                                                        									<option value="">---Pilih Bank---</option>
+                                                        									<?php
+                                                        									foreach ($bank_btkp as $bank ) {
+                                                        										?>
+                                                        										<option value="<?php echo $bank->id_bank_btkp?>"><?php echo $bank->nama_bank?></option>
+                                                        										<?php
+                                                        									}
+                                                        									?>
+                                                        								</select>
+
                                                         								<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
-                                                                                        <label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
-                                                                                        <input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
-                                                                                        <label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
-                                                                                        <input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
-                                                                                        
+                                                        								<label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
+                                                        								<input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
+                                                        								<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
+                                                        								<input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
+
                                                         							</div>
                                                         							<div class="modal-footer">
                                                         								<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
@@ -230,7 +237,7 @@
                                     		<table id="myTable3" class="table mb-0">
                                     			<thead>
                                     				<tr>
-                                    					<th class="text-center">No</th>
+                                    					<th class="text-center">No. Permohonan</th>
                                     					<th class="text-center">Jenis Izin</th>
                                     					<th class="text-center">Perusahaan</th>
                                     					<th class="text-center">Alat SPK</th>
@@ -249,136 +256,231 @@
                                     							if ($per->status_pembayaran != 'paid') {
                                     								++$i; ?>
                                     								<tr>
-                                    									<td class="text-center"><?php echo $i; ?></td>
+                                    									<td class="text-center"><span class="text-primary">
+                                    										<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+                                    									</td>
                                     									<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
                                     									<td class="text-center"><?php echo $per->nama_perusahaan; ?></td>
                                     									<td class="text-center"><?php echo $per->nama_alat; ?></td>
                                     									<?php
-                                                                // $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
                                     									$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
                                     									<td class="text-center"><?php echo date_indo($tgl_pengajuan); ?></td>
                                     									<td class="text-center">
                                     										<?php
-                                                                    if ($per->kode_billing != '') { //ada kode billing
-                                                                        if ($per->foto_bukti_trf != '') { //ada foto
-                                                                        	?>
-                                                                        	<span style="width:100px;" title="Sudah input billing"><span class="badge-text badge-text-small info"> Sudah dibayar</span></span>
-                                                                        	<?php
-                                                                        } else {
-                                                                        	?>
-                                                                        	<span style="width:100px;" title="Sudah input billing"><span class="badge-text badge-text-small default" style="color: black;"> Menunggu Pembayaran</span></span>
-                                                                        	<?php
-                                                                        }
-                                                                    } ?>
-                                                                </td>
-                                                                <td class="text-center">
-                                                                	<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#penerbitan-<?php echo $per->id_perizinan; ?>"><i class="la la-plus"></i>Penerbitan</i>
-                                                                	</a>
-                                                                </td>
-                                                            </tr>
+	                                                                    	if ($per->kode_billing != '') { //ada kode billing
+		                                                                        if ($per->foto_bukti_trf != '') { //ada foto
+		                                                                        	?>
+		                                                                        	<span style="width:100px;" title="Sudah upload bukti pembayaran"><span class="badge-text badge-text-small info"><i class="la la-check"></i> Sudah dibayar</span></span>
+		                                                                        	<?php
+		                                                                        } else {
+		                                                                        	?>
+		                                                                        	<span style="width:100px;" title=""><span class="badge-text badge-text-small default" style="color: black;"> Menunggu Pembayaran</span></span>
+		                                                                        	<?php
+		                                                                        }
+		                                                                    } 
+		                                                                    ?>
+		                                                                </td>
+		                                                                <td class="text-center">
+		                                                                	<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#penerbitan-<?php echo $per->id_perizinan; ?>">Penerbitan</i>
+		                                                                	</a>
+		                                                                </td>
+		                                                            </tr>
 
-                                                            <div class="modal" id="penerbitan-<?php echo $per->id_perizinan; ?>">
-                                                            	<div class="modal-dialog modal-md">
-                                                            		<div class="modal-content">
-                                                            			<div class="modal-header">
-                                                            				<h4 class="modal-title">Penerbitan</h4>
-                                                            				<button type="button" class="close" data-dismiss="modal">&times;</button>
-                                                            			</div>
-                                                            			<form action="<?php echo site_url('penerbitan'); ?>" method="post">
-                                                            				<div class="modal-body">
-                                                            					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
-                                                            					<label for="keterangan" class="label">Bank Transfer : </label>
-                                                            					<input type="text" name="nama_bank" value="<?php echo $per->nama_bank; ?>" class="form-control" required="required" readonly>
-                                                            					<label for="keterangan" class="label">Atas Nama : </label>
-                                                            					<input type="text" name="atas_nama" value="<?php echo $per->atas_nama; ?>" class="form-control" required="required" readonly>
-                                                            					<label for="" class="label">Foto Bukti Transfer : </label>
-                                                            					<img style="max-width: 470px;" src="<?php echo base_url().'assets/upload/'.$per->foto_bukti_trf; ?>">
-                                                            					<label for="status_pembayaran" class="label">Status Pembayaran  : </label>
-                                                            					<select class="form-control" name="status_pembayaran">
-                                                            						<option value="paid">Telah Dibayar</option>
-                                                            						<option value="unpaid">Belum Dibayar</option>
-                                                            					</select>
-                                                            					<!-- <label for="keterangan" class="label">Nomor SPK : </label>
-                                                            					<input type="text" name="nomor_spk" value="" class="form-control" placeholder="Masukkan nomor SPK" required="required"> -->
-                                                            					<label for="keterangan" class="label">Tanggal Terbit  : </label>
-                                                            					<input type="date" name="tgl_terbit" value="" class="form-control" required="required">
-                                                            					<label for="keterangan" class="label">Tanggal Expired  : </label>
-                                                            					<input type="date" name="tgl_expired" value="" class="form-control" required="required">
-                                                            				</div>
-                                                            				<div class="modal-footer">
-                                                            					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-                                                            					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin akan menerbitkan perizinan ini?')">
-                                                            				</div>
-                                                            			</form>
-                                                            		</div>
-                                                            	</div>
-                                                            </div>
-                                                            <?php
-                                                        }
-                                                    }
-                                                }
-                                            }
-                                            ?>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                            <div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="base-tab-4">
-                            	<div class="table-responsive">
-                            		<table id="myTable4" class="table mb-0">
-                            			<thead>
-                            				<tr>
-                            					<th class="text-center">No</th>
-                            					<th class="text-center">No. Sertifikat</th>
-                            					<th class="text-center">Jenis Izin</th>
-                            					<th class="text-center">Perusahaan</th>
-                            					<th class="text-center">Alat SPK</th>
-                            					<th class="text-center">Tanggal Permohonan</th>
-                            					<th class="text-center">Status</th>
-                            					<th class="text-center">Masa Aktif</th>
-                            				</tr>
-                            			</thead>
-                            			<tbody>
-                            				<?php
-                            				$i = 0;
-                            				foreach ($perizinan as $per) {
-                            					$id_pengguna = $this->session->userdata('id_pengguna');
-                            					if ($per->status_pembayaran == 'paid') {
-                            						++$i; ?>
-                            						<tr>
-                            							<td class="text-center"><?php echo $i;?></td>
-                            							<td class="text-center"><?php echo $per->kode_alat.'/'.$per->no_spk.'/'.date('y', strtotime($per->tgl_terbit)); ?></td>
-                            							<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
-                            							<td class="text-center"><?php echo $per->nama_perusahaan; ?></td>
-                            							<td class="text-center"><?php echo $per->nama_alat; ?></td>
-                            							<?php
+		                                                            <div class="modal" id="penerbitan-<?php echo $per->id_perizinan; ?>">
+		                                                            	<div class="modal-dialog modal-md">
+		                                                            		<div class="modal-content">
+		                                                            			<div class="modal-header">
+		                                                            				<h4 class="modal-title">Penerbitan</h4>
+		                                                            				<button type="button" class="close" data-dismiss="modal">&times;</button>
+		                                                            			</div>
+		                                                            			<form action="<?php echo site_url('penerbitan'); ?>" method="post">
+		                                                            				<div class="modal-body">
+		                                                            					<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
+		                                                            					<label for="keterangan" class="label">Bank Transfer : </label>
+		                                                            					<input type="text" name="nama_bank" value="<?php echo $per->nama_bank; ?>" class="form-control" required="required" readonly>
+		                                                            					<label for="keterangan" class="label">Atas Nama : </label>
+		                                                            					<input type="text" name="atas_nama" value="<?php echo $per->atas_nama; ?>" class="form-control" required="required" readonly>
+		                                                            					<label for="" class="label">Foto Bukti Transfer : </label>
+		                                                            					<img style="max-width: 470px;" src="<?php echo base_url().'assets/upload/'.$per->foto_bukti_trf; ?>">
+		                                                            					<label for="status_pembayaran" class="label">Status Pembayaran  : </label>
+		                                                            					<select class="form-control" name="status_pembayaran" id="status_pembayaran">
+		                                                            						<option value="paid">Telah Dibayar</option>
+		                                                            						<option value="unpaid">Belum Dibayar</option>
+		                                                            					</select>
+
+		                                                            					<label id="label_tgl_terbit" for="tgl_terbit" class="label">Tanggal Terbit  : </label>
+		                                                            					<input id="input_tgl_terbit" type="date" name="tgl_terbit" value="" class="form-control" required="required">
+		                                                            					<label id="label_tgl_expired" for="tgl_expired" class="label">Tanggal Expired  : </label>
+		                                                            					<input id="input_tgl_expired" type="date" name="tgl_expired" value="" class="form-control" required="required">
+
+		                                                            					<label id="label_ket_pembayaran" for="ket_pembayaran" class="label">Keterangan : </label>
+		                                                            					<input id="input_ket_pembayaran" type="text" name="ket_pembayaran" value="" class="form-control">
+		                                                            				</div>
+		                                                            				<div class="modal-footer">
+		                                                            					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+		                                                            					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin akan menerbitkan perizinan ini?')">
+		                                                            				</div>
+		                                                            			</form>
+		                                                            		</div>
+		                                                            	</div>
+		                                                            </div>
+		                                                            <?php
+		                                                        }
+		                                                    }
+		                                                }
+		                                            }
+		                                            ?>
+		                                        </tbody>
+		                                    </table>
+		                                </div>
+		                            </div>
+		                            <div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="base-tab-4">
+		                            	<div class="table-responsive">
+		                            		<table id="myTable4" class="table mb-0">
+		                            			<thead>
+		                            				<tr>
+		                            					<th class="text-center">No. Permohonan</th>
+		                            					<th class="text-center">No. Sertifikat</th>
+		                            					<th class="text-center">Jenis Izin</th>
+		                            					<th class="text-center">Perusahaan</th>
+		                            					<th class="text-center">Alat SPK</th>
+		                            					<th class="text-center">Tanggal Permohonan</th>
+		                            					<th class="text-center">Status</th>
+		                            					<th class="text-center">Masa Aktif</th>
+		                            				</tr>
+		                            			</thead>
+		                            			<tbody>
+		                            				<?php
+		                            				$i = 0;
+		                            				foreach ($perizinan as $per) {
+		                            					$id_pengguna = $this->session->userdata('id_pengguna');
+		                            					if ($per->status_pembayaran == 'paid') {
+		                            						++$i; ?>
+		                            						<tr>
+		                            							<td class="text-center"><span class="text-primary">
+		                            								<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+		                            							</td>
+		                            							<td class="text-center"><?php echo $per->kode_alat.'/'.$per->no_spk.'/'.date('y', strtotime($per->tgl_terbit)); ?></td>
+		                            							<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
+		                            							<td class="text-center"><?php echo $per->nama_perusahaan; ?></td>
+		                            							<td class="text-center"><?php echo $per->nama_alat; ?></td>
+		                            							<?php
                                                             // $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
-                            							$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
-                            							$tgl_terbit = date('Y-m-d', strtotime($per->tgl_terbit));
-                            							$tgl_expired = date('Y-m-d', strtotime($per->tgl_expired)); ?>
-                            							<td class="text-center"><?php echo date_indo($tgl_pengajuan); ?></td>
-                            							<td class="text-center">
-                            								<span style="width:100px;" title="Sudah input billing"><span class="badge-text badge-text-small success"> Aktif</span></span>
-                            							</td>
-                            							<td class="text-center">
-                            								<?php echo date_indo($tgl_terbit).' <b>sampai</b> '.date_indo($tgl_expired); ?>
-                            							</td>
-                            						</tr>
-                            						<?php
-                            					}
-                            				}
-                            				?>
-                            			</tbody>
-                            		</table>
-                            	</div>
-                            </div>
-                        </div>
-                    </div>
+		                            							$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
+		                            							$tgl_terbit = date('Y-m-d', strtotime($per->tgl_terbit));
+		                            							$tgl_expired = date('Y-m-d', strtotime($per->tgl_expired)); ?>
+		                            							<td class="text-center"><?php echo date_indo($tgl_pengajuan); ?></td>
+		                            							<?php
+		                            							$tgl_expired 	= date('Y-m-d', strtotime($per->tgl_expired));
+		                            							$sekarang 		= date('Y-m-d');
+		                            							if($sekarang <= $tgl_expired){
+		                            								?>
+		                            								<td class="text-center">
+		                            									<span style="width:100px;" title="perizinan aktif"><span class="badge-text badge-text-small success"> Aktif</span></span>
+		                            								</td>
+		                            								<?php
+		                            							}else{
+		                            								?>
+		                            								<td class="text-center">
+		                            									<span style="width:100px;" title="perizinan tidak aktif"><span class="badge-text badge-text-small danger">Tidak Aktif</span></span>
+		                            								</td>
+		                            								<?php
+		                            							}
+		                            							?>
+		                            							<td class="text-center">
+		                            								<?php echo date_indo($tgl_terbit).' <br><b>sampai</b><br> '.date_indo($tgl_expired); ?>
+		                            							</td>
+		                            						</tr>
+		                            						<?php
+		                            					}
+		                            				}
+		                            				?>
+		                            			</tbody>
+		                            		</table>
+		                            	</div>
+		                            </div>
+		                            <div class="tab-pane fade show" id="tab-5" role="tabpanel" aria-labelledby="base-tab-5">
+		                            	<div class="table-responsive">
+		                            		<table id="myTable5" class="table mb-0">
+		                            			<thead>
+		                            				<tr class="text-center">
+		                            					<th>No. Permohonan</th>
+		                            					<th>Nama Alat</th>
+		                            					<th>Tanggal Permohonan</th>
+		                            					<th><span style="width:100px;">Status</span></th>
+		                            					<th><span style="width:100px;">Keterangan</span></th>
+		                            				</tr>
+		                            			</thead>
+		                            			<tbody>
+		                            				<?php
+		                            				$i=1;
+		                            				foreach ($izin_tolak as $tolak) {
+		                            					$izin = date('Y-m-d', strtotime($tolak->created_at_izin));
+		                            					$nama_alat = $this->WorkshopM->get_perizinan_by_id_perizinan($tolak->id_perizinan)->row()->nama_alat;
+		                            					?>
+		                            					<tr>
+		                            						<td class="text-center"><span class="text-primary">
+		                            							<?php echo $tolak->id_perizinan.'/'.date('Ymd', strtotime($tolak->created_at_izin)); ?></span>
+		                            						</td>
+		                            						<td class="text-center"><?php echo $nama_alat?></td>
+		                            						<td class="text-center"><?php echo date_indo($izin)?></td>
+		                            						<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small danger"><?php echo $tolak->status?></span></span></td>
+		                            						<td style="text-align: justify-all;"><?php echo $tolak->keterangan?></td>
+		                            					</tr>
+		                            					<?php
+		                            					$i++;
+		                            				}
+		                            				?>
+		                            			</tbody>
+		                            		</table>
+		                            	</div>
+		                            </div>
+		                        </div>
+		                    </div>
 
-                </div>
-            </div>
-            <!-- End Sorting -->
-        </div>
-    </div>
-    <!-- End Row -->
-</div>
+		                </div>
+		            </div>
+		            <!-- End Sorting -->
+		        </div>
+		    </div>
+		    <!-- End Row -->
+		</div>
+
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#label_ket_pembayaran').hide();
+				$('#input_ket_pembayaran').hide();
+
+				$('#status_pembayaran').change(function(){
+					var status = $("#status_pembayaran").val();
+					if(status == 'unpaid'){
+						$('#label_ket_pembayaran').show();
+						$('#input_ket_pembayaran').show();
+						$("#input_ket_pembayaran").prop("required", true);
+
+						$('#label_tgl_terbit').hide();
+						$('#input_tgl_terbit').hide();
+						$("#input_tgl_terbit").removeAttr("required");
+
+						$('#label_tgl_expired').hide();
+						$('#input_tgl_expired').hide();
+						$("#input_tgl_expired").removeAttr("required");
+
+					}else if(status == 'paid'){
+						$('#label_ket_pembayaran').hide();
+						$('#input_ket_pembayaran').hide();
+						$("#input_ket_pembayaran").removeAttr("required");
+
+						$('#label_tgl_terbit').show();
+						$('#input_tgl_terbit').show();
+						$("#input_tgl_terbit").prop("required", true);
+
+						$('#label_tgl_expired').show();
+						$('#input_tgl_expired').show();
+						$("#input_tgl_expired").prop("required", true);
+
+
+					}
+				});
+			});
+		</script>

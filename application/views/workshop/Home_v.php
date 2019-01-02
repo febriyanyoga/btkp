@@ -146,7 +146,7 @@
 																<th class="text-center">Jenis SPK</th>
 																<th class="text-center">Tanggal Pengajuan</th>
 																<th class="text-center">Status</th>
-																<th class="text-center">Actions</th>
+																<th class="text-center">Aksi</th>
 															</tr>
 														</thead>
 														<tbody>
@@ -161,74 +161,90 @@
                                                                     			?>
                                                                     			<tr>
                                                                     				<td class="text-center"><span class="text-primary">
-                                                                    					<?php echo $per->id_perizinan; ?></span></td>
-                                                                    					<td class="text-left">
-                                                                    						<?php echo $per->nama_alat; ?>
-                                                                    					</td>
+                                                                    					<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+                                                                    				</td>
+                                                                    				<td class="text-left">
+                                                                    					<?php echo $per->nama_alat; ?>
+                                                                    				</td>
+                                                                    				<?php
+                                                                    				$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
+                                                                    				<td class="text-center">
+                                                                    					<?php echo date_indo($tgl_pengajuan); ?>
+                                                                    				</td>
+                                                                    				<td class="text-center">
                                                                     					<?php
-                                                                    					$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
-                                                                    					<td class="text-center">
-                                                                    						<?php echo date_indo($tgl_pengajuan); ?>
-                                                                    					</td>
-                                                                    					<td class="text-center">
+                                                                    					$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
+                                                                    					$ket = $this->TatausahaM->cek_status($per->id_perizinan)->row()->keterangan;
+                                                                    					if ($status == 'ditolak') {
+                                                                    						?>
+                                                                    						<span style="width:100px;" title="<?php echo $ket; ?>"><span class="badge-text badge-text-small danger">Ditolak</span></span>
                                                                     						<?php
-                                                                    						$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
-                                                                    						$ket = $this->TatausahaM->cek_status($per->id_perizinan)->row()->keterangan;
-                                                                    						if ($status == 'ditolak') {
-                                                                    							?>
-                                                                    							<span style="width:100px;" title="<?php echo $ket; ?>"><span class="badge-text badge-text-small danger">Ditolak</span></span>
-                                                                    							<?php
-                                                                    						} else {
-                                                                    							if ($per->kode_billing != '') {
-                                                                    								if ($per->foto_bukti_trf != '') {
+                                                                    					} else {
+                                                                    						if ($per->kode_billing != '') {
+                                                                    							if ($per->foto_bukti_trf != '') {
+                                                                    								?>
+                                                                    								<span style="width:100px; " title="pembayaran sedang diverifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu
+                                                                    								verifikasi</span></span>
+                                                                    								<?php
+                                                                    							} else {
+                                                                    								if($per->ket_pembayaran == ""){
                                                                     									?>
-                                                                    									<span style="width:100px; " title="pembayaran sedang diverifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu
-                                                                    									verifikasi</span></span>
+                                                                    									<span style="width:100px; " title="silahkan lakukan pembayaran dan konfirmasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu Pembayaran</span></span>
                                                                     									<?php
-                                                                    								} else {
+                                                                    								}else{
                                                                     									?>
-                                                                    									<span style="width:100px; " title="silahkan lakukan pembayaran dan konfirmasi">
-                                                                    										<span style="color: black;" class="badge-text badge-text-small warning">Menunggu Pembayaran</span>
-                                                                    									</span><hr>
-                                                                    									<a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan; ?>" class="btn btn-sm btn-info" target="_BLANK"><i class="la la-print"></i> Invoice</a>
+                                                                    									<span style="width:100px; " title="silahkan lakukan pembayaran ulang atau konfirmasi ulang"><span style="color: red;">Pembayaran tidak terverifikasi</span></span>
+                                                                    									<hr>
+                                                                    									<span style="color: black;"><?php echo '"'.$per->ket_pembayaran.'"'?></span>
                                                                     									<?php
                                                                     								}
-                                                                    							} else {
-                                                                    								$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
-                                                                    								if ($progress_tu > 0) {
-                                                                    									if ($per->file_hasil_survey == '') {
-                                                                    										?>
-                                                                    										<span style="width:100px; " title="Menunggu file survey diUnggah"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu File Survey</span></span>
-                                                                    										<?php
-                                                                    									} else {
-                                                                    										?>
-                                                                    										<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
-                                                                    										<?php
-                                                                    									}
+                                                                    							}
+                                                                    						} else {
+                                                                    							$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
+                                                                    							if ($progress_tu > 0) {
+                                                                    								if ($per->file_hasil_survey == '') {
+                                                                    									?>
+                                                                    									<span style="width:100px; " title="Menunggu file survey diUnggah"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu File Survey</span></span>
+                                                                    									<?php
                                                                     								} else {
                                                                     									?>
                                                                     									<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
                                                                     									<?php
                                                                     								}
+                                                                    							} else {
+                                                                    								?>
+                                                                    								<span style="width:100px; " title="dalam proses persetujuan/verifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Proses</span></span>
+                                                                    								<?php
                                                                     							}
-                                                                    						} ?>
-                                                                    					</td>
-                                                                    					<td class="text-center">
-                                                                    						<?php
-                                                                    						if ($status == 'ditolak') {
-                                                                    							echo '-';
-                                                                    						} else {
+                                                                    						}
+                                                                    					} ?>
+                                                                    				</td>
+                                                                    				<td class="text-center">
+                                                                    					<?php
+                                                                    					if ($status == 'ditolak') {
+                                                                    						echo '-';
+                                                                    					} else {
                                                                                                 if ($per->kode_billing != '') {// sudah ada kode billing
                                                                                                         if ($per->foto_bukti_trf != '') { //ada foto
                                                                                                         	?>
-                                                                                                        	<span style="width:100px;" title="Menunggu verifikasi pembayran"><span class="badge-text badge-text-small info">
-                                                                                                        	Menunggu Verifikasi</span></span>
+                                                                                                        	<span style="width:100px;" title="Menunggu verifikasi pembayran"><span>-</span></span>
                                                                                                         	<?php
                                                                                                         } else {
                                                                                                         	?>
-                                                                                                        	<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $per->id_perizinan; ?>">Konfirmasi
-                                                                                                        	Pembayaran</i></a>
+                                                                                                        	<a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan; ?>" class="" target="_BLANK"><i class="la la-print"></i> cetak tagihan</a>
+                                                                                                        	<hr>
                                                                                                         	<?php
+                                                                                                        	if($per->ket_pembayaran == ""){
+                                                                                                        		?>
+                                                                                                        		<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $per->id_perizinan; ?>">Konfirmasi
+                                                                                                        		Pembayaran</i></a>
+                                                                                                        		<?php
+                                                                                                        	}else{
+                                                                                                        		?>
+                                                                                                        		<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $per->id_perizinan; ?>">Konfirmasi
+                                                                                                        		Ulang Pembayaran</i></a>
+                                                                                                        		<?php
+                                                                                                        	}
                                                                                                         }
                                                                                                     } else {
                                                                                                     	$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
@@ -307,7 +323,7 @@
                                                                             	?>
                                                                             	<tr>
                                                                             		<td class="text-center"><span class="text-primary">
-                                                                            			<?php echo $per->id_perizinan; ?></span>
+                                                                            			<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
                                                                             		</td>
                                                                             		<td class="text-left">
                                                                             			<?php echo $per->nama_alat; ?>
@@ -338,7 +354,7 @@
                                                         				<th class="text-center">Kapal</th>
                                                         				<th class="text-center">Tanggal Pengajuan</th>
                                                         				<th class="text-center">Status</th>
-                                                        				<th class="text-center">Actions</th>
+                                                        				<th class="text-center">Aksi</th>
                                                         			</tr>
                                                         		</thead>
                                                         		<tbody>
@@ -375,7 +391,6 @@
                                             	<table id="myTable3" class="table mb-0">
                                             		<thead>
                                             			<tr>
-                                            				<th class="text-center">No.</th>
                                             				<th class="text-center">No. Permohonan</th>
                                             				<th class="text-center">Nama Alat</th>
                                             				<th class="text-center">Tipe/Model Alat</th>
@@ -399,8 +414,9 @@
                                             								$i++;
                                             								?>
                                             								<tr>
-                                            									<td class="text-center"><?php echo $i;?></td>
-                                            									<td class="text-center"><?php echo $ujian->id_pengujian.'/'.$tgl_pengajuan_p?></td>
+                                            									<td class="text-center"><span class="text-primary">
+                                            										<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                                            									</td>
                                             									<td class="text-center"><?php echo $ujian->nama_alat?></td>
                                             									<td class="text-center"><?php echo $ujian->tipe?></td>
                                             									<?php
@@ -413,11 +429,17 @@
                                             											if($ujian->status_pembayaran_1 == "paid"){
                                             												if($ujian->file_hasil_pengujian != ""){
                                             													if($ujian->kode_billing_2 != "" && $ujian->foto_bukti_trf_2 ==""){
-                                            														?>
-                                            														<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Pembayaran</span></span>
-                                            														<hr>
-                                            														<a href="<?php echo site_url('cetak_invoice_ujian2/').$ujian->id_pengujian; ?>" class="btn btn-sm btn-info" target="_BLANK"><i class="la la-print"></i> Invoice</a>
-                                            														<?php
+                                            														if($ujian->ket_pembayaran_2 != ''){
+                                            															?>
+                                            															<span style="width:100px; "><span style="color: red;">Verifikasi Pembayaran gagal</span></span>
+                                            															<hr>
+                                            															<span style="color: red;"><?php echo $ujian->ket_pembayaran_2?></span>
+                                            															<?php
+                                            														}else{
+                                            															?>
+                                            															<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Pembayaran</span></span>
+                                            															<?php
+                                            														}
                                             													}else{
                                             														if ($ujian->no_awal =="") {
                                             															?>
@@ -440,11 +462,17 @@
                                             												<?php
                                             											}
                                             										}else{
-                                            											?>
-                                            											<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Pembayaran</span></span>
-                                            											<hr>
-                                            											<a href="<?php echo site_url('cetak_invoice_ujian/').$ujian->id_pengujian; ?>" class="btn btn-sm btn-info" target="_BLANK"><i class="la la-print"></i> Invoice</a>
-                                            											<?php
+                                            											if($ujian->ket_pembayaran_1 != ''){
+                                            												?>
+                                            												<span style="width:100px; "><span style="color: red;">Verifikasi Pembayaran gagal</span></span>
+                                            												<hr>
+                                            												<span style="color: red;"><?php echo $ujian->ket_pembayaran_1?></span>
+                                            												<?php
+                                            											}else{
+                                            												?>
+                                            												<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunggu Pembayaran</span></span>
+                                            												<?php
+                                            											}
                                             										}
                                             										?>
                                             									</td>
@@ -453,14 +481,18 @@
                                             										if($ujian->foto_bukti_trf_1 != ""){
                                             											if($ujian->kode_billing_2 != "" && $ujian->foto_bukti_trf_2 == ""){
                                             												?>
-                                            												<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi2-<?php echo $ujian->id_pengujian; ?>">Konfirmasi</a>
+                                            												<a href="<?php echo site_url('cetak_invoice_ujian2/').$ujian->id_pengujian; ?>" target="_BLANK"><i class="la la-print"></i> Cetak tagihan</a>
+                                            												<hr>
+                                            												<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#konfirmasi2-<?php echo $ujian->id_pengujian; ?>">Konfirmasi Pembayaran</a>
                                             												<?php
                                             											}else{
                                             												echo "-";
                                             											}
                                             										}else{
                                             											?>
-                                            											<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ujian->id_pengujian; ?>">Konfirmasi</a>
+                                            											<a href="<?php echo site_url('cetak_invoice_ujian/').$ujian->id_pengujian; ?>" target="_BLANK"><i class="la la-print"></i> cetak tagihan</a>
+                                            											<hr>
+                                            											<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#konfirmasi-<?php echo $ujian->id_pengujian; ?>">Konfirmasi Pembayaran</a>
                                             											<?php
                                             										}
                                             										?>
@@ -531,8 +563,10 @@
                                             							$j++;
                                             							?>
                                             							<tr>
-                                            								<td class="text-center"><?php echo $j;?></td>
-                                            								<td class="text-center"><?php echo $ujian->id_pengujian.'/'.$tgl_pengajuan_p?></td>
+                                            								<!-- <td class="text-center"><?php echo $j;?></td> -->
+                                            								<td class="text-center"><span class="text-primary">
+                                            									<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                                            								</td>
                                             								<td class="text-center"><?php echo $ujian->nama_alat?></td>
                                             								<td class="text-center"><?php echo $ujian->tipe?></td>
                                             								<?php

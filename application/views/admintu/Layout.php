@@ -19,6 +19,9 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/themify/css/themify-icons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/meteocons/css/meteocons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/owl-carousel/owl.carousel.min.css">
+	
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
 
 	<!-- tabel -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/datatables/datatables.min.css">
@@ -250,8 +253,6 @@
 
 </html>
 <!-- Begin Vendor Js -->
-<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
 <!-- End Vendor Js -->
 <!-- Begin Page Vendor Js -->
@@ -301,22 +302,4 @@
 
 </script>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#label_ket_pembayaran').hide();
-		$('#input_ket_pembayaran').hide();
 
-		$('#status_pembayaran').change(function(){
-			var status = $("#status_pembayaran").val();
-			if(status == 'unpaid'){
-				$('#label_ket_pembayaran').show();
-				$('#input_ket_pembayaran').show();
-				$("#input_ket_pembayaran").prop("required", true);
-			}else if(status == 'paid'){
-				$('#label_ket_pembayaran').hide();
-				$('#input_ket_pembayaran').hide();
-				$("#input_ket_pembayaran").removeAttr("required");
-			}
-		});
-	});
-</script>

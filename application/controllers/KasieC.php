@@ -24,6 +24,7 @@ class KasieC extends CI_Controller{
 		$data['title'] = "BTKP - Data Perizinan";
 		$id_pengguna = $this->session->userdata('id_pengguna');
 		$this->data['perizinan'] = $this->GeneralM->get_all_perizinan_by_id_pengguna()->result();
+        $this->data['izin_tolak']   = $this->WorkshopM->get_perizinan_ditolak($id_pengguna)->result();
 		$data['isi'] = $this->load->view('kasie/dataperizinan_v', $this->data, true);
 		$this->load->view('kasie/Layout', $data);
 	}
@@ -176,6 +177,7 @@ class KasieC extends CI_Controller{
     {
     	$data['title'] = 'BTKP - Sertifikasi';
     	$this->data['pengujian'] = $this->TatausahaM->get_all_pengujian()->result();
+    	$this->data['pengujian_tolak'] = $this->TatausahaM->get_all_pengujian_with_status()->result();
     	$data['isi'] = $this->load->view('kasie/pengujian/pengujian_v', $this->data, true);
     	$this->load->view('kasie/Layout', $data);
     }

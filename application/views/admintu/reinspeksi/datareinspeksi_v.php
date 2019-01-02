@@ -407,3 +407,24 @@
 		</div>
 	</div>
 </div>
+
+
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#label_ket_pembayaran').hide();
+		$('#input_ket_pembayaran').hide();
+
+		$('#status_pembayaran').change(function(){
+			var status = $("#status_pembayaran").val();
+			if(status == 'unpaid'){
+				$('#label_ket_pembayaran').show();
+				$('#input_ket_pembayaran').show();
+				$("#input_ket_pembayaran").prop("required", true);
+			}else if(status == 'paid'){
+				$('#label_ket_pembayaran').hide();
+				$('#input_ket_pembayaran').hide();
+				$("#input_ket_pembayaran").removeAttr("required");
+			}
+		});
+	});
+</script>
