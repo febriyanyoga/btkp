@@ -53,13 +53,13 @@
                             ?>
                             <ul class="nav nav-tabs" id="example-one" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Perizinan Aktif</a>
+                                    <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Perizinan Aktif <span id="izin_aktif"></span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Perizinan Tidak Aktif</a>
+                                    <a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Perizinan Tidak Aktif <span id="izin_tidak_aktif"></span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Perizinan Ditolak</a>
+                                    <a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Perizinan Ditolak <span id="izin_tolak"></span></a>
                                 </li>
                             </ul>
                             <div class="tab-content pt-3">
@@ -79,6 +79,7 @@
                                             <tbody>
                                                 <?php
                                                 $i=0;
+                                                $aktif = 0;
                                                 foreach ($perizinan as $per) {
                                                     if($per->status_pembayaran == 'paid'){
                                                         $tgl_terbit = date('Y-m-d', strtotime($per->tgl_terbit));
@@ -132,10 +133,12 @@
                                                                 </div>
                                                             </div>
                                                             <?php
+                                                            $aktif+=1;
                                                         }
                                                     }
                                                 }
                                                 ?> 
+                                                <input type="hidden" name="aktif_bawah" id="aktif_bawah" value="<?php echo $aktif;?>">
                                             </tbody>
                                         </table>
                                     </div>
@@ -156,6 +159,7 @@
                                             <tbody>
                                                 <?php
                                                 $i=0;
+                                                $tidak_aktif=0;
                                                 foreach ($perizinan as $per) {
                                                     if($per->status_pembayaran == 'paid'){
                                                         $tgl_terbit = date('Y-m-d', strtotime($per->tgl_terbit));
@@ -209,10 +213,12 @@
                                                                 </div>
                                                             </div>
                                                             <?php
+                                                            $tidak_aktif+=1;
                                                         }
                                                     }
                                                 }
                                                 ?> 
+                                                <input type="hidden" name="tidak_aktif_bawah" id="tidak_aktif_bawah" value="<?php echo $tidak_aktif;?>">
                                             </tbody>
                                         </table>
                                     </div>
@@ -232,6 +238,7 @@
                                             <tbody>
                                                 <?php
                                                 $i=1;
+                                                $g = 0;
                                                 foreach ($izin_tolak as $tolak) {
                                                     $izin = date('Y-m-d', strtotime($tolak->created_at_izin));
                                                     $nama_alat = $this->WorkshopM->get_perizinan_by_id_perizinan($tolak->id_perizinan)->row()->nama_alat;
@@ -247,8 +254,10 @@
                                                     </tr>
                                                     <?php
                                                     $i++;
+                                                    $g+=1;
                                                 }
                                                 ?>
+                                                <input type="hidden" name="izin_tolak_bawah" id="izin_tolak_bawah" value="<?php echo $g;?>">
                                             </tbody>
                                         </table>
                                     </div>
@@ -259,10 +268,10 @@
                             ?>
                             <ul class="nav nav-tabs" id="example-one" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Pengujian Diterima</a>
+                                    <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Pengujian Diterima <span id="jumlah_diterima"></span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Pengujian Ditolak</a>
+                                    <a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Pengujian Ditolak <span id="jumlah_ditolak"></span></a>
                                 </li>
                             </ul>
                             <div class="tab-content pt-3">
@@ -285,6 +294,7 @@
                                             <tbody>
                                                 <?php 
                                                 $i=1;
+                                                $b=0;
                                                 foreach ($pengujian as $ujian) {
                                                     $tgl_pengajuan_p = date('Y-m-d', strtotime($ujian->created_at_ujian));
                                                     $ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
@@ -329,10 +339,12 @@
                                                             </tr>
                                                             <?php
                                                             $i++;
+                                                            $b+=1;
                                                         }
                                                     }
                                                 }
                                                 ?>
+                                                <input type="hidden" name="jumlah_1" id="jumlah_1" value="<?php echo $b;?>">
                                             </tbody>
                                         </table>
                                     </div>
@@ -355,6 +367,7 @@
                                             <tbody>
                                                 <?php 
                                                 $i=1;
+                                                $a=1;
                                                 foreach ($pengujian_tolak as $ujian) {
                                                     $ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
                                                     if($ada_status > 0){
@@ -379,10 +392,12 @@
                                                             </tr>
                                                             <?php
                                                             $i++;
+                                                            $a+=1;
                                                         }
                                                     }
                                                 }
                                                 ?>
+                                                <input type="hidden" name="jumlah" id="jumlah" value="<?php echo $a;?>">
                                             </tbody>
                                         </table>
                                     </div>
@@ -399,7 +414,3 @@
     </div>
     <!-- End Row -->
 </div>
-
-
-
-

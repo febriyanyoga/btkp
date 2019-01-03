@@ -40,13 +40,13 @@
                     <div class="widget-body sliding-tabs">
                         <ul class="nav nav-tabs" id="example-one" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi</a>
+                                <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi <span id="verifikasi_ujian_kasie"></span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Data Pengujian dan Sertifikasi</a>
+                                <a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Data Pengujian dan Sertifikasi <span id="data_pengujian_kasie"></span></a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Data Pengujian dan Sertifikasi ditolak</a>
+                                <a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Data Pengujian dan Sertifikasi ditolak <span id="pengujian_ditolak_kasie"></span></a>
                             </li>
                         </ul>
                         <div class="tab-content pt-3">
@@ -67,6 +67,7 @@
                                         <tbody>
                                             <?php 
                                             $i=1;
+                                            $verifikasi_ujian_kasie=0;
                                             foreach ($pengujian as $ujian) {
                                                 if($ujian->file_hasil_pengujian != ""){
                                                     $progress_kasie = $this->GeneralM->get_array_progress_ujian_kasie($ujian->id_pengujian)->num_rows(); //jumlah perizinan yang di acc kasie
@@ -89,10 +90,12 @@
                                                         </tr>
                                                         <?php
                                                         $i++;
+                                                        $verifikasi_ujian_kasie+=1;
                                                     }
                                                 }
                                             }
                                             ?>
+                                            <input type="hidden" name="verifikasi_ujian_kasie_bawah" id="verifikasi_ujian_kasie_bawah" value="<?php echo $verifikasi_ujian_kasie;?>">
                                         </tbody>
                                     </table>
                                 </div>
@@ -116,6 +119,7 @@
                                         <tbody>
                                             <?php 
                                             $i=1;
+                                            $data_pengujian_kasie=0;
                                             foreach ($pengujian as $ujian) {
                                                 if($ujian->status_pembayaran_1 == "paid" && $ujian->status_pembayaran_2 == "paid"){
                                                     $tgl_pengajuan  = date('Y-m-d', strtotime($ujian->created_at_ujian));
@@ -155,9 +159,11 @@
                                                     </tr>
                                                     <?php
                                                     $i++;
+                                                    $data_pengujian_kasie+=1;
                                                 }
                                             }
                                             ?>
+                                            <input type="hidden" name="data_pengujian_kasie_bawah" id="data_pengujian_kasie_bawah" value="<?php echo $data_pengujian_kasie;?>">
                                         </tbody>
                                     </table>
                                 </div>
@@ -179,6 +185,7 @@
                                         <tbody>
                                                 <?php 
                                                 $i=1;
+                                                $pengujian_ditolak_kasie=0;
                                                 foreach ($pengujian_tolak as $ujian) {
                                                     $ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
                                                     if($ada_status > 0){
@@ -203,10 +210,12 @@
                                                             </tr>
                                                             <?php
                                                             $i++;
+                                                            $pengujian_ditolak_kasie+=1;
                                                         }
                                                     }
                                                 }
                                                 ?>
+                                                <input type="hidden" name="pengujian_ditolak_kasie_bawah" id="pengujian_ditolak_kasie_bawah" value="<?php echo $pengujian_ditolak_kasie;?>">
                                             </tbody>
                                     </table>
                                 </div>

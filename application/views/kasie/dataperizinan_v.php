@@ -43,7 +43,7 @@
 						?>
 						<ul class="nav nav-tabs" id="example-one" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi</a>
+								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi <span id="verifikasi_izin_kasie"></span></a>
 							</li>
 								<!-- <li class="nav-item">
 									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode Billing</a>
@@ -52,10 +52,10 @@
 									<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Validasi Pembayaran</a>
 								</li> -->
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Data SPK</a>
+									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Data SPK <span id="data_spk_izin_kasie"></span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Perizinan Ditolak</a>
+									<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Perizinan Ditolak <span id="izin_ditolak_kasie"></span></a>
 								</li>
 							</ul>
 							<div class="tab-content pt-3">
@@ -76,6 +76,7 @@
 											<tbody>
 												<?php
 												$i=0;
+												$verifikasi_izin_kasie=0;
 												$id_pengguna = $this->session->userdata('id_pengguna');
 												foreach ($perizinan as $per){
 													$own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
@@ -86,6 +87,7 @@
 														if($progress_kasie == 0){
 															if($per->file_hasil_survey != ""){
 																$i++;
+																$verifikasi_izin_kasie+=1;
 																?>
 																<tr>
 																	<td class="text-center"><span class="text-primary">
@@ -109,10 +111,9 @@
 															}
 														}
 													}
-													?>
-													<?php
 												}
 												?>
+												<input type="hidden" name="verifikasi_izin_kasie_bawah" id="verifikasi_izin_kasie_bawah" value="<?php echo $verifikasi_izin_kasie?>">
 											</tbody>
 										</table>
 									</div>
@@ -135,10 +136,12 @@
 											<tbody>
 												<?php
 												$i=0;
+												$data_spk_izin_kasie=0;
 												foreach ($perizinan as $per) {
 													$id_pengguna = $this->session->userdata('id_pengguna');
 													if($per->status_pembayaran == 'paid'){
 														$i++;
+														$data_spk_izin_kasie+=1;
 														?>
 														<tr>
 															<td class="text-center"><span class="text-primary">
@@ -178,10 +181,9 @@
 														</tr>
 														<?php
 													}
-													?>
-													<?php
 												}
 												?>
+												<input type="hidden" name="data_spk_izin_kasie_bawah" id="data_spk_izin_kasie_bawah" value="<?php echo $data_spk_izin_kasie;?>">
 											</tbody>
 										</table>
 									</div>
@@ -201,6 +203,7 @@
 											<tbody>
 												<?php
 												$i=1;
+												$izin_ditolak_kasie=0;
 												foreach ($izin_tolak as $tolak) {
 													$izin = date('Y-m-d', strtotime($tolak->created_at_izin));
 													$nama_alat = $this->WorkshopM->get_perizinan_by_id_perizinan($tolak->id_perizinan)->row()->nama_alat;
@@ -216,8 +219,10 @@
 													</tr>
 													<?php
 													$i++;
+													$izin_ditolak_kasie+=1;
 												}
 												?>
+												<input type="hidden" name="izin_ditolak_kasie_bawah" id="izin_ditolak_kasie_bawah" value="<?php echo $izin_ditolak_kasie;?>">
 											</tbody>
 										</table>
 									</div>

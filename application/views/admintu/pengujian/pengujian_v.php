@@ -40,32 +40,25 @@
 					<div class="widget-body sliding-tabs">
 						<ul class="nav nav-tabs" id="example-one" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1"
-								aria-selected="true">Verifikasi</a>
+								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi <span id="verifikasi_ujian"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
-								aria-selected="false">Validasi Pembayaran 1</a>
+								<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Validasi Pembayaran 1 <span id="validasi_1_ujian"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3"
-								aria-selected="false">Pengujian</a>
+								<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Pengujian <span id="pengujian_ujian"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4"
-								aria-selected="false">Pembayaran 2</a>
+								<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Pembayaran 2 <span id="pembayaran_2_ujian"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5"
-								aria-selected="false">Validasi Pembayaran 2 dan Penerbitan</a>
+								<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Validasi Pembayaran 2 dan Penerbitan <span id="validasi_2_ujian"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-6" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6"
-								aria-selected="false">Data Sertifikasi</a>
+								<a class="nav-link" id="base-tab-6" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6" aria-selected="false">Data Pengujian <span id="sertifikasi_ujian"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-7" data-toggle="tab" href="#tab-7" role="tab" aria-controls="tab-7"
-								aria-selected="false">Data Sertifikasi ditolak</a>
+								<a class="nav-link" id="base-tab-7" data-toggle="tab" href="#tab-7" role="tab" aria-controls="tab-7" aria-selected="false">Pengujian ditolak <span id="ujian_ditolak"></span></a>
 							</li>
 						</ul>
 						<div class="tab-content pt-3">
@@ -86,10 +79,12 @@
 										<tbody>
 											<?php
 											$i=0;
+											$verifikasi_ujian=0;
 											foreach ($pengujian as $ujian) {
 												$progress_tu = $this->GeneralM->get_array_progress_ujian($ujian->id_pengujian)->num_rows();
 												if($ujian->status_pengajuan == 'selesai' && $progress_tu == 0){
 													$i++;
+													$verifikasi_ujian+=1;
 													$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
 													?>
 													<tr>
@@ -110,6 +105,7 @@
 												}
 											}
 											?>
+											<input type="hidden" name="verifikasi_ujian_bawah" id="verifikasi_ujian_bawah" value="<?php echo $verifikasi_ujian?>">
 										</tbody>
 									</table>
 								</div>
@@ -132,12 +128,14 @@
 										<tbody>
 											<?php
 											$i=0;
+											$validasi_1_ujian=0;
 											foreach ($pengujian as $ujian) {
 												$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
 												if($ada_status > 0){
 													if($ujian->foto_bukti_trf_1 != "" && $ujian->status_pembayaran_1 == "unpaid"){
 														// $status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row();
 														$i++;
+														$validasi_1_ujian+=1;
 														$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
 														?>
 														<tr>
@@ -193,6 +191,7 @@
 												}
 											}
 											?>
+											<input type="hidden" name="validasi_1_ujian_bawah" id="validasi_1_ujian_bawah" value="<?php echo $validasi_1_ujian?>">
 										</tbody>
 									</table>
 								</div>
@@ -215,12 +214,14 @@
 										<tbody>
 											<?php
 											$i=0;
+											$pengujian_ujian=0;
 											foreach ($pengujian as $ujian) {
 												$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
 												if($ada_status > 0){
 													if($ujian->foto_bukti_trf_1 != "" && $ujian->status_pembayaran_1 != "unpaid" && $ujian->file_hasil_pengujian == ""){
 														// $status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row();
 														$i++;
+														$pengujian_ujian+=1;
 														$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
 														?>
 														<tr>
@@ -265,6 +266,7 @@
 												}
 											}
 											?>
+											<input type="hidden" name="pengujian_ujian_bawah" id="pengujian_ujian_bawah" value="<?php echo $pengujian_ujian?>">
 										</tbody>
 
 									</table>
@@ -288,6 +290,7 @@
 										<tbody>
 											<?php
 											$i=0;
+											$pembayaran_2_ujian=0;
 											foreach ($pengujian as $ujian) {
 												$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
 												if($ada_status > 0){
@@ -298,6 +301,7 @@
                                                         	$status_kasie = $this->GeneralM->get_array_progress_ujian_kasie($ujian->id_pengujian)->row()->status;
                                                         	if($status_kasie == 'diterima'){
                                                         		$i++;
+                                                        		$pembayaran_2_ujian+=1;
                                                         		$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
                                                         		?>
                                                         		<tr>
@@ -361,6 +365,7 @@
                                                 }
                                             }
                                             ?>
+                                            <input type="hidden" name="pembayaran_2_ujian_bawah" id="pembayaran_2_ujian_bawah" value="<?php echo $pembayaran_2_ujian;?>">
                                         </tbody>
                                     </table>
                                 </div>
@@ -383,9 +388,11 @@
                             			<tbody>
                             				<?php 
                             				$i=0;
+                            				$validasi_2_ujian=0;
                             				foreach ($pengujian as $ujian) {
                             					if($ujian->foto_bukti_trf_2 != "" && $ujian->status_pembayaran_2 != 'paid'){
                             						$i++;
+                            						$validasi_2_ujian+=1;
                             						$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
                             						?>
                             						<tr>
@@ -450,6 +457,7 @@
                             					}
                             				}
                             				?>
+                            				<input type="hidden" name="validasi_2_ujian_bawah" id="validasi_2_ujian_bawah" value="<?php echo $validasi_2_ujian;?>">
                             			</tbody>
                             		</table>
                             	</div>
@@ -473,9 +481,11 @@
                             			<tbody>
                             				<?php 
                             				$i=0;
+                            				$sertifikasi_ujian=0;
                             				foreach ($pengujian as $ujian) {
                             					if($ujian->status_pembayaran_1 == "paid" && $ujian->status_pembayaran_2 == 'paid'){
                             						$i++;
+                            						$sertifikasi_ujian+=1;
                             						$tgl_pengajuan 	= date('Y-m-d', strtotime($ujian->created_at_ujian));
                             						$tgl_terbit 	= date('Y-m-d', strtotime($ujian->tgl_terbit));
                             						$tgl_expired 	= date('Y-m-d', strtotime($ujian->tgl_expired));
@@ -515,6 +525,7 @@
                             					}
                             				}
                             				?>
+                            				<input type="hidden" name="sertifikasi_ujian_bawah" id="sertifikasi_ujian_bawah" value="<?php echo $sertifikasi_ujian;?>">
                             			</tbody>
                             		</table>
                             	</div>
@@ -536,6 +547,7 @@
                             			<tbody>
                             				<?php 
                             				$i=1;
+                            				$ujian_ditolak=0;
                             				foreach ($pengujian_tolak as $ujian) {
                             					$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
                             					if($ada_status > 0){
@@ -560,10 +572,12 @@
                             							</tr>
                             							<?php
                             							$i++;
+                            							$ujian_ditolak+=1;
                             						}
                             					}
                             				}
                             				?>
+                            				<input type="hidden" name="ujian_ditolak_bawah" id="ujian_ditolak_bawah" value="<?php echo $ujian_ditolak;?>">
                             			</tbody>
                             		</table>
                             	</div>

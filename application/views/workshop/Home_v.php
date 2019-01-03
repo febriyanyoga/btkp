@@ -115,10 +115,10 @@
 									<div class="widget-body sliding-tabs">
 										<ul class="nav nav-tabs" id="example-one" role="tablist">
 											<li class="nav-item">
-												<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">SPK</a>
+												<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">SPK <span id="spk"></span></a>
 											</li>
 											<li class="nav-item">
-												<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Inspeksi</a>
+												<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Inspeksi <span id="inspeksi"></span></a>
 											</li>
 										</ul>
 									</div>
@@ -151,6 +151,7 @@
 														</thead>
 														<tbody>
 															<?php
+															$a=0;
 															foreach ($perizinan as $per) {
 																if ($per->status_pengajuan == 'selesai') {
 																	$ada_status = $this->TatausahaM->cek_status($per->id_perizinan)->num_rows();
@@ -339,9 +340,12 @@
                                                                             		<td class="text-center">-</td>
                                                                             	</tr>
                                                                             	<?php
+                                                                            	$a+=1;
                                                                             }
                                                                         }
-                                                                    } ?>
+                                                                    } 
+                                                                    ?>
+                                                                    <input type="hidden" name="spk" id="spk_bawah" value="<?php echo $a;?>">
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -360,6 +364,7 @@
                                                         		<tbody>
                                                         			<?php
                                                         			$i=1;
+                                                        			$b=0;
                                                         			foreach ($data_inspeksi as $ins) {
                                                         				$progress_tu = $this->GeneralM->get_array_progress_inspeksi_tolak($ins->id_inspeksi)->num_rows();
                                                         				if($ins->status_pembayaran == 'unpaid' && $ins->kode_barcode == ""){
@@ -376,10 +381,12 @@
                                                         						</tr>
                                                         						<?php
                                                         						$i++;
+                                                        						$b+=1;
                                                         					}
                                                         				}
                                                         			}
                                                         			?>
+                                                        			<input type="hidden" name="inspeksi_bawah" id="inspeksi_bawah" value="<?php echo $b;?>">
                                                         		</tbody>
                                                         	</table>
                                                         </div>

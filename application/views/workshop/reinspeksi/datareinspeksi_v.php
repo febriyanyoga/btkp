@@ -33,99 +33,50 @@
 				<ul class="nav nav-tabs" id="example-one" role="tablist">
 					<li class="nav-item">
 						<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1"
-						aria-selected="true">Permohonan Inspeksi</a>
+						aria-selected="true">Permohonan Inspeksi <span id="permohonan_ins"></span></a> 
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
-						aria-selected="false">Hasil Inspeksi</a>
+						aria-selected="false">Hasil Inspeksi <span id="hasil_ins"></span></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3"
-						aria-selected="false">Master Data Inspeksi</a>
+						aria-selected="false">Master Data Inspeksi <span id="data_ins"></span></a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4"
-						aria-selected="false">Data Inspeksi Ditolak</a>
+						aria-selected="false">Data Inspeksi Ditolak <span id="ins_ditolak"></span></a>
 					</li>
 				</ul>
 				<div class="tab-content pt-3">
 					<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
-
-
 						<div class="widget-body">
 							<div class="text-right mb-3">
-								<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#tambahinspeksi"><i class="la la-pencil"></i>Tambah
-								Permohonan</i>
-							</a> <br>
-						</div>
-						<div class="table-responsive">
-							<table id="myTable" class="table mb-0">
-								<thead>
-									<tr>
-										<th>No.</th>
-										<th class="text-center">Kapal</th>
-										<th class="text-center">Flag</th>
-										<th class="text-center">Imo No</th>
-										<th class="text-center">Tanggal Permohonan</th>
-										<th class="text-center">Tempat</th>
-										<th class="text-center">Status</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$i=1;
-									foreach ($data_inspeksi as $ins) {
-										$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
-										$alamat_ws = $this->WorkshopM->detail_alamat($ins->id_kel_workshop)->row();
-										$progress_tu = $this->GeneralM->get_array_progress_inspeksi($ins->id_inspeksi)->num_rows();
-										if($progress_tu == 0){
-											?>
-											<tr>
-												<td><?php echo $i;?></td>
-												<td class="text-center"><?php echo $ins->nama_kapal?></td>
-												<td class="text-center"><?php echo $ins->flag?></td>
-												<td class="text-center"><?php echo $ins->imo?></td>
-												<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
-												<td class="text-center"><?php echo $alamat_ws->nama_kabupaten_kota?></td>
-												<td class="text-center">
-													<span class="badge-text badge-text-small danger">Menunggu Persetujuan</span>
-												</td>
-											</tr>
-											<?php
-											$i++;
-										}
-									}
-									?>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="base-tab-2">
-					<div class="widget-body">
-						<div class="table-responsive">
-							<table id="myTable2" class="table mb-0">
-								<thead>
-									<tr>
-										<th>No.</th>
-										<th class="text-center">Kapal</th>
-										<th class="text-center">Flag</th>
-										<th class="text-center">Imo No</th>
-										<th class="text-center">Tanggal Permohonan</th>
-										<th class="text-center">Tempat</th>
-										<th class="text-center">Status</th>
-										<th class="text-center">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$i=1;
-									foreach ($data_inspeksi as $ins) {
-										$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
-										$alamat_ws = $this->WorkshopM->detail_alamat($ins->id_kel_workshop)->row();
-										$progress_tu = $this->GeneralM->get_array_progress_inspeksi_setuju($ins->id_inspeksi)->num_rows();
-										if($progress_tu > 0 ){
-											if($ins->status_pembayaran == 'unpaid'){
+								<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#tambahinspeksi"><i class="la la-pencil"></i>Tambah Permohonan</i>
+								</a> <br>
+							</div>
+							<div class="table-responsive">
+								<table id="myTable" class="table mb-0">
+									<thead>
+										<tr>
+											<th>No.</th>
+											<th class="text-center">Kapal</th>
+											<th class="text-center">Flag</th>
+											<th class="text-center">Imo No</th>
+											<th class="text-center">Tanggal Permohonan</th>
+											<th class="text-center">Tempat</th>
+											<th class="text-center">Status</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$i=1;
+										$permohonan_ins = 0;
+										foreach ($data_inspeksi as $ins) {
+											$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
+											$alamat_ws = $this->WorkshopM->detail_alamat($ins->id_kel_workshop)->row();
+											$progress_tu = $this->GeneralM->get_array_progress_inspeksi($ins->id_inspeksi)->num_rows();
+											if($progress_tu == 0){
 												?>
 												<tr>
 													<td><?php echo $i;?></td>
@@ -135,279 +86,337 @@
 													<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 													<td class="text-center"><?php echo $alamat_ws->nama_kabupaten_kota?></td>
 													<td class="text-center">
-														<?php 
-														if($ins->file_hasil_survey == ""){
-															?>
-															<span class="badge-text badge-text-small danger">Menunggu Dokumen Hasil Inspeksi</span>
-															<?php
-														}elseif($ins->file_hasil_survey != ""){
-															if($ins->kode_billing != ""){
-																if($ins->foto_bukti_trf != ""){
-																	?>
-																	<span class="badge-text badge-text-small default" title="Menunggu validasi pembayaran dan penerbitan">Menunggu Validasi Pembayaran</span>
-																	<?php
-																}else{
-																	if($ins->ket_pembayaran != ""){
+														<span class="badge-text badge-text-small danger">Menunggu Persetujuan</span>
+													</td>
+												</tr>
+												<?php
+												$i++;
+												$permohonan_ins+=1;
+											}
+										}
+										?>
+										<input type="hidden" name="permohonan_ins_bawah" id="permohonan_ins_bawah" value="<?php echo $permohonan_ins?>">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="tab-2" role="tabpanel" aria-labelledby="base-tab-2">
+						<div class="widget-body">
+							<div class="table-responsive">
+								<table id="myTable2" class="table mb-0">
+									<thead>
+										<tr>
+											<th>No.</th>
+											<th class="text-center">Kapal</th>
+											<th class="text-center">Flag</th>
+											<th class="text-center">Imo No</th>
+											<th class="text-center">Tanggal Permohonan</th>
+											<th class="text-center">Tempat</th>
+											<th class="text-center">Status</th>
+											<th class="text-center">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$i=1;
+										$hasil_ins = 0;
+										foreach ($data_inspeksi as $ins) {
+											$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
+											$alamat_ws = $this->WorkshopM->detail_alamat($ins->id_kel_workshop)->row();
+											$progress_tu = $this->GeneralM->get_array_progress_inspeksi_setuju($ins->id_inspeksi)->num_rows();
+											if($progress_tu > 0 ){
+												if($ins->status_pembayaran == 'unpaid'){
+													?>
+													<tr>
+														<td><?php echo $i;?></td>
+														<td class="text-center"><?php echo $ins->nama_kapal?></td>
+														<td class="text-center"><?php echo $ins->flag?></td>
+														<td class="text-center"><?php echo $ins->imo?></td>
+														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+														<td class="text-center"><?php echo $alamat_ws->nama_kabupaten_kota?></td>
+														<td class="text-center">
+															<?php 
+															if($ins->file_hasil_survey == ""){
+																?>
+																<span class="badge-text badge-text-small danger">Menunggu Dokumen Hasil Inspeksi</span>
+																<?php
+															}elseif($ins->file_hasil_survey != ""){
+																if($ins->kode_billing != ""){
+																	if($ins->foto_bukti_trf != ""){
 																		?>
-																		<span>Pembayaran tidak tervalidasi</span>
-																		<hr>
-																		<span style="font-style: italic; color: red;"><?php echo $ins->ket_pembayaran?></span>
+																		<span class="badge-text badge-text-small default" title="Menunggu validasi pembayaran dan penerbitan">Menunggu Validasi Pembayaran</span>
 																		<?php
 																	}else{
-																		?>
-																		<span class="badge-text badge-text-small default" title="Silahkan melakukan pembayaran sesuai tagihan">Menunggu Pembayaran</span>
-																		<?php
+																		if($ins->ket_pembayaran != ""){
+																			?>
+																			<span>Pembayaran tidak tervalidasi</span>
+																			<hr>
+																			<span style="font-style: italic; color: red;"><?php echo $ins->ket_pembayaran?></span>
+																			<?php
+																		}else{
+																			?>
+																			<span class="badge-text badge-text-small default" title="Silahkan melakukan pembayaran sesuai tagihan">Menunggu Pembayaran</span>
+																			<?php
+																		}
 																	}
+																}else{
+																	?>
+																	<span class="badge-text badge-text-small info" title="Menunggu kode billing untuk pembayaran">Dokumen telah diunggah</span>
+																	<?php
 																}
-															}else{
-																?>
-																<span class="badge-text badge-text-small info" title="Menunggu kode billing untuk pembayaran">Dokumen telah diunggah</span>
-																<?php
 															}
+															?>
+														</td>
+														<td class="text-center">
+															<?php
+															if($ins->file_hasil_survey == ""){
+																?>
+																<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#proses-<?php echo $ins->id_inspeksi?>"><i class="la la-pencil"></i>Proses</i>
+																</a>
+																<?php
+															}else{
+																if($ins->kode_billing != ""){
+																	if($ins->foto_bukti_trf != ""){
+																		echo "-";
+																	}else{
+																		?>
+																		<a href="<?php echo site_url('cetak_tagihan_ins/'.$ins->id_inspeksi)?>" title="Cetak Sertifikat" target="_BLANK"><i class="la la-print" ></i> Cetak tagihan</i></a>
+																		<hr>
+																		<?php
+																		if($ins->ket_pembayaran != ''){
+																			?>
+																			<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ins->id_inspeksi?>"><i class="la la-refresh"></i>Konfirmasi Ulang Pembayaran</i>
+																			</a>
+																			<?php
+																		}else{
+																			?>
+																			<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ins->id_inspeksi?>"><i class="la la-pencil"></i>Konfirmasi Pembayaran</i>
+																			</a>
+																			<?php
+																		}
+																	}
+																}else{
+																	echo "-";
+																}
+															}
+															?>
+														</td>
+													</tr>
+
+													<div id="proses-<?php echo $ins->id_inspeksi?>" class="modal fade">
+														<div class="modal-dialog modal-lg">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h4 class="modal-title">Proses Re-Inspeksi</h4>
+																	<button type="button" class="close" data-dismiss="modal">
+																		<span aria-hidden="true">×</span>
+																		<span class="sr-only">close</span>
+																	</button>
+																</div>
+																<form action="<?php echo site_url('post_proses')?>" method="POST" enctype="multipart/form-data">
+																	<div class="modal-body">
+																		<div class="form-group">
+																			<input type="hidden" name="id_inspeksi" class="form-control" value="<?php echo $ins->id_inspeksi;?>" required="">
+																			<input type="hidden" name="status" class="form-control" id="status" value="diterima" required="">
+																			<label for="exampleFormControlSelect1">Hasil</label>
+																			<select name="hasil" class="form-control" id="hasil">
+																				<option value="Remark">Remark</option>
+																				<option value="Condamm">Condamm</option>
+																			</select>
+																		</div>
+																		<div class="form-group">
+																			<label for="upload"> Upload Dokumen Hasil Re-Inspeksi</label>
+																			<input type="file" name="file_hasil_survey" class="form-control" required="">
+																		</div>
+																		<div class="form-group">
+																			<label for="exampleFormControlTextarea1">Catatan</label>
+																			<textarea class="form-control" id="catatan" name="catatan" rows="3"></textarea>
+																		</div>
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-shadow" data-dismiss="modal">Tutup</button>
+																		<input type="submit" name="submit" class="btn btn-primary" value="Simpan" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')">
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
+
+													<div class="modal" id="konfirmasi-<?php echo $ins->id_inspeksi?>">
+														<div class="modal-dialog modal-md">
+															<div class="modal-content">
+																<div class="modal-header">
+																	<h4 class="modal-title">Konfirmasi Pembayaran</h4>
+																	<button type="button" class="close" data-dismiss="modal">&times;</button>
+																</div>
+																<form action="<?php echo site_url('konfirmasi_ins'); ?>" enctype="multipart/form-data" method="post">
+																	<div class="modal-body">
+																		<input type="hidden" name="id_inspeksi" class="form-control" required="required" value="<?php echo $ins->id_inspeksi; ?>">
+																		<label for="nama_bank" class="label">Nama Bank : </label>
+																		<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank Anda"
+																		required="required">
+
+																		<label for="atas_nama" class="label">Atas Nama : </label>
+																		<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama bank anda"
+																		required="required">
+
+																		<label for="foto_bukti_trf" class="label">Unggah Bukti: </label>
+																		<input type="file" name="foto_bukti_trf" value="" class="form-control" required="required">
+																	</div>
+																	<div class="modal-footer">
+																		<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+																		<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin data yang dimasukkan sudah benar?')">
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
+													<?php
+													$i++;
+													$hasil_ins+=1;
+												}
+											}
+										}
+										?>
+										<input type="hidden" name="hasil_ins_bawah" id="hasil_ins_bawah" value="<?php echo $hasil_ins;?>">
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</div>
+					<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="base-tab-3">
+						<div class="widget-body">
+							<div class="table-responsive">
+								<table id="myTable3" class="table mb-0">
+									<thead>
+										<tr>
+											<th>No.</th>
+											<th>No.Sertifikat</th>
+											<th class="text-center">Kapal</th>
+											<th class="text-center">Jenis Alat</th>
+											<th class="text-center">Tanggal Permohonan</th>
+											<th class="text-center">Hasil</th>
+											<th class="text-center">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$i=1;
+										$data_ins = 0;
+										foreach ($data_inspeksi as $ins) {
+											if($ins->status_pembayaran == 'paid'){
+												$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
+												?>
+												<tr>
+													<td><?php echo $i?></td>
+													<td>
+														<?php
+														if($ins->no_spk == ""){
+															echo "-";
+														}else{
+															echo $ins->no_spk.'-'.$ins->kode_alat.'-'.date('Y', strtotime($ins->tgl_terbit));
+														}
+														?>
+
+													</td>
+													<td class="text-center"><?php echo $ins->nama_kapal?></td>
+													<td class="text-center"><?php echo $ins->nama_alat?></td>
+													<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+													<td class="text-center">
+														<?php 
+														if($ins->no_spk == ""){
+															?>
+															<span style="width:100px;"><span class="badge-text badge-text-small default">Menunggu Penerbitan</span></span>
+
+															<?php
+														}else{
+															?>
+															<span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span>
+															<?php
 														}
 														?>
 													</td>
 													<td class="text-center">
 														<?php
-														if($ins->file_hasil_survey == ""){
-															?>
-															<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#proses-<?php echo $ins->id_inspeksi?>"><i class="la la-pencil"></i>Proses</i>
-															</a>
-															<?php
+														if($ins->no_spk ==''){
+															echo "-";
 														}else{
-															if($ins->kode_billing != ""){
-																if($ins->foto_bukti_trf != ""){
-																	echo "-";
-																}else{
-																	?>
-																	<a href="<?php echo site_url('cetak_tagihan_ins/'.$ins->id_inspeksi)?>" title="Cetak Sertifikat" target="_BLANK"><i class="la la-print" ></i> Cetak tagihan</i></a>
-																	<hr>
-																	<?php
-																	if($ins->ket_pembayaran != ''){
-																		?>
-																		<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ins->id_inspeksi?>"><i class="la la-refresh"></i>Konfirmasi Ulang Pembayaran</i>
-																		</a>
-																		<?php
-																	}else{
-																		?>
-																		<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $ins->id_inspeksi?>"><i class="la la-pencil"></i>Konfirmasi Pembayaran</i>
-																		</a>
-																		<?php
-																	}
-																}
-															}else{
-																echo "-";
-															}
+															?>
+															<a href="<?php echo site_url('cetak_bukti_bayar_ins/'.$ins->id_inspeksi)?>" title="Cetak Bukti Bayar" target="_BLANK"><i class="la la-print" ></i> Cetak Bukti bayar</i></a>
+															<hr>
+															<a href="<?php echo site_url('cetak_ins/'.$ins->id_inspeksi)?>" title="Cetak Sertifikat" target="_BLANK"><i class="la la-print" ></i> Cetak</i></a>
+															<?php
 														}
 														?>
 													</td>
 												</tr>
-
-												<div id="proses-<?php echo $ins->id_inspeksi?>" class="modal fade">
-													<div class="modal-dialog modal-lg">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h4 class="modal-title">Proses Re-Inspeksi</h4>
-																<button type="button" class="close" data-dismiss="modal">
-																	<span aria-hidden="true">×</span>
-																	<span class="sr-only">close</span>
-																</button>
-															</div>
-															<form action="<?php echo site_url('post_proses')?>" method="POST" enctype="multipart/form-data">
-																<div class="modal-body">
-																	<div class="form-group">
-																		<input type="hidden" name="id_inspeksi" class="form-control" value="<?php echo $ins->id_inspeksi;?>" required="">
-																		<input type="hidden" name="status" class="form-control" id="status" value="diterima" required="">
-																		<label for="exampleFormControlSelect1">Hasil</label>
-																		<select name="hasil" class="form-control" id="hasil">
-																			<option value="Remark">Remark</option>
-																			<option value="Condamm">Condamm</option>
-																		</select>
-																	</div>
-																	<div class="form-group">
-																		<label for="upload"> Upload Dokumen Hasil Re-Inspeksi</label>
-																		<input type="file" name="file_hasil_survey" class="form-control" required="">
-																	</div>
-																	<div class="form-group">
-																		<label for="exampleFormControlTextarea1">Catatan</label>
-																		<textarea class="form-control" id="catatan" name="catatan" rows="3"></textarea>
-																	</div>
-																</div>
-																<div class="modal-footer">
-																	<button type="button" class="btn btn-shadow" data-dismiss="modal">Tutup</button>
-																	<input type="submit" name="submit" class="btn btn-primary" value="Simpan" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')">
-																</div>
-															</form>
-														</div>
-													</div>
-												</div>
-
-												<div class="modal" id="konfirmasi-<?php echo $ins->id_inspeksi?>">
-													<div class="modal-dialog modal-md">
-														<div class="modal-content">
-															<div class="modal-header">
-																<h4 class="modal-title">Konfirmasi Pembayaran</h4>
-																<button type="button" class="close" data-dismiss="modal">&times;</button>
-															</div>
-															<form action="<?php echo site_url('konfirmasi_ins'); ?>" enctype="multipart/form-data" method="post">
-																<div class="modal-body">
-																	<input type="hidden" name="id_inspeksi" class="form-control" required="required" value="<?php echo $ins->id_inspeksi; ?>">
-																	<label for="nama_bank" class="label">Nama Bank : </label>
-																	<input type="text" name="nama_bank" value="" class="form-control" placeholder="Masukkan Nama Bank Anda"
-																	required="required">
-
-																	<label for="atas_nama" class="label">Atas Nama : </label>
-																	<input type="text" name="atas_nama" value="" class="form-control" placeholder="Masukkan atas nama bank anda"
-																	required="required">
-
-																	<label for="foto_bukti_trf" class="label">Unggah Bukti: </label>
-																	<input type="file" name="foto_bukti_trf" value="" class="form-control" required="required">
-																</div>
-																<div class="modal-footer">
-																	<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-																	<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin data yang dimasukkan sudah benar?')">
-																</div>
-															</form>
-														</div>
-													</div>
-												</div>
 												<?php
 												$i++;
+												$data_ins+=1;
 											}
 										}
-									}
-									?>
-								</tbody>
-							</table>
+										?>
+										<input type="hidden" name="data_ins_bawah" id="data_ins_bawah" value="<?php echo $data_ins;?>">
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-				</div>
-				<div class="tab-pane fade" id="tab-3" role="tabpanel" aria-labelledby="base-tab-3">
-					<div class="widget-body">
-						<div class="table-responsive">
-							<table id="myTable3" class="table mb-0">
-								<thead>
-									<tr>
-										<th>No.</th>
-										<th>No.Sertifikat</th>
-										<th class="text-center">Kapal</th>
-										<th class="text-center">Jenis Alat</th>
-										<th class="text-center">Tanggal Permohonan</th>
-										<th class="text-center">Hasil</th>
-										<th class="text-center">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$i=1;
-									foreach ($data_inspeksi as $ins) {
-										if($ins->status_pembayaran == 'paid'){
-											$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
-											?>
-											<tr>
-												<td><?php echo $i?></td>
-												<td>
-													<?php
-													if($ins->no_spk == ""){
-														echo "-";
-													}else{
-														echo $ins->no_spk.'-'.$ins->kode_alat.'-'.date('Y', strtotime($ins->tgl_terbit));
-													}
-													?>
+					<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="base-tab-4">
+						<div class="widget-body">
+							<div class="table-responsive">
+								<table id="myTable4" class="table mb-0">
+									<thead>
+										<tr>
+											<th>No.</th>
+											<th class="text-center">Kapal</th>
+											<th class="text-center">Jenis Alat</th>
+											<th class="text-center">Tanggal Permohonan</th>
+											<th class="text-center">Hasil</th>
+											<th class="text-center">Keterangan</th>
+										</tr>
+									</thead>
+									<tbody>
+										<?php
+										$i=1;
+										$ins_ditolak = 0;
+										foreach ($data_inspeksi as $ins) {
+											$progress_tu = $this->GeneralM->get_array_progress_inspeksi_tolak($ins->id_inspeksi)->num_rows();
+											$progress_all = $this->GeneralM->get_array_progress_inspeksi_all($ins->id_inspeksi)->num_rows();
+											if($progress_all > 0 && $progress_tu > 0){
+												$keterangan = $this->GeneralM->get_array_progress_inspeksi_all($ins->id_inspeksi)->row()->keterangan;
 
-												</td>
-												<td class="text-center"><?php echo $ins->nama_kapal?></td>
-												<td class="text-center"><?php echo $ins->nama_alat?></td>
-												<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
-												<td class="text-center">
-													<?php 
-													if($ins->no_spk == ""){
-														?>
-														<span style="width:100px;"><span class="badge-text badge-text-small default">Menunggu Penerbitan</span></span>
-
-														<?php
-													}else{
-														?>
-														<span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span>
-														<?php
-													}
-													?>
-												</td>
-												<td class="text-center">
-													<?php
-													if($ins->no_spk ==''){
-														echo "-";
-													}else{
-														?>
-														<a href="<?php echo site_url('cetak_bukti_bayar_ins/'.$ins->id_inspeksi)?>" title="Cetak Bukti Bayar" target="_BLANK"><i class="la la-print" ></i> Cetak Bukti bayar</i></a>
-														<hr>
-														<a href="<?php echo site_url('cetak_ins/'.$ins->id_inspeksi)?>" title="Cetak Sertifikat" target="_BLANK"><i class="la la-print" ></i> Cetak</i></a>
-														<?php
-													}
-													?>
-												</td>
-											</tr>
-											<?php
-											$i++;
+												$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
+												?>
+												<tr>
+													<td><?php echo $i?></td>
+													<td class="text-center"><?php echo $ins->nama_kapal?></td>
+													<td class="text-center"><?php echo $ins->nama_alat?></td>
+													<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+													<td class="text-center">
+														<span style="width:100px;"><span class="badge-text badge-text-small danger">Ditolak</span></span>
+													</td>
+													<td class="text-center" style="font-weight: bold; color: black;">
+														<?php echo $keterangan?>
+													</td>
+												</tr>
+												<?php
+												$i++;
+												$ins_ditolak+=1;
+											}
 										}
-									}
-									?>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-				<div class="tab-pane fade" id="tab-4" role="tabpanel" aria-labelledby="base-tab-4">
-					<div class="widget-body">
-						<div class="table-responsive">
-							<table id="myTable4" class="table mb-0">
-								<thead>
-									<tr>
-										<th>No.</th>
-										<th class="text-center">Kapal</th>
-										<th class="text-center">Jenis Alat</th>
-										<th class="text-center">Tanggal Permohonan</th>
-										<th class="text-center">Hasil</th>
-										<th class="text-center">Keterangan</th>
-									</tr>
-								</thead>
-								<tbody>
-									<?php
-									$i=1;
-									foreach ($data_inspeksi as $ins) {
-										$progress_tu = $this->GeneralM->get_array_progress_inspeksi_tolak($ins->id_inspeksi)->num_rows();
-										$progress_all = $this->GeneralM->get_array_progress_inspeksi_all($ins->id_inspeksi)->num_rows();
-										if($progress_all > 0 && $progress_tu > 0){
-											$keterangan = $this->GeneralM->get_array_progress_inspeksi_all($ins->id_inspeksi)->row()->keterangan;
-
-											$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
-											?>
-											<tr>
-												<td><?php echo $i?></td>
-												<td class="text-center"><?php echo $ins->nama_kapal?></td>
-												<td class="text-center"><?php echo $ins->nama_alat?></td>
-												<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
-												<td class="text-center">
-													<span style="width:100px;"><span class="badge-text badge-text-small danger">Ditolak</span></span>
-												</td>
-												<td class="text-center" style="font-weight: bold; color: black;">
-													<?php echo $keterangan?>
-												</td>
-											</tr>
-											<?php
-											$i++;
-										}
-									}
-									?>
-								</tbody>
-							</table>
+										?>
+										<input type="hidden" name="ins_ditolak_bawah" id="ins_ditolak_bawah" value="<?php echo $ins_ditolak;?>">
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 </div>
 <div id="lihat" class="modal fade">

@@ -40,24 +40,19 @@
 					<div class="widget-body sliding-tabs">
 						<ul class="nav nav-tabs" id="example-one" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1"
-								aria-selected="true">Konfirmasi Permohonan</a>
+								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Konfirmasi Permohonan <span id="konfirmasi_ins"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2"
-								aria-selected="false">Kode Billing</a>
+								<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode Billing <span id="kode_billing_ins"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3"
-								aria-selected="false">Validasi Pembayaran</a>
+								<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Validasi Pembayaran <span id="validasi_ins"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4"
-								aria-selected="false">Penerbitan</a>
+								<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Penerbitan <span id="penerbitan_ins"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5"
-								aria-selected="false">Data Inspeksi Ditolak</a>
+								<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Data Inspeksi Ditolak <span id="tolak_ins"></span></a>
 							</li>
 						</ul>
 						<div class="tab-content pt-3">
@@ -77,6 +72,7 @@
 										<tbody>
 											<?php
 											$i=1;
+											$konfirmasi_ins=0;
 											foreach ($data_inspeksi as $ins) {
 												$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 												// $alamat_ws = $this->WorkshopM->detail_alamat($ins->id_kel_perusahaan)->row();
@@ -96,9 +92,11 @@
 													</tr>
 													<?php
 													$i++;
+													$konfirmasi_ins+=1;
 												}
 											}
 											?>
+											<input type="hidden" name="konfirmasi_ins_bawah" id="konfirmasi_ins_bawah" value="<?php echo $konfirmasi_ins;?>">
 										</tbody>
 									</table>
 								</div>
@@ -120,6 +118,7 @@
 										<tbody>
 											<?php
 											$i=1;
+											$kode_billing_ins=0;
 											foreach ($data_inspeksi as $ins) {
 												$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 												// $alamat_ws = $this->WorkshopM->detail_alamat($ins->id_kel_perusahaan)->row();
@@ -191,9 +190,11 @@
 													</div>
 													<?php
 													$i++;
+													$kode_billing_ins+=1;
 												}
 											}
 											?>
+											<input type="hidden" name="kode_billing_ins_bawah" id="kode_billing_ins_bawah" value="<?php echo $kode_billing_ins;?>">
 										</tbody>
 									</table>
 								</div>
@@ -215,9 +216,11 @@
 										<tbody>
 											<?php
 											$i=0;
+											$validasi_ins=0;
 											foreach ($data_inspeksi as $ins) {
 												if($ins->foto_bukti_trf != "" && $ins->status_pembayaran == 'unpaid'){
 													$i++;
+													$validasi_ins+=1;
 													$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 													?>
 													<tr>
@@ -270,6 +273,7 @@
 												}
 											}
 											?>
+											<input type="hidden" name="validasi_ins_bawah" id="validasi_ins_bawah" value="<?php echo $validasi_ins?>">
 										</tbody>
 									</table>
 								</div>
@@ -291,9 +295,11 @@
 										<tbody>
 											<?php
 											$i=0;
+											$penerbitan_ins=0;
 											foreach ($data_inspeksi as $ins) {
 												if($ins->foto_bukti_trf != "" && $ins->status_pembayaran == 'paid'){
 													$i++;
+													$penerbitan_ins+=1;
 													$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 													?>
 													<tr>
@@ -349,6 +355,7 @@
 												}
 											}
 											?>
+											<input type="hidden" name="penerbitan_ins_bawah" id="penerbitan_ins_bawah" value="<?php echo $penerbitan_ins;?>">
 										</tbody>
 									</table>
 								</div>
@@ -370,6 +377,7 @@
 											<tbody>
 												<?php
 												$i=1;
+												$tolak_ins=0;
 												foreach ($data_inspeksi as $ins) {
 													$progress_tu = $this->GeneralM->get_array_progress_inspeksi_tolak($ins->id_inspeksi)->num_rows();
 													$progress_all = $this->GeneralM->get_array_progress_inspeksi_all($ins->id_inspeksi)->num_rows();
@@ -392,9 +400,11 @@
 														</tr>
 														<?php
 														$i++;
+														$tolak_ins+=1;
 													}
 												}
 												?>
+												<input type="hidden" name="tolak_ins_bawah" id="tolak_ins_bawah" value="<?php echo $tolak_ins;?>">
 											</tbody>
 										</table>
 									</div>

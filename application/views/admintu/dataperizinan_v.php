@@ -43,19 +43,19 @@
 							?>
 							<ul class="nav nav-tabs" id="example-one" role="tablist">
 								<li class="nav-item">
-									<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi</a>
+									<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi <span id="verifikasi_izin"></span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode Billing</a>
+									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode Billing <span id="kode_billing_izin"></span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Penerbitan</a>
+									<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Penerbitan <span id="penerbitan_izin"></span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Data SPK</a>
+									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Data SPK <span id="data_spk_izin"></span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Perizinan Ditolak</a>
+									<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Perizinan Ditolak <span id="izin_ditolak"></span></a>
 								</li>
 							</ul>
 							<div class="tab-content pt-3">
@@ -76,12 +76,15 @@
 											<tbody>
 												<?php
 												$i = 0;
+												$verifikasi_izin = 0;
 												foreach ($perizinan as $per) {
 													$id_pengguna = $this->session->userdata('id_pengguna');
 													$progress_tu_all = $this->GeneralM->get_progress_tu($per->id_perizinan)->num_rows();
 													$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
 													if ($progress_tu_all == 0 && $per->status_pengajuan == 'selesai') {
-														++$i; ?>
+														$i++;
+														$verifikasi_izin+=1; 
+														?>
 														<tr>
 															<td class="text-center"><span class="text-primary">
 																<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
@@ -101,10 +104,10 @@
 															</td>
 														</tr>
 														<?php
-													} ?>
-													<?php
+													} 
 												}
 												?>
+												<input type="hidden" name="verifikasi_izin_bawah" id="verifikasi_izin_bawah" value="<?php echo $verifikasi_izin;?>">
 											</tbody>
 										</table>
 									</div>
@@ -126,6 +129,7 @@
 											<tbody>
 												<?php
 												$i = 0;
+												$kode_billing_izin = 0;
                                                 $id_pengguna = $this->session->userdata('id_pengguna'); //id pengguna
                                                     $id_pengguna_kasie = $this->GeneralM->get_kasie()->result(); //ambil id nya kasi
                                                     foreach ($perizinan as $per) {
@@ -134,7 +138,9 @@
                                                         	$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
                                                         	if ($per->foto_bukti_trf == '') {
                                                         		if ($status != 'ditolak') {
-                                                        			++$i; ?>
+                                                        			$i++;
+                                                        			$kode_billing_izin+=1; 
+                                                        			?>
                                                         			<tr>
                                                         				<td class="text-center"><span class="text-primary">
                                                         					<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
@@ -224,10 +230,10 @@
                                                         			<?php
                                                         		}
                                                         	}
-                                                        } ?>
-                                                        <?php
+                                                        }
                                                     }
                                                     ?>
+                                                    <input type="hidden" name="kode_billing_izin_bawah" id="kode_billing_izin_bawah" value="<?php echo $kode_billing_izin?>">
                                                 </tbody>
                                             </table>
                                         </div>
@@ -249,12 +255,15 @@
                                     			<tbody>
                                     				<?php
                                     				$i = 0;
+                                    				$penerbitan_izin = 0;
                                     				foreach ($perizinan as $per) {
                                     					$id_pengguna = $this->session->userdata('id_pengguna');
                                     					if ($per->kode_billing != '') {
                                     						if ($per->foto_bukti_trf != '') {
                                     							if ($per->status_pembayaran != 'paid') {
-                                    								++$i; ?>
+                                    								$i++; 
+                                    								$penerbitan_izin+=1;
+                                    								?>
                                     								<tr>
                                     									<td class="text-center"><span class="text-primary">
                                     										<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
@@ -330,6 +339,7 @@
 		                                                }
 		                                            }
 		                                            ?>
+		                                            <input type="hidden" name="penerbitan_izin_bawah" id="penerbitan_izin_bawah" value="<?php echo $penerbitan_izin;?>">
 		                                        </tbody>
 		                                    </table>
 		                                </div>
@@ -352,10 +362,13 @@
 		                            			<tbody>
 		                            				<?php
 		                            				$i = 0;
+		                            				$data_spk_izin=0;
 		                            				foreach ($perizinan as $per) {
 		                            					$id_pengguna = $this->session->userdata('id_pengguna');
 		                            					if ($per->status_pembayaran == 'paid') {
-		                            						++$i; ?>
+		                            						$i++; 
+		                            						$data_spk_izin+=1;
+		                            						?>
 		                            						<tr>
 		                            							<td class="text-center"><span class="text-primary">
 		                            								<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
@@ -395,6 +408,7 @@
 		                            					}
 		                            				}
 		                            				?>
+		                            				<input type="hidden" name="data_spk_izin_bawah" id="data_spk_izin_bawah" value="<?php echo $data_spk_izin;?>">
 		                            			</tbody>
 		                            		</table>
 		                            	</div>
@@ -414,6 +428,7 @@
 		                            			<tbody>
 		                            				<?php
 		                            				$i=1;
+		                            				$izin_tolak_jumlah=0;
 		                            				foreach ($izin_tolak as $tolak) {
 		                            					$izin = date('Y-m-d', strtotime($tolak->created_at_izin));
 		                            					$nama_alat = $this->WorkshopM->get_perizinan_by_id_perizinan($tolak->id_perizinan)->row()->nama_alat;
@@ -429,8 +444,10 @@
 		                            					</tr>
 		                            					<?php
 		                            					$i++;
+		                            					$izin_tolak_jumlah+=1;
 		                            				}
 		                            				?>
+		                            				<input type="hidden" name="izin_tolak_bawah" id="izin_tolak_bawah" value="<?php echo $izin_tolak_jumlah;?>">
 		                            			</tbody>
 		                            		</table>
 		                            	</div>
