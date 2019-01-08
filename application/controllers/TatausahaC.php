@@ -30,6 +30,7 @@ class TatausahaC extends CI_Controller
         $id_pengguna = $this->session->userdata('id_pengguna');
         $this->data['perizinan'] = $this->TatausahaM->get_all_perizinan_by_id_pengguna()->result();
         $this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
+        $this->data['izin_tolak']   = $this->WorkshopM->get_perizinan_ditolak($id_pengguna)->result();
         $data['isi'] = $this->load->view('admintu/dataperizinan_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
     }
@@ -293,14 +294,25 @@ class TatausahaC extends CI_Controller
     public function validasi_1(){
         $this->form_validation->set_rules('id_pengujian', 'ID Pengujian','required');
         $this->form_validation->set_rules('status_pembayaran_1', 'Status Pembayaran','required');
+        $this->form_validation->set_rules('ket_pembayaran_1', 'keterangan Pembayaran');
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
             redirect_back();
         } else {
-            $id_pengujian = $this->input->post('id_pengujian');
-            $data = array(
-                'status_pembayaran_1' => $this->input->post('status_pembayaran_1'),
-            );
+            $id_pengujian           = $this->input->post('id_pengujian');
+            $status_pembayaran_1    = $this->input->post('status_pembayaran_1');
+            if($status_pembayaran_1 == 'paid'){
+                $data = array(
+                    'status_pembayaran_1' => $status_pembayaran_1,
+                    'ket_pembayaran_1'    => '',
+                );
+            }elseif ($status_pembayaran_1 == 'unpaid'){
+                $data = array(
+                    'status_pembayaran_1'   => $status_pembayaran_1,
+                    'ket_pembayaran_1'      => $this->input->post('ket_pembayaran_1'),
+                    'foto_bukti_trf_1'      => '',
+                );
+            }
             if ($this->WorkshopM->selesai_p($id_pengujian, $data)) {
                 $this->session->set_flashdata('sukses', 'Validasi berhasil');
                 redirect_back();
@@ -343,10 +355,14 @@ class TatausahaC extends CI_Controller
     public function validasi_2(){
         $this->form_validation->set_rules('id_pengujian', 'ID Pengujian','required');
         $this->form_validation->set_rules('status_pembayaran_2', 'Status Pembayaran','required');
-        $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit','required');
-        $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired','required');
-        $this->form_validation->set_rules('no_awal', 'No Label Awal','required');
-        $this->form_validation->set_rules('no_akhir', 'No Label Akhir','required');
+        if($this->input->post('status_pembayaran_2') == 'paid'){
+            $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit','required');
+            $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired','required');
+            $this->form_validation->set_rules('no_awal', 'No Label Awal','required');
+            $this->form_validation->set_rules('no_akhir', 'No Label Akhir','required');
+        }else{
+            $this->form_validation->set_rules('ket_pembayaran_2', 'Keterangan Pembayaran','required');
+        }
 
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
@@ -397,15 +413,32 @@ class TatausahaC extends CI_Controller
             }
 
             $barcode = $kode_alat.$no_spk.date('y');
-            $data = array(
-                'status_pembayaran_2'   => $this->input->post('status_pembayaran_2'), 
-                'kode_barcode'          => $barcode, 
-                'no_spk'                => $no_spk, 
-                'tgl_terbit'            => $this->input->post('tgl_terbit'), 
-                'tgl_expired'           => $this->input->post('tgl_expired'), 
-                'no_awal'               => $no_awal, 
-                'no_akhir'              => $no_akhir, 
-            );
+            $status_pembayaran_2    = $this->input->post('status_pembayaran_2');
+            $ket_pembayaran_2       = $this->input->post('ket_pembayaran_2');
+
+            if($status_pembayaran_2 == 'paid'){
+                $data = array(
+                    'status_pembayaran_2'   => $status_pembayaran_2, 
+                    'kode_barcode'          => $barcode, 
+                    'no_spk'                => $no_spk, 
+                    'tgl_terbit'            => $this->input->post('tgl_terbit'), 
+                    'tgl_expired'           => $this->input->post('tgl_expired'), 
+                    'no_awal'               => $no_awal, 
+                    'no_akhir'              => $no_akhir, 
+                );
+            }else{
+                $data = array(
+                    'status_pembayaran_2'   => $status_pembayaran_2, 
+                    'kode_barcode'          => '', 
+                    'no_spk'                => '', 
+                    'tgl_terbit'            => '', 
+                    'tgl_expired'           => '', 
+                    'no_awal'               => '', 
+                    'no_akhir'              => '', 
+                    'foto_bukti_trf_2'      => '', 
+                    'ket_pembayaran_2'      => $ket_pembayaran_2, 
+                );
+            }
 
             $this->load->library('ciqrcode'); //pemanggilan library QR CODE
             $config['cacheable']    = true; //boolean, the default is true
@@ -436,10 +469,10 @@ class TatausahaC extends CI_Controller
 
     public function post_penerbitan()
     {
-        $this->form_validation->set_rules('status_pembayaran', 'Status Pembayaran');
+        $this->form_validation->set_rules('status_pembayaran', 'Status Pembayaran','required');
         // $this->form_validation->set_rules('nomor_spk', 'Nomor SPK', 'required');
-        $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit', 'required');
-        $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired', 'required');
+        $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit');
+        $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired');
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Data Penerbitan berhasil dimasukkan, cek kembali data yang anda masukkan');
             redirect_back();
@@ -467,13 +500,28 @@ class TatausahaC extends CI_Controller
             }
             $barcode = $kode_alat.$no_spk.date('y');
 
-            $data = array(
-                'status_pembayaran' => $this->input->post('status_pembayaran'),
-                'no_spk' => $no_spk,
-                'kode_barcode' => $barcode,
-                'tgl_terbit' => $this->input->post('tgl_terbit'),
-                'tgl_expired' => $this->input->post('tgl_expired'),
-            );
+            if($this->input->post('status_pembayaran') == 'unpaid'){
+                $data = array(
+                    'status_pembayaran' => $this->input->post('status_pembayaran'),
+                    'no_spk'            => $no_spk,
+                    'kode_barcode'      => $barcode,
+                    'tgl_terbit'        => $this->input->post('tgl_terbit'),
+                    'tgl_expired'       => $this->input->post('tgl_expired'),
+                    'ket_pembayaran'    => $this->input->post('ket_pembayaran'),
+                    'foto_bukti_trf'    => '',
+                );  
+            }elseif($this->input->post('status_pembayaran') == 'paid'){
+                $data = array(
+                    'status_pembayaran' => $this->input->post('status_pembayaran'),
+                    'no_spk'            => $no_spk,
+                    'kode_barcode'      => $barcode,
+                    'ket_pembayaran'    => '',
+                    'tgl_terbit'        => $this->input->post('tgl_terbit'),
+                    'tgl_expired'       => $this->input->post('tgl_expired'),
+                );
+            }
+
+
             $this->load->library('ciqrcode'); //pemanggilan library QR CODE
             $config['cacheable'] = true; //boolean, the default is true
             $config['cachedir'] = './application/cache/'; //string, the default is application/cache/
@@ -522,6 +570,7 @@ class TatausahaC extends CI_Controller
     {
         $data['title'] = 'BTKP - Sertifikasi';
         $this->data['pengujian'] = $this->TatausahaM->get_all_pengujian()->result();
+        $this->data['pengujian_tolak'] = $this->TatausahaM->get_all_pengujian_with_status()->result();
         $this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
         $data['isi'] = $this->load->view('admintu/pengujian/pengujian_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);

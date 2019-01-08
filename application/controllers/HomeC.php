@@ -104,4 +104,31 @@ class HomeC extends CI_Controller{
 		$this->session->set_flashdata('status_login','Anda sudah berhasil keluar dari aplikasi');
 		redirect('home');
 	}
+
+	function sendMail(){
+		$config = array(
+			'protocol' 	=> 'smtp',
+			'smtp_host' => 'ssl://smtp.googlemail.com',
+			'smtp_port' => 465,
+  			'smtp_user' => 'xxx@gmail.com',
+  			'smtp_pass' => 'xxx',
+  			'mailtype' 	=> 'html',
+  			'charset' 	=> 'iso-8859-1',
+  			'wordwrap' 	=> TRUE
+  		);
+
+		$message = '';
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+     	$this->email->from('xxx@gmail.com');
+      	$this->email->to('xxx@gmail.com');
+      	$this->email->subject('Resume from JobsBuddy for your Job posting');
+      	$this->email->message($message);
+
+      	if($this->email->send()){
+      		echo 'Email sent.';
+      	}else{
+      		show_error($this->email->print_debugger());
+      	}
+    }
 }

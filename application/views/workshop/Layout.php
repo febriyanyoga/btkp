@@ -32,6 +32,9 @@
       <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/owl-carousel/owl.theme.min.css">
       <!-- tabel -->
       <link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/datatables/datatables.min.css">
+      
+      <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
+      <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
       <!-- Tweaks for older IEs-->
 	<!--[if lt IE 9]>
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -81,10 +84,10 @@
     					<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center pull-right">
     						<!-- Search -->
     						<li class="nav-item d-flex align-items-center"><a href="<?php echo site_url('workshop'); ?>"><i class="la la-home"></i></a></li>
-    						<li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="la la-search"></i></a></li>
+    						<!-- <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="la la-search"></i></a></li> -->
     						<!-- End Search -->
     						<!-- Begin Notifications -->
-    						<li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
+    						<!-- <li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
     							aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="la la-bell animated infinite swing"></i><span
     							class="badge-pulse"></span></a>
     							<ul aria-labelledby="notifications" class="dropdown-menu notification">
@@ -109,7 +112,7 @@
     									</a>
     								</li>
     							</ul>
-    						</li>
+    						</li> -->
     						<!-- End Notifications -->
     						<!-- User -->
     						<li class="nav-item dropdown"><a id="user" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
@@ -117,7 +120,7 @@
     							alt="..." class="avatar rounded-circle"></a>
     							<ul aria-labelledby="user" class="user-size dropdown-menu">
     								<li class="welcome">
-    									<a href="#" class="edit-profil"><i class="la la-gear"></i></a>
+    									<a href="<?php echo site_url('profile'); ?>" class="edit-profil"><i class="la la-gear"></i></a>
     									<img src="<?php echo base_url(); ?>assets/app/img/avatar/images.png" alt="..." class="rounded-circle">
     								</li>
     								<li>
@@ -133,17 +136,17 @@
     										Data
     									</a>
     								</li>
-    								<li>
+    								<!-- <li>
     									<a href="#" class="dropdown-item no-padding-bottom">
     										Settings
     									</a>
-    								</li>
+    								</li> -->
     								<li class="separator"></li>
-    								<li>
+    								<!-- <li>
     									<a href="pages-faq.html" class="dropdown-item no-padding-top">
     										Faq
     									</a>
-    								</li>
+    								</li> -->
     								<li><a rel="nofollow" href="<?php echo site_url('logout'); ?>" class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
     							</ul>
     						</li>
@@ -186,8 +189,7 @@
 
     </html>
     <!-- Begin Vendor Js -->
-    <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
-    <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
+    <script src="<?php echo base_url(); ?>assets/app/vendors/js/custom.js"></script>
     <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
     <!-- End Vendor Js -->
     <!-- Begin Page Vendor Js -->

@@ -213,18 +213,34 @@
 									</div>
 									<div class="col-xl-8"><?php echo $pengujian->negara_asal?></div>
 								</div>
-								<div class="form-group row mb-5">
-									<div class="col-xl-4">
-										<div class="styled-checkbox">
-											<input type="checkbox" checked name="checkbox" required id="9">
-											<label for="9">Alamat Pabrikan</label>
-											<?php
-											$alamat_pabrik = $this->WorkshopM->detail_alamat($pengujian->id_kel_pabrikan)->row();
-											?>
+								<?php
+								if($pengujian->negara_asal == 'Indonesia' || $pengujian->negara_asal == 'indonesia'){
+									$alamat_p_detail = $this->WorkshopM->detail_alamat($pengujian->id_kel_pabrikan)->row();
+									?>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="50">
+												<label for="50">Alamat Pabrikan</label>
+											</div>
 										</div>
+										<div class="col-xl-8"><?php echo $pengujian->alamat_pabrikan.'<br>'.$alamat_p_detail->nama_kelurahan.', '.$alamat_p_detail->nama_kecamatan.', '.$alamat_p_detail->nama_kabupaten_kota.', '.$alamat_p_detail->nama_propinsi;?></div>
 									</div>
-									<div class="col-xl-8"><?php echo $pengujian->alamat_pabrikan.'<br>'.$alamat_pabrik->nama_kelurahan.', '.$alamat_pabrik->nama_kecamatan.', '.$alamat_pabrik->nama_kabupaten_kota.', '.$alamat_pabrik->nama_propinsi;?></div>
-								</div>
+									<?php
+								}else{
+									?>
+									<div class="form-group row mb-5">
+										<div class="col-xl-4">
+											<div class="styled-checkbox">
+												<input type="checkbox" checked name="checkbox" required id="50">
+												<label for="50">Alamat Pabrikan</label>
+											</div>
+										</div>
+										<div class="col-xl-8"><?php echo $pengujian->alamat_pabrikan?></div>
+									</div>
+									<?php
+								}
+								?>
 								<div class="form-group row mb-5">
 									<div class="col-xl-4">
 										<div class="styled-checkbox">

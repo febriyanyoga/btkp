@@ -19,6 +19,9 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/themify/css/themify-icons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/meteocons/css/meteocons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/owl-carousel/owl.carousel.min.css">
+	
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
 
 	<!-- tabel -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/datatables/datatables.min.css">
@@ -68,11 +71,12 @@
 					<!-- End Logo -->
 					<!-- Begin Navbar Menu -->
 					<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center pull-right">
+						<li class="nav-item d-flex align-items-center"><a href="<?php echo site_url('tatausaha'); ?>"><i class="la la-home"></i></a></li>
 						<!-- Search -->
-						<li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="la la-search"></i></a></li>
+						<!-- <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="la la-search"></i></a></li> -->
 						<!-- End Search -->
 						<!-- Begin Notifications -->
-						<li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
+						<!-- <li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
 							aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="la la-bell animated infinite swing"></i><span
 							class="badge-pulse"></span></a>
 							<ul aria-labelledby="notifications" class="dropdown-menu notification">
@@ -139,16 +143,16 @@
 									<a rel="nofollow" href="#" class="dropdown-item all-notifications text-center">View All Notifications</a>
 								</li>
 							</ul>
-						</li>
+						</li> -->
 						<!-- End Notifications -->
 						<!-- User -->
 						<li class="nav-item dropdown"><a id="user" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false" class="nav-link"><img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg"
+							aria-haspopup="true" aria-expanded="false" class="nav-link"><img src="<?php echo base_url(); ?>assets/app/img/avatar/images.png"
 							alt="..." class="avatar rounded-circle"></a>
 							<ul aria-labelledby="user" class="user-size dropdown-menu">
 								<li class="welcome">
-									<a href="#" class="edit-profil"><i class="la la-gear"></i></a>
-									<img src="<?php echo base_url(); ?>assets/app/img/avatar/avatar-01.jpg" alt="..." class="rounded-circle">
+									<a href="<?php echo site_url('profile_t'); ?>" class="edit-profil"><i class="la la-gear"></i></a>
+									<img src="<?php echo base_url(); ?>assets/app/img/avatar/images.png" alt="..." class="rounded-circle">
 								</li>
 								<li>
 									<p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
@@ -158,7 +162,7 @@
 										Profile
 									</a>
 								</li>
-								<li>
+								<!-- <li>
 									<a href="app-mail.html" class="dropdown-item">
 										Messages
 									</a>
@@ -173,7 +177,7 @@
 									<a href="pages-faq.html" class="dropdown-item no-padding-top">
 										Faq
 									</a>
-								</li>
+								</li> -->
 								<li><a rel="nofollow" href="<?php echo site_url('logout'); ?>" class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
 							</ul>
 						</li>
@@ -250,8 +254,7 @@
 
 </html>
 <!-- Begin Vendor Js -->
-<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/custom.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
 <!-- End Vendor Js -->
 <!-- Begin Page Vendor Js -->
@@ -301,22 +304,4 @@
 
 </script>
 
-<script type="text/javascript">
-	$(document).ready(function(){
-		$('#label_ket_pembayaran').hide();
-		$('#input_ket_pembayaran').hide();
 
-		$('#status_pembayaran').change(function(){
-			var status = $("#status_pembayaran").val();
-			if(status == 'unpaid'){
-				$('#label_ket_pembayaran').show();
-				$('#input_ket_pembayaran').show();
-				$("#input_ket_pembayaran").prop("required", true);
-			}else if(status == 'paid'){
-				$('#label_ket_pembayaran').hide();
-				$('#input_ket_pembayaran').hide();
-				$("#input_ket_pembayaran").removeAttr("required");
-			}
-		});
-	});
-</script>

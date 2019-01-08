@@ -79,6 +79,30 @@ class WorkshopM extends CI_Model{
 		$this->db->join('pengguna','pengguna.id_pengguna = pengujian.id_pengguna');
 		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = pengujian.id_jenis_alat');
 		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
+		$this->db->join('pengguna_pengujian','pengguna_pengujian.id_pengujian = pengujian.id_pengujian','left');
+		$this->db->where('pengujian.id_pengguna', $id_pengguna);
+		return $this->db->get();
+	}
+
+	public function get_pengujian_tolak($id_pengguna){
+		$this->db->select('*');
+		$this->db->from('pengujian');
+		$this->db->join('pengguna','pengguna.id_pengguna = pengujian.id_pengguna');
+		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = pengujian.id_jenis_alat');
+		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
+		$this->db->join('pengguna_pengujian','pengguna_pengujian.id_pengujian = pengujian.id_pengujian','left');
+		$this->db->where('pengujian.id_pengguna', $id_pengguna);
+		$this->db->where('pengguna_pengujian.status = "ditolak"');
+		return $this->db->get();
+	}
+
+	public function get_pengujian_data($id_pengguna){
+		$this->db->select('*');
+		$this->db->from('pengujian');
+		$this->db->join('pengguna','pengguna.id_pengguna = pengujian.id_pengguna');
+		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = pengujian.id_jenis_alat');
+		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
+		// $this->db->join('pengguna_pengujian','pengguna_pengujian.id_pengujian = pengujian.id_pengujian','left');
 		$this->db->where('pengujian.id_pengguna', $id_pengguna);
 		return $this->db->get();
 	}

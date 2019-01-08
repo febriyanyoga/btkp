@@ -116,6 +116,17 @@ class TatausahaM extends CI_Model{
 		return $this->db->get();
 	}
 
+	public function get_all_pengujian_with_status(){
+		$this->db->select('*');
+		$this->db->from('pengujian');
+		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = pengujian.id_jenis_alat');
+		$this->db->join('pengguna','pengguna.id_pengguna = pengujian.id_pengguna');
+		$this->db->join('pengguna_pengujian','pengguna_pengujian.id_pengujian = pengujian.id_pengujian','left');
+		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
+		$this->db->where('pengguna_pengujian.status = "ditolak"');
+		return $this->db->get();
+	}
+
 	public function get_pengujian_by_id($id_pengujian){
 		$this->db->select('*');
 		$this->db->from('pengujian');
