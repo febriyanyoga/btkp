@@ -334,10 +334,10 @@ class WorkshopC extends CI_Controller
                 'no_tlp'                    => $this->input->post('no_tlp')
             );
             if($insert_id = $this->WorkshopM->insert_perusahaan($data)){
-                $this->session->set_flashdata('sukses','Data anda berhasil disimpan');
+                $this->session->set_flashdata('sukses','Terimakasih, Data workshop sudah terisi.');
                 redirect('izin_baru22');
             }else{
-                $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+                $this->session->set_flashdata('error','Data tidak lengkap, silahkan lengkapi pengisian data.');
                 redirect_back();
             }
         }
