@@ -244,7 +244,7 @@ class TatausahaC extends CI_Controller
         $this->form_validation->set_rules('masa_berlaku_billing_2', 'Masa Berlaku Billing', 'required');
 
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Data tidak berhasil disimpan, cek kembali data yang anda masukkan');
+            $this->session->set_flashdata('error', 'Tagihan tidak berhasil dimasukkan, cek kembali data yang anda masukkan');
             redirect_back();
         }else{
 
@@ -257,10 +257,10 @@ class TatausahaC extends CI_Controller
             );
 
             if ($this->TatausahaM->insert_billing_ujian($id_pengujian, $data_billing)) {
-                $this->session->set_flashdata('sukses', 'Data berhasil disimpan');
+                $this->session->set_flashdata('sukses', 'Tagihan berhasil dimasukkan.');
                 redirect('pengujian');
             } else {
-                $this->session->set_flashdata('error', 'Data tidak berhasil disimpan, cek kembali data yang anda masukkan');
+                $this->session->set_flashdata('error', 'Tagihan tidak berhasil dimasukkan, cek kembali data yang anda masukkan');
                 redirect_back();
             }
         }
@@ -300,7 +300,7 @@ class TatausahaC extends CI_Controller
         $this->form_validation->set_rules('status_pembayaran_1', 'Status Pembayaran','required');
         $this->form_validation->set_rules('ket_pembayaran_1', 'keterangan Pembayaran');
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
+            $this->session->set_flashdata('error', 'Validasi pembayaran gagal, cek kembali data yang anda masukkan');
             redirect_back();
         } else {
             $id_pengujian           = $this->input->post('id_pengujian');
@@ -318,10 +318,14 @@ class TatausahaC extends CI_Controller
                 );
             }
             if ($this->WorkshopM->selesai_p($id_pengujian, $data)) {
-                $this->session->set_flashdata('sukses', 'Pembayaran sukses, silahkan lakukan pengujian lab.');
+                if($status_pembayaran_1 == 'paid'){
+                    $this->session->set_flashdata('sukses', 'Pembayaran sukses, silahkan lakukan pengujian lab.');
+                }else{
+                    $this->session->set_flashdata('sukses', 'Anda menolak bukti pembayaran.');
+                }
                 redirect_back();
             } else {
-                $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
+                $this->session->set_flashdata('error', 'Validasi pembayaran gagal, cek kembali data yang anda masukkan');
                 redirect_back();
             }
         }
@@ -369,7 +373,7 @@ class TatausahaC extends CI_Controller
         }
 
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
+            $this->session->set_flashdata('error', 'Sertifikat tidak berhasil diterbitkan, cek kembali data yang anda masukkan.');
             redirect_back();
         }else{
             $id_pengujian = $this->input->post('id_pengujian');
@@ -462,10 +466,14 @@ class TatausahaC extends CI_Controller
             $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
 
             if($this->WorkshopM->selesai_p($id_pengujian, $data)){
-                $this->session->set_flashdata('sukses', 'Validasi berhasil');
+                if($status_pembayaran_2 == 'paid'){
+                    $this->session->set_flashdata('sukses', 'Sertifikat telah diterbitkan.');
+                }else{
+                    $this->session->set_flashdata('sukses', 'Anda menolak bukti pembayaran.');
+                }
                 redirect_back();
             }else{
-                $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
+                $this->session->set_flashdata('error', 'Sertifikat tidak berhasil diterbitkan, cek kembali data yang anda masukkan.');
                 redirect_back();
             }
         }

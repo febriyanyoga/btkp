@@ -541,7 +541,7 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required');
         $this->form_validation->set_rules('atas_nama', 'Atas Nama', 'required');
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            $this->session->set_flashdata('error', 'Bukti Pembayaran tidak berhasil diunggah, cek kembali data yang anda masukkan');
             redirect_back();
         }else {
             $upload = $this->upload_file('foto_bukti_trf');
@@ -553,14 +553,14 @@ class WorkshopC extends CI_Controller
                 );
                 $id_pengujian = $this->input->post('id_pengujian');
                 if($this->WorkshopM->selesai_p($id_pengujian, $data)) {
-                    $this->session->set_flashdata('sukses', 'Konfirmasi pembayaran berhasil diunggah');
+                    $this->session->set_flashdata('sukses', 'Bukti Pembayaran berhasil diunggah.');
                     redirect_back();
                 } else {
-                    $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah 1');
+                    $this->session->set_flashdata('error', 'Bukti Pembayaran tidak berhasil diunggah.');
                     redirect_back();
                 }
             }else{
-                $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah 2');
+                $this->session->set_flashdata('error', 'Bukti Pembayaran tidak berhasil diunggah.');
                 redirect_back();
             }
         }

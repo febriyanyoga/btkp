@@ -173,10 +173,10 @@
 								</div>
 
 							</div>
-							<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
+							<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo" aria-expanded="true">
 								<div class="card-title w-100">2. Data Perangkat</div>
 							</a>
-							<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
+							<div id="IconRightCollapseTwo" class="card-body collapse show" data-parent="#accordion-icon-right">
 								<div class="form-group row mb-5">
 									<div class="col-xl-4">
 										<div class="styled-checkbox">
@@ -278,10 +278,10 @@
 									<div class="col-xl-8"><?php echo $pengujian->fax_pabrikan?></div>
 								</div>
 							</div>
-							<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
+							<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo" aria-expanded="true">
 								<div class="card-title w-100">3. Hasil Survey</div>
-							</a>
-							<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
+							</a> 
+							<div id="IconRightCollapseTwo" class="card-body collapse show" data-parent="#accordion-icon-right">
 								<div class="form-group row mb-5">
 									<div class="col-xl-8">
 										<div class="form-group">

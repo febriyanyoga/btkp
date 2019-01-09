@@ -367,7 +367,7 @@
                                             <tbody>
                                                 <?php 
                                                 $i=1;
-                                                $a=1;
+                                                $a=0;
                                                 foreach ($pengujian_tolak as $ujian) {
                                                     $ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
                                                     if($ada_status > 0){

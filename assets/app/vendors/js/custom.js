@@ -1,14 +1,14 @@
 $(document).ready(function(){
 	// pengujian diterima manufaktur
-	var i = $('#jumlah').val();
-	if(i != 0){
-		$('#jumlah_diterima').html('<span class="btn btn-sm btn-success btn-rounded">' + i + ' </span>');
+	var jumlah_diterima = $('#jumlah_1').val();
+	if(jumlah_diterima != 0){
+		$('#jumlah_diterima').html('<span class="btn btn-sm btn-success btn-rounded">' + jumlah_diterima + ' </span>');
 	}
 
 	// pengujian ditolak manufaktur
-	var j = $('#jumlah_1').val();
-	if(j != 0){
-		$('#jumlah_ditolak').html('<span class="btn btn-sm btn-danger btn-rounded">' + j + ' </span>');
+	var jumlah_ditolak = $('#jumlah').val();
+	if(jumlah_ditolak != 0){
+		$('#jumlah_ditolak').html('<span class="btn btn-sm btn-danger btn-rounded">' + jumlah_ditolak + ' </span>');
 	}
 
 	// jumlah spk manufaktur

@@ -24,7 +24,7 @@ class KasieC extends CI_Controller{
 		$data['title'] = "BTKP - Data Perizinan";
 		$id_pengguna = $this->session->userdata('id_pengguna');
 		$this->data['perizinan'] = $this->GeneralM->get_all_perizinan_by_id_pengguna()->result();
-        $this->data['izin_tolak']   = $this->WorkshopM->get_perizinan_ditolak($id_pengguna)->result();
+		$this->data['izin_tolak']   = $this->WorkshopM->get_perizinan_ditolak($id_pengguna)->result();
 		$data['isi'] = $this->load->view('kasie/dataperizinan_v', $this->data, true);
 		$this->load->view('kasie/Layout', $data);
 	}
@@ -209,7 +209,11 @@ class KasieC extends CI_Controller{
     		);
 
     		if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
-    			$this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+    			if($this->input->post('status') == 'diterima'){
+    				$this->session->set_flashdata('sukses', 'Permohonan di proses ketahap selanjutnya.');
+    			}else{
+    				$this->session->set_flashdata('sukses', 'Anda telah menolak permohonan  ini.');
+    			}
     			redirect('pengujiankasie');
     		} else {
     			$this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
