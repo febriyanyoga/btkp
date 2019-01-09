@@ -60,218 +60,217 @@
 						<form action="<?php echo site_url('persetujuan'); ?>" method="post" id="form-input-acc">
 							<div id="accordion-icon-right" class="accordion">
 								<div class="widget has-shadow">
-									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne"
-									aria-expanded="true">
-									<div class="card-title w-100"> <b>1. Data Pemohon</b></div>
-								</a>
-								<div id="IconRightCollapseOne" class="card-body collapse show" style="color:black;" data-parent="#accordion-icon-right">
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="11">
-												<label for="11">Jenis Instansi</label>
+									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne" aria-expanded="true">
+										<div class="card-title w-100"> <b>1. Data Pemohon</b></div>
+									</a>
+									<div id="IconRightCollapseOne" class="card-body collapse show" style="color:black;" data-parent="#accordion-icon-right">
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="11">
+													<label for="11">Jenis Instansi</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->nama_jabatan; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->nama_jabatan; ?></div>
-									</div>
-									<div class="form-group row mb-5">
+										<div class="form-group row mb-5">
 
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="12">
-												<label for="12">Nama Instansi</label>
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="12">
+													<label for="12">Nama Instansi</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->nama_perusahaan; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->nama_perusahaan; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="13">
-												<?php
-												$alamat_pt_detail = $this->WorkshopM->detail_alamat($pengujian->id_kel_perusahaan)->row();
-												?>
-												<label for="13">Alamat Instansi </label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="13">
+													<?php
+													$alamat_pt_detail = $this->WorkshopM->detail_alamat($pengujian->id_kel_perusahaan)->row();
+													?>
+													<label for="13">Alamat Instansi </label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->alamat_perusahaan.'<br>'.$alamat_pt_detail->nama_kelurahan.', '.$alamat_pt_detail->nama_kecamatan.', '.$alamat_pt_detail->nama_kabupaten_kota.', '.$alamat_pt_detail->nama_propinsi; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->alamat_perusahaan.'<br>'.$alamat_pt_detail->nama_kelurahan.', '.$alamat_pt_detail->nama_kecamatan.', '.$alamat_pt_detail->nama_kabupaten_kota.', '.$alamat_pt_detail->nama_propinsi; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="14">
-												<label for="14">Telepon Instansi</label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="14">
+													<label for="14">Telepon Instansi</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->no_tlp; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->no_tlp; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="15">
-												<label for="15">Fax</label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="15">
+													<label for="15">Fax</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->fax; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->fax; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="16">
-												<label for="16">email</label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="16">
+													<label for="16">email</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->email_perusahaan; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->email_perusahaan; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="17">
-												<label for="17">Nomor Telepon Pemohon</label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="17">
+													<label for="17">Nomor Telepon Pemohon</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->no_hp; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->no_hp; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="18">
-												<label for="8">Jabatan Pemohon</label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="18">
+													<label for="8">Jabatan Pemohon</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->jabatan_pengguna; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->jabatan_pengguna; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="19">
-												<label for="19">Email Pemohon</label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="19">
+													<label for="19">Email Pemohon</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->email_pengguna; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->email_pengguna; ?></div>
-									</div>
 
-								</div>
-								<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
-									<div class="card-title w-100">2. Data Perangkat</div>
-								</a>
-								<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="1">
-												<label for="1">Nama Alat</label>
-											</div>
-										</div>
-										<div class="col-xl-8"><?php echo $pengujian->nama_alat; ?></div>
 									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="2">
-												<label for="2">Merk</label>
+									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo" aria-expanded="true">
+										<div class="card-title w-100">2. Data Perangkat</div>
+									</a>
+									<div id="IconRightCollapseTwo" class="card-body collapse show" data-parent="#accordion-icon-right">
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="1">
+													<label for="1">Nama Alat</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->nama_alat; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->merk; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="3">
-												<label for="3">Model/Tipe</label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="2">
+													<label for="2">Merk</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->merk; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->tipe; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="4">
-												<label for="4">Negara Pembuat</label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="3">
+													<label for="3">Model/Tipe</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->tipe; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->negara_asal; ?></div>
-									</div>
-									<?php
-									if($pengujian->negara_asal == 'Indonesia' || $pengujian->negara_asal == 'indonesia'){
-										$alamat_p_detail = $this->WorkshopM->detail_alamat($pengujian->id_kel_pabrikan)->row();
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="4">
+													<label for="4">Negara Pembuat</label>
+												</div>
+											</div>
+											<div class="col-xl-8"><?php echo $pengujian->negara_asal; ?></div>
+										</div>
+										<?php
+										if($pengujian->negara_asal == 'Indonesia' || $pengujian->negara_asal == 'indonesia'){
+											$alamat_p_detail = $this->WorkshopM->detail_alamat($pengujian->id_kel_pabrikan)->row();
+											?>
+											<div class="form-group row mb-5">
+												<div class="col-xl-4">
+													<div class="styled-checkbox">
+														<input type="checkbox" checked name="checkbox" required id="50">
+														<label for="50">Alamat Pabrikan</label>
+													</div>
+												</div>
+												<div class="col-xl-8"><?php echo $pengujian->alamat_pabrikan.'<br>'.$alamat_p_detail->nama_kelurahan.', '.$alamat_p_detail->nama_kecamatan.', '.$alamat_p_detail->nama_kabupaten_kota.', '.$alamat_p_detail->nama_propinsi;?></div>
+											</div>
+											<?php
+										}else{
+											?>
+											<div class="form-group row mb-5">
+												<div class="col-xl-4">
+													<div class="styled-checkbox">
+														<input type="checkbox" checked name="checkbox" required id="50">
+														<label for="50">Alamat Pabrikan</label>
+													</div>
+												</div>
+												<div class="col-xl-8"><?php echo $pengujian->alamat_pabrikan?></div>
+											</div>
+											<?php
+										}
 										?>
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="50">
-													<label for="50">Alamat Pabrikan</label>
+													<input type="checkbox" checked name="checkbox" required id="5">
+													<label for="5">Pabrik Pembuat</label>
 												</div>
 											</div>
-											<div class="col-xl-8"><?php echo $pengujian->alamat_pabrikan.'<br>'.$alamat_p_detail->nama_kelurahan.', '.$alamat_p_detail->nama_kecamatan.', '.$alamat_p_detail->nama_kabupaten_kota.', '.$alamat_p_detail->nama_propinsi;?></div>
+											<div class="col-xl-8"><?php echo $pengujian->pabrikan; ?></div>
 										</div>
-										<?php
-									}else{
-										?>
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
-													<input type="checkbox" checked name="checkbox" required id="50">
-													<label for="50">Alamat Pabrikan</label>
+													<input type="checkbox" checked name="checkbox" required id="6">
+													<label for="6">Telepon</label>
 												</div>
 											</div>
-											<div class="col-xl-8"><?php echo $pengujian->alamat_pabrikan?></div>
+											<div class="col-xl-8"><?php echo $pengujian->telepon; ?></div>
 										</div>
-										<?php
-									}
-									?>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="5">
-												<label for="5">Pabrik Pembuat</label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="7">
+													<label for="7">Email</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->email_pabrikan; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->pabrikan; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="6">
-												<label for="6">Telepon</label>
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="8">
+													<label for="8">Fax</label>
+												</div>
 											</div>
+											<div class="col-xl-8"><?php echo $pengujian->fax_pabrikan; ?></div>
 										</div>
-										<div class="col-xl-8"><?php echo $pengujian->telepon; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="7">
-												<label for="7">Email</label>
-											</div>
-										</div>
-										<div class="col-xl-8"><?php echo $pengujian->email_pabrikan; ?></div>
-									</div>
-									<div class="form-group row mb-5">
-										<div class="col-xl-4">
-											<div class="styled-checkbox">
-												<input type="checkbox" checked name="checkbox" required id="8">
-												<label for="8">Fax</label>
-											</div>
-										</div>
-										<div class="col-xl-8"><?php echo $pengujian->fax_pabrikan; ?></div>
 									</div>
 								</div>
-							</div>
 
-							<div class="text-right">
-								<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lolos</a>
-								<a href="" id="btn-tidak-lengkap" class="btn btn-success mr-1 mb-2" data-toggle="modal" data-target="#inputtagihan">Lolos</a>
-								<!-- <input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Memenuhi" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')"> -->
-							</div>
+								<div class="text-right">
+									<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lolos</a>
+									<a href="" id="btn-tidak-lengkap" class="btn btn-success mr-1 mb-2" data-toggle="modal" data-target="#inputtagihan">Lolos</a>
+									<!-- <input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Memenuhi" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')"> -->
+								</div>
 
-						</div>
-					</form>
+							</div>
+						</form>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
 </div>
 <div class="modal" id="izin_berkas">
 	<div class="modal-dialog modal-md">

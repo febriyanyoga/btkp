@@ -82,7 +82,7 @@
 											<div class="form-group row mb-3">
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>ALAMAT INSTANSI</b><span class="text-danger ml-2">*</span></label>
-													<textarea class="form-control" id="alamat_perusahaan" name="alamat_perusahaan" rows="3" cols="50" required ></textarea>
+													<textarea class="form-control" id="alamat_perusahaan" name="alamat_perusahaan" rows="3" cols="50" required maxlength="60"></textarea>
 												</div>
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>TELEPON INSTANSI</b><span class="text-danger ml-2">*</span></label>
@@ -129,8 +129,8 @@
 													<input type="email" class="form-control" id="email_perusahaan" name="email_perusahaan" required >
 												</div>
 												<div class="col-xl-6 mb-3">
-													<label class="form-control-label"><b>FAX</b><span class="text-danger ml-2">*</span></label>
-													<input type="number" value="" class="form-control" id="fax" name="fax" required>
+													<label class="form-control-label"><b>FAX</b></label>
+													<input type="number" value="" class="form-control" id="fax" name="fax">
 												</div>
 											</div>
 											<div class="form-group row mb-3">

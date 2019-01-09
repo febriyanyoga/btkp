@@ -237,10 +237,10 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('no_tlp', 'Nomor Telfon');
         $this->form_validation->set_rules('kelurahan_pt', 'Kelurahan Perusahaan', 'required');
         $this->form_validation->set_rules('email_perusahaan', 'Email Perusahaan');
-        $this->form_validation->set_rules('fax', 'Fax','required');
-        // $this->form_validation->set_rules('jabatan_pemohon', 'Jabatan Pemohon','required');
+        $this->form_validation->set_rules('fax', 'Fax');
+        $this->form_validation->set_rules('jabatan_pemohon', 'Jabatan Pemohon','required');
         if($this->form_validation->run() == FALSE){
-            $this->session->set_flashdata('error','Data anda tidak berhasil disimpan, periksa kembali data yang anda masukkan');
+            $this->session->set_flashdata('error','Data tidak lengkap, Silahkan lengkapi pengisian data.');
             redirect_back();
         }else{
             $data = array(
@@ -254,10 +254,10 @@ class WorkshopC extends CI_Controller
                 'jabatan_pengguna'          => $this->input->post('jabatan_pemohon')
             );
             if($insert_id = $this->WorkshopM->insert_perusahaan($data)){
-                $this->session->set_flashdata('sukses','Data anda berhasil disimpan');
+                $this->session->set_flashdata('sukses','Terimakasih, Data Workshop sudah terisi.');
                 redirect('type_approval22');
             }else{
-                $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+                $this->session->set_flashdata('error','Data tidak lengkap, Silahkan lengkapi pengisian data.');
                 redirect_back();
             }
         }
@@ -277,7 +277,7 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('catatan', 'Catatan','required');
         $this->form_validation->set_rules('fax_pabrikan', 'Fax Pabrikan','required');
         if($this->form_validation->run() == FALSE){
-            $this->session->set_flashdata('error','Data anda tidak berhasil disimpan, periksa kembali data yang anda masukkan');
+            $this->session->set_flashdata('error','Dokumen tidak lengkap , Silahkan Periksa kembali.');
             redirect_back();
         }else{
             $data_pengujian = array(
@@ -295,10 +295,10 @@ class WorkshopC extends CI_Controller
                 'fax_pabrikan'      => $this->input->post('fax_pabrikan'),
             );
             if($id_pengujian = $this->WorkshopM->insert_pengujian($data_pengujian)){
-                $this->session->set_flashdata('sukses','Data berhasil disimpan');
+                $this->session->set_flashdata('sukses','Terimakasih, Dokumen sudah dilampirkan.');
                 redirect('type_approval3/'.$id_pengujian);
             }else{
-                $this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
+                $this->session->set_flashdata('error','Dokumen tidak lengkap , Silahkan Periksa kembali.');
                 redirect_back();
             }
 
@@ -317,7 +317,7 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('npwp', 'NPWP','required');
         $this->form_validation->set_rules('no_tlp', 'Nomor Telfon');
         if($this->form_validation->run() == FALSE){
-            $this->session->set_flashdata('error','Data anda tidak berhasil disimpan, periksa kembali data yang anda masukkan');
+            $this->session->set_flashdata('error','Data tidak lengkap, silahkan lengkapi pengisian data.');
             redirect_back();
         }else{
             $data = array(
@@ -363,9 +363,9 @@ class WorkshopC extends CI_Controller
                         'ukuran_berkas'         => $namaFile['file_size'],
                     );
                     if($this->WorkshopM->insert_detail_berkas($data)){
-                        $this->session->set_flashdata('sukses','Data berhasil diupload');
+                        $this->session->set_flashdata('sukses','Terimakasih, Dokumen sudah dilampirkan.');
                     }else{
-                        $this->session->set_flashdata('error','Gagal diupload');
+                        $this->session->set_flashdata('error','Dokumen tidak lengkap , Silahkan Periksa kembali.');
                     }
                 }
             }
@@ -412,9 +412,9 @@ class WorkshopC extends CI_Controller
                         'ukuran_berkas'         => $namaFile['file_size'],
                     );
                     if($this->WorkshopM->insert_detail_berkas($data)){
-                        $this->session->set_flashdata('sukses','Data berhasil diupload');
+                        $this->session->set_flashdata('sukses','Terimakasih, Dokumen sudah dilampirkan.');
                     }else{
-                        $this->session->set_flashdata('error','Data gagal diupload');
+                        $this->session->set_flashdata('error','Dokumen tidak lengkap , Silahkan Periksa kembali.');
                     }
                 }else{
                 }
@@ -450,9 +450,9 @@ class WorkshopC extends CI_Controller
                 );
 
                 if($this->WorkshopM->insert_detail_berkas($data)){
-                    $this->session->set_flashdata('sukses','Data berhasil diupload');
+                    $this->session->set_flashdata('sukses','Terimakasih, Dokumen sudah dilampirkan');
                 }else{
-                    $this->session->set_flashdata('error','Gagal diupload');
+                    $this->session->set_flashdata('error','Dokumen tidak lengkap , Silahkan Periksa kembali.');
                 }
             }
             // $perpanjang = $this->WorkshopM->get_berkas_all_p()->num_rows();
@@ -483,7 +483,7 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required');
         $this->form_validation->set_rules('atas_nama', 'Atas Nama', 'required');
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            $this->session->set_flashdata('error', 'Bukti Pembayaran tidak berhasil diunggah, cek kembali data yang anda masukkan');
             redirect_back();
         }else {
             $upload = $this->upload_file('foto_bukti_trf');
@@ -495,14 +495,14 @@ class WorkshopC extends CI_Controller
                 );
                 $id_perizinan = $this->input->post('id_perizinan');
                 if($this->WorkshopM->selesai($id_perizinan, $data)) {
-                    $this->session->set_flashdata('sukses', 'Konfirmasi pembayaran berhasil diunggah');
+                    $this->session->set_flashdata('sukses', 'Bukti Pembayaran berhasil diunggah');
                     redirect_back();
                 } else {
-                    $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah');
+                    $this->session->set_flashdata('error', 'Bukti Pembayaran tidak berhasil diunggah');
                     redirect_back();
                 }
             }else{
-                $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah');
+                $this->session->set_flashdata('error', 'Bukti Pembayaran tidak berhasil diunggah');
                 redirect_back();
             }
         }
@@ -512,7 +512,7 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('nama_bank', 'Nama Bank', 'required');
         $this->form_validation->set_rules('atas_nama', 'Atas Nama', 'required');
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil dilakukan, cek kembali data yang anda masukkan.');
             redirect_back();
         }else {
             $upload = $this->upload_file('foto_bukti_trf');
@@ -524,14 +524,14 @@ class WorkshopC extends CI_Controller
                 );
                 $id_pengujian = $this->input->post('id_pengujian');
                 if($this->WorkshopM->selesai_p($id_pengujian, $data)) {
-                    $this->session->set_flashdata('sukses', 'Konfirmasi pembayaran berhasil diunggah');
+                    $this->session->set_flashdata('sukses', 'Bukti Pembayaran berhasil di upload.');
                     redirect_back();
                 } else {
-                    $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah 1');
+                    $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil dilakukan.');
                     redirect_back();
                 }
             }else{
-                $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah 2');
+                $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil dilakukan.');
                 redirect_back();
             }
         }
@@ -672,7 +672,7 @@ class WorkshopC extends CI_Controller
     public function selesai($id_perizinan){
         $data = array('status_pengajuan' => 'selesai');
         if($this->WorkshopM->selesai($id_perizinan, $data)){
-            $this->session->set_flashdata('sukses', 'Permohonan perizinan berhasil disimpan');
+            $this->session->set_flashdata('sukses', 'Terimakasih, permohonan anda sudah diajukan.');
             redirect('workshop');
         }else{
             $this->session->set_flashdata('error', 'Gagal menyelesaikan Permohonan perizinan');
@@ -683,10 +683,10 @@ class WorkshopC extends CI_Controller
     public function selesai_p($id_pengujian){
         $data = array('status_pengajuan' => 'selesai');
         if($this->WorkshopM->selesai_p($id_pengujian, $data)){
-            $this->session->set_flashdata('sukses', 'Permohonan Pengujian dan sertifikasi berhasil disimpan');
+            $this->session->set_flashdata('sukses', 'Terimakasih, permohonan anda sudah diajukan.');
             redirect('workshop');
         }else{
-            $this->session->set_flashdata('error', 'Gagal menyelesaikan Permohonan Pengujian dan sertifikasi');
+            $this->session->set_flashdata('error', 'Maaf, permohonan anda tidak dapat diajukan.');
             redirect_back();
         }
     }

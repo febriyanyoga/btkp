@@ -144,14 +144,18 @@ class TatausahaC extends CI_Controller
             $keterangan = $this->input->post('keterangan');
 
             $data = array(
-                'id_pengguna' => $this->input->post('id_pengguna'),
-                'id_perizinan' => $this->input->post('id_perizinan'),
-                'keterangan' => $keterangan,
-                'status' => $this->input->post('status'),
+                'id_pengguna'   => $this->input->post('id_pengguna'),
+                'id_perizinan'  => $this->input->post('id_perizinan'),
+                'keterangan'    => $keterangan,
+                'status'        => $this->input->post('status'),
             );
 
             if ($this->GeneralM->insert_persetujuan($data)) {
-                $this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+                if($this->input->post('status') == 'diterima'){
+                    $this->session->set_flashdata('sukses', 'Permohonan di proses ketahap selanjutnya.');
+                }else{
+                    $this->session->set_flashdata('sukses', 'Anda telah menolak permohonan ini.');
+                }
                 redirect('perizinan');
             } else {
                 $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
@@ -167,7 +171,7 @@ class TatausahaC extends CI_Controller
         $this->form_validation->set_rules('keterangan', 'keterangan');
         $this->form_validation->set_rules('status', 'Status', 'required');
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            $this->session->set_flashdata('error', 'Anda tidak dapat menolak permohonan ini, cek kembali data yang anda masukkan');
             redirect_back();
         } else {
             $keterangan = $this->input->post('keterangan');
@@ -180,10 +184,10 @@ class TatausahaC extends CI_Controller
             );
 
             if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
-                $this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+                $this->session->set_flashdata('sukses', 'Anda telah menolak permohonan  ini.');
                 redirect('pengujian');
             } else {
-                $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+                $this->session->set_flashdata('error', 'Maaf, Anda tidak dapat menolak permohonan ini.');
                 redirect_back();
             }
         }
@@ -202,7 +206,7 @@ class TatausahaC extends CI_Controller
         $this->form_validation->set_rules('masa_berlaku_billing', 'Masa Berlaku Billing', 'required');
 
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+            $this->session->set_flashdata('error', 'Permohonan tidak dapat di proses ketahap selanjutnya, cek kembali data yang anda masukkan.');
             redirect_back();
         } else {
             $keterangan = $this->input->post('keterangan');
@@ -224,10 +228,10 @@ class TatausahaC extends CI_Controller
 
             if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
                 $this->TatausahaM->insert_billing_ujian($id_pengujian, $data_billing);
-                $this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+                $this->session->set_flashdata('sukses', 'Permohonan di proses ketahap selanjutnya.');
                 redirect('pengujian');
             } else {
-                $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
+                $this->session->set_flashdata('error', 'Maaf, Permohonan tidak dapat di proses ketahap selanjutnya.');
                 redirect_back();
             }
         }
@@ -314,7 +318,7 @@ class TatausahaC extends CI_Controller
                 );
             }
             if ($this->WorkshopM->selesai_p($id_pengujian, $data)) {
-                $this->session->set_flashdata('sukses', 'Validasi berhasil');
+                $this->session->set_flashdata('sukses', 'Pembayaran sukses, silahkan lakukan pengujian lab.');
                 redirect_back();
             } else {
                 $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
@@ -343,10 +347,10 @@ class TatausahaC extends CI_Controller
             );
 
             if ($this->TatausahaM->insert_billing($id_perizinan, $data)) {
-                $this->session->set_flashdata('sukses', 'Billing berhasil dimasukkan');
+                $this->session->set_flashdata('sukses', 'Tagihan berhasil di input');
                 redirect_back();
             } else {
-                $this->session->set_flashdata('error', 'Data tidak berhasil disimpan, cek kembali data yang anda masukkan');
+                $this->session->set_flashdata('error', 'Tagihan tidak berhasil di input, cek kembali data yang anda masukkan');
                 redirect_back();
             }
         }
@@ -474,7 +478,7 @@ class TatausahaC extends CI_Controller
         $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit');
         $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired');
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Data Penerbitan berhasil dimasukkan, cek kembali data yang anda masukkan');
+            $this->session->set_flashdata('error', 'Data Penerbitan tidak berhasil dimasukkan, cek kembali data yang anda masukkan.');
             redirect_back();
         } else {
             $id_perizinan = $this->input->post('id_perizinan');
@@ -540,10 +544,14 @@ class TatausahaC extends CI_Controller
             $this->ciqrcode->generate($params); // fungsi untuk generate QR CODE
 
             if ($this->WorkshopM->selesai($id_perizinan, $data)) {
-                $this->session->set_flashdata('sukses', 'Data Penerbitan berhasil dimasukkan');
+                if($this->input->post('status_pembayaran') == 'unpaid'){
+                    $this->session->set_flashdata('sukses', 'Anda menolak bukti pembayaran.');
+                }else{
+                    $this->session->set_flashdata('sukses', 'Data Penerbitan berhasil dimasukkan, SPK telah diterbitkan.');
+                }
                 redirect_back();
             } else {
-                $this->session->set_flashdata('error', 'Data Penerbitan berhasil dimasukkan, cek kembali data yang anda masukkan');
+                $this->session->set_flashdata('error', 'Data Penerbitan tidak berhasil dimasukkan, cek kembali data yang anda masukkan.');
                 redirect_back();
             }
         }

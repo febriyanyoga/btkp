@@ -82,10 +82,10 @@
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->alamat_perusahaan.'<br>'.$alamat_pt_detail->nama_kelurahan.', '.$alamat_pt_detail->nama_kecamatan.', '.$alamat_pt_detail->nama_kabupaten_kota.', '.$alamat_pt_detail->nama_propinsi;?></div>
 													</div>
 												</div>
-												<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
+												<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo" aria-expanded="true">
 													<div class="card-title w-100">2. Informasi Kontak Instansi</div>
 												</a>
-												<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
+												<div id="IconRightCollapseTwo" class="card-body collapse show" data-parent="#accordion-icon-right">
 													<div class="form-group row mb-5">
 														<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor Telepon Instansi</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->no_tlp?></div>
@@ -99,10 +99,10 @@
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->fax?></div>
 													</div>
 												</div>
-												<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseFour">
+												<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseFour" aria-expanded="true">
 													<div class="card-title w-100">3. Informasi Pengujian</div>
 												</a>
-												<div id="IconRightCollapseFour" class="card-body collapse" data-parent="#accordion-icon-right">
+												<div id="IconRightCollapseFour" class="card-body collapse show" data-parent="#accordion-icon-right">
 													<div class="form-group row mb-5">
 														<div class="col-sm-3 form-control-label d-flex align-items-center">Nama Alat</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->nama_alat?></div>

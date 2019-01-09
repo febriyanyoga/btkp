@@ -89,7 +89,7 @@
 													?>
 													<tr>
 														<td class="text-center"><span class="text-primary">
-															<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+															<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
 														</td>
 														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 														<td class="text-center"><?php echo $ujian->nama_alat?></td>
@@ -97,7 +97,7 @@
 														<td class="text-center"><?php echo $ujian->tipe?></td>
 														<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
 														<td class="text-center">
-															<a href="<?php echo site_url('verifikasiawal/'.$ujian->id_pengujian); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+															<a href="<?php echo site_url('verifikasiawal/'.$ujian->id_pengujian); ?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
 															</a>
 														</td>
 													</tr>
@@ -140,7 +140,7 @@
 														?>
 														<tr>
 															<td class="text-center"><span class="text-primary">
-																<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+																<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
 															</td>
 															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 															<td class="text-center"><?php echo $ujian->nama_alat?></td>
@@ -226,7 +226,7 @@
 														?>
 														<tr>
 															<td class="text-center"><span class="text-primary">
-																<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+																<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
 															</td>
 															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 															<td class="text-center"><?php echo $ujian->nama_alat?></td>
@@ -306,7 +306,7 @@
                                                         		?>
                                                         		<tr>
                                                         			<td class="text-center"><span class="text-primary">
-                                                        				<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                                                        				<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                                                         			</td>
                                                         			<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
                                                         			<td class="text-center"><?php echo $ujian->nama_alat?></td>
@@ -397,7 +397,7 @@
                             						?>
                             						<tr>
                             							<td class="text-center"><span class="text-primary">
-                            								<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                            								<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                             							</td>
                             							<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
                             							<td class="text-center"><?php echo $ujian->nama_alat?></td>
@@ -492,7 +492,7 @@
                             						?>
                             						<tr>
                             							<td class="text-center"><span class="text-primary">
-                            								<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                            								<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                             							</td>
                             							<td class="text-center"><span class="text-primary">
                             								<?php echo $ujian->kode_alat.'/BTKP/'.$ujian->no_spk; ?></span>
@@ -557,7 +557,7 @@
                             							?>
                             							<tr class="text-center">
                             								<td class="text-center"><span class="text-primary">
-                            									<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                            									<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                             								</td>
                             								<td class="text-center"><?php echo date_indo($tgl_pengajuan_p)?></td>
                             								<td class="text-center"><?php echo $ujian->nama_alat?></td>

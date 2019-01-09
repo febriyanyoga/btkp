@@ -70,6 +70,11 @@ $(document).ready(function(){
 
 	// ========admin tu ========
 	// jumlah verifikasi izin TU
+	var inspeksi_teknis = $('#inspeksi_teknis_bawah').val();
+	if(inspeksi_teknis != 0){
+		$('#inspeksi_teknis').html('<span class="btn btn-sm btn-primary btn-rounded">' + inspeksi_teknis + ' </span>');
+	}	
+
 	var verifikasi_izin = $('#verifikasi_izin_bawah').val();
 	if(verifikasi_izin != 0){
 		$('#verifikasi_izin').html('<span class="btn btn-sm btn-success btn-rounded">' + verifikasi_izin + ' </span>');
@@ -209,6 +214,20 @@ $(document).ready(function(){
 	var pengujian_ditolak_kasie = $('#pengujian_ditolak_kasie_bawah').val();
 	if(pengujian_ditolak_kasie != 0){
 		$('#pengujian_ditolak_kasie').html('<span class="btn btn-sm btn-danger btn-rounded">' + pengujian_ditolak_kasie + ' </span>');
-	}	
+	}
+
+
+	$(function() {
+		$('#nama_perusahaan').keydown(function(e) {
+			if (e.shiftKey || e.ctrlKey || e.altKey) {
+				e.preventDefault();
+			} else {
+				var key = e.keyCode;
+				if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+					e.preventDefault();
+				}
+			}
+		});
+	});	
 
 });

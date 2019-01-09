@@ -90,7 +90,7 @@
                                                             ?>
                                                             <tr class="text-center">
                                                                 <td class="text-center"><span class="text-primary">
-                                                                    <?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+                                                                    <?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
                                                                 </td>
                                                                 <td class="text-center"><span class="text-primary"><?php echo $per->kode_alat.'/'.$per->no_spk.'/'.date('y', strtotime($per->tgl_terbit)) ?></span></td>
                                                                 <td class="text-center"><?php echo $per->nama_alat?></td>
@@ -170,7 +170,7 @@
                                                             ?>
                                                             <tr class="text-center">
                                                                 <td class="text-center"><span class="text-primary">
-                                                                    <?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+                                                                    <?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
                                                                 </td>
                                                                 <td class="text-center"><span class="text-primary"><?php echo $per->kode_alat.'/'.$per->no_spk.'/'.date('y', strtotime($per->tgl_terbit)) ?></span></td>
                                                                 <td class="text-center"><?php echo $per->nama_alat?></td>
@@ -245,7 +245,7 @@
                                                     ?>
                                                     <tr>
                                                         <td class="text-center"><span class="text-primary">
-                                                            <?php echo $tolak->id_perizinan.'/'.date('Ymd', strtotime($tolak->created_at_izin)); ?></span>
+                                                            <?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
                                                         </td>
                                                         <td class="text-center"><?php echo $nama_alat?></td>
                                                         <td class="text-center"><?php echo date_indo($izin)?></td>

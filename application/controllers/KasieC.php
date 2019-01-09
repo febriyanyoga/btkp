@@ -104,7 +104,7 @@ class KasieC extends CI_Controller{
 				'status' 			=> $this->input->post('status'),
 			);
 			if($this->GeneralM->insert_persetujuan($data)) {
-				$this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+				$this->session->set_flashdata('sukses', 'Permohonan di proses ketahap selanjutnya.');
 				redirect('izin_kasie');
 			} else {
 				$this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
@@ -112,8 +112,7 @@ class KasieC extends CI_Controller{
 			}
 		}
 	}
-	public function persetujuan2()
-	{
+	public function persetujuan2(){
 		$this->form_validation->set_rules('id_pengguna', 'ID Pengguna', 'required');
 		$this->form_validation->set_rules('id_perizinan', 'ID Perizinan');
 		$this->form_validation->set_rules('keterangan', 'keterangan');
@@ -141,7 +140,7 @@ class KasieC extends CI_Controller{
 				'status' 			=> $this->input->post('status'),
 			);
 			if($this->GeneralM->insert_persetujuan($data)) {
-				$this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+				$this->session->set_flashdata('sukses', 'Anda telah menolak permohonan ini.');
 				redirect('izin_kasie');
 			} else {
 				$this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
