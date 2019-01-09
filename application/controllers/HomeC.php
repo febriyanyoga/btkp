@@ -65,13 +65,13 @@ class HomeC extends CI_Controller{
 			if($user->num_rows()>0){
 				if($user->row()->status_akun == 'aktif'){
 					$userData       = array(
-						'nama'  		=> $user->row()->nama_pengguna,
-						'jabatan'   	=> $user->row()->nama_jabatan,
-						'id_jabatan'	=> $user->row()->id_jabatan,
-						'status'    	=> $user->row()->status,
-						'jabatan_pemohon'  => $user->row()->jabatan_pemohon,
-						'id_pengguna'  	=> $user->row()->id_pengguna,
-						'logged_in' 	=> TRUE,
+						'nama'  			=> $user->row()->nama_pengguna,
+						'jabatan'   		=> $user->row()->nama_jabatan,
+						'id_jabatan'		=> $user->row()->id_jabatan,
+						'status'    		=> $user->row()->status,
+						'jabatan_pemohon'  	=> $user->row()->jabatan_pemohon,
+						'id_pengguna'  		=> $user->row()->id_pengguna,
+						'logged_in' 		=> TRUE,
 					);
 					$this->session->set_userdata($userData);
 					if($user->row()->id_jabatan == 1){

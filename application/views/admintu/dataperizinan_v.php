@@ -43,10 +43,13 @@
 							?>
 							<ul class="nav nav-tabs" id="example-one" role="tablist">
 								<li class="nav-item">
-									<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi <span id="verifikasi_izin"></span></a>
+									<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi administrasi <span id="verifikasi_izin"></span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode Billing <span id="kode_billing_izin"></span></a>
+									<a class="nav-link" id="base-tab-6" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-6" aria-selected="false">Inspeksi teknis <span id="inspeksi_teknis"></span></a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Pembayaran<span id="kode_billing_izin"></span></a>
 								</li>
 								<li class="nav-item">
 									<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Penerbitan <span id="penerbitan_izin"></span></a>
@@ -55,7 +58,7 @@
 									<a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Data SPK <span id="data_spk_izin"></span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Perizinan Ditolak <span id="izin_ditolak"></span></a>
+									<a class="nav-link" id="base-tab-5" data-toggle="tab" href="#tab-5" role="tab" aria-controls="tab-5" aria-selected="false">Permohonan yang ditolak <span id="izin_ditolak"></span></a>
 								</li>
 							</ul>
 							<div class="tab-content pt-3">
@@ -87,7 +90,7 @@
 														?>
 														<tr>
 															<td class="text-center"><span class="text-primary">
-																<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+																<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?></span>
 															</td>
 															<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
 															<td class="text-center"><?php echo $per->nama_perusahaan; ?></td>
@@ -108,6 +111,65 @@
 												}
 												?>
 												<input type="hidden" name="verifikasi_izin_bawah" id="verifikasi_izin_bawah" value="<?php echo $verifikasi_izin;?>">
+											</tbody>
+										</table>
+									</div>
+								</div>
+								<div class="tab-pane fade" id="tab-6" role="tabpanel" aria-labelledby="base-tab-6">
+									<div class="table-responsive">
+										<table id="myTable6" class="table mb-0">
+											<thead>
+												<tr>
+													<th class="text-center">No. Permohonan</th>
+													<th class="text-center">Jenis Izin</th>
+													<th class="text-center">Perusahaan</th>
+													<th class="text-center">Alat SPK</th>
+													<th class="text-center">Tanggal Permohonan</th>
+													<!-- <th class="text-center">Status</th> -->
+													<!-- <th class="text-center">Aksi</th> -->
+												</tr>
+											</thead>
+											<tbody>
+												<?php
+												$i=0;
+												$inspeksi_teknis=0;
+												$id_pengguna = $this->session->userdata('id_pengguna');
+												foreach ($perizinan as $per){
+													$own_progress = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
+
+													$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
+													$progress_kasie = $this->GeneralM->get_progress_kasie($per->id_perizinan)->num_rows();
+													if($progress_tu > 0){
+														if($progress_kasie == 0){
+															if($per->file_hasil_survey != ""){
+																$i++;
+																$inspeksi_teknis+=1;
+																?>
+																<tr>
+																	<td class="text-center"><span class="text-primary">
+																		<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
+																	</td>
+																	<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
+																	<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
+																	<td class="text-center"><?php echo $per->nama_alat?></td>
+																	<?php
+																	// $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
+																	$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
+																	?>
+																	<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+
+																	<!-- <td class="text-center">
+																		<a href="<?php echo site_url('verifikasi_kasie/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+																		</a>
+																	</td> -->
+																</tr>
+																<?php
+															}
+														}
+													}
+												}
+												?>
+												<input type="hidden" name="inspeksi_teknis_bawah" id="inspeksi_teknis_bawah" value="<?php echo $inspeksi_teknis?>">
 											</tbody>
 										</table>
 									</div>
@@ -143,7 +205,7 @@
                                                         			?>
                                                         			<tr>
                                                         				<td class="text-center"><span class="text-primary">
-                                                        					<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+                                                        					<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
                                                         				</td>
                                                         				<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
                                                         				<td class="text-center"><?php echo $per->nama_perusahaan; ?></td>
@@ -182,7 +244,7 @@
                                                         							<?php
                                                         						} else {
                                                         							?>
-                                                        							<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#kode_biling-<?php echo $per->id_perizinan; ?>"><i class="la la-plus"></i>Kode Billing</i>
+                                                        							<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling-<?php echo $per->id_perizinan; ?>"><i class="la la-plus"></i>Kode Billing</i>
                                                         							</a>
                                                         							<?php
                                                         						}
@@ -266,7 +328,7 @@
                                     								?>
                                     								<tr>
                                     									<td class="text-center"><span class="text-primary">
-                                    										<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+                                    										<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
                                     									</td>
                                     									<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
                                     									<td class="text-center"><?php echo $per->nama_perusahaan; ?></td>
@@ -371,7 +433,7 @@
 		                            						?>
 		                            						<tr>
 		                            							<td class="text-center"><span class="text-primary">
-		                            								<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+		                            								<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
 		                            							</td>
 		                            							<td class="text-center"><?php echo $per->kode_alat.'/'.$per->no_spk.'/'.date('y', strtotime($per->tgl_terbit)); ?></td>
 		                            							<td class="text-center"><?php echo $per->nama_jenis_izin; ?></td>
@@ -435,7 +497,7 @@
 		                            					?>
 		                            					<tr>
 		                            						<td class="text-center"><span class="text-primary">
-		                            							<?php echo $tolak->id_perizinan.'/'.date('Ymd', strtotime($tolak->created_at_izin)); ?></span>
+		                            							<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
 		                            						</td>
 		                            						<td class="text-center"><?php echo $nama_alat?></td>
 		                            						<td class="text-center"><?php echo date_indo($izin)?></td>

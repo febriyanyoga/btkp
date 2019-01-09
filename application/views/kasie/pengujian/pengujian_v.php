@@ -40,7 +40,7 @@
                     <div class="widget-body sliding-tabs">
                         <ul class="nav nav-tabs" id="example-one" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi <span id="verifikasi_ujian_kasie"></span></a>
+                                <a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi akhir<span id="verifikasi_ujian_kasie"></span></a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Data Pengujian dan Sertifikasi <span id="data_pengujian_kasie"></span></a>
@@ -76,7 +76,7 @@
                                                     	?>
                                                     	<tr>
                                                     		<td class="text-center"><span class="text-primary">
-                                                                <?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                                                               <?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                                                             </td>
                                                             <td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
                                                             <td class="text-center"><?php echo $ujian->nama_alat?></td>
@@ -128,7 +128,7 @@
                                                     ?>
                                                     <tr>
                                                         <td class="text-center"><span class="text-primary">
-                                                            <?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                                                            <?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                                                         </td>
                                                         <td class="text-center"><span class="text-primary">
                                                             <?php echo $ujian->kode_alat.'/BTKP/'.$ujian->no_spk; ?></span>
@@ -195,7 +195,7 @@
                                                             ?>
                                                             <tr class="text-center">
                                                                 <td class="text-center"><span class="text-primary">
-                                                                    <?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                                                                   <?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                                                                 </td>
                                                                 <td class="text-center"><?php echo date_indo($tgl_pengajuan_p)?></td>
                                                                 <td class="text-center"><?php echo $ujian->nama_alat?></td>

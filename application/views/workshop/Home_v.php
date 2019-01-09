@@ -115,7 +115,7 @@
 									<div class="widget-body sliding-tabs">
 										<ul class="nav nav-tabs" id="example-one" role="tablist">
 											<li class="nav-item">
-												<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">SPK <span id="spk"></span></a>
+												<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Perizinan <span id="spk"></span></a>
 											</li>
 											<li class="nav-item">
 												<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Inspeksi <span id="inspeksi"></span></a>
@@ -162,7 +162,8 @@
                                                                     			?>
                                                                     			<tr>
                                                                     				<td class="text-center"><span class="text-primary">
-                                                                    					<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+                                                                    					<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
+                                                                    					<!-- <?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span> -->
                                                                     				</td>
                                                                     				<td class="text-left">
                                                                     					<?php echo $per->nama_alat; ?>
@@ -324,7 +325,8 @@
                                                                             	?>
                                                                             	<tr>
                                                                             		<td class="text-center"><span class="text-primary">
-                                                                            			<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+                                                                            			<!-- <?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span> -->
+                                                                            			<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
                                                                             		</td>
                                                                             		<td class="text-left">
                                                                             			<?php echo $per->nama_alat; ?>
@@ -422,7 +424,7 @@
                                             								?>
                                             								<tr>
                                             									<td class="text-center"><span class="text-primary">
-                                            										<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                                            										<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                                             									</td>
                                             									<td class="text-center"><?php echo $ujian->nama_alat?></td>
                                             									<td class="text-center"><?php echo $ujian->tipe?></td>
@@ -572,7 +574,7 @@
                                             							<tr>
                                             								<!-- <td class="text-center"><?php echo $j;?></td> -->
                                             								<td class="text-center"><span class="text-primary">
-                                            									<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                                            									<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                                             								</td>
                                             								<td class="text-center"><?php echo $ujian->nama_alat?></td>
                                             								<td class="text-center"><?php echo $ujian->tipe?></td>

@@ -70,11 +70,11 @@
 											<div class="form-group row mb-3">
 												<div class="col-xl-12 mb-3">
 													<label class="form-control-label"><b>NAMA PERUSAHAAN</b> <i>(PUSAT / CABANG)</i><span class="text-danger ml-2">*</span></label>
-													<input type="text" value="" class="form-control" id="nama_perusahaan" name="nama_perusahaan" required>
+													<input type="text" value="" class="form-control" id="nama_perusahaan" name="nama_perusahaan" required placeholder="Contoh : PT Perusahaan, CV Perusahaan">
 												</div>
 												<div class="col-xl-12 mb-3">
 													<label class="form-control-label"><b>ALAMAT KANTOR PERUSAHAAN</b><span class="text-danger ml-2">*</span></label>
-													<textarea class="form-control" id="alamat_perusahaan" name="alamat_perusahaan" rows="3" cols="50" required ></textarea>
+													<textarea class="form-control" id="alamat_perusahaan" name="alamat_perusahaan" rows="3" cols="50" required placeholder="Contoh : Jalan Ir. Soekarno No. 11, RT01/RW07; Maksimal : 60 Karakter" maxlength="60"></textarea>
 												</div>
 											</div>
 											<div class="form-group row mb-3">
@@ -114,7 +114,7 @@
 											<div class="form-group row mb-3">
 												<div class="col-xl-12 mb-3">
 													<label class="form-control-label"><b>ALAMAT WORKSHOP / SERVICE STATION</b> <span class="text-danger ml-2">*</span></label>
-													<textarea class="form-control" rows="3" cols="50" id="alamat_workshop" name="alamat_workshop" required ></textarea>
+													<textarea class="form-control" rows="3" cols="50" id="alamat_workshop" name="alamat_workshop" required placeholder="Contoh : Jalan Moh. Hatta No. 11, RT01/RW07; Maksimal : 60 Karakter" maxlength="60"></textarea>
 												</div>
 											</div>
 											<div class="form-group row mb-3">
@@ -153,7 +153,7 @@
 											<div class="form-group row mb-3">
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>AKTA PENDIRIAN PERUSAHAAN </b><i>(Nomor / Tanggal)</i> <span class="text-danger ml-2">*</span></label>
-													<input type="text" value="" class="form-control" id="akta_perusahaan" name="akta_perusahaan" required >
+													<input type="text" value="" class="form-control" id="akta_perusahaan" name="akta_perusahaan" required placeholder="Contoh : 001/01-01-1991">
 												</div>
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>PEMIMPIN / PENANGGUNG JAWAB </b><span class="text-danger ml-2">*</span></label>
@@ -163,7 +163,7 @@
 											<div class="form-group row mb-3">
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>NOMOR POKOK WAJIB PAJAK </b><span class="text-danger ml-2">*</span></label>
-													<input type="text" value="" class="form-control" id="npwp" name="npwp" required >
+													<input type="number" value="" class="form-control" id="npwp" name="npwp" required placeholder="Contoh : 1234567890">
 												</div>
 											</div>
 											<div class="section-title mt-5 mb-5">
@@ -176,12 +176,17 @@
 														<span class="input-group-addon addon-secondary">
 															<i class="la la-phone"></i>
 														</span>
-														<input type="number" class="form-control" value="" id="no_tlp" name="no_tlp">
+														<input type="number" class="form-control" value="" id="no_tlp" name="no_tlp" placeholder="Contoh : 08123456789">
 													</div>
 												</div>
 												<div class="col-xl-6">
 													<label class="form-control-label">ALAMAT E-MAIL<span class="text-danger ml-2">*</span></label>
-													<input type="email" value="" class="form-control" id="email_perusahaan" name="email_perusahaan" required >
+													<div class="input-group">
+														<span class="input-group-addon addon-secondary">
+															<i class="la la-envelope"></i>
+														</span>
+														<input type="email" value="" class="form-control" id="email_perusahaan" name="email_perusahaan" required placeholder="Contoh : contoh@mail.com">
+													</div>
 												</div>
 											</div>
 											<ul class="pager wizard text-right">

@@ -67,9 +67,9 @@
 											<h4>Lampiran Dokumen Pendukung</h4>
 										</div>
 										<form action="<?php echo site_url('post_berkas')?>" enctype="multipart/form-data" method="post">
-											<div class="section-title mt-5 mb-5">
+											<!-- <div class="section-title mt-5 mb-5">
 												<h4>Jenis Permohonan Izin SPK</h4>
-											</div>
+											</div> -->
 											<div class="form-group row mb-3">
 												<div class="col-xl-6">
 													<label class="form-control-label">Jenis Perizinan Alat Keselamatan<span class="text-danger ml-2">*</span></label>
@@ -95,7 +95,7 @@
 													<input type="hidden" name="id_berkas_perizinan<?php echo $i;?>" id="id_berkas_perizinan<?php echo $i;?>" value="<?php echo $ber->id_berkas_perizinan;?>">
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label"><?php echo $ber->nama_berkas?><span class="text-danger ml-2">*</span></label>
-														<i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="Berkas harus diunggah dengan ukuran maksimal 5 MB(5000 Kb)" data-original-title="" title="">Syarat</i>
+														<i class="ion-information-circled" data-toggle="popover" data-trigger="hover" data-placement="top" data-content="<?php echo $ber->syarat_berkas?>" data-original-title="" title="">Syarat</i>
 														<div class="custom-file">
 															<!-- <input type="file" class="custom-file-input" id="files<?php echo $i?>" name="files<?php echo $i?>"> -->
 															<input type="file" name="files<?php echo $i?>" class="form-control" required>
@@ -203,6 +203,7 @@
 													</div>
 												</div> -->
 											</div>
+											<p><strong>Note : Berkas harus diunggah dengan ukuran maksimal 5 MB(5000 Kb)</strong></p>
 											<ul class="pager wizard text-right">
 												<!-- <li class="previous d-inline-block">
 													<button onclick="window.location.href='<?php echo site_url('izin_baru')?>'" type="button" name="back" class="btn btn-rounded btn-secondary ripple">Kembali</button>

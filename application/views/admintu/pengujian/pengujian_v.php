@@ -89,7 +89,7 @@
 													?>
 													<tr>
 														<td class="text-center"><span class="text-primary">
-															<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+															<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
 														</td>
 														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 														<td class="text-center"><?php echo $ujian->nama_alat?></td>
@@ -97,7 +97,7 @@
 														<td class="text-center"><?php echo $ujian->tipe?></td>
 														<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
 														<td class="text-center">
-															<a href="<?php echo site_url('verifikasiawal/'.$ujian->id_pengujian); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
+															<a href="<?php echo site_url('verifikasiawal/'.$ujian->id_pengujian); ?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
 															</a>
 														</td>
 													</tr>
@@ -140,7 +140,7 @@
 														?>
 														<tr>
 															<td class="text-center"><span class="text-primary">
-																<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+																<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
 															</td>
 															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 															<td class="text-center"><?php echo $ujian->nama_alat?></td>
@@ -226,7 +226,7 @@
 														?>
 														<tr>
 															<td class="text-center"><span class="text-primary">
-																<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+																<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
 															</td>
 															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 															<td class="text-center"><?php echo $ujian->nama_alat?></td>
@@ -294,7 +294,7 @@
 											foreach ($pengujian as $ujian) {
 												$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
 												if($ada_status > 0){
-													if($ujian->foto_bukti_trf_1 != "" && $ujian->status_pembayaran_1 != "unpaid" && $ujian->file_hasil_pengujian != "" && $ujian->kode_billing_2 == ""){
+													if($ujian->foto_bukti_trf_1 != "" && $ujian->status_pembayaran_1 != "unpaid" && $ujian->file_hasil_pengujian != "" && $ujian->foto_bukti_trf_2 == ""){
 														// $status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row();
                                                         $progress_kasie = $this->GeneralM->get_array_progress_ujian_kasie($ujian->id_pengujian)->num_rows(); //jumlah perizinan yang di acc kasie
                                                         if($progress_kasie > 0){
@@ -306,17 +306,37 @@
                                                         		?>
                                                         		<tr>
                                                         			<td class="text-center"><span class="text-primary">
-                                                        				<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                                                        				<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                                                         			</td>
                                                         			<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
                                                         			<td class="text-center"><?php echo $ujian->nama_alat?></td>
                                                         			<td class="text-center"><?php echo $ujian->merk?></td>
                                                         			<td class="text-center"><?php echo $ujian->tipe?></td>
                                                         			<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
-                                                        			<td class="text-center">status</td>
                                                         			<td class="text-center">
-                                                        				<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian; ?>"><i class="la la-plus"></i>Kode Billing</i>
-                                                        				</a>
+                                                        				<?php
+                                                        				if($ujian->foto_bukti_trf_2 == ''){
+                                                        					?>
+                                                        					<span style="width:100px;"><span class="badge-text badge-text-small">Menunggu pembayaran</span></span>
+                                                        					<?php
+                                                        				}else{
+                                                        					?>
+                                                        					<span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span>
+                                                        					<?php
+                                                        				}
+                                                        				?>
+                                                        			</td>
+                                                        			<td class="text-center">
+                                                        				<?php
+                                                        				if($ujian->foto_bukti_trf_2 == ''){
+                                                        					echo "-";
+                                                        				}else{
+                                                        					?>
+                                                        					<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian; ?>"><i class="la la-plus"></i>Kode Billing</i>
+                                                        					</a>
+                                                        					<?php
+                                                        				}
+                                                        				?>
                                                         			</td>
                                                         		</tr>
 
@@ -397,7 +417,7 @@
                             						?>
                             						<tr>
                             							<td class="text-center"><span class="text-primary">
-                            								<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                            								<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                             							</td>
                             							<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
                             							<td class="text-center"><?php echo $ujian->nama_alat?></td>
@@ -414,7 +434,7 @@
                             							<div class="modal-dialog modal-md">
                             								<div class="modal-content">
                             									<div class="modal-header">
-                            										<h4 class="modal-title">Validasi Pembayaran</h4>
+                            										<h4 class="modal-title">Validasi Pembayaran dan penerbitan</h4>
                             										<button type="button" class="close" data-dismiss="modal">&times;</button>
                             									</div>
 
@@ -492,7 +512,7 @@
                             						?>
                             						<tr>
                             							<td class="text-center"><span class="text-primary">
-                            								<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                            								<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                             							</td>
                             							<td class="text-center"><span class="text-primary">
                             								<?php echo $ujian->kode_alat.'/BTKP/'.$ujian->no_spk; ?></span>
@@ -557,7 +577,7 @@
                             							?>
                             							<tr class="text-center">
                             								<td class="text-center"><span class="text-primary">
-                            									<?php echo $ujian->id_pengujian.'/'.date('Ymd', strtotime($ujian->created_at_ujian)); ?></span>
+                            									<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat; ?></span>
                             								</td>
                             								<td class="text-center"><?php echo date_indo($tgl_pengajuan_p)?></td>
                             								<td class="text-center"><?php echo $ujian->nama_alat?></td>

@@ -43,7 +43,7 @@
 						?>
 						<ul class="nav nav-tabs" id="example-one" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi <span id="verifikasi_izin_kasie"></span></a>
+								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi teknis<span id="verifikasi_izin_kasie"></span></a>
 							</li>
 								<!-- <li class="nav-item">
 									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode Billing</a>
@@ -91,7 +91,7 @@
 																?>
 																<tr>
 																	<td class="text-center"><span class="text-primary">
-																		<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+																		<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
 																	</td>
 																	<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
 																	<td class="text-center"><?php echo $per->nama_perusahaan;?></td>
@@ -145,7 +145,7 @@
 														?>
 														<tr>
 															<td class="text-center"><span class="text-primary">
-																<?php echo $per->id_perizinan.'/'.date('Ymd', strtotime($per->created_at_izin)); ?></span>
+																<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
 															</td>
 															<td class="text-center"><span class="text-primary"><?php echo $per->kode_alat.'/'.$per->no_spk.'/'.date('y', strtotime($per->tgl_terbit)) ?></span></td>
 															<td class="text-center"><?php echo $per->nama_jenis_izin?></td>
@@ -210,7 +210,7 @@
 													?>
 													<tr>
 														<td class="text-center"><span class="text-primary">
-															<?php echo $tolak->id_perizinan.'/'.date('Ymd', strtotime($tolak->created_at_izin)); ?></span>
+															<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
 														</td>
 														<td class="text-center"><?php echo $nama_alat?></td>
 														<td class="text-center"><?php echo date_indo($izin)?></td>

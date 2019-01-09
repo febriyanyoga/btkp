@@ -64,8 +64,7 @@
 									?>
 
 									<div class="widget has-shadow">
-										<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne"
-										aria-expanded="true">
+										<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne" aria-expanded="true">
 										<div class="card-title w-100"> <b>1. Identitas Service Station</b></div>
 									</a>
 									<div id="IconRightCollapseOne" class="card-body collapse show" style="color:black;" data-parent="#accordion-icon-right">
@@ -147,10 +146,10 @@
 										</div>
 
 									</div>
-									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
+									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo" aria-expanded="true">
 										<div class="card-title w-100">2. Permohonan SPK</div>
 									</a>
-									<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
+									<div id="IconRightCollapseTwo" class="card-body collapse show" data-parent="#accordion-icon-right">
 										<div class="form-group row mb-5">
 											<div class="col-xl-4">
 												<div class="styled-checkbox">
@@ -177,10 +176,10 @@
 										?>
 
 									</div>
-									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseThree">
+									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseThree" aria-expanded="true">
 										<div class="card-title w-100">3. Dokumen Pendukung</div>
 									</a>
-									<div id="IconRightCollapseThree" class="card-body collapse" data-parent="#accordion-icon-right">
+									<div id="IconRightCollapseThree" class="card-body collapse show" data-parent="#accordion-icon-right">
 										<?php
 										$detail_berkas = $this->TatausahaM->get_berkas_by_id($per->id_perizinan)->result();
 									// print_r($detail_berkas);
