@@ -69,7 +69,7 @@ Author: SAEROX
 				<div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
 					<!-- Begin Logo -->
 					<div class="navbar-header">
-						<a href="<?php echo site_url('tatausaha')?>" class="navbar-brand">
+						<a href="<?php echo site_url('tatausaha'); ?>" class="navbar-brand">
 							<div class="brand-image brand-big">
 								<img src="<?php echo site_url('AdminC'); ?>assets/logo.png" alt="logo" style="width: 70px;" class="logo-big">
 							</div>
@@ -218,18 +218,18 @@ Author: SAEROX
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('datapegawai'); ?>">
-								<i class="ion-clipboard"></i><span> Data Pegawai</span>
+							<a href="<?php echo site_url('datapengguna'); ?>">
+								<i class="ion-clipboard"></i><span> Data Pengguna</span>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('datauser'); ?>">
-								<i class="ti ti-write"></i><span> Data User </span>
+							<a href="<?php echo site_url('dataalat'); ?>">
+								<i class="ti ti-write"></i><span> Data Alat</span>
 							</a>
 						</li>
 						<li>
-							<a href="<?php echo site_url('reinspeksi'); ?>">
-								<i class="ti ti-notepad"></i><span> Data Inspeksi</span>
+							<a href="<?php echo site_url('datasyarat'); ?>">
+								<i class="ti ti-notepad"></i><span> Data Syarat</span>
 							</a>
 						</li>
 					</ul>
