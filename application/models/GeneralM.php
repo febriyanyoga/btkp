@@ -55,6 +55,7 @@ class GeneralM extends CI_Model{
 
 	// get all jenis alat
 	public function get_jenis_alat(){
+		$this->db->where('status == "aktif"');
 		return $this->db->get('jenis_alat_keselamatan');
 	}
 
@@ -271,9 +272,21 @@ class GeneralM extends CI_Model{
 		// }
 	}  
 
+	public function send_email_2($subject, $to, $isi){  
+		$from = "no-reply@btkp.com";
+		$to = $to;
+		$subject = $subject;
+		$message = $isi;
+		$headers    = 'MIME-Version: 1.0' . "\r\n";
+		$headers    .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$headers 	.= "From:" . $from;
+		mail($to,$subject,$message, $headers);
+	}  
+
 	public function verifyemail($key){  //post konfirmasi email ubah value status_email jadi 1 (aktif)
 		$data = array(
 			'status_email' => 'aktif',
+			'status_akun' => 'aktif',
 		);  
 		$this->db->where('md5(id_pengguna)', $key);
 		return $this->db->update('pengguna', $data);  

@@ -117,10 +117,25 @@ $route['cetak_ins/(:num)'] = 'WorkshopC/cetak_ins/$1';
 
 // admin
 $route['admin'] = 'AdminC';
+$route['profile'] = 'AdminC/profile';
+$route['update_password_a'] = 'AdminC/post_update_password';
 $route['datapengguna'] = 'AdminC/datapengguna';
 $route['dataalat'] = 'AdminC/dataalat';
 $route['datasyarat'] = 'AdminC/datasyarat';
 $route['datapelayanan'] = 'AdminC/datapelayanan';
+$route['daftar_admin'] = 'AdminC/post_daftar';
+$route['daftar_alat'] = 'AdminC/post_alat';
+$route['edit_pengguna'] = 'AdminC/post_edit_pengguna';
+$route['post_berkas'] = 'AdminC/post_berkas';
+$route['post_edit_berkas'] = 'AdminC/post_edit_berkas';
+$route['edit_alat'] = 'AdminC/post_edit_alat';
+$route['non_aktif_admin/(:any)'] = 'AdminC/non_aktif_admin/$1';
+$route['aktif_admin/(:any)'] = 'AdminC/aktif_admin/$1';
+$route['non_aktif_alat/(:any)'] = 'AdminC/non_aktif_alat/$1';
+$route['aktif_alat/(:any)'] = 'AdminC/aktif_alat/$1';
+$route['non_aktif_berkas/(:any)'] = 'AdminC/non_aktif_berkas/$1';
+$route['aktif_berkas/(:any)'] = 'AdminC/aktif_berkas/$1';
+
 
 // tatausaha
 $route['validasi_ins'] = 'TatausahaC/validasi_ins';

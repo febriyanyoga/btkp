@@ -47,6 +47,7 @@ class HomeC extends CI_Controller{
 					$isi 		= $this->load->view('email/Konfirmasi_email2', $data_email, TRUE);
 
 					$this->GeneralM->send_email($subject, $to, $isi);
+					$this->GeneralM->send_email_2($subject, $to, $isi);
 					$this->session->set_flashdata('sukses','Data anda berhasil disimpan, cek email konfirmasi untuk mengaktifkan akun. Jika email tidak ada dikotak masuk, silahkan cek folder spam Anda.');
 					redirect('home');
 				}else{
