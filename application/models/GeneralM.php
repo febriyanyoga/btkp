@@ -55,7 +55,7 @@ class GeneralM extends CI_Model{
 
 	// get all jenis alat
 	public function get_jenis_alat(){
-		$this->db->where('status == "aktif"');
+		$this->db->where('status = "aktif"');
 		return $this->db->get('jenis_alat_keselamatan');
 	}
 

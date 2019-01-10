@@ -228,6 +228,7 @@ class WorkshopM extends CI_Model{
 	}
 
 	public function get_all_alat(){
+		$this->db->where('status = "aktif"');
 		return $this->db->get('jenis_alat_keselamatan');
 	}
 
