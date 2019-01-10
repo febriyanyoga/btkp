@@ -243,4 +243,39 @@ class GeneralM extends CI_Model{
 		$this->db->update('perusahaan', $data);
 		return TRUE;
 	}
+
+	public function send_email($subject, $to, $isi){  
+		$config = Array(  
+			'protocol' 	=> 'smtp',  
+			'smtp_host' => 'ssl://smtp.googlemail.com',  
+			'smtp_port' => 465,  
+			'smtp_user' => 'aplikasibtkp@gmail.com',   
+			'smtp_pass' => 'Btkp2018',   
+			'mailtype' 	=> 'html',   
+			'charset' 	=> 'iso-8859-1'  
+		);  
+		$this->load->library('email', $config);  
+		$this->email->set_newline("\r\n");  
+		$this->email->from('no-reply@btkp.com', 'Admin BTKP');   
+		$this->email->to($to);   
+		$this->email->subject($subject);   
+		// $data = 1;
+		// $isi = $this->load->view('email/Konfirmasi_email2', $data, TRUE);
+
+		$this->email->message($isi);  
+		$this->email->send();
+		// if (!$this->email->send()) {  
+		// 	show_error($this->email->print_debugger());   
+		// }else{  
+		// 	$this->session->set_flashdata('sukses','Data anda berhasil disimpan, cek email konfirmasi untuk mengaktifkan akun. Jika email tidak ada dikotak masuk, silahkan cek folder spam Anda.');
+		// }
+	}  
+
+	public function verifyemail($key){  //post konfirmasi email ubah value status_email jadi 1 (aktif)
+		$data = array(
+			'status_email' => 'aktif',
+		);  
+		$this->db->where('md5(id_pengguna)', $key);
+		return $this->db->update('pengguna', $data);  
+	}
 }
