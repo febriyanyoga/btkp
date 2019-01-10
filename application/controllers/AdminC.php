@@ -10,7 +10,7 @@ class AdminC extends CI_Controller
         parent::__construct();
         in_access();
         admin_access();
-        $this->load->model(['LoginM','GeneralM']);
+        $this->load->model(['LoginM', 'GeneralM']);
     }
 
     public function index()
@@ -30,24 +30,31 @@ class AdminC extends CI_Controller
         $this->load->view('admin/Layout', $data);
     }
 
-    public function datauser()
+    public function datapengguna()
     {
         $data['title'] = 'BTKP - Data User';
-        $data['isi'] = $this->load->view('admin/datauser_v', $this->data, true);
+        $data['isi'] = $this->load->view('admin/datapengguna_v', $this->data, true);
         $this->load->view('admin/Layout', $data);
     }
 
-    public function datapegawai()
+    public function dataalat()
     {
         $data['title'] = 'BTKP - Data Pegawai';
-        $data['isi'] = $this->load->view('admin/datapegawai_v', $this->data, true);
+        $data['isi'] = $this->load->view('admin/dataalat_v', $this->data, true);
         $this->load->view('admin/Layout', $data);
     }
 
-    public function dataalat_v()
+    public function datasyarat()
     {
         $data['title'] = 'BTKP - Data Pegawai';
-        $data['isi'] = $this->load->view('admin/datapegawai_v', $this->data, true);
+        $data['isi'] = $this->load->view('admin/datasyarat_v', $this->data, true);
+        $this->load->view('admin/Layout', $data);
+    }
+
+    public function datapelayanan()
+    {
+        $data['title'] = 'BTKP - Data Pegawai';
+        $data['isi'] = $this->load->view('admin/datapelayanan', $this->data, true);
         $this->load->view('admin/Layout', $data);
     }
 }
