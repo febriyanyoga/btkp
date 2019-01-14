@@ -2,6 +2,7 @@
 	<div class="col-xl-12">
 		<!-- Tabs Dropdown -->
 		<?php
+		// print_r($alat_izin);
 		$data=$this->session->flashdata('sukses');
 		if($data!=""){ 
 			?>
@@ -52,8 +53,21 @@
 					<div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
 						<div class="widget-body">
 							<div class="text-right mb-3">
-								<a href="" class="btn btn-success btn-md" data-toggle="modal" data-target="#tambahinspeksi"><i class="la la-pencil"></i>Tambah Permohonan</i>
-								</a> <br>
+								<?php
+								if($alat_izin == 'none'){
+									?>
+									<a href="#" title="anda tidak memiliki perizinan aktif" class="btn btn-success btn-md" disabled><i class="la la-pencil"></i>Tambah Permohonan</i>
+									</a> 
+									<br>
+									<?php
+								}else{
+									?>
+									<a href="#" class="btn btn-success btn-md" data-toggle="modal" data-target="#tambahinspeksi"><i class="la la-pencil"></i>Tambah Permohonan</i>
+									</a> 
+									<br>
+									<?php
+								}
+								?>
 							</div>
 							<div class="table-responsive">
 								<table id="myTable" class="table mb-0">
@@ -497,9 +511,11 @@
 							<select class="form-control" name="id_jenis_alat" required="required">
 								<?php 
 								foreach ($alat as $al) {
-									?>
-									<option value="<?php echo $al->id_jenis_alat?>"><?php echo $al->nama_alat?></option>
-									<?php
+									if(in_array($al->id_jenis_alat, $alat_izin)){
+										?>
+										<option value="<?php echo $al->id_jenis_alat?>"><?php echo $al->nama_alat?></option>
+										<?php
+									}
 								}
 								?>
 							</select>

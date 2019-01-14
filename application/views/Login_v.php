@@ -323,10 +323,10 @@
 			<script src="<?php echo base_url(); ?>assets/app/js/validate/jquery.validate.js"></script>
 			<script type="text/javascript">
 				$().ready(function () {
-					$("#alert-success").fadeTo(2000, 500).slideUp(500, function(){
+					$("#alert-success").fadeTo(4000, 500).slideUp(500, function(){
 						$("#alert-success").slideUp(500);
 					});
-					$("#alert-danger").fadeTo(2000, 500).slideUp(500, function(){
+					$("#alert-danger").fadeTo(4000, 500).slideUp(500, function(){
 						$("#alert-danger").slideUp(500);
 					});
 					$('#signupForm').validate({

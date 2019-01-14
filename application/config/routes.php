@@ -55,16 +55,17 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 
 // index
-$route['daftar'] = 'HomeC/post_daftar';
-$route['home'] = 'HomeC';
-$route['login'] = 'HomeC/post_login';
-$route['logout'] = 'HomeC/logout';
+$route['daftar'] 		= 'HomeC/post_daftar';
+$route['home'] 			= 'HomeC';
+$route['login'] 		= 'HomeC/post_login';
+$route['logout'] 		= 'HomeC/logout';
+$route['konfirmasi/(:any)'] 	= 'HomeC/konfirmasi/$1';
 // $route['tentang'] = 'website/tentang';
 
 // workshop
 $route['workshop'] = 'WorkshopC';
 $route['data_perizinan'] = 'WorkshopC/data_perizinan';
-$route['profile'] = 'WorkshopC/profile';
+$route['profile_w'] = 'WorkshopC/profile';
 $route['data_reinspeksi'] = 'WorkshopC/data_reinspeksi';
 $route['pelaporan'] = 'WorkshopC/pelaporan';
 $route['izin_baru'] = 'WorkshopC/perizinan_baru_1';
@@ -102,7 +103,7 @@ $route['post_type_approval1'] = 'WorkshopC/post_type_approval1';
 $route['post_pengujian'] = 'WorkshopC/post_pengujian';
 
 $route['post_izin_baru1'] = 'WorkshopC/post_izin_baru1';
-$route['post_berkas'] = 'WorkshopC/post_berkas';
+$route['post_berkas_w'] = 'WorkshopC/post_berkas';
 $route['post_berkas_perpanjang'] = 'WorkshopC/post_berkas_perpanjang';
 $route['post_berkas_perpanjang_tidak'] = 'WorkshopC/post_berkas_perpanjang_tidak';
 
@@ -116,10 +117,25 @@ $route['cetak_ins/(:num)'] = 'WorkshopC/cetak_ins/$1';
 
 // admin
 $route['admin'] = 'AdminC';
+$route['profile'] = 'AdminC/profile';
+$route['update_password_a'] = 'AdminC/post_update_password';
 $route['datapengguna'] = 'AdminC/datapengguna';
 $route['dataalat'] = 'AdminC/dataalat';
 $route['datasyarat'] = 'AdminC/datasyarat';
 $route['datapelayanan'] = 'AdminC/datapelayanan';
+$route['daftar_admin'] = 'AdminC/post_daftar';
+$route['daftar_alat'] = 'AdminC/post_alat';
+$route['edit_pengguna'] = 'AdminC/post_edit_pengguna';
+$route['post_berkas'] = 'AdminC/post_berkas';
+$route['post_edit_berkas'] = 'AdminC/post_edit_berkas';
+$route['edit_alat'] = 'AdminC/post_edit_alat';
+$route['non_aktif_admin/(:any)'] = 'AdminC/non_aktif_admin/$1';
+$route['aktif_admin/(:any)'] = 'AdminC/aktif_admin/$1';
+$route['non_aktif_alat/(:any)'] = 'AdminC/non_aktif_alat/$1';
+$route['aktif_alat/(:any)'] = 'AdminC/aktif_alat/$1';
+$route['non_aktif_berkas/(:any)'] = 'AdminC/non_aktif_berkas/$1';
+$route['aktif_berkas/(:any)'] = 'AdminC/aktif_berkas/$1';
+
 
 // tatausaha
 $route['validasi_ins'] = 'TatausahaC/validasi_ins';

@@ -81,6 +81,8 @@ class LoginM extends CI_Model{
     // untuk insert ke table
     public function insert($table, $data){
     	$this->db->insert($table, $data);
-    	return TRUE;
+        $insert_id = $this->db->insert_id();
+
+        return  $insert_id;
     }
 }

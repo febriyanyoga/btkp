@@ -4,7 +4,7 @@ class HomeC extends CI_Controller{
 	var $data = array();
 	public function __construct(){
 		parent::__construct();  
-		$this->load->model('LoginM');
+		$this->load->model(['LoginM','GeneralM']);
 
 	}
 
@@ -35,11 +35,21 @@ class HomeC extends CI_Controller{
 					'password' 			=> md5($this->input->post('password')),
 				);
 
-				if($this->LoginM->insert('pengguna', $data)){
-				// $this->send($email_akun, $email_encryption);
+
+				if($id = $this->LoginM->insert('pengguna', $data)){
+
+					$data_email = array(
+						'nama' 				=> $this->input->post('nama_pengguna'),
+						'key' 				=> md5($id),
+					);
+					$subject	= 'Konfirmasi akun email';
+					$to			= $this->input->post('email_pengguna');
+					$isi 		= $this->load->view('email/Konfirmasi_email2', $data_email, TRUE);
+
+					$this->GeneralM->send_email($subject, $to, $isi);
+					$this->GeneralM->send_email_2($subject, $to, $isi);
 					$this->session->set_flashdata('sukses','Data anda berhasil disimpan, cek email konfirmasi untuk mengaktifkan akun. Jika email tidak ada dikotak masuk, silahkan cek folder spam Anda.');
 					redirect('home');
-
 				}else{
 					$this->session->set_flashdata('error','Data anda tidak berhasil disimpan');
 					redirect_back();
@@ -105,30 +115,13 @@ class HomeC extends CI_Controller{
 		redirect('home');
 	}
 
-	function sendMail(){
-		$config = array(
-			'protocol' 	=> 'smtp',
-			'smtp_host' => 'ssl://smtp.googlemail.com',
-			'smtp_port' => 465,
-  			'smtp_user' => 'xxx@gmail.com',
-  			'smtp_pass' => 'xxx',
-  			'mailtype' 	=> 'html',
-  			'charset' 	=> 'iso-8859-1',
-  			'wordwrap' 	=> TRUE
-  		);
-
-		$message = '';
-		$this->load->library('email', $config);
-		$this->email->set_newline("\r\n");
-     	$this->email->from('xxx@gmail.com');
-      	$this->email->to('xxx@gmail.com');
-      	$this->email->subject('Resume from JobsBuddy for your Job posting');
-      	$this->email->message($message);
-
-      	if($this->email->send()){
-      		echo 'Email sent.';
-      	}else{
-      		show_error($this->email->print_debugger());
-      	}
-    }
+	public function konfirmasi($key){  //post link konfirmasi
+		if($this->GeneralM->verifyemail($key)){  
+			$this->session->set_flashdata('sukses','Email anda berhasil dikonfirmasi. Silahkan masuk...');
+			redirect('home');
+		}else{  
+			$this->session->set_flashdata('error','Email anda belum berhasil dikonfirmasi. Silahkan mencoba kembali...');
+			redirect('home');
+		}  
+	}
 }

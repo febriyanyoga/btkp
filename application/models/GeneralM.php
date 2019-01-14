@@ -55,6 +55,7 @@ class GeneralM extends CI_Model{
 
 	// get all jenis alat
 	public function get_jenis_alat(){
+		$this->db->where('status = "aktif"');
 		return $this->db->get('jenis_alat_keselamatan');
 	}
 
@@ -242,5 +243,52 @@ class GeneralM extends CI_Model{
 		$this->db->where('id_perusahaan', $id_perusahaan);
 		$this->db->update('perusahaan', $data);
 		return TRUE;
+	}
+
+	public function send_email($subject, $to, $isi){  
+		$config = Array(  
+			'protocol' 	=> 'smtp',  
+			'smtp_host' => 'ssl://smtp.googlemail.com',  
+			'smtp_port' => 465,  
+			'smtp_user' => 'aplikasibtkp@gmail.com',   
+			'smtp_pass' => 'Btkp2018',   
+			'mailtype' 	=> 'html',   
+			'charset' 	=> 'iso-8859-1'  
+		);  
+		$this->load->library('email', $config);  
+		$this->email->set_newline("\r\n");  
+		$this->email->from('no-reply@btkp.com', 'Admin BTKP');   
+		$this->email->to($to);   
+		$this->email->subject($subject);   
+		// $data = 1;
+		// $isi = $this->load->view('email/Konfirmasi_email2', $data, TRUE);
+
+		$this->email->message($isi);  
+		$this->email->send();
+		// if (!$this->email->send()) {  
+		// 	show_error($this->email->print_debugger());   
+		// }else{  
+		// 	$this->session->set_flashdata('sukses','Data anda berhasil disimpan, cek email konfirmasi untuk mengaktifkan akun. Jika email tidak ada dikotak masuk, silahkan cek folder spam Anda.');
+		// }
+	}  
+
+	public function send_email_2($subject, $to, $isi){  
+		$from = "no-reply@btkp.com";
+		$to = $to;
+		$subject = $subject;
+		$message = $isi;
+		$headers    = 'MIME-Version: 1.0' . "\r\n";
+		$headers    .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+		$headers 	.= "From:" . $from;
+		mail($to,$subject,$message, $headers);
+	}  
+
+	public function verifyemail($key){  //post konfirmasi email ubah value status_email jadi 1 (aktif)
+		$data = array(
+			'status_email' => 'aktif',
+			'status_akun' => 'aktif',
+		);  
+		$this->db->where('md5(id_pengguna)', $key);
+		return $this->db->update('pengguna', $data);  
 	}
 }
