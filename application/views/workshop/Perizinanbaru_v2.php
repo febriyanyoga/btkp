@@ -66,7 +66,7 @@
 										<div class="section-title mt-5 mb-5">
 											<h4>Lampiran Dokumen Pendukung</h4>
 										</div>
-										<form action="<?php echo site_url('post_berkas')?>" enctype="multipart/form-data" method="post">
+										<form action="<?php echo site_url('post_berkas_w')?>" enctype="multipart/form-data" method="post">
 											<!-- <div class="section-title mt-5 mb-5">
 												<h4>Jenis Permohonan Izin SPK</h4>
 											</div> -->

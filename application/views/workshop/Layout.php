@@ -120,14 +120,14 @@
     							alt="..." class="avatar rounded-circle"></a>
     							<ul aria-labelledby="user" class="user-size dropdown-menu">
     								<li class="welcome">
-    									<a href="<?php echo site_url('profile'); ?>" class="edit-profil"><i class="la la-gear"></i></a>
+    									<a href="<?php echo site_url('profile_w'); ?>" class="edit-profil"><i class="la la-gear"></i></a>
     									<img src="<?php echo base_url(); ?>assets/app/img/avatar/images.png" alt="..." class="rounded-circle">
     								</li>
     								<li>
     									<p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
     								</li>
     								<li>
-    									<a href="<?php echo site_url('profile'); ?>" class="dropdown-item">
+    									<a href="<?php echo site_url('profile_w'); ?>" class="dropdown-item">
     										Profile
     									</a>
     								</li>

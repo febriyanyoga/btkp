@@ -271,4 +271,13 @@ class WorkshopM extends CI_Model{
 		$this->db->join('perusahaan','perusahaan.id_pengguna = pengguna.id_pengguna');
 		return $this->db->get('inspeksi');
 	}
+
+	public function get_alat_izin($id_pengguna){
+		$this->db->select('id_jenis_alat');
+		$this->db->from('perizinan');
+		$this->db->where('status_pembayaran = "paid"');
+		$this->db->where('date(created_at_izin) >= ', date('Y-m-d'));
+		$this->db->where('id_pengguna', $id_pengguna);
+		return $this->db->get();
+	}
 }

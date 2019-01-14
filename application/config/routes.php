@@ -65,7 +65,7 @@ $route['konfirmasi/(:any)'] 	= 'HomeC/konfirmasi/$1';
 // workshop
 $route['workshop'] = 'WorkshopC';
 $route['data_perizinan'] = 'WorkshopC/data_perizinan';
-$route['profile'] = 'WorkshopC/profile';
+$route['profile_w'] = 'WorkshopC/profile';
 $route['data_reinspeksi'] = 'WorkshopC/data_reinspeksi';
 $route['pelaporan'] = 'WorkshopC/pelaporan';
 $route['izin_baru'] = 'WorkshopC/perizinan_baru_1';
@@ -103,7 +103,7 @@ $route['post_type_approval1'] = 'WorkshopC/post_type_approval1';
 $route['post_pengujian'] = 'WorkshopC/post_pengujian';
 
 $route['post_izin_baru1'] = 'WorkshopC/post_izin_baru1';
-$route['post_berkas'] = 'WorkshopC/post_berkas';
+$route['post_berkas_w'] = 'WorkshopC/post_berkas';
 $route['post_berkas_perpanjang'] = 'WorkshopC/post_berkas_perpanjang';
 $route['post_berkas_perpanjang_tidak'] = 'WorkshopC/post_berkas_perpanjang_tidak';
 

@@ -742,6 +742,17 @@ class WorkshopC extends CI_Controller
         $id_pengguna   = $this->session->userdata('id_pengguna');
         $data['title'] = 'BTKP - Data Reinspeksi';
         $this->data['alat']     = $this->WorkshopM->get_all_alat($id_pengguna)->result();
+        if($this->WorkshopM->get_alat_izin($id_pengguna)->num_rows() > 0){
+            $alat = $this->WorkshopM->get_alat_izin($id_pengguna)->result();
+            $array_alat = array();
+            foreach ($alat as $al) {
+                array_push($array_alat, $al->id_jenis_alat);
+            }
+            $this->data['alat_izin']    = $array_alat; 
+        }else{
+            $this->data['alat_izin']    = 'none'; 
+        }
+
         $this->data['data_inspeksi']     = $this->WorkshopM->get_inspeksi_by_id_pengguna($id_pengguna)->result();
         $data['isi'] = $this->load->view('workshop/reinspeksi/datareinspeksi_v', $this->data, true);
         $this->load->view('workshop/Layout', $data);
