@@ -104,6 +104,16 @@ class KasieC extends CI_Controller{
 				'status' 			=> $this->input->post('status'),
 			);
 			if($this->GeneralM->insert_persetujuan($data)) {
+				$data_email = array(
+					'nama'                  => $this->input->post('nama_pengguna'),
+					'nomor'                 => $this->input->post('nomor'),
+				);
+				$subject    = 'Pemberitahuan';
+				$to         = $this->input->post('email_pengguna');
+				$isi        = $this->load->view('email/Notifikasi_email', $data_email, TRUE);
+
+				$this->GeneralM->send_email($subject, $to, $isi);
+				$this->GeneralM->send_email_2($subject, $to, $isi);
 				$this->session->set_flashdata('sukses', 'Permohonan di proses ketahap selanjutnya.');
 				redirect('izin_kasie');
 			} else {
@@ -140,6 +150,16 @@ class KasieC extends CI_Controller{
 				'status' 			=> $this->input->post('status'),
 			);
 			if($this->GeneralM->insert_persetujuan($data)) {
+				$data_email = array(
+					'nama'                  => $this->input->post('nama_pengguna'),
+					'nomor'                 => $this->input->post('nomor'),
+				);
+				$subject    = 'Pemberitahuan';
+				$to         = $this->input->post('email_pengguna');
+				$isi        = $this->load->view('email/Notifikasi_email', $data_email, TRUE);
+
+				$this->GeneralM->send_email($subject, $to, $isi);
+				$this->GeneralM->send_email_2($subject, $to, $isi);
 				$this->session->set_flashdata('sukses', 'Anda telah menolak permohonan ini.');
 				redirect('izin_kasie');
 			} else {
@@ -210,10 +230,33 @@ class KasieC extends CI_Controller{
 
     		if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
     			if($this->input->post('status') == 'diterima'){
+    				$data_email = array(
+    					'nama'                  => $this->input->post('nama_pengguna'),
+    					'nomor'                 => $this->input->post('nomor'),
+    					'salam'                 => 'Selamat . . .',
+    					'isi'                   => '<b>Telah berhasil</b> di verifikasi oleh Kasie Balai Teknologi Kelautan dan Pelayaran (BTKP). Silahkan masuk ke aplikasi untuk melakukan tahapan selanjutnya yaitu pembayaran dan konfirmasi pembayaran.<br> Terimakasih.',
+    				);
+    				$subject    = 'Pemberitahuan';
+    				$to         = $this->input->post('email_pengguna');
+    				$isi        = $this->load->view('email/Notifikasi_verifikasi', $data_email, TRUE);
+
     				$this->session->set_flashdata('sukses', 'Permohonan di proses ketahap selanjutnya.');
     			}else{
+    				$data_email = array(
+    					'nama'                  => $this->input->post('nama_pengguna'),
+    					'nomor'                 => $this->input->post('nomor'),
+    					'salam'                 => 'Mohon maaf. . .',
+    					'isi'                   => '<b>Belum berhasil</b> di verifikasi oleh Kasie Balai Teknologi Kelautan dan Pelayaran (BTKP) Silahkan masuk ke aplikasi untuk melihat detail permohonan.<br> Terimakasih.',
+    				);
+    				$subject    = 'Pemberitahuan';
+    				$to         = $this->input->post('email_pengguna');
+    				$isi        = $this->load->view('email/Notifikasi_verifikasi', $data_email, TRUE);
     				$this->session->set_flashdata('sukses', 'Anda telah menolak permohonan  ini.');
     			}
+    				  // kirim email
+    			$this->GeneralM->send_email($subject, $to, $isi);
+    			$this->GeneralM->send_email_2($subject, $to, $isi);
+               		 // end kirim email
     			redirect('pengujiankasie');
     		} else {
     			$this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');

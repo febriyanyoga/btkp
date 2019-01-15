@@ -452,7 +452,7 @@
                                             													}else{
                                             														if ($ujian->no_awal =="") {
                                             															?>
-                                            															<span title="Proses validasi pembayaran dan penerbitan" style="width:100px;"><span class="badge-text badge-text-small warning">Proses</span></span>
+                                            															<span title="proses" style="width:100px;"><span class="badge-text badge-text-small warning">Proses</span></span>
                                             															<?php
                                             														}else{
                                             															?>

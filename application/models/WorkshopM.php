@@ -276,7 +276,7 @@ class WorkshopM extends CI_Model{
 		$this->db->select('id_jenis_alat');
 		$this->db->from('perizinan');
 		$this->db->where('status_pembayaran = "paid"');
-		$this->db->where('date(created_at_izin) >= ', date('Y-m-d'));
+		$this->db->where('date(tgl_expired) >= ', date('Y-m-d'));
 		$this->db->where('id_pengguna', $id_pengguna);
 		return $this->db->get();
 	}

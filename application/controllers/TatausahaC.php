@@ -122,6 +122,16 @@ class TatausahaC extends CI_Controller
             );
 
             if ($this->GeneralM->insert_persetujuan($data)) {
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'nomor'                 => $this->input->post('nomor'),
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_email', $data_email, TRUE);
+
+                $this->GeneralM->send_email($subject, $to, $isi);
+                $this->GeneralM->send_email_2($subject, $to, $isi);
                 $this->session->set_flashdata('sukses', 'Verifikasi berhasil');
                 redirect('perizinan');
             } else {
@@ -152,6 +162,16 @@ class TatausahaC extends CI_Controller
 
             if ($this->GeneralM->insert_persetujuan($data)) {
                 if($this->input->post('status') == 'diterima'){
+                    $data_email = array(
+                        'nama'                  => $this->input->post('nama_pengguna'),
+                        'nomor'                 => $this->input->post('nomor'),
+                    );
+                    $subject    = 'Pemberitahuan';
+                    $to         = $this->input->post('email_pengguna');
+                    $isi        = $this->load->view('email/Notifikasi_email', $data_email, TRUE);
+
+                    $this->GeneralM->send_email($subject, $to, $isi);
+                    $this->GeneralM->send_email_2($subject, $to, $isi);
                     $this->session->set_flashdata('sukses', 'Permohonan di proses ketahap selanjutnya.');
                 }else{
                     $this->session->set_flashdata('sukses', 'Anda telah menolak permohonan ini.');
@@ -183,7 +203,21 @@ class TatausahaC extends CI_Controller
                 'status' => $this->input->post('status'),
             );
 
+            $data_email = array(
+                'nama'                  => $this->input->post('nama_pengguna'),
+                'nomor'                 => $this->input->post('nomor'),
+                'salam'                 => 'Mohon maaf. . .',
+                'isi'                   => '<b>Belum berhasil</b> di verifikasi oleh Admin Balai Teknologi Kelautan dan Pelayaran (BTKP) Silahkan masuk ke aplikasi untuk melihat detail permohonan.<br> Terimakasih.',
+            );
+            $subject    = 'Pemberitahuan';
+            $to         = $this->input->post('email_pengguna');
+            $isi        = $this->load->view('email/Notifikasi_verifikasi', $data_email, TRUE);
+
             if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
+                 // kirim email
+                $this->GeneralM->send_email($subject, $to, $isi);
+                $this->GeneralM->send_email_2($subject, $to, $isi);
+                // end kirim email
                 $this->session->set_flashdata('sukses', 'Anda telah menolak permohonan  ini.');
                 redirect('pengujian');
             } else {
@@ -226,7 +260,21 @@ class TatausahaC extends CI_Controller
                 'masa_berlaku_billing_1' => $this->input->post('masa_berlaku_billing'),
             );
 
+            $data_email = array(
+                'nama'                  => $this->input->post('nama_pengguna'),
+                'nomor'                 => $this->input->post('nomor'),
+                'salam'                 => 'Selamat . . .',
+                'isi'                   => '<b>Telah berhasil</b> di verifikasi oleh Admin Balai Teknologi Kelautan dan Pelayaran (BTKP). Silahkan masuk ke aplikasi untuk melakukan tahapan selanjutnya yaitu pembayaran dan konfirmasi pembayaran.<br> Terimakasih.',
+            );
+            $subject    = 'Pemberitahuan';
+            $to         = $this->input->post('email_pengguna');
+            $isi        = $this->load->view('email/Notifikasi_verifikasi', $data_email, TRUE);
+
             if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
+                 // kirim email
+                $this->GeneralM->send_email($subject, $to, $isi);
+                $this->GeneralM->send_email_2($subject, $to, $isi);
+                // end kirim email
                 $this->TatausahaM->insert_billing_ujian($id_pengujian, $data_billing);
                 $this->session->set_flashdata('sukses', 'Permohonan di proses ketahap selanjutnya.');
                 redirect('pengujian');
@@ -306,11 +354,34 @@ class TatausahaC extends CI_Controller
             $id_pengujian           = $this->input->post('id_pengujian');
             $status_pembayaran_1    = $this->input->post('status_pembayaran_1');
             if($status_pembayaran_1 == 'paid'){
+                 //email notifikasi
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'kode_billing'          => $this->input->post('kode_billing_1'),
+                    'nomor'                 => $this->input->post('nomor'),
+                    'salam'                 => 'Selamat . . .',
+                    'isi'                   => '<b>Telah berhasil</b> di verifikasi dan diterbitkan oleh Admin Balai Teknologi Kelautan dan Pelayaran (BTKP). Silahkan masuk ke aplikasi untuk melakukan tahapan selanjutnya.<br> Terimakasih.',
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
+
                 $data = array(
                     'status_pembayaran_1' => $status_pembayaran_1,
                     'ket_pembayaran_1'    => '',
                 );
             }elseif ($status_pembayaran_1 == 'unpaid'){
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'kode_billing'          => $this->input->post('kode_billing_1'),
+                    'nomor'                 => $this->input->post('nomor'),
+                    'salam'                 => 'Mohon maaf. . .',
+                    'isi'                   => '<b>Belum berhasil</b> di verifikasi oleh Admin Balai Teknologi Kelautan dan Pelayaran (BTKP) Silahkan masuk ke aplikasi untuk melakukan konfirmasi ulang.<br> Terimakasih.',
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
+
                 $data = array(
                     'status_pembayaran_1'   => $status_pembayaran_1,
                     'ket_pembayaran_1'      => $this->input->post('ket_pembayaran_1'),
@@ -323,6 +394,10 @@ class TatausahaC extends CI_Controller
                 }else{
                     $this->session->set_flashdata('sukses', 'Anda menolak bukti pembayaran.');
                 }
+                  // kirim email
+                $this->GeneralM->send_email($subject, $to, $isi);
+                $this->GeneralM->send_email_2($subject, $to, $isi);
+                // end kirim email
                 redirect_back();
             } else {
                 $this->session->set_flashdata('error', 'Validasi pembayaran gagal, cek kembali data yang anda masukkan');
@@ -425,6 +500,19 @@ class TatausahaC extends CI_Controller
             $ket_pembayaran_2       = $this->input->post('ket_pembayaran_2');
 
             if($status_pembayaran_2 == 'paid'){
+
+                //email notifikasi
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'kode_billing'          => $this->input->post('kode_billing_2'),
+                    'nomor'                 => $this->input->post('nomor'),
+                    'salam'                 => 'Selamat . . .',
+                    'isi'                   => '<b>Telah berhasil</b> di verifikasi dan diterbitkan oleh Admin Balai Teknologi Kelautan dan Pelayaran (BTKP). Silahkan masuk ke aplikasi untuk melihat detail permohonandan lainnya.<br> Terimakasih.',
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
+
                 $data = array(
                     'status_pembayaran_2'   => $status_pembayaran_2, 
                     'kode_barcode'          => $barcode, 
@@ -435,6 +523,17 @@ class TatausahaC extends CI_Controller
                     'no_akhir'              => $no_akhir, 
                 );
             }else{
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'kode_billing'          => $this->input->post('kode_billing_2'),
+                    'nomor'                 => $this->input->post('nomor'),
+                    'salam'                 => 'Mohon maaf. . .',
+                    'isi'                   => '<b>Belum berhasil</b> di verifikasi oleh Admin Balai Teknologi Kelautan dan Pelayaran (BTKP) Silahkan masuk ke aplikasi untuk melakukan konfirmasi ulang.<br> Terimakasih.',
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
+
                 $data = array(
                     'status_pembayaran_2'   => $status_pembayaran_2, 
                     'kode_barcode'          => '', 
@@ -471,6 +570,10 @@ class TatausahaC extends CI_Controller
                 }else{
                     $this->session->set_flashdata('sukses', 'Anda menolak bukti pembayaran.');
                 }
+                    // kirim email
+                $this->GeneralM->send_email($subject, $to, $isi);
+                $this->GeneralM->send_email_2($subject, $to, $isi);
+                // end kirim email
                 redirect_back();
             }else{
                 $this->session->set_flashdata('error', 'Sertifikat tidak berhasil diterbitkan, cek kembali data yang anda masukkan.');
@@ -513,6 +616,18 @@ class TatausahaC extends CI_Controller
             $barcode = $kode_alat.$no_spk.date('y');
 
             if($this->input->post('status_pembayaran') == 'unpaid'){
+                //email notifikasi
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'kode_billing'          => $this->input->post('kode_billing'),
+                    'nomor'                 => $this->input->post('nomor'),
+                    'salam'                 => 'Mohon maaf. . .',
+                    'isi'                   => '<b>Belum berhasil</b> di verifikasi oleh Admin Balai Teknologi Kelautan dan Pelayaran (BTKP) Silahkan masuk ke aplikasi untuk melakukan konfirmasi ulang.<br> Terimakasih.',
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
+
                 $data = array(
                     'status_pembayaran' => $this->input->post('status_pembayaran'),
                     'no_spk'            => $no_spk,
@@ -523,6 +638,18 @@ class TatausahaC extends CI_Controller
                     'foto_bukti_trf'    => '',
                 );  
             }elseif($this->input->post('status_pembayaran') == 'paid'){
+                //email notifikasi
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'kode_billing'          => $this->input->post('kode_billing'),
+                    'nomor'                 => $this->input->post('nomor'),
+                    'salam'                 => 'Selamat . . .',
+                    'isi'                   => '<b>Telah berhasil</b> di verifikasi dan diterbitkan oleh Admin Balai Teknologi Kelautan dan Pelayaran (BTKP). Silahkan masuk ke aplikasi untuk melihat mencetak sertifikat dan lainnya.<br> Terimakasih.',
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
+
                 $data = array(
                     'status_pembayaran' => $this->input->post('status_pembayaran'),
                     'no_spk'            => $no_spk,
@@ -557,6 +684,10 @@ class TatausahaC extends CI_Controller
                 }else{
                     $this->session->set_flashdata('sukses', 'Data Penerbitan berhasil dimasukkan, SPK telah diterbitkan.');
                 }
+                // kirim email
+                $this->GeneralM->send_email($subject, $to, $isi);
+                $this->GeneralM->send_email_2($subject, $to, $isi);
+                // end kirim email
                 redirect_back();
             } else {
                 $this->session->set_flashdata('error', 'Data Penerbitan tidak berhasil dimasukkan, cek kembali data yang anda masukkan.');

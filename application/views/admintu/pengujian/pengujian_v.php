@@ -177,6 +177,11 @@
 																			</select><br>
 																			<label id="label_ket_pembayaran_1" for="ket_pembayaran_1" class="label">Keterangan : </label>
 																			<input id="input_ket_pembayaran_1" type="text" name="ket_pembayaran_1" value="" class="form-control">
+
+																			<input type="hidden" name="nomor" value="<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat;?>">
+																			<input type="hidden" name="email_pengguna" value="<?php echo $ujian->email_pengguna;?>">
+																			<input type="hidden" name="nama_pengguna" value="<?php echo $ujian->nama_pengguna;?>">
+																			<input type="hidden" name="kode_billing_1" value="<?php echo $ujian->kode_billing_1;?>">
 																		</div>
 																		<div class="modal-footer">
 																			<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
@@ -316,9 +321,15 @@
                                                         			<td class="text-center">
                                                         				<?php
                                                         				if($ujian->foto_bukti_trf_2 == ''){
-                                                        					?>
-                                                        					<span style="width:100px;"><span class="badge-text badge-text-small">Menunggu pembayaran</span></span>
-                                                        					<?php
+                                                        					if($ujian->kode_billing_2 == ''){
+                                                        						?>
+                                                        						<span style="width:100px;"><span class="badge-text badge-text-small info">Masukkan kode billing</span></span>
+                                                        						<?php
+                                                        					}else{
+                                                        						?>
+                                                        						<span style="width:100px;"><span class="badge-text badge-text-small">Menunggu pembayaran</span></span>
+                                                        						<?php
+                                                        					}
                                                         				}else{
                                                         					?>
                                                         					<span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span>
@@ -329,12 +340,16 @@
                                                         			<td class="text-center">
                                                         				<?php
                                                         				if($ujian->foto_bukti_trf_2 == ''){
-                                                        					echo "-";
+                                                        					if($ujian->kode_billing_2 == ''){
+                                                        						?>
+                                                        						<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian; ?>"><i class="la la-plus"></i>Kode Billing</i>
+                                                        						</a>
+                                                        						<?php
+                                                        					}else{
+                                                        						echo "-";
+                                                        					}
                                                         				}else{
-                                                        					?>
-                                                        					<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian; ?>"><i class="la la-plus"></i>Kode Billing</i>
-                                                        					</a>
-                                                        					<?php
+                                                        					echo "-";
                                                         				}
                                                         				?>
                                                         			</td>
@@ -463,6 +478,11 @@
                             											<input type="number" name="no_awal" id="input_no_awal" value="" class="form-control">
                             											<label for="no_akhir" class="label" id="label_no_akhir">Nomor Label Akhir : </label>
                             											<input type="number" name="no_akhir" id="input_no_akhir" value="" class="form-control">
+
+                            											<input type="hidden" name="nomor" value="<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat;?>">
+                            											<input type="hidden" name="email_pengguna" value="<?php echo $ujian->email_pengguna;?>">
+                            											<input type="hidden" name="nama_pengguna" value="<?php echo $ujian->nama_pengguna;?>">
+                            											<input type="hidden" name="kode_billing_2" value="<?php echo $ujian->kode_billing_2;?>">
 
                             										</div>
                             										<div class="modal-footer">

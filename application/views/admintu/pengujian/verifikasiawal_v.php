@@ -286,6 +286,9 @@
 					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna'); ?>" >
 					<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
 					<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
+					<input type="hidden" name="nomor" value="<?php echo 'SDP'.$pengujian->id_pengujian.$pengujian->kode_alat;?>">
+					<input type="hidden" name="email_pengguna" value="<?php echo $pengujian->email_pengguna;?>">
+					<input type="hidden" name="nama_pengguna" value="<?php echo $pengujian->nama_pengguna;?>">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
@@ -329,6 +332,9 @@
 					<input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
 					<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
 					<input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
+					<input type="hidden" name="nomor" value="<?php echo 'SDP'.$pengujian->id_pengujian.$pengujian->kode_alat;?>">
+					<input type="hidden" name="email_pengguna" value="<?php echo $pengujian->email_pengguna;?>">
+					<input type="hidden" name="nama_pengguna" value="<?php echo $pengujian->nama_pengguna;?>">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
