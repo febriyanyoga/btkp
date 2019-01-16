@@ -73,7 +73,7 @@
 								<table id="myTable" class="table mb-0">
 									<thead>
 										<tr>
-											<th>No.</th>
+											<th class="text-center">No. Permohonan</th>
 											<th class="text-center">Kapal</th>
 											<th class="text-center">Flag</th>
 											<th class="text-center">Imo No</th>
@@ -93,7 +93,7 @@
 											if($progress_tu == 0){
 												?>
 												<tr>
-													<td><?php echo $i;?></td>
+													<td class="text-center"><?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?></td>
 													<td class="text-center"><?php echo $ins->nama_kapal?></td>
 													<td class="text-center"><?php echo $ins->flag?></td>
 													<td class="text-center"><?php echo $ins->imo?></td>
@@ -121,7 +121,7 @@
 								<table id="myTable2" class="table mb-0">
 									<thead>
 										<tr>
-											<th>No.</th>
+											<th class="text-center">No. Permohonan</th>
 											<th class="text-center">Kapal</th>
 											<th class="text-center">Flag</th>
 											<th class="text-center">Imo No</th>
@@ -143,7 +143,7 @@
 												if($ins->status_pembayaran == 'unpaid'){
 													?>
 													<tr>
-														<td><?php echo $i;?></td>
+														<td class="text-center"><?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?></td>
 														<td class="text-center"><?php echo $ins->nama_kapal?></td>
 														<td class="text-center"><?php echo $ins->flag?></td>
 														<td class="text-center"><?php echo $ins->imo?></td>
@@ -305,7 +305,7 @@
 								<table id="myTable3" class="table mb-0">
 									<thead>
 										<tr>
-											<th>No.</th>
+											<th class="text-center">No. Permohonan</th>
 											<th>No.Sertifikat</th>
 											<th class="text-center">Kapal</th>
 											<th class="text-center">Jenis Alat</th>
@@ -323,7 +323,7 @@
 												$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 												?>
 												<tr>
-													<td><?php echo $i?></td>
+													<td class="text-center"><?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?></td>
 													<td>
 														<?php
 														if($ins->no_spk == ""){
@@ -383,7 +383,7 @@
 								<table id="myTable4" class="table mb-0">
 									<thead>
 										<tr>
-											<th>No.</th>
+											<th class="text-center">No. Permohonan</th>
 											<th class="text-center">Kapal</th>
 											<th class="text-center">Jenis Alat</th>
 											<th class="text-center">Tanggal Permohonan</th>
@@ -404,7 +404,7 @@
 												$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 												?>
 												<tr>
-													<td><?php echo $i?></td>
+													<td class="text-center"><?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?></td>
 													<td class="text-center"><?php echo $ins->nama_kapal?></td>
 													<td class="text-center"><?php echo $ins->nama_alat?></td>
 													<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
@@ -533,8 +533,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
-					<input type="submit" name="submit" class="btn btn-primary" value="Save" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
+					<button type="button" class="btn btn-shadow" data-dismiss="modal">Batal</button>
+					<input type="submit" name="submit" class="btn btn-primary" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
 				</div>
 			</form>
 		</div>

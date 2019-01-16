@@ -271,12 +271,12 @@ class TatausahaC extends CI_Controller
             $isi        = $this->load->view('email/Notifikasi_verifikasi', $data_email, TRUE);
 
             if ($this->GeneralM->insert_persetujuan_pengujian($data)) {
+                $this->TatausahaM->insert_billing_ujian($id_pengujian, $data_billing);
+                $this->session->set_flashdata('sukses', 'Permohonan di proses ketahap selanjutnya.');
                  // kirim email
                 $this->GeneralM->send_email($subject, $to, $isi);
                 $this->GeneralM->send_email_2($subject, $to, $isi);
                 // end kirim email
-                $this->TatausahaM->insert_billing_ujian($id_pengujian, $data_billing);
-                $this->session->set_flashdata('sukses', 'Permohonan di proses ketahap selanjutnya.');
                 redirect('pengujian');
             } else {
                 $this->session->set_flashdata('error', 'Maaf, Permohonan tidak dapat di proses ketahap selanjutnya.');
@@ -794,7 +794,17 @@ class TatausahaC extends CI_Controller
             );
 
             if ($this->GeneralM->insert_persetujuan_inspeksi($data)) {
-                $this->session->set_flashdata('sukses', 'Verifikasi berhasil');
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'nomor'                 => $this->input->post('nomor'),
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_email', $data_email, TRUE);
+
+                $this->GeneralM->send_email($subject, $to, $isi);
+                $this->GeneralM->send_email_2($subject, $to, $isi);
+                $this->session->set_flashdata('sukses', 'Verifikasi berhasil dilakukan');
                 redirect('reinspeksi');
             } else {
                 $this->session->set_flashdata('error', 'Verifikasi gagal, cek kembali data yang anda masukkan');
@@ -813,11 +823,35 @@ class TatausahaC extends CI_Controller
             $id_inspeksi        = $this->input->post('id_inspeksi');
             $status_pembayaran  = $this->input->post('status_pembayaran');
             if($status_pembayaran == 'paid'){
+                 //email notifikasi
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'kode_billing'          => $this->input->post('kode_billing'),
+                    'nomor'                 => $this->input->post('nomor'),
+                    'salam'                 => 'Selamat . . .',
+                    'isi'                   => '<b>Telah berhasil</b> di verifikasi oleh Admin Balai Teknologi Kelautan dan Pelayaran (BTKP). Silahkan masuk ke aplikasi untuk melihat progress selanjutnya.<br> Terimakasih.',
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
+
                 $data = array(
                     'status_pembayaran' => $this->input->post('status_pembayaran'),
                     'ket_pembayaran'    => $this->input->post('ket_pembayaran'),
                 );
             }else{
+                 //email notifikasi
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'kode_billing'          => $this->input->post('kode_billing'),
+                    'nomor'                 => $this->input->post('nomor'),
+                    'salam'                 => 'Mohon maaf. . .',
+                    'isi'                   => '<b>Belum berhasil</b> di verifikasi oleh Admin Balai Teknologi Kelautan dan Pelayaran (BTKP) Silahkan masuk ke aplikasi untuk melakukan konfirmasi ulang.<br> Terimakasih.',
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
+
                 $data = array(
                     'status_pembayaran' => $this->input->post('status_pembayaran'),
                     'ket_pembayaran'    => $this->input->post('ket_pembayaran'),
@@ -826,6 +860,10 @@ class TatausahaC extends CI_Controller
             }
             if ($this->WorkshopM->selesai_i($id_inspeksi, $data)) {
                 $this->session->set_flashdata('sukses', 'Validasi berhasil');
+                  // kirim email
+                $this->GeneralM->send_email($subject, $to, $isi);
+                $this->GeneralM->send_email_2($subject, $to, $isi);
+                // end kirim email
                 redirect_back();
             } else {
                 $this->session->set_flashdata('error', 'Validasi gagal, cek kembali data yang anda masukkan');
@@ -892,6 +930,16 @@ class TatausahaC extends CI_Controller
 
             if ($this->WorkshopM->selesai_i($id_inspeksi, $data)) {
                 $this->session->set_flashdata('sukses', 'Data Penerbitan berhasil dimasukkan');
+                $data_email = array(
+                    'nama'                  => $this->input->post('nama_pengguna'),
+                    'nomor'                 => $this->input->post('nomor'),
+                );
+                $subject    = 'Pemberitahuan';
+                $to         = $this->input->post('email_pengguna');
+                $isi        = $this->load->view('email/Notifikasi_email', $data_email, TRUE);
+
+                $this->GeneralM->send_email($subject, $to, $isi);
+                $this->GeneralM->send_email_2($subject, $to, $isi);
                 redirect_back();
             } else {
                 $this->session->set_flashdata('error', 'Data Penerbitan berhasil dimasukkan, cek kembali data yang anda masukkan');

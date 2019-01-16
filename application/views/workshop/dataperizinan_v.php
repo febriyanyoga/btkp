@@ -288,7 +288,7 @@
                                                     <th>Tipe</th>
                                                     <th>Nama Instansi</th>
                                                     <th><span style="width:100px;">Status</span></th>
-                                                    <th style="width: 60px;">Aksi</th>
+                                                    <th style="width: 100px;">Aksi</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
