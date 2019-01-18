@@ -61,7 +61,7 @@
 									<table id="myTable" class="table mb-0">
 										<thead>
 											<tr>
-												<th class="text-center">No</th>
+												<th class="text-center">No. Permohonan</th>
 												<th class="text-center">Tanggal Permohonan</th>
 												<th class="text-center">Workshop</th>
 												<th class="text-center">Alat</th>
@@ -80,7 +80,7 @@
 												if($progress_tu == 0){
 													?>
 													<tr>
-														<td><?php echo $i;?></td>
+														<td class="text-center"><?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?></td>
 														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 														<td class="text-center"><?php echo $ins->nama_perusahaan?></td>
 														<td class="text-center"><?php echo $ins->nama_alat?></td>
@@ -106,7 +106,7 @@
 									<table id="myTable2" class="table mb-0">
 										<thead>
 											<tr>
-												<th class="text-center">No</th>
+												<th class="text-center">No. Permohonan</th>
 												<th class="text-center">Tanggal Permohonan</th>
 												<th class="text-center">Workshop</th>
 												<th class="text-center">Alat</th>
@@ -126,7 +126,7 @@
 												if($progress_tu > 0 && $ins->file_hasil_survey != "" && $ins->kode_billing ==""){
 													?>
 													<tr>
-														<td><?php echo $i;?></td>
+														<td class="text-center"><?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?></td>
 														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 														<td class="text-center"><?php echo $ins->nama_perusahaan?></td>
 														<td class="text-center"><?php echo $ins->nama_alat?></td>
@@ -181,7 +181,7 @@
 																		<input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
 																	</div>
 																	<div class="modal-footer">
-																		<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+																		<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Batal</button>
 																		<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode billing yang dimasukkan sudah benar?')">
 																	</div>
 																</form>
@@ -204,7 +204,7 @@
 									<table id="myTable3" class="table mb-0">
 										<thead>
 											<tr>
-												<th class="text-center">No</th>
+												<th class="text-center">No. Permohonan</th>
 												<th class="text-center">Tanggal Permohonan</th>
 												<th class="text-center">Workshop</th>
 												<th class="text-center">Alat</th>
@@ -224,7 +224,7 @@
 													$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 													?>
 													<tr>
-														<td class="text-center"><?php echo $i;?></td>
+														<td class="text-center"><?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?></td>
 														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 														<td class="text-center"><?php echo $ins->nama_perusahaan;?></td>
 														<td class="text-center"><?php echo $ins->nama_alat;?></td>
@@ -260,9 +260,15 @@
 																		</select>
 																		<label id="label_ket_pembayaran" for="ket_pembayaran" class="label">Keterangan : </label>
 																		<input id="input_ket_pembayaran" type="text" name="ket_pembayaran" value="" class="form-control">
+
+																		<input type="hidden" name="nomor" value="<?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?>">
+																		<input type="hidden" name="email_pengguna" value="<?php echo $ins->email_pengguna;?>">
+																		<input type="hidden" name="nama_pengguna" value="<?php echo $ins->nama_pengguna;?>">
+																		<input type="hidden" name="kode_billing" value="<?php echo $ins->kode_billing;?>">
+
 																	</div>
 																	<div class="modal-footer">
-																		<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+																		<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Batal</button>
 																		<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin akan validasi pembayaran ini?')">
 																	</div>
 																</form>
@@ -283,7 +289,7 @@
 									<table id="myTable4" class="table mb-0">
 										<thead>
 											<tr>
-												<th class="text-center">No</th>
+												<th class="text-center">No. Permohonan</th>
 												<th class="text-center">Tanggal Permohonan</th>
 												<th class="text-center">Workshop</th>
 												<th class="text-center">Alat</th>
@@ -303,7 +309,7 @@
 													$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 													?>
 													<tr>
-														<td class="text-center"><?php echo $i;?></td>
+														<td class="text-center"><?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?></td>
 														<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 														<td class="text-center"><?php echo $ins->nama_perusahaan;?></td>
 														<td class="text-center"><?php echo $ins->nama_alat;?></td>
@@ -342,9 +348,13 @@
 																		<input type="date" name="tgl_terbit" value="" class="form-control" required="required">
 																		<label for="keterangan" class="label">Tanggal Expired  : </label>
 																		<input type="date" name="tgl_expired" value="" class="form-control" required="required">
+
+																		<input type="hidden" name="nomor" value="<?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?>">
+																		<input type="hidden" name="email_pengguna" value="<?php echo $ins->email_pengguna;?>">
+																		<input type="hidden" name="nama_pengguna" value="<?php echo $ins->nama_pengguna;?>">
 																	</div>
 																	<div class="modal-footer">
-																		<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+																		<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Batal</button>
 																		<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin akan menerbitkan perizinan ini?')">
 																	</div>
 																</form>
@@ -366,7 +376,7 @@
 										<table id="myTable5" class="table mb-0">
 											<thead>
 												<tr>
-													<th>No.</th>
+													<th class="text-center">No. Permohonan</th>
 													<th class="text-center">Kapal</th>
 													<th class="text-center">Jenis Alat</th>
 													<th class="text-center">Tanggal Permohonan</th>

@@ -187,6 +187,11 @@
 								<input type="hidden" name="id_inspeksi" class="form-control" required="required" value="<?php echo $ins->id_inspeksi; ?>">
 								<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="diterima" required="required">
 
+
+								<input type="hidden" name="nomor" value="<?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?>">
+								<input type="hidden" name="email_pengguna" value="<?php echo $ins->email_pengguna;?>">
+								<input type="hidden" name="nama_pengguna" value="<?php echo $ins->nama_pengguna;?>">
+
 								<div class="text-right">
 									<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tolak</a>
 									<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Konfirmasi" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')">
@@ -214,6 +219,11 @@
 					<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna'); ?>">
 					<input type="hidden" name="id_inspeksi" class="form-control" required="required" value="<?php echo $ins->id_inspeksi; ?>">
 					<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
+
+					<input type="hidden" name="nomor" value="<?php echo 'RI'.$ins->id_inspeksi.$ins->kode_alat;?>">
+					<input type="hidden" name="email_pengguna" value="<?php echo $ins->email_pengguna;?>">
+					<input type="hidden" name="nama_pengguna" value="<?php echo $ins->nama_pengguna;?>">
+
 				</div>
 
 				<div class="modal-footer">

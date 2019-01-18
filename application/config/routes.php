@@ -177,4 +177,9 @@ $route['verifikasiakhir/(:num)'] = 'KasieC/verifikasiakhir_pengujian/$1';
 $route['verifikasi_akhir'] = 'KasieC/verifikasi_akhir';
 
 // pimpinan
-$route['pimpinan'] = 'PimpinanC';
+$route['pimpinan'] 			= 'PimpinanC';
+$route['profile_pimpinan'] 	= 'PimpinanC/profile';
+$route['post_password_pimpinan'] 	= 'PimpinanC/post_update_password';
+$route['perizinan_pimpinan'] 	= 'PimpinanC/perizinan';
+$route['pengujian_pimpinan'] 	= 'PimpinanC/pengujian';
+$route['reinspeksi_pimpinan'] 	= 'PimpinanC/reinspeksi';

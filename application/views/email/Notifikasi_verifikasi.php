@@ -33,7 +33,7 @@ a, a:hover {
   </style>
 
   <!-- MESSAGE SUBJECT -->
-  <title>Konfirmasi email</title>
+  <title>Notifikasi</title>
 
 </head>
 
@@ -95,20 +95,20 @@ a, a:hover {
       padding-top: 5px;
       color: #000000;
       font-family: sans-serif;" class="header">
-      Selamat atas pendaftaran anda di Web BTKP!
+      <?php echo $salam;?>
     </td>
   </tr>
   
   <!-- SUBHEADER -->
   <!-- Set text color and font family ("sans-serif" or "Georgia, serif") -->
-  <tr>
+ <!--  <tr>
     <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-bottom: 3px; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 18px; font-weight: 300; line-height: 150%;
       padding-top: 5px;
       color: #000000;
       font-family: sans-serif;" class="subheader">
       Terima kasih telah melakukan pendaftaran di web BTKP.
     </td>
-  </tr>
+  </tr> -->
 
   <tr>  
     <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
@@ -138,42 +138,19 @@ a, a:hover {
       padding-top: 25px; 
       color: #000000;
       font-family: sans-serif;" class="paragraph">
-        <b>Konfirmasi pendaftaran</b>
+        <!-- <b>Konfirmasi pendaftaran</b> -->
     </td>
   </tr>
   <tr>
-    <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-bottom: 3px; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 12pt; font-weight: 300; line-height: 150%;
+    <td align="justify" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-bottom: 3px; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 12pt; font-weight: 300; line-height: 150%;
       padding-top: 5px;
       color: #000000;
-      font-family: sans-serif;" class="subheader">
-      Untuk melengkapi pendaftaran anda, silahkan klik tombol <b>Konfirmasi</b> dibawah ini.
+      font-family: sans-serif;" class="subheader">Permohonan dengan nomor <b><?php echo $nomor?></b> </b> <?php echo $isi;?>
     </td>
   </tr>
 
   <!-- BUTTON -->
   <!-- Set button background color at TD, link/text color at A and TD, font family ("sans-serif" or "Georgia, serif") at TD. For verification codes add "letter-spacing: 5px;". Link format: http://domain.com/?utm_source={{Campaign-Source}}&utm_medium=email&utm_content={{Button-Name}}&utm_campaign={{Campaign-Name}} -->
-  <tr>
-    <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
-      padding-top: 25px;
-      padding-bottom: 5px;" class="button"><a
-      href="<?php echo base_url('konfirmasi/'.$key)?>" target="_blank">
-        <table border="0" cellpadding="0" cellspacing="0" align="left" style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;"><tr><td align="left" valign="middle" style="padding: 12px 24px; margin: 0; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px;"
-          bgcolor="#337ab7"><a target="_blank" style="color: #FFFFFF; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 120%; text-decoration: none;"
-          href="<?php echo base_url('konfirmasi/'.$key)?>">
-            Konfirmasi
-          </a>
-      </td></tr></table></a>
-    </td>
-  </tr>
-
-  <tr>
-    <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%; font-size: 17px; font-weight: 400; line-height: 160%;
-      padding-top: 25px; 
-      color: #000000;
-      font-family: sans-serif;" class="paragraph">
-        Atau copy <b>LINK</b> dibawah ini dan paste kan di <b>URL</b> browser anda.<a href="<?php echo base_url('konfirmasi/'.$key)?>"><br><p style="font-style: italic;"><?php echo base_url('konfirmasi/'.$key)?></p></a>
-    </td>
-  </tr>
 
   <!-- LINE -->
   <!-- Set line color -->
@@ -188,90 +165,13 @@ a, a:hover {
       padding-top: 25px; 
       color: #000000;
       font-family: sans-serif;" class="paragraph">
-        <b>Anda dapat menggunakan pelayanan dibawah ini.</b>
     </td>
   </tr>
 
   <!-- LIST -->
   <tr>
     <td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%;" class="list-item"><table align="center" border="0" cellspacing="0" cellpadding="0" style="width: inherit; margin: 0; padding: 0; border-collapse: collapse; border-spacing: 0;">
-      
-      <!-- LIST ITEM -->
-      <tr>
-
-        <!-- LIST ITEM IMAGE -->
-        <!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 -->
-        <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0;
-          padding-top: 30px;
-          padding-right: 20px;"><img
-        border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;
-          color: #000000;"
-          src="https://github.com/febriyanyoga/btkp/blob/master/assets/app/img/menu/1.jpg?raw=true"
-          alt="H" title="Pengajuan Kegiatan"
-          width="80" height="80"></td>
-
-        <!-- LIST ITEM TEXT -->
-        <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
-        <td align="left" valign="top" style="font-size: 17px; font-weight: 400; line-height: 160%; border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
-          padding-top: 25px;
-          color: #000000;
-          font-family: sans-serif;" class="paragraph">
-            <b style="color: #333333;">Perizinan</b><br/>
-            Pengguna dapat melakukan pengajuan perizinan.
-        </td>
-
-      </tr>
-
-      <!-- LIST ITEM -->
-      <tr>
-
-        <!-- LIST ITEM IMAGE -->
-        <!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 -->
-        <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0;
-          padding-top: 30px;
-          padding-right: 20px;"><img
-        border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;
-          color: #000000;"
-          src="https://github.com/febriyanyoga/btkp/blob/master/assets/app/img/menu/2.jpg?raw=true"
-          alt="D" title="Pengadaan Barang"
-          width="80" height="80"></td>
-
-        <!-- LIST ITEM TEXT -->
-        <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
-        <td align="left" valign="top" style="font-size: 17px; font-weight: 400; line-height: 160%; border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
-          padding-top: 25px;
-          color: #000000;
-          font-family: sans-serif;" class="paragraph">
-            <b style="color: #333333;">Pengujian dan Sertifikasi</b><br/>
-            Pengguna dapat melakukan pengajuan pengujian dan sertifikasi.
-        </td>
-
-      </tr>
-
-      <tr>
-
-        <!-- LIST ITEM IMAGE -->
-        <!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 -->
-        <td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0;
-          padding-top: 30px;
-          padding-right: 20px;"><img
-        border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;
-          color: #000000;"
-          src="https://github.com/febriyanyoga/btkp/blob/master/assets/app/img/menu/3.jpg?raw=true"
-          alt="H" title="Pengajuan Kegiatan"
-          width="80" height="80"></td>
-
-        <!-- LIST ITEM TEXT -->
-        <!-- Set text color and font family ("sans-serif" or "Georgia, serif"). Duplicate all text styles in links, including line-height -->
-        <td align="left" valign="top" style="font-size: 17px; font-weight: 400; line-height: 160%; border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
-          padding-top: 25px;
-          color: #000000;
-          font-family: sans-serif;" class="paragraph">
-            <b style="color: #333333;">Inspeksi Alat</b><br/>
-            Pengguna dapat melakukan pengajuan Inspeksi alat.
-        </td>
-
-      </tr>
+    
 
     </table></td>
   </tr>

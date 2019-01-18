@@ -203,7 +203,7 @@
 													</div>
 												</div> -->
 											</div>
-											<p><strong>Note : Berkas harus diunggah dengan ukuran maksimal 5 MB(5000 Kb)</strong></p>
+											<p><strong style="color: red;">Note : Berkas harus diunggah dengan ukuran maksimal 5 MB(5000 Kb)</strong></p>
 											<ul class="pager wizard text-right">
 												<!-- <li class="previous d-inline-block">
 													<button onclick="window.location.href='<?php echo site_url('izin_baru')?>'" type="button" name="back" class="btn btn-rounded btn-secondary ripple">Kembali</button>

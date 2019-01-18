@@ -223,6 +223,9 @@
 										<input type="hidden" name="id_perizinan" value="<?php echo $per->id_perizinan;?>">
 										<input type="hidden" name="keterangan" value="Berkas Lengkap">
 										<input type="hidden" name="status" value="diterima">
+										<input type="hidden" name="nomor" value="<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?>">
+										<input type="hidden" name="email_pengguna" value="<?php echo $per->email_pengguna;?>">
+										<input type="hidden" name="nama_pengguna" value="<?php echo $per->nama_pengguna;?>">
 									</div>
 									<div class="text-right">
 										<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lolos</a>
@@ -268,6 +271,9 @@
 						<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna');?>" >
 						<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $id_perizinan;?>">
 						<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
+						<input type="hidden" name="nomor" value="<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?>">
+						<input type="hidden" name="email_pengguna" value="<?php echo $per->email_pengguna;?>">
+						<input type="hidden" name="nama_pengguna" value="<?php echo $per->nama_pengguna;?>">
 					</div>
 
 					<div class="modal-footer">

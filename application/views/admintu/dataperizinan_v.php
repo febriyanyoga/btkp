@@ -17,7 +17,7 @@
 					<!-- <h4>Sorting</h4> -->
 					<!-- </div> -->
 					<div class="widget-body">
-						<div class="widget-body sliding-tabs">
+						<div class="widget-body sliding-tabs" id="tabsss">
 							<?php
 							$data = $this->session->flashdata('sukses');
 							if ($data != '') {
@@ -378,6 +378,13 @@
 		                                                            						<option value="paid">Telah Dibayar</option>
 		                                                            						<option value="unpaid">Belum Dibayar</option>
 		                                                            					</select>
+
+		                                                            					<!-- notifikasi -->
+		                                                            					<input type="hidden" name="nomor" value="<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?>">
+		                                                            					<input type="hidden" name="email_pengguna" value="<?php echo $per->email_pengguna;?>">
+		                                                            					<input type="hidden" name="nama_pengguna" value="<?php echo $per->nama_pengguna;?>">
+		                                                            					<input type="hidden" name="kode_billing" value="<?php echo $per->kode_billing;?>">
+		                                                            					<!-- end notifikasi -->
 
 		                                                            					<label id="label_tgl_terbit" for="tgl_terbit" class="label">Tanggal Terbit  : </label>
 		                                                            					<input id="input_tgl_terbit" type="date" name="tgl_terbit" value="" class="form-control" required="required">
