@@ -57,8 +57,11 @@ $route['translate_uri_dashes'] = false;
 // index
 $route['daftar'] 		= 'HomeC/post_daftar';
 $route['home'] 			= 'HomeC';
-$route['login'] 		= 'HomeC/post_login';
+$route['login_admin'] 	= 'HomeC/login_admin';
+$route['login'] 		= 'HomeC/post_login_user';
+$route['post_login_admin'] 		= 'HomeC/post_login_admin';
 $route['logout'] 		= 'HomeC/logout';
+$route['logout_admin'] 	= 'HomeC/logout_admin';
 $route['konfirmasi/(:any)'] 	= 'HomeC/konfirmasi/$1';
 // $route['tentang'] = 'website/tentang';
 

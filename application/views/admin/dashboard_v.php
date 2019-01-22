@@ -15,7 +15,7 @@
 						<div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
 							<div class="counter"><?php echo $jumlah_workshop; ?></div>
 							<div class="total-visitors">Jumlah Workshop</div>
-							<a href="<?php echo site_url('#'); ?>">
+							<a href="<?php echo site_url('admin'); ?>">
 								<button type="button" class="btn btn-gradient-03 mr-1 mb-2">Detail</button>
 								</i>
 							</a>
@@ -31,7 +31,7 @@
 						<div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
 							<div class="counter"><?php echo $jumlah_perizinan; ?></div>
 							<div class="total-visitors">Jumlah Perizinan</div>
-							<a href="<?php echo site_url('#'); ?>">
+							<a href="<?php echo site_url('admin'); ?>">
 								<button type="button" class="btn btn-gradient-03 mr-1 mb-2">Detail</button>
 								</i>
 							</a>
@@ -45,9 +45,9 @@
 				<div class="widget-body">
 					<div class="row">
 						<div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
-							<div class="counter">100</div>
+							<div class="counter"><?php echo $jumlah_kapal?></div>
 							<div class="total-visitors">Jumlah Kapal</div>
-							<a href="<?php echo site_url('#'); ?>">
+							<a href="<?php echo site_url('admin'); ?>">
 								<button type="button" class="btn btn-gradient-03 mr-1 mb-2">Detail</button>
 								</i>
 							</a>
@@ -61,9 +61,9 @@
 				<div class="widget-body">
 					<div class="row">
 						<div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
-							<div class="counter">100</div>
-							<div class="total-visitors">Jumlah Pelaporan</div>
-							<a href="<?php echo site_url('#'); ?>">
+							<div class="counter"><?php echo $jumlah_pengujian;?></div>
+							<div class="total-visitors">Jumlah Pengujian</div>
+							<a href="<?php echo site_url('admin'); ?>">
 								<button type="button" class="btn btn-gradient-03 mr-1 mb-2">Detail</button>
 								</i>
 							</a>
@@ -79,7 +79,23 @@
 						<div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
 							<div class="counter"><?php echo $jumlah_produk; ?></div>
 							<div class="total-visitors">Jumlah Product</div>
-							<a href="<?php echo site_url('#'); ?>">
+							<a href="<?php echo site_url('admin'); ?>">
+								<button type="button" class="btn btn-gradient-03 mr-1 mb-2">Detail</button>
+								</i>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12">
+			<div class="widget widget-17 has-shadow">
+				<div class="widget-body">
+					<div class="row">
+						<div class="col-xl-12 d-flex flex-column justify-content-center align-items-center">
+							<div class="counter"><?php echo $jumlah_inspeksi;?></div>
+							<div class="total-visitors">Jumlah Inspeksi</div>
+							<a href="<?php echo site_url('admin'); ?>">
 								<button type="button" class="btn btn-gradient-03 mr-1 mb-2">Detail</button>
 								</i>
 							</a>

@@ -68,10 +68,10 @@
 							<li><a data-toggle="tab" href="#signup" role="tab" id="signup-tab" data-easein="zoomInRight">Daftar</a></li>
 						</ul>
 						<br>
-						<ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
+						<!-- <ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
 							<li><a class="active" data-toggle="tab" href="#singin">Bahasa Indonesia</a></li>
 							<li><a data-toggle="tab" href="#signup">English</a></li>
-						</ul>
+						</ul> -->
 					</div>
 				</div>
 			</div>
