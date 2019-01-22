@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 class HomeC extends CI_Controller{
 	var $data = array();
 	public function __construct(){
