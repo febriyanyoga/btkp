@@ -13,8 +13,11 @@ class KasieC extends CI_Controller{
 	public function index(){
 		$data['title'] = "BTKP - Home";
 		$this->data['jumlah_workshop'] = $this->GeneralM->get_jumlah_workshop()->num_rows();
-		$this->data['jumlah_perizinan'] = $this->GeneralM->get_jumlah_perizinan()->num_rows();
-		$this->data['jumlah_produk'] = $this->GeneralM->get_jumlah_produk()->num_rows();
+        $this->data['jumlah_kapal'] = $this->GeneralM->get_jumlah_kapal()->num_rows();
+        $this->data['jumlah_perizinan'] = $this->GeneralM->get_jumlah_perizinan()->num_rows();
+        $this->data['jumlah_pengujian'] = $this->GeneralM->get_jumlah_pengujian()->num_rows();
+        $this->data['jumlah_inspeksi'] = $this->GeneralM->get_jumlah_inspeksi()->num_rows();
+        $this->data['jumlah_produk'] = $this->GeneralM->get_jumlah_produk()->num_rows();
 		$data['isi'] = $this->load->view('kasie/dashboard_v',$this->data, TRUE);
 		$this->load->view('kasie/Layout', $data);
 	}

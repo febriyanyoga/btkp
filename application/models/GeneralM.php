@@ -204,11 +204,35 @@ class GeneralM extends CI_Model{
 	}
 
 	public function get_jumlah_workshop(){
-		return $this->db->get('perusahaan');
+		$this->db->select('*');
+		$this->db->from('perusahaan');
+		$this->db->join('pengguna','perusahaan.id_pengguna = pengguna.id_pengguna');
+		$this->db->where('perusahaan.id_pengguna = pengguna.id_pengguna');
+		$this->db->where('pengguna.id_jabatan = "5"');
+		return $this->db->get();
 	}
+
+	public function get_jumlah_kapal(){
+		$this->db->select('*');
+		$this->db->from('perusahaan');
+		$this->db->join('pengguna','perusahaan.id_pengguna = pengguna.id_pengguna');
+		$this->db->where('perusahaan.id_pengguna = pengguna.id_pengguna');
+		$this->db->where('pengguna.id_jabatan = "7"');
+		return $this->db->get();
+	}
+
 	public function get_jumlah_perizinan(){
 		return $this->db->get('perizinan');
 	}
+
+	public function get_jumlah_pengujian(){
+		return $this->db->get('pengujian');
+	}
+
+	public function get_jumlah_inspeksi(){
+		return $this->db->get('inspeksi');
+	}
+
 	public function get_jumlah_produk(){
 		return $this->db->get('jenis_alat_keselamatan');
 	}

@@ -194,7 +194,7 @@ Author: SAEROX
 										Faq
 									</a>
 								</li> -->
-								<li><a rel="nofollow" href="<?php echo site_url('logout'); ?>" class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
+								<li><a rel="nofollow" href="<?php echo site_url('logout_admin'); ?>" class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
 							</ul>
 						</li>
 						<!-- End User -->

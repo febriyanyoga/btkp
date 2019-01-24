@@ -18,7 +18,7 @@ if ( ! function_exists('admin_access')){
         $ci=& get_instance();
         if($ci->session->userdata('id_jabatan') != '1'){
             $ci->session->set_flashdata('error','Anda harus Login terlebih dahulu');
-            redirect('logout');
+            redirect('logout_admin');
         }
     }
 }
@@ -28,7 +28,7 @@ if ( ! function_exists('tu_access')){
         $ci=& get_instance();
         if($ci->session->userdata('id_jabatan') != '2'){
             $ci->session->set_flashdata('error','Anda harus Login terlebih dahulu');
-            redirect('logout');
+            redirect('logout_admin');
         }
     }
 }
@@ -38,7 +38,7 @@ if ( ! function_exists('kasie_access')){
         $ci=& get_instance();
         if($ci->session->userdata('id_jabatan') != '3'){
             $ci->session->set_flashdata('error','Anda harus Login terlebih dahulu');
-            redirect('logout');
+            redirect('logout_admin');
         }
     }
 }
@@ -48,7 +48,7 @@ if ( ! function_exists('pimpinan_access')){
         $ci=& get_instance();
         if($ci->session->userdata('id_jabatan') != '4'){
             $ci->session->set_flashdata('error','Anda harus Login terlebih dahulu');
-            redirect('logout');
+            redirect('logout_admin');
         }
     }
 }

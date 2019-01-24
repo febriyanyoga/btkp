@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 class HomeC extends CI_Controller{
 	var $data = array();
 	public function __construct(){
@@ -12,6 +13,12 @@ class HomeC extends CI_Controller{
 		$data['jabatan'] = $this->LoginM->get_jabatan()->result();
 		$data['cap_img'] = $this->LoginM->make_captcha();
 		$this->load->view('Login_v', $data);
+	}
+
+	public function login_admin(){
+		$data['jabatan'] = $this->LoginM->get_jabatan()->result();
+		$data['cap_img'] = $this->LoginM->make_captcha();
+		$this->load->view('Login_admin', $data);
 	}
 
 	public function post_daftar(){
@@ -60,7 +67,51 @@ class HomeC extends CI_Controller{
 			redirect_back();
 		}
 	}
-	function post_login(){
+	function post_login_user(){
+		$email_pengguna   	= $this->input->post('email_login');
+		$password   		= $this->input->post('password_login');
+        // query chek users
+		$this->db->select('*');
+		$this->db->from('pengguna P');
+		$this->db->join('jabatan J','P.id_jabatan = J.id_jabatan');
+		$this->db->where('email_pengguna', $email_pengguna);
+		$this->db->where('password',  md5($password));
+		$user = $this->db->get();
+
+		if($this->LoginM->check_captcha() == TRUE){
+			if($user->num_rows()>0){
+				if($user->row()->status_akun == 'aktif'){
+					$userData       = array(
+						'nama'  			=> $user->row()->nama_pengguna,
+						'jabatan'   		=> $user->row()->nama_jabatan,
+						'id_jabatan'		=> $user->row()->id_jabatan,
+						'status'    		=> $user->row()->status,
+						'jabatan_pemohon'  	=> $user->row()->jabatan_pemohon,
+						'id_pengguna'  		=> $user->row()->id_pengguna,
+						'logged_in' 		=> TRUE,
+					);
+					$this->session->set_userdata($userData);
+					if($user->row()->id_jabatan > 4){
+						redirect('workshop');
+					}else{
+						$this->session->set_flashdata('error','Silahkan Login dihalaman admin');
+						redirect('login_admin');
+					}
+				}else{
+					$this->session->set_flashdata('error','akun anda belum aktif');
+					redirect('login_admin');
+				}
+			}else{
+				$this->session->set_flashdata('error','email atau password yang anda input salah');
+				redirect('login_admin');
+			}
+		}else{
+			$this->session->set_flashdata('error','Captcha salah');
+			redirect('login_admin');
+		}
+	}
+
+	function post_login_admin(){
 		$email_pengguna   	= $this->input->post('email_login');
 		$password   		= $this->input->post('password_login');
         // query chek users
@@ -92,8 +143,9 @@ class HomeC extends CI_Controller{
 						redirect('kasie');
 					}elseif ($user->row()->id_jabatan == 4) {
 						redirect('pimpinan');
-					}else{
-						redirect('workshop');
+					}elseif($user->row()->id_jabatan > 4){
+						$this->session->set_flashdata('error','Silahkan Login dihalaman Login User');
+						redirect('home');
 					}
 				}else{
 					$this->session->set_flashdata('error','akun anda belum aktif');
@@ -115,6 +167,11 @@ class HomeC extends CI_Controller{
 		redirect('home');
 	}
 
+	function logout_admin(){
+		$this->session->sess_destroy();
+		$this->session->set_flashdata('status_login','Anda sudah berhasil keluar dari aplikasi');
+		redirect('login_admin');
+	}
 	public function konfirmasi($key){  //post link konfirmasi
 		if($this->GeneralM->verifyemail($key)){  
 			$this->session->set_flashdata('sukses','Email anda berhasil dikonfirmasi. Silahkan masuk...');

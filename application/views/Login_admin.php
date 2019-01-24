@@ -4,7 +4,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>BTKP - Masuk</title>
+	<title>BTKP - Login Admin</title>
 	<meta name="description" content="Elisyam is a Web App and Admin Dashboard Template built with Bootstrap 4">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Google Fonts -->
@@ -63,10 +63,10 @@
 						<h2 style="color:white;">
 							Keselamatan Pelayaran
 						</h2>
-						<ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
+						<!-- <ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
 							<li><a class="active" data-toggle="tab" href="#singin" role="tab" id="singin-tab" data-easein="zoomInUp">Masuk</a></li>
 							<li><a data-toggle="tab" href="#signup" role="tab" id="signup-tab" data-easein="zoomInRight">Daftar</a></li>
-						</ul>
+						</ul> -->
 						<br>
 						<!-- <ul class="login-nav nav nav-tabs mt-5 justify-content-center" role="tablist" id="animate-tab">
 							<li><a class="active" data-toggle="tab" href="#singin">Bahasa Indonesia</a></li>
@@ -111,11 +111,11 @@
 									?>
 
 									<div class="widget has-shadow">
-										<div class="widget-header">
-											<h1 class="text-center">Form Login</h1> <br>
+										<div class="widget-header"><br>
+											<h1 class="text-center">Form Login Admin</h1>
 										</div>
 										<div class="widget-body">
-											<form action="<?php echo site_url('login'); ?>" method="post">
+											<form action="<?php echo site_url('post_login_admin'); ?>" method="post">
 												<div>
 													<label class="form-control-label" >Email<span class="text-danger ml-2">*</span></label>
 													<input class="form-control" type="email" id="email" name="email_login" required placeholder="Email">
