@@ -37,7 +37,7 @@ class PimpinanC extends CI_Controller{
         $this->data['perizinan'] = $this->TatausahaM->get_all_perizinan_by_id_pengguna()->result();
         $this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
         $this->data['izin_tolak']   = $this->WorkshopM->get_perizinan_ditolak($id_pengguna)->result();
-        $data['isi'] = $this->load->view('pimpinan/Data_perizinan.php', $this->data, true);
+        $data['isi'] = $this->load->view('pimpinan/Data_perizinan', $this->data, true);
         $this->load->view('pimpinan/Layout', $data);
     }
 
@@ -57,6 +57,17 @@ class PimpinanC extends CI_Controller{
         $this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
         $this->data['data_inspeksi']     = $this->WorkshopM->get_inspeksi_all()->result();
         $data['isi'] = $this->load->view('pimpinan/Data_reinspeksi', $this->data, true);
+        $this->load->view('pimpinan/Layout', $data);
+    }
+
+    public function pengesahan()
+    {
+        $data['title'] = 'BTKP - Pengesahan';
+        $id_pengguna = $this->session->userdata('id_pengguna');
+        $this->data['perizinan'] = $this->TatausahaM->get_all_perizinan_by_id_pengguna()->result();
+        $this->data['pengujian'] = $this->TatausahaM->get_all_pengujian()->result();
+        $this->data['data_inspeksi'] = $this->WorkshopM->get_inspeksi_all()->result();
+        $data['isi'] = $this->load->view('pimpinan/Pengesahan', $this->data, true);
         $this->load->view('pimpinan/Layout', $data);
     }
 

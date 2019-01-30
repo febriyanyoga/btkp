@@ -186,3 +186,4 @@ $route['post_password_pimpinan'] 	= 'PimpinanC/post_update_password';
 $route['perizinan_pimpinan'] 	= 'PimpinanC/perizinan';
 $route['pengujian_pimpinan'] 	= 'PimpinanC/pengujian';
 $route['reinspeksi_pimpinan'] 	= 'PimpinanC/reinspeksi';
+$route['pengesahan'] = 'PimpinanC/pengesahan';
