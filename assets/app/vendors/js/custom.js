@@ -217,6 +217,21 @@ $(document).ready(function(){
 	}
 
 
+
+
+	// jumlah pengesahan perizinan pimpinan
+	var pengesahan_perizinan = $('#pengesahan_perizinan_bawah').val();
+	if(pengesahan_perizinan != 0){
+		$('#pengesahan_perizinan').html('<span class="btn btn-sm btn-info btn-rounded">' + pengesahan_perizinan + ' </span>');
+	}
+
+	// jumlah pengesahan pengujian pimpinan
+	var pengesahan_pengujian = $('#pengesahan_pengujian_bawah').val();
+	if(pengesahan_pengujian != 0){
+		$('#pengesahan_pengujian').html('<span class="btn btn-sm btn-info btn-rounded">' + pengesahan_pengujian + ' </span>');
+	}
+
+
 	$(function() {
 		$('#nama_perusahaan').keydown(function(e) {
 			if (e.shiftKey || e.ctrlKey || e.altKey) {

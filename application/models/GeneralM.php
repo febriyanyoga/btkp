@@ -299,8 +299,8 @@ class GeneralM extends CI_Model{
 	public function send_email_2($subject, $to, $isi){  
 		$from = "no-reply@btkp.com";
 		$to = $to;
-		$subject = $subject;
-		$message = $isi;
+		$subject 	= $subject;
+		$message 	= $isi;
 		$headers    = 'MIME-Version: 1.0' . "\r\n";
 		$headers    .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
 		$headers 	.= "From:" . $from;

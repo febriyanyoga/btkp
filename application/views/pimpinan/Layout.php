@@ -202,6 +202,11 @@
 							</a>
 						</li>
 						<li>
+							<a href="<?php echo site_url('pengesahan'); ?>">
+								<i class="ti ti-notepad"></i><span> Pengesahan</span>
+							</a>
+						</li>
+						<li>
 							<a href="<?php echo site_url('perizinan_pimpinan'); ?>">
 								<i class="ion-clipboard"></i><span> Data Perizinan</span>
 							</a>
@@ -283,7 +288,7 @@
 <script>
 	$.noConflict();
 	jQuery(document).ready(function ($) {
-		$('#myTable').DataTable();
+		$('#myTable1').DataTable();
 		$('#myTable2').DataTable();
 		$('#myTable3').DataTable();
 		$('#myTable4').DataTable();
