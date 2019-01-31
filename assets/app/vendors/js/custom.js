@@ -228,22 +228,28 @@ $(document).ready(function(){
 	// jumlah pengesahan pengujian pimpinan
 	var pengesahan_pengujian = $('#pengesahan_pengujian_bawah').val();
 	if(pengesahan_pengujian != 0){
-		$('#pengesahan_pengujian').html('<span class="btn btn-sm btn-info btn-rounded">' + pengesahan_pengujian + ' </span>');
+		$('#pengesahan_pengujian').html('<span class="btn btn-sm btn-success btn-rounded">' + pengesahan_pengujian + ' </span>');
+	}
+
+	// jumlah pengesahan inspeksi pimpinan
+	var pengesahan_reinspeksi = $('#pengesahan_reinspeksi_bawah').val();
+	if(pengesahan_reinspeksi != 0){
+		$('#pengesahan_reinspeksi').html('<span class="btn btn-sm btn-primary btn-rounded">' + pengesahan_reinspeksi + ' </span>');
 	}
 
 
-	$(function() {
-		$('#nama_perusahaan').keydown(function(e) {
-			if (e.shiftKey || e.ctrlKey || e.altKey) {
-				e.preventDefault();
-			} else {
-				var key = e.keyCode;
-				if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
-					e.preventDefault();
-				}
-			}
-		});
-	});	
+	// $(function() {
+	// 	$('#nama_perusahaan').keydown(function(e) {
+	// 		if (e.shiftKey || e.ctrlKey || e.altKey) {
+	// 			e.preventDefault();
+	// 		} else {
+	// 			var key = e.keyCode;
+	// 			if (!((key == 8) || (key == 32) || (key == 46) || (key >= 35 && key <= 40) || (key >= 65 && key <= 90))) {
+	// 				e.preventDefault();
+	// 			}
+	// 		}
+	// 	});
+	// });	
 
 	$(document).ready(function(){
 		$('a[data-toggle="tab"]').on('show.bs.tab', function(e) {
@@ -253,6 +259,38 @@ $(document).ready(function(){
 		if(activeTab){
 			$('#example-one a[href="' + activeTab + '"]').tab('show');
 		}
+	});
+
+	$(document).ready(function(){
+		//checklist alamat workshop
+		$("#sama").change(function() {
+			if(this.checked) {
+				$("#alamat_workshop").hide();
+				$("#all_alamat_ws").hide();
+				var alamat_perusahaan;
+				var kelurahan_pt;
+				alamat_perusahaan 	= $("#alamat_perusahaan").val();
+				kelurahan_pt 		= $("#kelurahan_pt").val();
+				$("#alamat_workshop").val(alamat_perusahaan);
+				$("#kelurahan_ws").val(kelurahan_pt);
+
+				$("#kelurahan_ws").removeAttr('required');
+				$("#kecamatan_ws").removeAttr('required');
+				$("#propinsi_ws").removeAttr('required');
+				$("#kab_ws").removeAttr('required');
+			}else{
+				$("#alamat_workshop").show();
+				$("#all_alamat_ws").show();
+
+				$("#alamat_workshop").val('');
+				$("#kelurahan_ws").val('');
+
+				$("#kelurahan_ws").prop('required',true);
+				$("#kecamatan_ws").prop('required',true);
+				$("#propinsi_ws").prop('required',true);
+				$("#kab_ws").prop('required',true);
+			}	
+		});
 	});
 
 });

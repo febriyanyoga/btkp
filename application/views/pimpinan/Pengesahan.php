@@ -46,10 +46,10 @@
 									<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Pengesahan Perizinan <span id="pengesahan_perizinan"></span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Pengesahan Pengujian<span id="pengesahan_pengujian"></span></a>
+									<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Pengesahan Pengujian <span id="pengesahan_pengujian"></span></a>
 								</li>
 								<li class="nav-item">
-									<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Pengesahan Reinspeksi<span id="pengesahan_Reinspeksi"></span></a>
+									<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Pengesahan Reinspeksi <span id="pengesahan_reinspeksi"></span></a>
 								</li>
 							</ul>
 							<div class="tab-content pt-3">
@@ -71,7 +71,9 @@
 												<?php
 												$pengesahan_perizinan=0;
 												foreach ($perizinan as $per) {
-													if($per->status_pembayaran == 'paid'){
+													$id_pengguna = $this->session->userdata('id_pengguna');
+													$own_progress_perizinan = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
+													if($per->status_pembayaran == 'paid' && $own_progress_perizinan == 0){
 														?>
 														<tr>
 															<td class="text-center"><span class="text-primary"><?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?></span>
@@ -82,7 +84,7 @@
 															<?php
 															$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin));
 															?>
-															<td class="text-center"><?php echo $tgl_pengajuan?></td>
+															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 															<td>status</td>
 															<td class="text-center">
 																<a href="" class="btn btn-sm btn-info mr-1 mb-2"><i class="la la-check"></i>Pengesahan</i>
@@ -118,7 +120,9 @@
 												<?php
 												$pengesahan_pengujian=0;
 												foreach ($pengujian as $ujian) {
-													if($ujian->status_pembayaran_2 == 'paid'){
+													$id_pengguna = $this->session->userdata('id_pengguna');
+													$get_own_progress_pengujian = $this->GeneralM->get_own_progress_pengujian($id_pengguna, $ujian->id_pengujian)->num_rows();
+													if($ujian->status_pembayaran_2 == 'paid' && $get_own_progress_pengujian == 0){
 														?>
 														<tr>
 															<td class="text-center"><span class="text-primary"><?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat;?></span>
@@ -126,7 +130,7 @@
 															<?php
 															$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
 															?>
-															<td class="text-center"><?php echo $tgl_pengajuan?></td>
+															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
 															<td class="text-center"><?php echo $ujian->nama_alat?></td>
 															<td class="text-center"><?php echo $ujian->merk?></td>
 															<td class="text-center"><?php echo $ujian->tipe?></td>
@@ -164,20 +168,21 @@
 											<tbody>
 												<?php
 												$pengesahan_reinspeksi=0;
-												foreach ($data_reinspeksi as $ins) {
-													if($ujian->status_pembayaran == 'paid'){
+												foreach ($data_inspeksi as $ins) {
+													$id_pengguna = $this->session->userdata('id_pengguna');
+													$get_own_progress_inspeksi = $this->GeneralM->get_own_progress_inspeksi($id_pengguna, $ins->id_inspeksi)->num_rows();
+													if($ins->status_pembayaran == 'paid' && $get_own_progress_inspeksi == 0){
 														?>
 														<tr>
-															<td class="text-center"><span class="text-primary"><?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat;?></span>
+															<td class="text-center"><span class="text-primary"><?php echo 'INS'.$ins->id_inspeksi.$ins->kode_alat;?></span>
 															</td>
 															<?php
-															$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
+															$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 															?>
-															<td class="text-center"><?php echo $tgl_pengajuan?></td>
-															<td class="text-center"><?php echo $ujian->nama_alat?></td>
-															<td class="text-center"><?php echo $ujian->merk?></td>
-															<td class="text-center"><?php echo $ujian->tipe?></td>
-															<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
+															<td class="text-center"><?php echo date_indo($tgl_pengajuan)?></td>
+															<td class="text-center"><?php echo $ins->nama_perusahaan?></td>
+															<td class="text-center"><?php echo $ins->nama_alat?></td>
+															<td class="text-center"><?php echo $ins->nama_kapal?></td>
 															<td>status</td>
 															<td class="text-center">
 																<a href="" class="btn btn-sm btn-info mr-1 mb-2"><i class="la la-check"></i>Pengesahan</i>
@@ -203,3 +208,4 @@
 			</div>
 			<!-- End Row -->
 		</div>
+	</div>

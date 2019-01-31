@@ -131,11 +131,32 @@
     										Profile
     									</a>
     								</li>
-    								<li>
-    									<a href="<?php echo site_url('data_perizinan'); ?>" class="dropdown-item">
-    										Data
-    									</a>
-    								</li>
+                                    <?php
+                                    if ($this->session->userdata('id_jabatan') == '5') {
+                                        ?>
+                                        <li>
+                                            <a href="<?php echo site_url('data_perizinan'); ?>" class="dropdown-item">
+                                              Data Perizinan
+                                            </a>
+                                        </li>
+                                        
+                                        <li>
+                                            <a href="<?php echo site_url('data_reinspeksi'); ?>" class="dropdown-item">
+                                                Data Reinspeksi
+                                            </a>
+                                        </li>
+                                        <?php
+                                    }else{
+                                        ?>
+                                         <li>
+                                            <a href="<?php echo site_url('data_perizinan'); ?>" class="dropdown-item">
+                                              Data Sertifikasi
+                                            </a>
+                                        </li>
+                                        <?php
+                                    }
+
+                                    ?>
     								<!-- <li>
     									<a href="#" class="dropdown-item no-padding-bottom">
     										Settings

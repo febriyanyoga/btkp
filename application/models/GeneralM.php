@@ -82,6 +82,22 @@ class GeneralM extends CI_Model{
 		return $this->db->get();
 	}
 
+	public function get_own_progress_pengujian($id_pengguna, $id_pengujian){ //perizinan yang di verifikasi kasie
+		$this->db->select('*');
+		$this->db->from('pengguna_pengujian');
+		$this->db->where('id_pengguna',$id_pengguna);
+		$this->db->where('id_pengujian',$id_pengujian);
+		return $this->db->get();
+	}
+
+	public function get_own_progress_inspeksi($id_pengguna, $id_inspeksi){ //perizinan yang di verifikasi kasie
+		$this->db->select('*');
+		$this->db->from('pengguna_inspeksi');
+		$this->db->where('id_pengguna',$id_pengguna);
+		$this->db->where('id_inspeksi',$id_inspeksi);
+		return $this->db->get();
+	}
+
 	public function get_array_progress($id_perizinan){
 		$this->db->select('*');
 		$this->db->from('pengguna_perizinan P');
@@ -267,6 +283,16 @@ class GeneralM extends CI_Model{
 		$this->db->where('id_perusahaan', $id_perusahaan);
 		$this->db->update('perusahaan', $data);
 		return TRUE;
+	}
+
+	public function get_perusahaan($id_pengguna){
+		$this->db->where('id_pengguna', $id_pengguna);
+		return $this->db->get('perusahaan');
+	}
+
+	public function get_maker_by_id_perusahaan($id_perusahaan){
+		$this->db->where('id_perusahaan', $id_perusahaan);
+		return $this->db->get('maker');
 	}
 
 	public function send_email($subject, $to, $isi){  
