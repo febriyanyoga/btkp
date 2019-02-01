@@ -61,6 +61,9 @@
                                 <li class="nav-item">
                                     <a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Perizinan Ditolak <span id="izin_tolak"></span></a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="base-tab-4" data-toggle="tab" href="#tab-4" role="tab" aria-controls="tab-4" aria-selected="false">Data Maker <span id="data_maker"></span></a>
+                                </li>
                             </ul>
                             <div class="tab-content pt-3">
                                 <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">
@@ -245,7 +248,7 @@
                                                     ?>
                                                     <tr>
                                                         <td class="text-center"><span class="text-primary">
-                                                            <?php echo 'SPK'.$per->id_perizinan.$per->kode_alat; ?></span>
+                                                            <?php echo 'SPK'.$tolak->id_perizinan.$tolak->kode_alat; ?></span>
                                                         </td>
                                                         <td class="text-center"><?php echo $nama_alat?></td>
                                                         <td class="text-center"><?php echo date_indo($izin)?></td>
@@ -258,6 +261,116 @@
                                                 }
                                                 ?>
                                                 <input type="hidden" name="izin_tolak_bawah" id="izin_tolak_bawah" value="<?php echo $g;?>">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade show" id="tab-4" role="tabpanel" aria-labelledby="base-tab-4">
+                                    <div class="text-right mb-3">
+                                        <a href="#" class="btn btn-success btn-md" data-toggle="modal" data-target="#tambah_maker"><i class="la la-plus"></i>Tambah Maker</i>
+                                        </a> 
+                                        <br>
+                                    </div>
+                                    <div class="table-responsive">
+                                        <table id="myTable5" class="table mb-0">
+                                            <thead>
+                                                <tr class="text-center">
+                                                    <th>No.</th>
+                                                    <th>Nomor Maker</th>
+                                                    <th>Nama Maker</th>
+                                                    <th>Dokumen Sertifikat</th>
+                                                    <th>Status</th>
+                                                    <th><span style="width:30px;">Aksi</span></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php
+                                                $id_pengguna   = $this->session->userdata('id_pengguna');
+                                                $id_perusahaan = $this->GeneralM->get_perusahaan($id_pengguna)->row()->id_perusahaan;
+                                                $maker         = $this->GeneralM->get_maker_by_id_perusahaan($id_perusahaan)->result();
+                                                $no=0;
+                                                foreach ($maker as $mak) {
+                                                    $no++;
+                                                    ?>
+                                                    <tr>
+                                                        <td class="text-center"><?php echo $no;?></td>
+                                                        <td class="text-center"><?php echo $mak->no_maker;?></td>
+                                                        <td class="text-center"><?php echo $mak->nama;?></td>
+                                                        <td class="text-center"><a target="_BLANK" href="<?php echo base_url().'assets/upload/'.$mak->dokumen_sertifikat?>" title="Lihat dokumen" class="btn btn-success btn-sm"><i class="la la-sticky-note"></i>Dokumen</a></td>
+                                                        <td class="text-center">
+                                                            <?php
+                                                            if($mak->status == 'tampil'){
+                                                                ?>
+                                                                <span style="width:100px;"><span class="badge-text badge-text-small info">Aktif</span></span>
+                                                                <?php
+                                                            }else{
+                                                                ?>
+                                                                <span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                        <td class="text-center">
+                                                            <a data-toggle="modal" data-target="#edit_maker-<?php echo $mak->id_maker;?>" title="Edit" class="btn btn-success btn-sm"><i class="la la-pencil"></i></a>
+                                                            <?php
+                                                            if($mak->status == 'tampil'){
+                                                                ?>
+                                                                <a href="<?php echo base_url('tidak/'.$mak->id_maker)?>" title="Non-aktif" class="btn btn-danger btn-sm"><i class="la la-close"></i></a>
+                                                                <?php
+                                                            }else{
+                                                                ?>
+                                                                <a href="<?php echo base_url('tampil/'.$mak->id_maker)?>" title="Aktif" class="btn btn-info btn-sm"><i class="la la-check"></i></a>
+                                                                <?php
+                                                            }
+                                                            ?>
+                                                        </td>
+                                                    </tr>
+
+                                                    <div id="edit_maker-<?php echo $mak->id_maker;?>" class="modal fade">
+                                                        <div class="modal-dialog modal-md">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h4 class="modal-title">Edit Maker</h4>
+                                                                    <button type="button" class="close" data-dismiss="modal">
+                                                                        <span aria-hidden="true">×</span>
+                                                                        <span class="sr-only">close</span>
+                                                                    </button>
+                                                                </div>
+                                                                <form action="<?php echo site_url('post_edit_maker')?>" method="POST" enctype="multipart/form-data">
+                                                                    <div class="modal-body">
+                                                                        <div class="form-group row mb-3">
+                                                                            <div class="col-xl-12 mb-3">
+                                                                                <label class="form-control-label">Nomor Maker<span class="text-danger ml-2">*</span></label>
+                                                                                <input type="number" value="<?php echo $mak->no_maker?>" class="form-control" id="no_maker" name="no_maker" required readonly>
+                                                                                <input type="hidden" value="<?php echo $mak->id_perusahaan;?>" class="form-control" id="id_perusahaan" name="id_perusahaan" required>
+                                                                                <input type="hidden" value="<?php echo $mak->id_maker;?>" class="form-control" id="id_maker" name="id_maker" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row mb-3">
+                                                                            <div class="col-xl-12 mb-3">
+                                                                                <label class="form-control-label">Nama Maker<span class="text-danger ml-2">*</span></label>
+                                                                                <input type="text" value="<?php echo $mak->nama?>" class="form-control" id="nama" name="nama" required>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="form-group row mb-3">
+                                                                            <div class="col-xl-12 mb-3">
+                                                                                <label for="upload"> Dokumen Sertifikat</label><br>
+                                                                                <a target="_BLANK" href="<?php echo base_url().'assets/upload/'.$mak->dokumen_sertifikat?>" title="Lihat dokumen" class="btn btn-success btn-sm"><i class="la la-sticky-note"></i>Dokumen</a>
+                                                                                <!-- <input type="file" name="dokumen_sertifikat" class="form-control" required=""> -->
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-shadow" data-dismiss="modal">Batal</button>
+                                                                        <input type="submit" name="submit" class="btn btn-primary" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <?php
+                                                }
+                                                ?>
                                             </tbody>
                                         </table>
                                     </div>
@@ -413,4 +526,50 @@
         </div>
     </div>
     <!-- End Row -->
+</div>
+
+
+<div id="tambah_maker" class="modal fade">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Tambah Maker</h4>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                    <span class="sr-only">close</span>
+                </button>
+            </div>
+            <form action="<?php echo site_url('post_maker')?>" method="POST" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group row mb-3">
+                        <div class="col-xl-12 mb-3">
+                            <label class="form-control-label">Nomor Maker<span class="text-danger ml-2">*</span></label>
+                            <input type="number" value="" class="form-control" id="no_maker" name="no_maker" required>
+                            <?php
+                            $id_pengguna   = $this->session->userdata('id_pengguna');
+                            $id_perusahaan = $this->GeneralM->get_perusahaan($id_pengguna)->row()->id_perusahaan;
+                            ?>
+                            <input type="hidden" value="<?php echo $id_perusahaan;?>" class="form-control" id="id_perusahaan" name="id_perusahaan" required>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <div class="col-xl-12 mb-3">
+                            <label class="form-control-label">Nama Maker<span class="text-danger ml-2">*</span></label>
+                            <input type="text" value="" class="form-control" id="nama" name="nama" required>
+                        </div>
+                    </div>
+                    <div class="form-group row mb-3">
+                        <div class="col-xl-12 mb-3">
+                            <label for="upload"> Dokumen Sertifikat</label>
+                            <input type="file" name="dokumen_sertifikat" class="form-control" required="">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-shadow" data-dismiss="modal">Batal</button>
+                    <input type="submit" name="submit" class="btn btn-primary" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
+                </div>
+            </form>
+        </div>
+    </div>
 </div>

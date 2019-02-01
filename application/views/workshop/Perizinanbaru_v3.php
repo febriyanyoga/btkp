@@ -153,9 +153,6 @@
 											?>
 										</div>
 										<ul class="pager wizard text-right">
-											<!-- <li class="previous d-inline-block">
-												<a href="<?php echo site_url('izin_baru2/'.$id_perizinan); ?>" class="btn btn-secondary ripple">Kembali</a>
-											</li> -->
 											<li class="next d-inline-block">
 												<a href="<?php echo site_url('selesai/'.$id_perizinan); ?>" class="btn btn-gradient-01" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">Selesai</a>
 											</li>

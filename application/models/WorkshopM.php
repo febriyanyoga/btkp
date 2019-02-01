@@ -24,6 +24,17 @@ class WorkshopM extends CI_Model{
 		return $this->db->insert_id();
 	}
 
+	public function insert_maker($data){
+		$this->db->insert('maker', $data);
+		return $this->db->insert_id();
+	}
+
+	public function update_maker($id_maker, $data){
+		$this->db->where('id_maker', $id_maker);
+		$this->db->update('maker', $data);
+		return TRUE;
+	}
+
 	public function insert_inspeksi($data){
 		$this->db->insert('inspeksi', $data);
 		return $this->db->insert_id();
@@ -32,6 +43,11 @@ class WorkshopM extends CI_Model{
 	public function hapus_perusahaan($id_perusahaan){
 		$this->db->where('id_perusahaan', $id_perusahaan);
 		$this->db->delete('perusahaan');
+		return TRUE;
+	}
+
+	public function input_maker($data){
+		$this->db->insert('maker', $data);
 		return TRUE;
 	}
 
@@ -237,7 +253,7 @@ class WorkshopM extends CI_Model{
 		$this->db->from('pengguna P');
 		$this->db->join('pengguna_perizinan R','P.id_pengguna = R.id_pengguna','left');
 		$this->db->join('perizinan Z','R.id_perizinan = Z.id_perizinan','left');
-		// $this->db->join('jenis_alat_keselamatan K','K.id_jenis_alat = Z.id_jenis_alat','left');
+		$this->db->join('jenis_alat_keselamatan K','K.id_jenis_alat = Z.id_jenis_alat','left');
 		$this->db->where('R.status = "ditolak"');
 		return $this->db->get();
 	}

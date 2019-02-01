@@ -203,7 +203,7 @@
 						</li>
 						<li>
 							<a href="<?php echo site_url('pengesahan'); ?>">
-								<i class="ti ti-notepad"></i><span> Pengesahan</span>
+								<i class="ti ti-check"></i><span> Pengesahan</span>
 							</a>
 						</li>
 						<li>
@@ -288,6 +288,7 @@
 <script>
 	$.noConflict();
 	jQuery(document).ready(function ($) {
+		$('#myTable').DataTable();
 		$('#myTable1').DataTable();
 		$('#myTable2').DataTable();
 		$('#myTable3').DataTable();

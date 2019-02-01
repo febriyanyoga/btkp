@@ -67,6 +67,10 @@ $route['konfirmasi/(:any)'] 	= 'HomeC/konfirmasi/$1';
 
 // workshop
 $route['workshop'] = 'WorkshopC';
+$route['tampil/(:any)'] 	= 'WorkshopC/aktif/$1';
+$route['tidak/(:any)'] 	= 'WorkshopC/non_aktif/$1';
+$route['post_maker'] = 'WorkshopC/post_maker';
+$route['post_edit_maker'] = 'WorkshopC/post_edit_maker';
 $route['data_perizinan'] = 'WorkshopC/data_perizinan';
 $route['profile_w'] = 'WorkshopC/profile';
 $route['data_reinspeksi'] = 'WorkshopC/data_reinspeksi';

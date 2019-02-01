@@ -117,7 +117,7 @@
 													<textarea class="form-control" rows="3" cols="50" id="alamat_workshop" name="alamat_workshop" required placeholder="Contoh : Jalan Moh. Hatta No. 11, RT01/RW07; Maksimal : 60 Karakter" maxlength="60"></textarea>
 												</div>
 											</div>
-											<div class="form-group row mb-3">
+											<div class="form-group row mb-3" id="all_alamat_ws">
 												<div class="col-xl-3 mb-3">
 													<label class="form-control-label"><b>PROPINSI</b><span class="text-danger ml-2">*</span></label>
 													<select class="form-control" id="propinsi_ws" name="propinsi_ws" required >
@@ -148,6 +148,14 @@
 													<select class="form-control" id="kelurahan_ws" name="kelurahan_ws" required >
 														<option>-----Pilih Kelurahan-----</option>
 													</select>
+												</div>
+											</div>
+											<div class="form-group row mb-3"> 
+												<div class="col-xl-4">
+													<div class="styled-checkbox">
+														<input type="checkbox" name="checkbox" id="sama">
+														<label for="sama"><strong>Sama dengan alamat perusahaan</strong></label>
+													</div>
 												</div>
 											</div>
 											<div class="form-group row mb-3">

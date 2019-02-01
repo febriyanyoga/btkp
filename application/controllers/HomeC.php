@@ -95,19 +95,19 @@ class HomeC extends CI_Controller{
 						redirect('workshop');
 					}else{
 						$this->session->set_flashdata('error','Silahkan Login dihalaman admin');
-						redirect('login_admin');
+						redirect('home');
 					}
 				}else{
 					$this->session->set_flashdata('error','akun anda belum aktif');
-					redirect('login_admin');
+					redirect('home');
 				}
 			}else{
 				$this->session->set_flashdata('error','email atau password yang anda input salah');
-				redirect('login_admin');
+				redirect('home');
 			}
 		}else{
 			$this->session->set_flashdata('error','Captcha salah');
-			redirect('login_admin');
+			redirect('home');
 		}
 	}
 

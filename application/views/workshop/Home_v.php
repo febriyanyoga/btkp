@@ -637,7 +637,7 @@
             								</div>
             							</div>
             						</div>
-            						<br>
+            						<!-- <br>
             						<div class="row">
             							<div class="col-xl-12">
             								<div class="room-image">
@@ -645,7 +645,7 @@
             										class="img-fluid rounded" alt="..."></a>
             									</div>
             								</div>
-            							</div>
+            							</div> -->
             						</div>
             					</div>
             				</div>

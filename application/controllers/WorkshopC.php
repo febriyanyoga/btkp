@@ -309,7 +309,7 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('nama_perusahaan', 'Nama Perusahaan', 'required');
         $this->form_validation->set_rules('alamat_perusahaan', 'Alamat Perusahaan', 'required');
         $this->form_validation->set_rules('kelurahan_pt', 'Kelurahan Perusahaan', 'required');
-        $this->form_validation->set_rules('kelurahan_ws', 'Kelurahan Workshop','required');
+        $this->form_validation->set_rules('kelurahan_ws', 'Kelurahan Workshop');
         $this->form_validation->set_rules('alamat_workshop', 'Alamat Workshop','required');
         $this->form_validation->set_rules('akta_perusahaan', 'Akta Perusahaan','required');
         $this->form_validation->set_rules('email_perusahaan', 'Email Perusahaan');
@@ -320,13 +320,20 @@ class WorkshopC extends CI_Controller
             $this->session->set_flashdata('error','Data tidak lengkap, silahkan lengkapi pengisian data.');
             redirect_back();
         }else{
+            if($this->input->post('kelurahan_ws') == ''){
+                $kelurahan_ws = $this->input->post('kelurahan_pt');
+            }else{
+                $kelurahan_ws = $this->input->post('kelurahan_ws');
+            }
+
+
             $data = array(
                 'id_pengguna'               => $this->session->userdata('id_pengguna'),
                 'nama_perusahaan'           => $this->input->post('nama_perusahaan'),
                 'alamat_perusahaan'         => $this->input->post('alamat_perusahaan'),
                 'id_kel_perusahaan'         => $this->input->post('kelurahan_pt'),
                 'alamat_workshop'           => $this->input->post('alamat_workshop'),
-                'id_kel_workshop'           => $this->input->post('kelurahan_ws'),
+                'id_kel_workshop'           => $kelurahan_ws,
                 'akta_perusahaan'           => $this->input->post('akta_perusahaan'),
                 'email_perusahaan'          => $this->input->post('email_perusahaan'),
                 'nama_pimpinan'             => $this->input->post('nama_pimpinan'),
@@ -880,6 +887,83 @@ class WorkshopC extends CI_Controller
                 $this->session->set_flashdata('error', 'Konfirmasi pembayaran tidak berhasil diunggah');
                 redirect_back();
             }
+        }
+    }
+
+    public function post_maker(){
+        $this->form_validation->set_rules('no_maker', 'Nomor Maker', 'required');
+        $this->form_validation->set_rules('id_perusahaan', 'ID Perusahaan', 'required');
+        $this->form_validation->set_rules('nama', 'Nama Maker', 'required');
+        if($this->form_validation->run() == false){
+            $this->session->set_flashdata('error', 'Data gagal ditambahkan, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            $upload = $this->upload_file('dokumen_sertifikat');
+            if($upload['result'] == 'success'){
+                $data = array(
+                    'id_perusahaan'         => $this->input->post('id_perusahaan'), 
+                    'no_maker'              => $this->input->post('no_maker'), 
+                    'nama'                  => $this->input->post('nama'), 
+                    'dokumen_sertifikat'    => $upload['file_name'], 
+                );
+
+                if($this->WorkshopM->insert_maker($data)){
+                    $this->session->set_flashdata('sukses', 'Data berhasil diunggah');
+                    redirect_back();
+                }else{
+                    $this->session->set_flashdata('error', 'Data tidak berhasil diunggah');
+                    redirect_back();
+                }
+            }
+        }
+    }
+
+    public function post_edit_maker(){
+        $this->form_validation->set_rules('id_maker', 'ID Maker', 'required');
+        $this->form_validation->set_rules('nama', 'Nama Maker', 'required');
+        if($this->form_validation->run() == false){
+            $this->session->set_flashdata('error', 'Data gagal ditambahkan, cek kembali data yang anda masukkan');
+            redirect_back();
+        }else{
+            $data = array(
+                'nama' => $this->input->post('nama'),
+            );
+            $id_maker = $this->input->post('id_maker');
+            if($this->WorkshopM->update_maker($id_maker, $data)){
+                $this->session->set_flashdata('sukses', 'Data berhasil diunggah');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Data tidak berhasil diunggah');
+                redirect_back();
+            }
+        }
+    }
+
+    public function non_aktif($id_maker){
+        $data = array(
+            'status'  => 'tidak', 
+        );
+
+        if($this->WorkshopM->update_maker($id_maker, $data)){
+            $this->session->set_flashdata('sukses','Maker berhasil di non-aktifkan.');
+            redirect_back();
+        }else{
+            $this->session->set_flashdata('error','Maker tidak berhasil di non-aktifkan.');
+            redirect_back();
+        }
+    }
+
+    public function aktif($id_maker){
+        $data = array(
+            'status'  => 'tampil', 
+        );
+
+        if($this->WorkshopM->update_maker($id_maker, $data)){
+            $this->session->set_flashdata('sukses','Maker berhasil di aktifkan.');
+            redirect_back();
+        }else{
+            $this->session->set_flashdata('error','Maker tidak berhasil di aktifkan.');
+            redirect_back();
         }
     }
 }
