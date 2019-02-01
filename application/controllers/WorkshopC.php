@@ -355,6 +355,7 @@ class WorkshopC extends CI_Controller
         $data_izin = array(
             'id_jenis_alat'         =>  $this->input->post('jenis_alat'),
             'id_pengguna'           =>  $this->session->userdata('id_pengguna'),
+            'id_maker'              =>  $this->input->post('id_maker'),
             'id_jenis_perizinan'    =>  $this->input->post('jenis_perizinan')
         );
         if($id_perizinan = $this->WorkshopM->insert_perizinan($data_izin)){
@@ -892,6 +893,8 @@ class WorkshopC extends CI_Controller
 
     public function post_maker(){
         $this->form_validation->set_rules('no_maker', 'Nomor Maker', 'required');
+        $this->form_validation->set_rules('tgl_mulai', 'Tanggal Mulai', 'required');
+        $this->form_validation->set_rules('tgl_akhir', 'Tanggal Akhir', 'required');
         $this->form_validation->set_rules('id_perusahaan', 'ID Perusahaan', 'required');
         $this->form_validation->set_rules('nama', 'Nama Maker', 'required');
         if($this->form_validation->run() == false){
@@ -901,10 +904,12 @@ class WorkshopC extends CI_Controller
             $upload = $this->upload_file('dokumen_sertifikat');
             if($upload['result'] == 'success'){
                 $data = array(
-                    'id_perusahaan'         => $this->input->post('id_perusahaan'), 
-                    'no_maker'              => $this->input->post('no_maker'), 
-                    'nama'                  => $this->input->post('nama'), 
-                    'dokumen_sertifikat'    => $upload['file_name'], 
+                    'id_perusahaan'      => $this->input->post('id_perusahaan'), 
+                    'no_maker'           => $this->input->post('no_maker'), 
+                    'nama'               => $this->input->post('nama'), 
+                    'tgl_mulai'          => $this->input->post('tgl_mulai'), 
+                    'tgl_akhir'          => $this->input->post('tgl_akhir'), 
+                    'dokumen_sertifikat' => $upload['file_name'], 
                 );
 
                 if($this->WorkshopM->insert_maker($data)){

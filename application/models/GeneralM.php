@@ -295,6 +295,11 @@ class GeneralM extends CI_Model{
 		return $this->db->get('maker');
 	}
 
+	public function get_maker_by_id_maker($id_maker){
+		$this->db->where('id_maker', $id_maker);
+		return $this->db->get('maker');
+	}
+
 	public function send_email($subject, $to, $isi){  
 		$config = Array(  
 			'protocol' 	=> 'smtp',  
