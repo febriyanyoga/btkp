@@ -55,20 +55,20 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
 
 // index
-$route['daftar'] 		= 'HomeC/post_daftar';
-$route['home'] 			= 'HomeC';
-$route['login_admin'] 	= 'HomeC/login_admin';
-$route['login'] 		= 'HomeC/post_login_user';
-$route['post_login_admin'] 		= 'HomeC/post_login_admin';
-$route['logout'] 		= 'HomeC/logout';
-$route['logout_admin'] 	= 'HomeC/logout_admin';
-$route['konfirmasi/(:any)'] 	= 'HomeC/konfirmasi/$1';
+$route['daftar'] = 'HomeC/post_daftar';
+$route['home'] = 'HomeC';
+$route['login_admin'] = 'HomeC/login_admin';
+$route['login'] = 'HomeC/post_login_user';
+$route['post_login_admin'] = 'HomeC/post_login_admin';
+$route['logout'] = 'HomeC/logout';
+$route['logout_admin'] = 'HomeC/logout_admin';
+$route['konfirmasi/(:any)'] = 'HomeC/konfirmasi/$1';
 // $route['tentang'] = 'website/tentang';
 
 // workshop
 $route['workshop'] = 'WorkshopC';
-$route['tampil/(:any)'] 	= 'WorkshopC/aktif/$1';
-$route['tidak/(:any)'] 	= 'WorkshopC/non_aktif/$1';
+$route['tampil/(:any)'] = 'WorkshopC/aktif/$1';
+$route['tidak/(:any)'] = 'WorkshopC/non_aktif/$1';
 $route['post_maker'] = 'WorkshopC/post_maker';
 $route['post_edit_maker'] = 'WorkshopC/post_edit_maker';
 $route['data_perizinan'] = 'WorkshopC/data_perizinan';
@@ -143,7 +143,6 @@ $route['aktif_alat/(:any)'] = 'AdminC/aktif_alat/$1';
 $route['non_aktif_berkas/(:any)'] = 'AdminC/non_aktif_berkas/$1';
 $route['aktif_berkas/(:any)'] = 'AdminC/aktif_berkas/$1';
 
-
 // tatausaha
 $route['validasi_ins'] = 'TatausahaC/validasi_ins';
 $route['post_kode_inspeksi'] = 'TatausahaC/kode_billing_inspeksi';
@@ -184,10 +183,17 @@ $route['verifikasiakhir/(:num)'] = 'KasieC/verifikasiakhir_pengujian/$1';
 $route['verifikasi_akhir'] = 'KasieC/verifikasi_akhir';
 
 // pimpinan
-$route['pimpinan'] 			= 'PimpinanC';
-$route['profile_pimpinan'] 	= 'PimpinanC/profile';
-$route['post_password_pimpinan'] 	= 'PimpinanC/post_update_password';
-$route['perizinan_pimpinan'] 	= 'PimpinanC/perizinan';
-$route['pengujian_pimpinan'] 	= 'PimpinanC/pengujian';
-$route['reinspeksi_pimpinan'] 	= 'PimpinanC/reinspeksi';
+$route['pimpinan'] = 'PimpinanC';
+$route['profile_pimpinan'] = 'PimpinanC/profile';
+$route['post_password_pimpinan'] = 'PimpinanC/post_update_password';
+$route['perizinan_pimpinan'] = 'PimpinanC/perizinan';
+$route['pengujian_pimpinan'] = 'PimpinanC/pengujian';
+$route['reinspeksi_pimpinan'] = 'PimpinanC/reinspeksi';
 $route['pengesahan'] = 'PimpinanC/pengesahan';
+
+//pusditjen
+$route['pusditjen'] = 'PusditjenC';
+$route['laporan_perusahaan'] = 'PusditjenC/laporan_perusahaan';
+$route['laporan_perizinan'] = 'PusditjenC/laporan_perizinan';
+$route['laporan_sertifikasi'] = 'PusditjenC/laporan_sertifikasi';
+$route['laporan_inspeksi'] = 'PusditjenC/laporan_inspeksi';
