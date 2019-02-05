@@ -181,7 +181,7 @@
 															<select class="form-control" id="id_jabatan" name="id_jabatan" required="required" title="pilih jenis user">
 																<?php
 																foreach ($jabatan as $jab) {
-																	if ($jab->id_jabatan > 4) {
+																	if ($jab->id_jabatan > 4 && $jab->id_jabatan < 10) {
 																		?>
 																		<option value="<?php echo $jab->id_jabatan; ?>">
 																			<?php echo $jab->nama_jabatan; ?>

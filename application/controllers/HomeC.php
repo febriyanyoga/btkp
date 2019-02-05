@@ -91,7 +91,7 @@ class HomeC extends CI_Controller{
 						'logged_in' 		=> TRUE,
 					);
 					$this->session->set_userdata($userData);
-					if($user->row()->id_jabatan > 4){
+					if($user->row()->id_jabatan > 4 && $user->row()->id_jabatan < 10){
 						redirect('workshop');
 					}else{
 						$this->session->set_flashdata('error','Silahkan Login dihalaman admin');
@@ -141,23 +141,25 @@ class HomeC extends CI_Controller{
 						redirect('tatausaha');
 					}elseif($user->row()->id_jabatan == 3){
 						redirect('kasie');
-					}elseif ($user->row()->id_jabatan == 4) {
+					}elseif ($user->row()->id_jabatan == 4){
 						redirect('pimpinan');
-					}elseif($user->row()->id_jabatan > 4){
+					}elseif ($user->row()->id_jabatan == 10){
+						redirect('pusditjen');
+					}elseif($user->row()->id_jabatan > 4 && $user->row()->id_jabatan < 10){
 						$this->session->set_flashdata('error','Silahkan Login dihalaman Login User');
 						redirect('home');
 					}
 				}else{
 					$this->session->set_flashdata('error','akun anda belum aktif');
-					redirect('home');
+					redirect('login_admin');
 				}
 			}else{
 				$this->session->set_flashdata('error','email atau password yang anda input salah');
-				redirect('home');
+				redirect('login_admin');
 			}
 		}else{
 			$this->session->set_flashdata('error','Captcha salah');
-			redirect('home');
+			redirect('login_admin');
 		}
 	}
 

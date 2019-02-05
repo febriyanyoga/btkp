@@ -323,7 +323,7 @@
                                                         				if($ujian->foto_bukti_trf_2 == ''){
                                                         					if($ujian->kode_billing_2 == ''){
                                                         						?>
-                                                        						<span style="width:100px;"><span class="badge-text badge-text-small info">Masukkan kode billing</span></span>
+                                                        						<span style="width:100px;"><span class="badge-text badge-text-small info">Masukkan Kode NTPN</span></span>
                                                         						<?php
                                                         					}else{
                                                         						?>
@@ -342,7 +342,7 @@
                                                         				if($ujian->foto_bukti_trf_2 == ''){
                                                         					if($ujian->kode_billing_2 == ''){
                                                         						?>
-                                                        						<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian; ?>"><i class="la la-plus"></i>Kode Billing</i>
+                                                        						<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian; ?>"><i class="la la-plus"></i>Kode NTPN</i>
                                                         						</a>
                                                         						<?php
                                                         					}else{
@@ -359,14 +359,14 @@
                                                         			<div class="modal-dialog modal-md">
                                                         				<div class="modal-content">
                                                         					<div class="modal-header">
-                                                        						<h4 class="modal-title">Masukkan Kode Billing</h4>
+                                                        						<h4 class="modal-title">Masukkan Kode NTPN</h4>
                                                         						<button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         					</div>
                                                         					<form action="<?php echo site_url('kode_billing_2')?>" method="post">
                                                         						<div class="modal-body">
-                                                        							<label for="kode_billing_2" class="label">Kode Billing : </label>
-                                                        							<input type="number" name="kode_billing_2" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
-                                                        							<label for="bank_btkp_2" class="label">Bank BTKP : </label>
+                                                        							<label for="kode_billing_2" class="label">Kode NTPN : </label>
+                                                        							<input type="number" name="kode_billing_2" value="" class="form-control" placeholder="Masukkan Kode NTPN" required="required">
+                                                        							<!-- <label for="bank_btkp_2" class="label">Bank BTKP : </label>
                                                         							<select class="form-control" name="id_bank_btkp_2">
                                                         								<option value="">---Pilih Bank---</option>
                                                         								<?php
@@ -376,18 +376,20 @@
                                                         									<?php
                                                         								}
                                                         								?>
-                                                        							</select>
+                                                        							</select> -->
+                                                        							<input type="hidden" name="id_bank_btkp_2" value="1">
+                                                        							
 
                                                         							<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
                                                         							<label for="jumlah_tagihan_2" class="label">Jumlah Tagihan: </label>
                                                         							<input type="number" name="jumlah_tagihan_2" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
                                                         							<label for="masa_berlaku_billing_2" class="label">Masa Berlaku Sampai: </label>
-                                                        							<input type="date" name="masa_berlaku_billing_2" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
+                                                        							<input type="datetime-local" name="masa_berlaku_billing_2" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
 
                                                         						</div>
                                                         						<div class="modal-footer">
                                                         							<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-                                                        							<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode billing yang dimasukkan sudah benar?')">
+                                                        							<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode NTPN yang dimasukkan sudah benar?')">
                                                         						</div>
                                                         					</form>
                                                         				</div>

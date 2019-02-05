@@ -154,7 +154,7 @@
 																			}
 																		}else{
 																			?>
-																			<span class="badge-text badge-text-small info" title="Menunggu Kode NTPN untuk pembayaran">Dokumen telah diunggah</span>
+																			<span class="badge-text badge-text-small info" title="Menunggu kode billing untuk pembayaran">Dokumen telah diunggah</span>
 																			<?php
 																		}
 																	}

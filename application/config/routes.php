@@ -124,6 +124,9 @@ $route['cetak_ins/(:num)'] = 'WorkshopC/cetak_ins/$1';
 
 // admin
 $route['admin'] = 'AdminC';
+$route['perizinan_admin'] = 'AdminC/perizinan';
+$route['pengujian_admin'] = 'AdminC/pengujian';
+$route['reinspeksi_admin'] = 'AdminC/reinspeksi';
 $route['profile'] = 'AdminC/profile';
 $route['update_password_a'] = 'AdminC/post_update_password';
 $route['datapengguna'] = 'AdminC/datapengguna';
@@ -171,6 +174,7 @@ $route['penerbitan_ins'] = 'TatausahaC/post_penerbitan_ins';
 // KASIE
 $route['kasie'] = 'KasieC';
 // perizinan
+$route['reinspeksi_kasie'] = 'KasieC/reinspeksi';
 $route['izin_kasie'] = 'KasieC/perizinan';
 $route['verifikasi_kasie/(:num)'] = 'KasieC/verifikasi/$1';
 $route['persetujuan_kasie'] = 'KasieC/persetujuan';
@@ -193,7 +197,13 @@ $route['pengesahan'] = 'PimpinanC/pengesahan';
 
 //pusditjen
 $route['pusditjen'] = 'PusditjenC';
+$route['profile_pusditjen'] = 'PusditjenC/profile';
 $route['laporan_perusahaan'] = 'PusditjenC/laporan_perusahaan';
 $route['laporan_perizinan'] = 'PusditjenC/laporan_perizinan';
 $route['laporan_sertifikasi'] = 'PusditjenC/laporan_sertifikasi';
 $route['laporan_inspeksi'] = 'PusditjenC/laporan_inspeksi';
+$route['post_password_pusditjen'] = 'PusditjenC/post_update_password';
+$route['print_laporan_perusahaan'] = 'PusditjenC/print_laporan_perusahaan';
+$route['print_laporan_perizinan'] = 'PusditjenC/print_laporan_perizinan';
+$route['print_laporan_pengujian'] = 'PusditjenC/print_laporan_pengujian';
+$route['print_laporan_reinspeksi'] = 'PusditjenC/print_laporan_reinspeksi';

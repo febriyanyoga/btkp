@@ -69,7 +69,7 @@ Author: SAEROX
 				<div class="navbar-holder d-flex align-items-center align-middle justify-content-between">
 					<!-- Begin Logo -->
 					<div class="navbar-header">
-						<a href="<?php echo site_url('admin'); ?>" class="navbar-brand">
+						<a href="<?php echo site_url('pusditjen'); ?>" class="navbar-brand">
 							<div class="brand-image brand-big">
 								<img src="<?php echo site_url(); ?>assets/logo.png" alt="logo" style="width: 70px;" class="logo-big">
 							</div>
@@ -102,7 +102,7 @@ Author: SAEROX
 									<p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
 								</li>
 								<li>
-									<a href="<?php echo site_url('profile'); ?>" class="dropdown-item">
+									<a href="<?php echo site_url('profile_pusditjen'); ?>" class="dropdown-item">
 										Profile
 									</a>
 								</li>
@@ -190,6 +190,7 @@ Author: SAEROX
 <!-- Begin Vendor Js -->
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/custom.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
 <!-- End Vendor Js -->
 <!-- Begin Page Vendor Js -->
@@ -205,7 +206,7 @@ Author: SAEROX
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/chart/chart.min.js"></script>
 <!-- <script src="<?php echo base_url(); ?>assets/app/js/dashboard/db-default.js"></script> -->
 <!-- End Page Snippets -->
-
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/datatables.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/dataTables.buttons.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/jszip.min.js"></script>
@@ -213,7 +214,6 @@ Author: SAEROX
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/pdfmake.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/vfs_fonts.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/buttons.print.min.js"></script>
-<script src="<?php echo base_url(); ?>assets/app/vendors/js/app/app.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/js/components/tables/tables.js"></script>
 <!-- End Page Vendor Js -->
 
@@ -222,11 +222,13 @@ Author: SAEROX
 	jQuery(document).ready(function ($) {
 		$('#export-table').DataTable();
 		$('#myTable').DataTable();
+		$('#myTable1').DataTable();
 		$('#myTable2').DataTable();
 		$('#myTable3').DataTable();
+		$('#myTable4').DataTable();
+		$('#myTable5').DataTable();
+		$('#myTable6').DataTable();
 	});
-
-
 </script>
 <!-- Popover -->
 <script>

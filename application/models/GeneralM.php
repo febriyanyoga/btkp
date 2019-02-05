@@ -221,35 +221,39 @@ class GeneralM extends CI_Model{
 
 	public function get_jumlah_workshop(){
 		$this->db->select('*');
-		$this->db->from('perusahaan');
-		$this->db->join('pengguna','perusahaan.id_pengguna = pengguna.id_pengguna');
-		$this->db->where('perusahaan.id_pengguna = pengguna.id_pengguna');
-		$this->db->where('pengguna.id_jabatan = "5"');
+		$this->db->from('pengguna');
+		$this->db->join('jabatan','jabatan.id_jabatan = pengguna.id_jabatan');
+		$this->db->where('pengguna.id_jabatan > "4" AND pengguna.id_jabatan < "10"');
 		return $this->db->get();
 	}
 
 	public function get_jumlah_kapal(){
 		$this->db->select('*');
-		$this->db->from('perusahaan');
-		$this->db->join('pengguna','perusahaan.id_pengguna = pengguna.id_pengguna');
-		$this->db->where('perusahaan.id_pengguna = pengguna.id_pengguna');
-		$this->db->where('pengguna.id_jabatan = "7"');
+		$this->db->from('inspeksi');
+		$this->db->where('nama_kapal != ""');
+		$this->db->where('status_pembayaran = "paid"');
 		return $this->db->get();
 	}
 
 	public function get_jumlah_perizinan(){
+		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = perizinan.id_jenis_alat');
+		$this->db->where('status_pembayaran = "paid"');
 		return $this->db->get('perizinan');
 	}
 
 	public function get_jumlah_pengujian(){
+		$this->db->where('status_pembayaran_1 = "paid"');
+		$this->db->where('status_pembayaran_2 = "paid"');
 		return $this->db->get('pengujian');
 	}
 
 	public function get_jumlah_inspeksi(){
+		$this->db->where('status_pembayaran = "paid"');
 		return $this->db->get('inspeksi');
 	}
 
 	public function get_jumlah_produk(){
+		$this->db->where('status = "aktif"');
 		return $this->db->get('jenis_alat_keselamatan');
 	}
 
@@ -345,5 +349,15 @@ class GeneralM extends CI_Model{
 		);  
 		$this->db->where('md5(id_pengguna)', $key);
 		return $this->db->update('pengguna', $data);  
+	}
+
+	public function get_perusahaan_all()
+	{
+		$this->db->select('*');
+		$this->db->from('perusahaan');
+		$this->db->join('pengguna','pengguna.id_pengguna = perusahaan.id_pengguna');
+		$this->db->where('pengguna.id_jabatan = "5"');
+		return $this->db->get();
+
 	}
 }

@@ -72,8 +72,8 @@
 													<th class="text-center">Perusahaan</th>
 													<th class="text-center">Alat SPK</th>
 													<th class="text-center">Tanggal Permohonan</th>
-													<!-- <th class="text-center">Status</th> -->
-													<th class="text-center">Aksi</th>
+													<th class="text-center">Status</th>
+													<!-- <th class="text-center">Aksi</th> -->
 												</tr>
 											</thead>
 											<tbody>
@@ -84,7 +84,7 @@
 													$id_pengguna = $this->session->userdata('id_pengguna');
 													$progress_tu_all = $this->GeneralM->get_progress_tu($per->id_perizinan)->num_rows();
 													$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
-													if ($progress_tu_all == 0 && $per->status_pengajuan == 'selesai') {
+													if ($per->file_hasil_survey == "" && $per->status_pengajuan == 'selesai') {
 														$i++;
 														$verifikasi_izin+=1; 
 														?>
@@ -99,12 +99,24 @@
                                                             // $tgl_pengajuan = date('d/m/Y H:i:s', strtotime($per->created_at_izin));
 															$tgl_pengajuan = date('Y-m-d', strtotime($per->created_at_izin)); ?>
 															<td class="text-center"><?php echo date_indo($tgl_pengajuan); ?></td>
-															<!-- <td class="text-center">
-															</td> -->
 															<td class="text-center">
+																<?php
+																$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
+																if ($progress_tu > 0) {
+																	?>
+																	<span style="width:100px; " title="Menunggu file survey diUnggah"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu File Survey</span></span>
+																	<?php
+																}else{
+																	?>
+																	<span style="width:100px; " title="Menunggu verifikasi berkas"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu verifikasi</span></span>
+																	<?php
+																}
+																?>
+															</td>
+															<!-- <td class="text-center">
 																<a href="<?php echo site_url('verifikasi/'.$per->id_perizinan); ?>" class="btn btn-primary mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
 																</a>
-															</td>
+															</td> -->
 														</tr>
 														<?php
 													} 
@@ -185,7 +197,7 @@
 													<th class="text-center">Alat SPK</th>
 													<th class="text-center">Tanggal Permohonan</th>
 													<th class="text-center">Status</th>
-													<th class="text-center">Aksi</th>
+													<!-- <th class="text-center">Aksi</th> -->
 												</tr>
 											</thead>
 											<tbody>
@@ -231,7 +243,7 @@
                                                         						<?php
                                                         					} ?>
                                                         				</td>
-                                                        				<td class="text-center">
+                                                        				<!-- <td class="text-center">
                                                         					<?php
                                                         					if ($status == 'ditolak') {
                                                         						?>
@@ -244,25 +256,25 @@
                                                         							<?php
                                                         						} else {
                                                         							?>
-                                                        							<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling-<?php echo $per->id_perizinan; ?>"><i class="la la-plus"></i>Kode NTPN</i>
+                                                        							<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling-<?php echo $per->id_perizinan; ?>"><i class="la la-plus"></i>Kode Billing</i>
                                                         							</a>
                                                         							<?php
                                                         						}
                                                         					} ?>
-                                                        				</td>
+                                                        				</td> -->
                                                         			</tr>
-                                                        			<div class="modal" id="kode_biling-<?php echo $per->id_perizinan; ?>">
+                                                        			<!-- <div class="modal" id="kode_biling-<?php echo $per->id_perizinan; ?>">
                                                         				<div class="modal-dialog modal-md">
                                                         					<div class="modal-content">
                                                         						<div class="modal-header">
-                                                        							<h4 class="modal-title">Masukkan Kode NTPN</h4>
+                                                        							<h4 class="modal-title">Masukkan Kode Billing</h4>
                                                         							<button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         						</div>
                                                         						<form action="<?php echo site_url('kode_billing'); ?>" method="post">
                                                         							<div class="modal-body">
-                                                        								<label for="kode_billing" class="label">Kode NTPN : </label>
-                                                        								<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan Kode NTPN" required="required">
-                                                        								<!-- <label for="bank_btkp" class="label">Bank BTKP : </label>
+                                                        								<label for="kode_billing" class="label">Kode Billing : </label>
+                                                        								<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
+                                                        								<label for="bank_btkp" class="label">Bank BTKP : </label>
                                                         								<select class="form-control" name="id_bank_btkp">
                                                         									<option value="">---Pilih Bank---</option>
                                                         									<?php
@@ -272,24 +284,23 @@
                                                         										<?php
                                                         									}
                                                         									?>
-                                                        								</select> -->
-                                                        								<input type="hidden" name="id_bank_btkp" value="1">
+                                                        								</select>
 
                                                         								<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
                                                         								<label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
                                                         								<input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
-                                                        								<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai lele : </label>
-                                                        								<input type="datetime-local" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
+                                                        								<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
+                                                        								<input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
 
                                                         							</div>
                                                         							<div class="modal-footer">
                                                         								<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-                                                        								<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode NTPN yang dimasukkan sudah benar?')">
+                                                        								<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode billing yang dimasukkan sudah benar?')">
                                                         							</div>
                                                         						</form>
                                                         					</div>
                                                         				</div>
-                                                        			</div>
+                                                        			</div> -->
                                                         			<?php
                                                         		}
                                                         	}
@@ -312,7 +323,7 @@
                                     					<th class="text-center">Alat SPK</th>
                                     					<th class="text-center">Tanggal Permohonan</th>
                                     					<th class="text-center">Status</th>
-                                    					<th class="text-center">Aksi</th>
+                                    					<!-- <th class="text-center">Aksi</th> -->
                                     				</tr>
                                     			</thead>
                                     			<tbody>
@@ -352,13 +363,13 @@
 		                                                                    } 
 		                                                                    ?>
 		                                                                </td>
-		                                                                <td class="text-center">
+		                                                                <!-- <td class="text-center">
 		                                                                	<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#penerbitan-<?php echo $per->id_perizinan; ?>">Penerbitan</i>
 		                                                                	</a>
-		                                                                </td>
+		                                                                </td> -->
 		                                                            </tr>
 
-		                                                            <div class="modal" id="penerbitan-<?php echo $per->id_perizinan; ?>">
+		                                                            <!-- <div class="modal" id="penerbitan-<?php echo $per->id_perizinan; ?>">
 		                                                            	<div class="modal-dialog modal-md">
 		                                                            		<div class="modal-content">
 		                                                            			<div class="modal-header">
@@ -380,12 +391,10 @@
 		                                                            						<option value="unpaid">Belum Dibayar</option>
 		                                                            					</select>
 
-		                                                            					<!-- notifikasi -->
 		                                                            					<input type="hidden" name="nomor" value="<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?>">
 		                                                            					<input type="hidden" name="email_pengguna" value="<?php echo $per->email_pengguna;?>">
 		                                                            					<input type="hidden" name="nama_pengguna" value="<?php echo $per->nama_pengguna;?>">
 		                                                            					<input type="hidden" name="kode_billing" value="<?php echo $per->kode_billing;?>">
-		                                                            					<!-- end notifikasi -->
 
 		                                                            					<label id="label_tgl_terbit" for="tgl_terbit" class="label">Tanggal Terbit  : </label>
 		                                                            					<input id="input_tgl_terbit" type="date" name="tgl_terbit" value="" class="form-control" required="required">
@@ -402,7 +411,7 @@
 		                                                            			</form>
 		                                                            		</div>
 		                                                            	</div>
-		                                                            </div>
+		                                                            </div> -->
 		                                                            <?php
 		                                                        }
 		                                                    }
@@ -533,7 +542,7 @@
 		    <!-- End Row -->
 		</div>
 
-		<script type="text/javascript">
+	<!-- 	<script type="text/javascript">
 			$(document).ready(function(){
 				$('#label_ket_pembayaran').hide();
 				$('#input_ket_pembayaran').hide();
@@ -570,5 +579,4 @@
 					}
 				});
 			});
-		</script>
-		
+		</script> -->

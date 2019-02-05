@@ -303,7 +303,7 @@
 	<div class="modal-dialog modal-md">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Setujui dan Masukkan Kode Billing</h4>
+				<h4 class="modal-title">Setujui dan Masukkan Kode NTPN</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<form action="<?php echo site_url('verifikasi_1_terima'); ?>" method="post">
@@ -314,9 +314,9 @@
 					<input type="hidden" name="keterangan" class="form-control" value="Memenuhi Syarat" required="required">
 
 
-					<label for="kode_billing" class="label">Kode Billing : </label>
-					<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
-					<label for="bank_btkp" class="label">Bank BTKP : </label>
+					<label for="kode_billing" class="label">Kode NTPN : </label>
+					<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan Kode NTPN" required="required">
+					<!-- <label for="bank_btkp" class="label">Bank BTKP : </label>
 					<select class="form-control" name="id_bank_btkp">
 						<option value="">---Pilih Bank---</option>
 						<?php
@@ -326,19 +326,21 @@
 							<?php
 						}
 						?>
-					</select>
+					</select> -->
+					<input type="hidden" name="id_bank_btkp" value="1">
+
 					<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $pengujian->id_pengujian; ?>">
 					<label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
 					<input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
 					<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
-					<input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
+					<input type="datetime-local" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
 					<input type="hidden" name="nomor" value="<?php echo 'SDP'.$pengujian->id_pengujian.$pengujian->kode_alat;?>">
 					<input type="hidden" name="email_pengguna" value="<?php echo $pengujian->email_pengguna;?>">
 					<input type="hidden" name="nama_pengguna" value="<?php echo $pengujian->nama_pengguna;?>">
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode billing yang dimasukkan sudah benar?')">
+					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode NTPN yang dimasukkan sudah benar?')">
 				</div>
 			</form>
 		</div>

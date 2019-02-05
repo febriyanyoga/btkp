@@ -10,18 +10,52 @@ class AdminC extends CI_Controller
         parent::__construct();
         in_access();
         admin_access();
-        $this->load->model(['LoginM', 'GeneralM', 'AdminM']);
+        $this->load->model(['LoginM', 'GeneralM', 'AdminM', 'TatausahaM', 'WorkshopM']);
+    }
+
+     public function perizinan()
+    {
+        $data['title'] = 'BTKP - Data Perizinan';
+        $id_pengguna = $this->session->userdata('id_pengguna');
+        $this->data['perizinan'] = $this->TatausahaM->get_all_perizinan_by_id_pengguna()->result();
+        $this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
+        $this->data['izin_tolak']   = $this->WorkshopM->get_perizinan_ditolak($id_pengguna)->result();
+        $data['isi'] = $this->load->view('admin/Data_perizinan', $this->data, true);
+        $this->load->view('admin/Layout', $data);
+    }
+
+    public function pengujian()
+    {
+        $data['title'] = 'BTKP - Sertifikasi';
+        $this->data['pengujian'] = $this->TatausahaM->get_all_pengujian()->result();
+        $this->data['pengujian_tolak'] = $this->TatausahaM->get_all_pengujian_with_status()->result();
+        $this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
+        $data['isi'] = $this->load->view('pimpinan/Data_pengujian', $this->data, true);
+        $this->load->view('admin/Layout', $data);
+    }
+
+    public function reinspeksi()
+    {
+        $data['title'] = 'BTKP - Reinspeksi';
+        $this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
+        $this->data['data_inspeksi']     = $this->WorkshopM->get_inspeksi_all()->result();
+        $data['isi'] = $this->load->view('pimpinan/Data_reinspeksi', $this->data, true);
+        $this->load->view('admin/Layout', $data);
     }
 
     public function index()
     {
         $data['title'] = 'BTKP - Home';
         $this->data['jumlah_workshop'] = $this->GeneralM->get_jumlah_workshop()->num_rows();
-        $this->data['jumlah_kapal'] = $this->GeneralM->get_jumlah_kapal()->num_rows();
+        $this->data['user'] = $this->GeneralM->get_jumlah_workshop()->result();
         $this->data['jumlah_perizinan'] = $this->GeneralM->get_jumlah_perizinan()->num_rows();
+        $this->data['perizinan'] = $this->GeneralM->get_jumlah_perizinan()->result();
+        $this->data['jumlah_kapal'] = $this->GeneralM->get_jumlah_kapal()->num_rows();
+        $this->data['kapal'] = $this->GeneralM->get_jumlah_kapal()->result();
         $this->data['jumlah_pengujian'] = $this->GeneralM->get_jumlah_pengujian()->num_rows();
         $this->data['jumlah_inspeksi'] = $this->GeneralM->get_jumlah_inspeksi()->num_rows();
         $this->data['jumlah_produk'] = $this->GeneralM->get_jumlah_produk()->num_rows();
+        $this->data['produk'] = $this->GeneralM->get_jumlah_produk()->result();
         $data['isi'] = $this->load->view('admin/dashboard_v', $this->data, true);
         $this->load->view('admin/Layout', $data);
     }

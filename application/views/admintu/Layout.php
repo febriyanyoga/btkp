@@ -270,6 +270,9 @@
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/chart/chart.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/js/dashboard/db-default.js"></script>
 <!-- End Page Snippets -->
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/datepicker/moment.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/vendors/js/datepicker/daterangepicker.js"></script>
+<script src="<?php echo base_url(); ?>assets/app/js/components/datepicker/datepicker.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/js/components/tables/tables.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/datatables.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/datatables/dataTables.buttons.min.js"></script>
@@ -302,6 +305,6 @@
 		$('[data-toggle="popover"]').popover()
 	})
 
-</script>
+</script> 
 
 

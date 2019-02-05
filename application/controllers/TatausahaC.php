@@ -17,12 +17,16 @@ class TatausahaC extends CI_Controller
     public function index()
     {
         $data['title'] = 'BTKP - Home';
-       $this->data['jumlah_workshop'] = $this->GeneralM->get_jumlah_workshop()->num_rows();
-        $this->data['jumlah_kapal'] = $this->GeneralM->get_jumlah_kapal()->num_rows();
+        $this->data['jumlah_workshop'] = $this->GeneralM->get_jumlah_workshop()->num_rows();
+        $this->data['user'] = $this->GeneralM->get_jumlah_workshop()->result();
         $this->data['jumlah_perizinan'] = $this->GeneralM->get_jumlah_perizinan()->num_rows();
+        $this->data['perizinan'] = $this->GeneralM->get_jumlah_perizinan()->result();
+        $this->data['jumlah_kapal'] = $this->GeneralM->get_jumlah_kapal()->num_rows();
+        $this->data['kapal'] = $this->GeneralM->get_jumlah_kapal()->result();
         $this->data['jumlah_pengujian'] = $this->GeneralM->get_jumlah_pengujian()->num_rows();
         $this->data['jumlah_inspeksi'] = $this->GeneralM->get_jumlah_inspeksi()->num_rows();
         $this->data['jumlah_produk'] = $this->GeneralM->get_jumlah_produk()->num_rows();
+        $this->data['produk'] = $this->GeneralM->get_jumlah_produk()->result();
         $data['isi'] = $this->load->view('admintu/dashboard_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
     }
