@@ -313,12 +313,23 @@ Author: SAEROX
 
 
    </script>
-   <!-- Popover -->
    <script>
       $(function () {
        $('[data-toggle="popover"]').popover()
    })
 
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#btn_terima_kasie").click(function() {
+            $("#form_terima_kasie").submit(); 
+        });
+    });
+    $(document).ready(function() {
+        $("#btn_tolak_kasie").click(function() {
+            $("#form_tolak_kasie").submit(); 
+        });
+    });
 </script>
 
 </body>

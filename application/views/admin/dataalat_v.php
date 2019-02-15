@@ -51,7 +51,7 @@
 											<th class="text-center">Kode Alat</th>
 											<th class="text-center">Keterangan</th>
 											<th class="text-center">Status</th>
-											<th class="text-center" style="width: 70px;">Aksi</th>
+											<th class="text-center" style="width: 100px;">Aksi</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -64,7 +64,7 @@
 												<td class="text-center"><?php echo $i;?></td>
 												<td><?php echo $al->nama_alat;?></td>
 												<td><?php echo $al->kode_alat;?></td>
-												<td><?php echo $al->keterangan;?></td>
+												<td><?php echo $al->keterangan_alat;?></td>
 												<td class="text-center">
 													<?php
 													if($al->status == 'aktif'){

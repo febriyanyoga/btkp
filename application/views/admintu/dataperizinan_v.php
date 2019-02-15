@@ -456,12 +456,21 @@
 		                            							<?php
 		                            							$tgl_expired 	= date('Y-m-d', strtotime($per->tgl_expired));
 		                            							$sekarang 		= date('Y-m-d');
+
 		                            							if($sekarang <= $tgl_expired){
-		                            								?>
-		                            								<td class="text-center">
-		                            									<span style="width:100px;" title="perizinan aktif"><span class="badge-text badge-text-small success"> Aktif</span></span>
-		                            								</td>
-		                            								<?php
+		                            								if($per->pengesahan == 'tidak'){
+		                            									?>
+		                            									<td class="text-center">
+		                            										<span  title="Menunggu pengesahan pimpinan"><span style="width:100px; color: black;" class="badge-text badge-text-small white"> Menunggu pengesahan</span></span>
+		                            									</td>
+		                            									<?php
+		                            								}else{
+		                            									?>
+		                            									<td class="text-center">
+		                            										<span style="width:100px;" title="perizinan aktif"><span class="badge-text badge-text-small success"> Aktif</span></span>
+		                            									</td>
+		                            									<?php
+		                            								}
 		                            							}else{
 		                            								?>
 		                            								<td class="text-center">

@@ -93,14 +93,26 @@
 															<?php
 															$tgl_expired = date('Y-m-d', strtotime($ujian->tgl_expired));
 															$sekarang = date('Y-m-d');
-															if($sekarang > $tgl_expired){
+															if($ujian->pengesahan == 'tidak'){
 																?>
-																<span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span>
+																<span style="width:100px;"><span class="badge-text badge-text-small danger">Menunggu pengesahan</span></span>
 																<?php
 															}else{
-																?>
-																<span style="width:100px;"><span class="badge-text badge-text-small info">aktif</span></span>
-																<?php
+																if($ujian->tgl_terbit == '0000-00-00 00:00:00'){
+																	?>
+																	<span style="width:100px;"><span class="badge-text badge-text-small danger">Menunggu penerbitan</span></span>
+																	<?php
+																}else{
+																	if($sekarang > $tgl_expired){
+																		?>
+																		<span style="width:100px;"><span class="badge-text badge-text-small danger">Tidak aktif</span></span>
+																		<?php
+																	}else{
+																		?>
+																		<span style="width:100px;"><span class="badge-text badge-text-small info">aktif</span></span>
+																		<?php
+																	}
+																}
 															}
 															?>
 														</td>

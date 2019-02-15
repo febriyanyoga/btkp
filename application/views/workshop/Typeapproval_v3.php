@@ -115,6 +115,35 @@
 														<div class="col-sm-3 form-control-label d-flex align-items-center">Tipe Alat</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->tipe?></div>
 													</div>
+
+													<div class="form-group row mb-5">
+														<div class="col-sm-3 form-control-label d-flex align-items-center">Legal</div>
+														<div class="col-sm-8 form-control-plaintext">
+															<a target="_blank" href="<?php echo base_url().'assets/upload/'.$data_pengujian->file_legal; ?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
+														</div>
+													</div>
+
+													<div class="form-group row mb-5">
+														<div class="col-sm-3 form-control-label d-flex align-items-center">Spesifikasi Alat</div>
+														<div class="col-sm-8 form-control-plaintext">
+															<a target="_blank" href="<?php echo base_url().'assets/upload/'.$data_pengujian->file_spesifikasi; ?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
+														</div>
+													</div>
+
+													<div class="form-group row mb-5">
+														<div class="col-sm-3 form-control-label d-flex align-items-center">Gambar Alat</div>
+														<div class="col-sm-8 form-control-plaintext">
+															<a target="_blank" href="<?php echo base_url().'assets/upload/'.$data_pengujian->file_gambar; ?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Gambar</i></a>
+														</div>
+													</div>
+
+													<div class="form-group row mb-5">
+														<div class="col-sm-3 form-control-label d-flex align-items-center">Jenis Alat</div>
+														<div class="col-sm-8 form-control-plaintext">
+															<a target="_blank" href="<?php echo base_url().'assets/upload/'.$data_pengujian->file_jenis_alat; ?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
+														</div>
+													</div>
+
 													<div class="form-group row mb-5">
 														<div class="col-sm-3 form-control-label d-flex align-items-center">Negara Asal</div>
 														<div class="col-sm-8 form-control-plaintext"><?php echo $data_pengujian->negara_asal?></div>

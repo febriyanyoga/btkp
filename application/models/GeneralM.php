@@ -74,6 +74,11 @@ class GeneralM extends CI_Model{
 		return TRUE;
 	}
 
+	public function insert_ttd($data){
+		$this->db->insert('ttd', $data);
+		return TRUE;
+	}
+
 	public function get_own_progress($id_pengguna, $id_perizinan){ //perizinan yang di verifikasi kasie
 		$this->db->select('*');
 		$this->db->from('pengguna_perizinan');
@@ -238,6 +243,7 @@ class GeneralM extends CI_Model{
 	public function get_jumlah_perizinan(){
 		$this->db->join('jenis_alat_keselamatan','jenis_alat_keselamatan.id_jenis_alat = perizinan.id_jenis_alat');
 		$this->db->where('status_pembayaran = "paid"');
+		$this->db->where('pengesahan = "sah"');
 		return $this->db->get('perizinan');
 	}
 
@@ -310,7 +316,7 @@ class GeneralM extends CI_Model{
 			'smtp_host' => 'ssl://smtp.googlemail.com',  
 			'smtp_port' => 465,  
 			'smtp_user' => 'aplikasibtkp@gmail.com',   
-			'smtp_pass' => 'Btkp2018',   
+			'smtp_pass' => 'Btkpjaya2018',   
 			'mailtype' 	=> 'html',   
 			'charset' 	=> 'iso-8859-1'  
 		);  
@@ -358,6 +364,12 @@ class GeneralM extends CI_Model{
 		$this->db->join('pengguna','pengguna.id_pengguna = perusahaan.id_pengguna');
 		$this->db->where('pengguna.id_jabatan = "5"');
 		return $this->db->get();
+	}
 
+	public function get_ttd(){
+		$this->db->select('*');
+		$this->db->from('ttd');
+		$this->db->order_by('kode_ttd','DESC');
+		return $this->db->get();
 	}
 }

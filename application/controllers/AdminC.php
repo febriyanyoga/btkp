@@ -1,6 +1,8 @@
 <?php
 
 defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
+
 class AdminC extends CI_Controller
 {
     public $data = array();
@@ -39,7 +41,7 @@ class AdminC extends CI_Controller
         $data['title'] = 'BTKP - Reinspeksi';
         $this->data['bank_btkp'] = $this->TatausahaM->get_bank_btkp()->result();
         $this->data['data_inspeksi']     = $this->WorkshopM->get_inspeksi_all()->result();
-        $data['isi'] = $this->load->view('pimpinan/Data_reinspeksi', $this->data, true);
+        $data['isi'] = $this->load->view('admin/Data_reinspeksi', $this->data, true);
         $this->load->view('admin/Layout', $data);
     }
 

@@ -84,7 +84,7 @@
                                                 $i=0;
                                                 $aktif = 0;
                                                 foreach ($perizinan as $per) {
-                                                    if($per->status_pembayaran == 'paid'){
+                                                    if($per->pengesahan == 'sah'){
                                                         $tgl_terbit = date('Y-m-d', strtotime($per->tgl_terbit));
                                                         $tgl_expired = date('Y-m-d', strtotime($per->tgl_expired));
                                                         $sekarang = date('Y-m-d');
@@ -164,7 +164,7 @@
                                                 $i=0;
                                                 $tidak_aktif=0;
                                                 foreach ($perizinan as $per) {
-                                                    if($per->status_pembayaran == 'paid'){
+                                                    if($per->pengesahan == 'sah'){
                                                         $tgl_terbit = date('Y-m-d', strtotime($per->tgl_terbit));
                                                         $tgl_expired = date('Y-m-d', strtotime($per->tgl_expired));
                                                         $sekarang = date('Y-m-d');
@@ -242,6 +242,7 @@
                                                 <?php
                                                 $i=1;
                                                 $g = 0;
+                                                // print_r($izin_tolak);
                                                 foreach ($izin_tolak as $tolak) {
                                                     $izin = date('Y-m-d', strtotime($tolak->created_at_izin));
                                                     $nama_alat = $this->WorkshopM->get_perizinan_by_id_perizinan($tolak->id_perizinan)->row()->nama_alat;
@@ -252,7 +253,9 @@
                                                         </td>
                                                         <td class="text-center"><?php echo $nama_alat?></td>
                                                         <td class="text-center"><?php echo date_indo($izin)?></td>
-                                                        <td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small danger"><?php echo $tolak->status?></span></span></td>
+                                                        <td class="text-center">
+                                                            <span style="width:100px;"><span class="badge-text badge-text-small danger">Ditolak</span></span>
+                                                        </td>
                                                         <td style="text-align: justify-all;"><?php echo $tolak->keterangan?></td>
                                                     </tr>
                                                     <?php
@@ -452,7 +455,7 @@
                                                     $ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
                                                     if($ada_status > 0){
                                                         $status = $this->WorkshopM->cek_status($ujian->id_pengujian)->row()->status;
-                                                        if($status != 'ditolak'){
+                                                        if($status != 'ditolak' && $ujian->pengesahan == 'sah'){
                                                             ?>
                                                             <tr class="text-center">
                                                                 <td class="text-center"><span class="text-primary">

@@ -128,7 +128,7 @@
 											<th class="text-center">Tanggal Permohonan</th>
 											<th class="text-center">Tempat</th>
 											<th class="text-center">Status</th>
-											<th class="text-center">Action</th>
+											<th class="text-center">Aksi</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -311,7 +311,7 @@
 											<th class="text-center">Jenis Alat</th>
 											<th class="text-center">Tanggal Permohonan</th>
 											<th class="text-center">Hasil</th>
-											<th class="text-center">Action</th>
+											<th class="text-center" style="min-width: 120px;">Aksi</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -319,7 +319,7 @@
 										$i=1;
 										$data_ins = 0;
 										foreach ($data_inspeksi as $ins) {
-											if($ins->status_pembayaran == 'paid'){
+											if($ins->status_pembayaran == 'paid' && $ins->pengesahan == 'sah'){
 												$tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
 												?>
 												<tr>
@@ -359,7 +359,9 @@
 															?>
 															<a href="<?php echo site_url('cetak_bukti_bayar_ins/'.$ins->id_inspeksi)?>" title="Cetak Bukti Bayar" target="_BLANK"><i class="la la-print" ></i> Cetak Bukti bayar</i></a>
 															<hr>
-															<a href="<?php echo site_url('cetak_ins/'.$ins->id_inspeksi)?>" title="Cetak Sertifikat" target="_BLANK"><i class="la la-print" ></i> Cetak</i></a>
+															<a href="<?php echo site_url('cetak_ins/'.$ins->id_inspeksi)?>" title="Cetak Sertifikat" target="_BLANK"><i class="la la-print" ></i></i></a>
+															<span>&nbsp; | &nbsp;</span>
+															<a href="<?php echo site_url('cetak_label_ins/'.$ins->id_inspeksi)?>" title="Cetak Label" target="_BLANK"><i class="la la-sticky-note"></i></i></a>
 															<?php
 														}
 														?>

@@ -306,5 +306,17 @@
 	})
 
 </script> 
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#btn_tag").click(function() {
+			$("#form_tolak").submit(); 
+		});
+	});
+	$(document).ready(function() {
+		$("#btn-lengkap").click(function() {
+			$("#form_terima").submit(); 
+		});
+	});
+</script>
 
 

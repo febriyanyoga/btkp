@@ -32,7 +32,7 @@
                 <div class="widget-body">
                     <div class="col-10 ml-auto">
                         <div class="section-title mt-3 mb-3">
-                            <h4>01. Data Akun Pengguna</h4>
+                            <h4>Data Akun Pengguna</h4>
                         </div>
                     </div>
                     <form class="form-horizontal" action="<?php echo site_url('post_password_pimpinan')?>" method="post">
@@ -78,6 +78,37 @@
                             <div class="text-right">
                                 <input class="btn btn-gradient-01" type="submit" value="Perbarui" name="submit">
                                 <!-- <button class="btn btn-shadow" type="reset">Cancel</button> -->
+                            </div>
+                        </div>
+                    </form>
+                    <hr>
+                    <div class="col-10 ml-auto">
+                        <div class="section-title mt-3 mb-3">
+                            <h4>Data Tanda tangan</h4>
+                        </div>
+                    </div>
+                    <form action="<?php echo site_url('post_ttd')?>" enctype="multipart/form-data" method="post">
+                        <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-2 form-control-label d-flex justify-content-lg-end">Tanda Tangan</label>
+                            <div class="col-lg-6">
+                                <?php
+                                if($this->GeneralM->get_ttd()->num_rows() == 0){
+                                    echo 'Belum anda tanda tangan';
+                                }else{
+                                    ?>
+                                    <img src="<?php echo base_url().'assets/ttd/'.$ttd->nama_file_ttd; ?>" style="max-width: 100px;" >
+                                    <?php
+                                }
+                                ?>
+                                <br><hr>
+                                <input name="ttd" id="ttd" type="file" class="form-control" required>
+                                <input name="id_pengguna" type="hidden" class="form-control" required value="<?php echo $this->session->userdata('id_pengguna')?>">
+                            </div>
+                        </div>
+                        <div class="form-group row d-flex align-items-center mb-5">
+                            <label class="col-lg-2 form-control-label d-flex justify-content-lg-end "></label>
+                            <div class="text-right">
+                                <input class="btn btn-gradient-01" type="submit" value="Upload" name="submit">
                             </div>
                         </div>
                     </form>

@@ -150,7 +150,7 @@
                                         ?>
                                          <li>
                                             <a href="<?php echo site_url('data_perizinan'); ?>" class="dropdown-item">
-                                              Data Sertifikasi
+                                              Data Pengujian dan Sertifikasi
                                             </a>
                                         </li>
                                         <?php

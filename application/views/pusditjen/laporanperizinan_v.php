@@ -32,7 +32,6 @@
                 <li class="nav-item">
                     <a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-6" role="tab" aria-controls="tab-3" aria-selected="false">FOOD DRINKING WATER</a>
                 </li>
-
             </ul>
             <div class="tab-content pt-3">
                 <div class="tab-pane fade show active" id="tab-1" role="tabpanel" aria-labelledby="base-tab-1">

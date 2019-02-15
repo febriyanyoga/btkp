@@ -108,7 +108,7 @@
 							<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo">
 								<div class="card-title w-100">2. Data Kapal</div>
 							</a>
-							<div id="IconRightCollapseTwo" class="card-body collapse" data-parent="#accordion-icon-right">
+							<div id="IconRightCollapseTwo" class="card-body collapse show" data-parent="#accordion-icon-right">
 								<div class="form-group row mb-5">
 									<div class="col-xl-4">
 										<div class="styled-checkbox">
@@ -150,7 +150,7 @@
 							<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapse3">
 								<div class="card-title w-100">3. Data Alat</div>
 							</a>
-							<div id="IconRightCollapse3" class="card-body collapse" data-parent="#accordion-icon-right">
+							<div id="IconRightCollapse3" class="card-body collapse show" data-parent="#accordion-icon-right">
 								<div class="form-group row mb-5">
 									<div class="col-xl-4">
 										<div class="styled-checkbox">
@@ -192,9 +192,9 @@
 								<input type="hidden" name="email_pengguna" value="<?php echo $ins->email_pengguna;?>">
 								<input type="hidden" name="nama_pengguna" value="<?php echo $ins->nama_pengguna;?>">
 
-								<div class="text-right">
-									<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tolak</a>
-									<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Konfirmasi" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')">
+								<div class="text-right mt-2 mb-3">
+									<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lolos</a>
+									<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Lolos" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')">
 								</div>
 							</form>
 						</div>
@@ -227,7 +227,7 @@
 				</div>
 
 				<div class="modal-footer">
-					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Batal</button>
 					<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success">
 				</div>
 			</form>

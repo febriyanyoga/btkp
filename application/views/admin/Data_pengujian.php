@@ -442,8 +442,7 @@
                             					<th class="text-center">Merk</th>
                             					<th class="text-center">Tipe</th>
                             					<th class="text-center">Instansi</th>
-                            					<!-- <th class="text-center">Status</th> -->
-                            					<!-- <th class="text-center">Aksi</th> -->
+                            					<th class="text-center">Status</th>
                             				</tr>
                             			</thead>
                             			<tbody>
@@ -451,7 +450,7 @@
                             				$i=0;
                             				$validasi_2_ujian=0;
                             				foreach ($pengujian as $ujian) {
-                            					if($ujian->foto_bukti_trf_2 != "" && $ujian->status_pembayaran_2 != 'paid'){
+                            					if($ujian->foto_bukti_trf_2 != "" && $ujian->tgl_terbit == '0000-00-00 00:00:00'){
                             						$i++;
                             						$validasi_2_ujian+=1;
                             						$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
@@ -465,60 +464,20 @@
                             							<td class="text-center"><?php echo $ujian->merk?></td>
                             							<td class="text-center"><?php echo $ujian->tipe?></td>
                             							<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
-                            							<!-- <td class="text-center"><a</td> -->
-                            							<!-- <td class="text-center">
-                            								<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian?>"><i class="la la-pencil"></i>Validasi</i></a>
-                            							</td> -->
+                            							<td class="text-center">
+                            								<?php
+                            								if($ujian->pengesahan == 'tidak'){
+                            									?>
+                            									<span style="width:100px;"><span class="badge-text badge-text-small info">Menungggu pengesahan</span></span>
+                            									<?php
+                            								}else{
+                            									?>
+                            									<span style="width:100px;"><span class="badge-text badge-text-small info">Menungggu penerbitan</span></span>
+                            									<?php
+                            								}
+                            								?>
+                            							</td>
                             						</tr>
-
-                            						<!-- <div class="modal" id="kode_biling2-<?php echo $ujian->id_pengujian?>">
-                            							<div class="modal-dialog modal-md">
-                            								<div class="modal-content">
-                            									<div class="modal-header">
-                            										<h4 class="modal-title">Validasi Pembayaran dan penerbitan</h4>
-                            										<button type="button" class="close" data-dismiss="modal">&times;</button>
-                            									</div>
-
-                            									<form action="<?php echo site_url('validasi_2'); ?>" method="post">
-                            										<div class="modal-body">
-                            											<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
-                            											<label for="nama_bank" class="label">Bank Transfer : </label>
-                            											<input type="text" name="nama_bank" value="<?php echo $ujian->nama_bank_2; ?>" class="form-control" required="required" readonly>
-                            											<label for="atas_nama" class="label">Atas Nama : </label>
-                            											<input type="text" name="atas_nama" value="<?php echo $ujian->atas_nama_2; ?>" class="form-control" required="required" readonly>
-                            											<label for="" class="label">Foto Bukti Transfer : </label><br>
-                            											<img style="max-width: 470px;" src="<?php echo base_url().'assets/upload/'.$ujian->foto_bukti_trf_2;?>"><br>
-                            											<label for="status_pembayaran_2" class="label">Status Pembayaran : </label>
-                            											<select class="form-control" name="status_pembayaran_2" id="status_pembayaran_2">
-                            												<option value="paid">Telah Dibayar</option>
-                            												<option value="unpaid">Belum Dibayar</option>
-                            											</select><br>
-                            											<label id="label_ket_pembayaran_2" for="ket_pembayaran_2" class="label">Keterangan : </label>
-                            											<input id="input_ket_pembayaran_2" type="text" name="ket_pembayaran_2" value="" class="form-control">
-                            											<hr>
-                            											<label for="tgl_terbit" class="label" id="label_tgl_terbit">Tanggal Terbit : </label>
-                            											<input type="date" name="tgl_terbit" id="input_tgl_terbit" value="" class="form-control">
-                            											<label for="tgl_expired	" class="label" id="label_tgl_expired">Tanggal Berakhir : </label>
-                            											<input type="date" name="tgl_expired" value="" class="form-control" id="input_tgl_expired">
-                            											<label for="no_awal" class="label" id="label_no_awal">Nomor Label Awal : </label>
-                            											<input type="number" name="no_awal" id="input_no_awal" value="" class="form-control">
-                            											<label for="no_akhir" class="label" id="label_no_akhir">Nomor Label Akhir : </label>
-                            											<input type="number" name="no_akhir" id="input_no_akhir" value="" class="form-control">
-
-                            											<input type="hidden" name="nomor" value="<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat;?>">
-                            											<input type="hidden" name="email_pengguna" value="<?php echo $ujian->email_pengguna;?>">
-                            											<input type="hidden" name="nama_pengguna" value="<?php echo $ujian->nama_pengguna;?>">
-                            											<input type="hidden" name="kode_billing_2" value="<?php echo $ujian->kode_billing_2;?>">
-
-                            										</div>
-                            										<div class="modal-footer">
-                            											<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-                            											<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin akan validasi pembayaran ini dan menerbitkan sertifikat?')">
-                            										</div>
-                            									</form>
-                            								</div>
-                            							</div>
-                            						</div> -->
                             						<?php
                             					}
                             				}
@@ -549,7 +508,7 @@
                             				$i=0;
                             				$sertifikasi_ujian=0;
                             				foreach ($pengujian as $ujian) {
-                            					if($ujian->status_pembayaran_1 == "paid" && $ujian->status_pembayaran_2 == 'paid'){
+                            					if($ujian->status_pembayaran_1 == "paid" && $ujian->status_pembayaran_2 == 'paid' && $ujian->tgl_terbit != '0000-00-00 00:00:00'){
                             						$i++;
                             						$sertifikasi_ujian+=1;
                             						$tgl_pengajuan 	= date('Y-m-d', strtotime($ujian->created_at_ujian));

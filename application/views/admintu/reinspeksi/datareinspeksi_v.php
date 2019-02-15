@@ -40,7 +40,7 @@
 					<div class="widget-body sliding-tabs">
 						<ul class="nav nav-tabs" id="example-one" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Konfirmasi Permohonan <span id="konfirmasi_ins"></span></a>
+								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi Permohonan <span id="konfirmasi_ins"></span></a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode NTPN <span id="kode_billing_ins"></span></a>
@@ -86,7 +86,7 @@
 														<td class="text-center"><?php echo $ins->nama_alat?></td>
 														<td class="text-center"><?php echo $ins->nama_kapal?></td>
 														<td class="text-center">
-															<a href="<?php echo site_url('verifikasiawalinspeksi/'.$ins->id_inspeksi); ?>" class="btn btn-success mr-1 mb-2"><i class="la la-pencil"></i>Konfirmasi</i>
+															<a href="<?php echo site_url('verifikasiawalinspeksi/'.$ins->id_inspeksi); ?>" class="btn btn-success mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
 															</a>
 														</td>
 													</tr>
@@ -112,7 +112,7 @@
 												<th class="text-center">Alat</th>
 												<th class="text-center">Kapal</th>
 												<th class="text-center">Catatan</th>
-												<th class="text-center">Aksi</th>
+												<th class="text-center" style="min-width: 100px;">Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -318,10 +318,17 @@
 														<td class="text-center"><?php echo $ins->nama_kapal;?></td>
 														<?php 
 														if($ins->no_spk != ""){
-															?>
-															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterbitkan</span></span></td>
-															<td class="text-center">-</td>
-															<?php
+															if($ins->pengesahan == 'tidak'){
+																?>
+																<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small white">Menunggu pengesahan</span></span></td>
+																<td class="text-center">-</td>
+																<?php
+															}else{
+																?>
+																<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterbitkan</span></span></td>
+																<td class="text-center">-</td>
+																<?php
+															}
 														}else{
 															?>
 															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>

@@ -251,9 +251,9 @@ class WorkshopM extends CI_Model{
 	public function get_perizinan_ditolak($id_pengguna){
 		$this->db->select('*');
 		$this->db->from('pengguna P');
-		$this->db->join('pengguna_perizinan R','P.id_pengguna = R.id_pengguna','left');
-		$this->db->join('perizinan Z','R.id_perizinan = Z.id_perizinan','left');
-		$this->db->join('jenis_alat_keselamatan K','K.id_jenis_alat = Z.id_jenis_alat','left');
+		$this->db->join('pengguna_perizinan R','P.id_pengguna = R.id_pengguna');
+		$this->db->join('perizinan Z','R.id_perizinan = Z.id_perizinan');
+		$this->db->join('jenis_alat_keselamatan K','K.id_jenis_alat = Z.id_jenis_alat','left');	
 		$this->db->where('R.status = "ditolak"');
 		return $this->db->get();
 	}
@@ -292,6 +292,7 @@ class WorkshopM extends CI_Model{
 		$this->db->select('id_jenis_alat');
 		$this->db->from('perizinan');
 		$this->db->where('status_pembayaran = "paid"');
+		$this->db->where('pengesahan = "sah"');
 		$this->db->where('date(tgl_expired) >= ', date('Y-m-d'));
 		$this->db->where('id_pengguna', $id_pengguna);
 		return $this->db->get();

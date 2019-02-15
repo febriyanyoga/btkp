@@ -15,7 +15,7 @@ Author: SAEROX
 	<meta name="description" content="Elisyam is a Web App and Admin Dashboard Template built with Bootstrap 4">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<!-- Google Fonts -->
-	<script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script> -->
 	<script>
 		WebFont.load({
 			google: {"families":["Montserrat:400,500,600,700","Noto+Sans:400,700"]},
@@ -136,12 +136,12 @@ Author: SAEROX
 						</li>
 						<li>
 							<a href="<?php echo site_url('laporan_perizinan'); ?>">
-								<i class="ti ti-notepad"></i><span> Data Perizinan</span>
+								<i class="ion-clipboard"></i><span> Data Perizinan</span>
 							</a>
 						</li>
 						<li>
 							<a href="<?php echo site_url('laporan_sertifikasi'); ?>">
-								<i class="ti ti-notepad"></i><span> Data Sertifikasi</span>
+								<i class="ti ti-write"></i><span> Data Sertifikasi</span>
 							</a>
 						</li>
 						<li>

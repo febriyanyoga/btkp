@@ -63,7 +63,7 @@
 											<?php 
 										} 
 										?>
-										<form  method="post" action="<?php echo site_url('post_pengujian')?>">
+										<form  method="post" action="<?php echo site_url('post_pengujian')?>" enctype="multipart/form-data">
 											<div class="section-title mt-5 mb-3">
 												<h4 class="text-center">DATA PERANGKAT</h4>
 												<hr>
@@ -87,6 +87,30 @@
 												<div class="col-xl-6 mb-3">
 													<label class="form-control-label"><b>MERK</b><span class="text-danger ml-2">*</span></label>
 													<input type="text" value="" class="form-control" id="merk" name="merk" required>
+												</div>
+											</div>
+											<div class="form-group row mb-3">
+												<div class="col-xl-6 mb-3">
+													<label class="form-control-label"><b>LEGAL</b><span class="text-danger ml-2">*</span></label>
+													<input type="file" value="" class="form-control" id="legal" name="legal" required>
+													<label><small style="font-style: italic;">Note : file dalam bentuk file pdf (.pdf)</small></label>
+												</div>
+												<div class="col-xl-6 mb-3">
+													<label class="form-control-label"><b>SPESIFIKASI ALAT</b><span class="text-danger ml-2">*</span></label>
+													<input type="file" value="" class="form-control" id="spesifikasi_alat" name="spesifikasi_alat" required>
+													<label><small style="font-style: italic;">Note : file dalam bentuk file pdf (.pdf)</small></label>
+												</div>
+											</div>
+											<div class="form-group row mb-3">
+												<div class="col-xl-6 mb-3">
+													<label class="form-control-label"><b>GAMBAR ALAT</b><span class="text-danger ml-2">*</span></label>
+													<input type="file" value="" class="form-control" id="gambar_alat" name="gambar_alat" required>
+													<label><small style="font-style: italic;">Note : file dalam bentuk file gambar (.jpg/.png)</small></label>
+												</div>
+												<div class="col-xl-6 mb-3">
+													<label class="form-control-label"><b>JENIS ALAT</b><span class="text-danger ml-2">*</span></label>
+													<input type="file" value="" class="form-control" id="jenis_alat" name="jenis_alat" required>
+													<label><small style="font-style: italic;">Note : file dalam bentuk file pdf (.pdf)</small></label>
 												</div>
 											</div>
 											<div class="form-group row mb-3">

@@ -206,9 +206,17 @@
 														<td class="text-center"><?php echo $ins->nama_kapal;?></td>
 														<?php 
 														if($ins->no_spk != ""){
-															?>
-															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterbitkan</span></span></td>
-															<?php
+															if($ins->pengesahan == 'tidak'){
+																?>
+																<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small white">Menunggu pengesahan</span></span></td>
+																<td class="text-center">-</td>
+																<?php
+															}else{
+																?>
+																<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterbitkan</span></span></td>
+																<td class="text-center">-</td>
+																<?php
+															}
 														}else{
 															?>
 															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small info">Menunggu Penerbitan</span></span></td>

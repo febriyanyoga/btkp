@@ -109,10 +109,10 @@ foreach ($data_inspeksi as $ins) {
         $no++;
             $tgl_pengajuan = date('Y-m-d', strtotime($ins->created_at_inspeksi));
         
-            if($ins->no_spk != ""){
+            if($ins->pengesahan == "sah"){
                 $status = 'Diterbitkan';
             }else{
-                $status = 'Menunggu Penerbitan';
+                $status = 'Menunggu Pengesahan';
             }
             $html .= 
             '<tr class="h_tengah">

@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
+date_default_timezone_set('Asia/Jakarta');
 class PimpinanC extends CI_Controller{
 	var $data = array();
 	public function __construct(){
@@ -20,16 +21,17 @@ class PimpinanC extends CI_Controller{
         $this->data['jumlah_inspeksi'] = $this->GeneralM->get_jumlah_inspeksi()->num_rows();
         $this->data['jumlah_produk'] = $this->GeneralM->get_jumlah_produk()->num_rows();
         $this->data['produk'] = $this->GeneralM->get_jumlah_produk()->result();
-		$data['isi'] = $this->load->view('pimpinan/Dashboard_v',$this->data, TRUE);
-		$this->load->view('pimpinan/Layout', $data);
-	}
+        $data['isi'] = $this->load->view('pimpinan/Dashboard_v',$this->data, TRUE);
+        $this->load->view('pimpinan/Layout', $data);
+    }
 
-	public function profile()
+    public function profile()
     {
         $id_pengguna = $this->session->userdata('id_pengguna');
         $data['title'] = 'BTKP - Profil';
         $this->data['provinsi'] = $this->GeneralM->get_all_provinsi();
         $this->data['profil'] = $this->GeneralM->get_pengguna_only($id_pengguna)->row();
+        $this->data['ttd']  = $this->GeneralM->get_ttd()->row();
         $data['isi'] = $this->load->view('pimpinan/Profile_v', $this->data, true);
         $this->load->view('pimpinan/Layout', $data);
     }
@@ -111,6 +113,97 @@ class PimpinanC extends CI_Controller{
                 $this->session->set_flashdata('error', 'Password lama tidak sesuai');
                 redirect_back();
             }
+        }
+    }
+
+    public function pengesahan_izin($id_perizinan){
+        $sah = array('pengesahan' => 'sah');
+        if($this->GeneralM->get_ttd()->num_rows() == 0){
+            $this->session->set_flashdata('error', 'Perizinan tidak berhasil disahkan karena anda belum mengunggah tanda tangan');
+            redirect_back();
+        }else{
+            if($this->WorkshopM->selesai($id_perizinan, $sah)){
+                $this->session->set_flashdata('sukses', 'Perizinan berhasil disahkan');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Perizinan tidak berhasil disahkan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function pengesahan_ujian($id_pengujian){
+        $sah = array('pengesahan' => 'sah');
+        if($this->GeneralM->get_ttd()->num_rows() == 0){
+            $this->session->set_flashdata('error', 'Pengujian tidak berhasil disahkan karena anda belum mengunggah tanda tangan');
+            redirect_back();
+        }else{
+            if($this->WorkshopM->selesai_p($id_pengujian, $sah)){
+                $this->session->set_flashdata('sukses', 'Pengujian berhasil disahkan');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Pengujian tidak berhasil disahkan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function pengesahan_inspeksi($id_inspeksi){
+        $sah = array('pengesahan' => 'sah');
+        if($this->GeneralM->get_ttd()->num_rows() == 0){
+            $this->session->set_flashdata('error', 'Reinspeksi tidak berhasil disahkan karena anda belum mengunggah tanda tangan');
+            redirect_back();
+        }else{
+            if($this->WorkshopM->selesai_i($id_inspeksi, $sah)){
+                $this->session->set_flashdata('sukses', 'Reinspeksi berhasil disahkan');
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Reinspeksi tidak berhasil disahkan');
+                redirect_back();
+            }
+        }
+    }
+
+    public function post_ttd(){
+        $upload = $this->upload_file('ttd');
+        $id_pengguna = $this->input->post('id_pengguna');
+
+        if ($upload['result'] == 'success') {
+            $data = array(
+                'nama_file_ttd' => $upload['file_name'],
+                'id_pengguna'   => $id_pengguna
+            );
+
+            if ($this->GeneralM->insert_ttd($data)) {
+                $this->session->set_flashdata('sukses', 'Tanda tangan berhasil diunggah');
+                redirect_back();
+            } else {
+                $this->session->set_flashdata('error', 'Tanda tangan tidak berhasil diunggah 1');
+                redirect_back();
+            }
+        } else {
+            $this->session->set_flashdata('error', 'Tanda tangan tidak berhasil diunggah 2');
+            redirect_back();
+        }
+    }
+
+    public function upload_file($input_name){
+        $config['upload_path'] = './assets/ttd/'; //path folder
+        $config['allowed_types'] = 'jpg|jpeg|png';
+        $config['max_size'] = '5000'; // max_size in kb
+        $config['encrypt_name'] = TRUE; //Enkripsi nama yang terupload
+
+        $this->upload->initialize($config);
+        if(!empty($_FILES[$input_name]['name'])){
+            if($this->upload->do_upload($input_name)){
+                $gbr = $this->upload->data();
+                $return = array('result' => 'success', 'file_name' => $gbr['file_name'], 'file_size' => $gbr['file_size'], 'error' => '');
+                return $return;
+            }
+        }else{
+            $return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
+            return $return;
+            echo "Data yang diupload kosong";
         }
     }
 }

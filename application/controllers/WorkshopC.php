@@ -280,26 +280,66 @@ class WorkshopC extends CI_Controller
             $this->session->set_flashdata('error','Dokumen tidak lengkap , Silahkan Periksa kembali.');
             redirect_back();
         }else{
-            $data_pengujian = array(
-                'id_pengguna'       => $this->input->post('id_pengguna'),
-                'id_jenis_alat'     => $this->input->post('id_jenis_alat'),
-                'tipe'              => $this->input->post('tipe'),
-                'merk'              => $this->input->post('merk'),
-                'negara_asal'       => $this->input->post('negara_asal'),
-                'pabrikan'          => $this->input->post('pabrikan'),
-                'alamat_pabrikan'   => $this->input->post('alamat_pabrikan'),
-                'id_kel_pabrikan'   => $this->input->post('kelurahan_pt'),
-                'telepon'           => $this->input->post('no_tlp'),
-                'email_pabrikan'    => $this->input->post('email'),
-                'catatan'           => $this->input->post('catatan'),
-                'fax_pabrikan'      => $this->input->post('fax_pabrikan'),
-            );
-            if($id_pengujian = $this->WorkshopM->insert_pengujian($data_pengujian)){
-                $this->session->set_flashdata('sukses','Terimakasih, Dokumen sudah dilampirkan.');
-                redirect('type_approval3/'.$id_pengujian);
+
+            $upload_legal   = $this->upload_file('legal');
+            if($a = $upload_legal['result'] == 'success'){
+                $legal = $upload_legal['file_name'];
             }else{
-                $this->session->set_flashdata('error','Dokumen tidak lengkap , Silahkan Periksa kembali.');
+                $this->session->set_flashdata('error','upload legal gagal');
                 redirect_back();
+            }
+
+            $upload_spesifikasi   = $this->upload_file('spesifikasi_alat');
+            if($b = $upload_spesifikasi['result'] == 'success'){
+                $spesifikasi = $upload_spesifikasi['file_name'];
+            }else{
+                $this->session->set_flashdata('error','upload spesifikasi gagal');
+                redirect_back();
+            }
+
+            $upload_gambar   = $this->upload_file('gambar_alat');
+            if($c = $upload_gambar['result'] == 'success'){
+                $gambar = $upload_gambar['file_name'];
+            }else{
+                $this->session->set_flashdata('error','upload gambar gagal');
+                redirect_back();
+            }
+
+            $upload_jenis   = $this->upload_file('jenis_alat');
+            if($d = $upload_jenis['result'] == 'success'){
+                $jenis = $upload_jenis['file_name'];
+            }else{
+                $this->session->set_flashdata('error','upload jenis gagal');
+                redirect_back();
+            }
+
+            if($a && $b && $c && $d){
+
+                $data_pengujian = array(
+                    'id_pengguna'       => $this->input->post('id_pengguna'),
+                    'id_jenis_alat'     => $this->input->post('id_jenis_alat'),
+                    'tipe'              => $this->input->post('tipe'),
+                    'file_legal'        => $legal,
+                    'file_spesifikasi'  => $spesifikasi,
+                    'file_gambar'       => $gambar,
+                    'file_jenis_alat'   => $jenis,
+                    'merk'              => $this->input->post('merk'),
+                    'negara_asal'       => $this->input->post('negara_asal'),
+                    'pabrikan'          => $this->input->post('pabrikan'),
+                    'alamat_pabrikan'   => $this->input->post('alamat_pabrikan'),
+                    'id_kel_pabrikan'   => $this->input->post('kelurahan_pt'),
+                    'telepon'           => $this->input->post('no_tlp'),
+                    'email_pabrikan'    => $this->input->post('email'),
+                    'catatan'           => $this->input->post('catatan'),
+                    'fax_pabrikan'      => $this->input->post('fax_pabrikan'),
+                );
+                if($id_pengujian = $this->WorkshopM->insert_pengujian($data_pengujian)){
+                    $this->session->set_flashdata('sukses','Terimakasih, Dokumen sudah dilampirkan.');
+                    redirect('type_approval3/'.$id_pengujian);
+                }else{
+                    $this->session->set_flashdata('error','Dokumen tidak lengkap , Silahkan Periksa kembali.');
+                    redirect_back();
+                }
             }
 
         }
@@ -315,6 +355,7 @@ class WorkshopC extends CI_Controller
         $this->form_validation->set_rules('email_perusahaan', 'Email Perusahaan');
         $this->form_validation->set_rules('nama_pimpinan', 'Nama Pimpinan','required');
         $this->form_validation->set_rules('npwp', 'NPWP','required');
+        $this->form_validation->set_rules('no_tdp', 'No TDP','required');
         $this->form_validation->set_rules('no_tlp', 'Nomor Telfon');
         if($this->form_validation->run() == FALSE){
             $this->session->set_flashdata('error','Data tidak lengkap, silahkan lengkapi pengisian data.');
@@ -338,6 +379,7 @@ class WorkshopC extends CI_Controller
                 'email_perusahaan'          => $this->input->post('email_perusahaan'),
                 'nama_pimpinan'             => $this->input->post('nama_pimpinan'),
                 'npwp'                      => $this->input->post('npwp'),
+                'no_tdp'                    => $this->input->post('no_tdp'),
                 'no_tlp'                    => $this->input->post('no_tlp')
             );
             if($insert_id = $this->WorkshopM->insert_perusahaan($data)){
@@ -386,7 +428,7 @@ class WorkshopC extends CI_Controller
         $namaFile   = $this->upload_file('file_hasil_survey');
         if($namaFile['result'] == 'success'){
             $data = array(
-                'file_hasil_survey'             => $namaFile['file_name'],
+                'file_hasil_survey' => $namaFile['file_name'],
             );
             if($this->WorkshopM->selesai($id_perizinan, $data)){
                 $this->session->set_flashdata('sukses','Data berhasil diupload');
@@ -725,22 +767,32 @@ class WorkshopC extends CI_Controller
 
     public function print_surat($id_perizinan){
         $this->data['perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
+        $this->data['ttd']  = $this->GeneralM->get_ttd()->row();
         $this->load->view('workshop/print_surat',$this->data);
     }
 
     public function print_sertifikat_pengujian($id_pengujian){
         $this->data['pengujian'] = $this->WorkshopM->get_pengujian_by_id2($id_pengujian)->row();
+        $this->data['ttd']  = $this->GeneralM->get_ttd()->row();
         $this->load->view('workshop/print_surat_pengujian',$this->data);
     }
 
     public function print_label($id_pengujian){
         $this->data['pengujian'] = $this->WorkshopM->get_pengujian_by_id2($id_pengujian)->row();
+        $this->data['ttd']  = $this->GeneralM->get_ttd()->row();
         $this->load->view('workshop/print_label',$this->data);
     }
 
     public function cetak_ins($id_inspeksi){
         $this->data['inspeksi'] = $this->WorkshopM->get_inspeksi_all_by_id_inspeksi($id_inspeksi)->row();
+        $this->data['ttd']  = $this->GeneralM->get_ttd()->row();
         $this->load->view('workshop/print_ins',$this->data);
+    }
+
+    public function cetak_label_ins($id_inspeksi){
+        $this->data['inspeksi'] = $this->WorkshopM->get_inspeksi_all_by_id_inspeksi($id_inspeksi)->row();
+        $this->data['ttd']  = $this->GeneralM->get_ttd()->row();
+        $this->load->view('workshop/print_label_ins',$this->data);
     }
 
     // Reinspeksi

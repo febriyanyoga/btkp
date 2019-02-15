@@ -173,6 +173,10 @@
 													<label class="form-control-label"><b>NOMOR POKOK WAJIB PAJAK </b><span class="text-danger ml-2">*</span></label>
 													<input type="number" value="" class="form-control" id="npwp" name="npwp" required placeholder="Contoh : 1234567890">
 												</div>
+												<div class="col-xl-6 mb-3">
+													<label class="form-control-label"><b>NOMOR TDP </b><span class="text-danger ml-2">*</span></label>
+													<input type="number" value="" class="form-control" id="no_tdp" name="no_tdp" required placeholder="Contoh : 1234567890">
+												</div>
 											</div>
 											<div class="section-title mt-5 mb-5">
 												<h4>Kontak</h4>
