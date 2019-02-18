@@ -17,12 +17,16 @@ class TatausahaC extends CI_Controller
     public function index()
     {
         $data['title'] = 'BTKP - Home';
-       $this->data['jumlah_workshop'] = $this->GeneralM->get_jumlah_workshop()->num_rows();
-        $this->data['jumlah_kapal'] = $this->GeneralM->get_jumlah_kapal()->num_rows();
+        $this->data['jumlah_workshop'] = $this->GeneralM->get_jumlah_workshop()->num_rows();
+        $this->data['user'] = $this->GeneralM->get_jumlah_workshop()->result();
         $this->data['jumlah_perizinan'] = $this->GeneralM->get_jumlah_perizinan()->num_rows();
+        $this->data['perizinan'] = $this->GeneralM->get_jumlah_perizinan()->result();
+        $this->data['jumlah_kapal'] = $this->GeneralM->get_jumlah_kapal()->num_rows();
+        $this->data['kapal'] = $this->GeneralM->get_jumlah_kapal()->result();
         $this->data['jumlah_pengujian'] = $this->GeneralM->get_jumlah_pengujian()->num_rows();
         $this->data['jumlah_inspeksi'] = $this->GeneralM->get_jumlah_inspeksi()->num_rows();
         $this->data['jumlah_produk'] = $this->GeneralM->get_jumlah_produk()->num_rows();
+        $this->data['produk'] = $this->GeneralM->get_jumlah_produk()->result();
         $data['isi'] = $this->load->view('admintu/dashboard_v', $this->data, true);
         $this->load->view('admintu/Layout', $data);
     }
@@ -441,17 +445,16 @@ class TatausahaC extends CI_Controller
     public function validasi_2(){
         $this->form_validation->set_rules('id_pengujian', 'ID Pengujian','required');
         $this->form_validation->set_rules('status_pembayaran_2', 'Status Pembayaran','required');
-        if($this->input->post('status_pembayaran_2') == 'paid'){
-            $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit','required');
-            $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired','required');
-            $this->form_validation->set_rules('no_awal', 'No Label Awal','required');
-            $this->form_validation->set_rules('no_akhir', 'No Label Akhir','required');
-        }else{
+        if($this->input->post('status_pembayaran_2') != 'paid'){
+            // $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit','required');
+            // $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired','required');
+            // $this->form_validation->set_rules('no_awal', 'No Label Awal','required');
+            // $this->form_validation->set_rules('no_akhir', 'No Label Akhir','required');
             $this->form_validation->set_rules('ket_pembayaran_2', 'Keterangan Pembayaran','required');
         }
 
         if ($this->form_validation->run() == false) {
-            $this->session->set_flashdata('error', 'Sertifikat tidak berhasil diterbitkan, cek kembali data yang anda masukkan.');
+            $this->session->set_flashdata('error', 'Validasi Gagal, cek kembali data yang anda masukkan.');
             redirect_back();
         }else{
             $id_pengujian = $this->input->post('id_pengujian');
@@ -475,28 +478,28 @@ class TatausahaC extends CI_Controller
                 $no_spk = $no_spk;
             }
 
-            $no_awal    = $this->input->post('no_awal');
-            $no_akhir   = $this->input->post('no_akhir');
+            // $no_awal    = $this->input->post('no_awal');
+            // $no_akhir   = $this->input->post('no_akhir');
 
-            if($no_awal < 10){
-                $no_awal = '000'.$no_awal;
-            }elseif($no_awal <= 100){
-                $no_awal ='00'.$no_spk;
-            }elseif($no_awal < 1000){
-                $no_awal = '0'.$no_awal;
-            }elseif($no_awal >= 1000) {
-                $no_awal = $no_awal;
-            }
+            // if($no_awal < 10){
+            //     $no_awal = '000'.$no_awal;
+            // }elseif($no_awal <= 100){
+            //     $no_awal ='00'.$no_spk;
+            // }elseif($no_awal < 1000){
+            //     $no_awal = '0'.$no_awal;
+            // }elseif($no_awal >= 1000) {
+            //     $no_awal = $no_awal;
+            // }
 
-            if($no_akhir < 10){
-                $no_akhir = '000'.$no_akhir;
-            }elseif($no_akhir <= 100){
-                $no_akhir ='00'.$no_akhir;
-            }elseif($no_akhir < 1000){
-                $no_akhir = '0'.$no_akhir;
-            }elseif($no_akhir >= 1000) {
-                $no_akhir = $no_akhir;
-            }
+            // if($no_akhir < 10){
+            //     $no_akhir = '000'.$no_akhir;
+            // }elseif($no_akhir <= 100){
+            //     $no_akhir ='00'.$no_akhir;
+            // }elseif($no_akhir < 1000){
+            //     $no_akhir = '0'.$no_akhir;
+            // }elseif($no_akhir >= 1000) {
+            //     $no_akhir = $no_akhir;
+            // }
 
             $barcode = $kode_alat.$no_spk.date('y');
             $status_pembayaran_2    = $this->input->post('status_pembayaran_2');
@@ -520,10 +523,10 @@ class TatausahaC extends CI_Controller
                     'status_pembayaran_2'   => $status_pembayaran_2, 
                     'kode_barcode'          => $barcode, 
                     'no_spk'                => $no_spk, 
-                    'tgl_terbit'            => $this->input->post('tgl_terbit'), 
-                    'tgl_expired'           => $this->input->post('tgl_expired'), 
-                    'no_awal'               => $no_awal, 
-                    'no_akhir'              => $no_akhir, 
+                    // 'tgl_terbit'            => $this->input->post('tgl_terbit'), 
+                    // 'tgl_expired'           => $this->input->post('tgl_expired'), 
+                    // 'no_awal'               => $no_awal, 
+                    // 'no_akhir'              => $no_akhir, 
                 );
             }else{
                 $data_email = array(
@@ -541,10 +544,10 @@ class TatausahaC extends CI_Controller
                     'status_pembayaran_2'   => $status_pembayaran_2, 
                     'kode_barcode'          => '', 
                     'no_spk'                => '', 
-                    'tgl_terbit'            => '', 
-                    'tgl_expired'           => '', 
-                    'no_awal'               => '', 
-                    'no_akhir'              => '', 
+                    // 'tgl_terbit'            => '', 
+                    // 'tgl_expired'           => '', 
+                    // 'no_awal'               => '', 
+                    // 'no_akhir'              => '', 
                     'foto_bukti_trf_2'      => '', 
                     'ket_pembayaran_2'      => $ket_pembayaran_2, 
                 );
@@ -577,6 +580,59 @@ class TatausahaC extends CI_Controller
                 $this->GeneralM->send_email($subject, $to, $isi);
                 $this->GeneralM->send_email_2($subject, $to, $isi);
                 // end kirim email
+                redirect_back();
+            }else{
+                $this->session->set_flashdata('error', 'Sertifikat tidak berhasil diterbitkan, cek kembali data yang anda masukkan.');
+                redirect_back();
+            }
+        }
+    }
+
+    public function penerbitan(){
+        $this->form_validation->set_rules('id_pengujian', 'ID Pengujian','required');
+        $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit','required');
+        $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired','required');
+        $this->form_validation->set_rules('no_awal', 'No Label Awal','required');
+        $this->form_validation->set_rules('no_akhir', 'No Label Akhir','required');
+
+        if ($this->form_validation->run() == false) {
+            $this->session->set_flashdata('error', 'Sertifikat tidak berhasil diterbitkan, cek kembali data yang anda masukkan.');
+            redirect_back();
+        }else{
+
+            $no_awal    = $this->input->post('no_awal');
+            $no_akhir   = $this->input->post('no_akhir');
+
+            if($no_awal < 10){
+                $no_awal = '000'.$no_awal;
+            }elseif($no_awal <= 100){
+                $no_awal ='00'.$no_spk;
+            }elseif($no_awal < 1000){
+                $no_awal = '0'.$no_awal;
+            }elseif($no_awal >= 1000) {
+                $no_awal = $no_awal;
+            }
+
+            if($no_akhir < 10){
+                $no_akhir = '000'.$no_akhir;
+            }elseif($no_akhir <= 100){
+                $no_akhir ='00'.$no_akhir;
+            }elseif($no_akhir < 1000){
+                $no_akhir = '0'.$no_akhir;
+            }elseif($no_akhir >= 1000) {
+                $no_akhir = $no_akhir;
+            }
+            $id_pengujian = $this->input->post('id_pengujian');
+
+            $data = array(
+                'tgl_terbit'            => $this->input->post('tgl_terbit'), 
+                'tgl_expired'           => $this->input->post('tgl_expired'), 
+                'no_awal'               => $no_awal, 
+                'no_akhir'              => $no_akhir, 
+            );
+
+            if($this->WorkshopM->selesai_p($id_pengujian, $data)){
+                $this->session->set_flashdata('sukses', 'Sertifikat telah diterbitkan.');
                 redirect_back();
             }else{
                 $this->session->set_flashdata('error', 'Sertifikat tidak berhasil diterbitkan, cek kembali data yang anda masukkan.');

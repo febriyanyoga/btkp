@@ -170,12 +170,12 @@ $html2 =
     </tr>
     <tr>
         <td style="width:17.5%; height:53px;"></td>
-        <td style="text-align:center; font-size:12pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:22%; color:white;">
-            '.$pengujian->id_pengujian.'/BTKP/'.date('Y', strtotime($pengujian->tgl_terbit)).'<br>'.$pengujian->no_spk.'/'.$pengujian->kode_alat.'/'.$pengujian->id_pengujian.'/'.date('Y', strtotime($pengujian->tgl_terbit)).'
+        <td style="text-align:center; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:22%; color:white;">
+            '.$pengujian->id_pengujian.'/BTKP/'.date('Y', strtotime($pengujian->tgl_terbit)).'<br>'.$pengujian->no_spk.'/'.$pengujian->kode_alat.'/'.$pengujian->id_pengujian.'/'.date('Y', strtotime($pengujian->tgl_terbit)).'<br><span style="font-style: italic; font-size: 7pt;">Center of Marine Safety Technology</span>
         </td>
         <td style="text-align:center; font-size:12pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:21.5%; "></td>
-        <td style="text-align:center; font-size:12pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:22.5%;color:#26255e;">
-            '.$pengujian->id_pengujian.'/BTKP/'.date('Y', strtotime($pengujian->tgl_terbit)).'<br>'.$pengujian->no_spk.'/'.$pengujian->kode_alat.'/'.$pengujian->id_pengujian.'/'.date('Y', strtotime($pengujian->tgl_terbit)).'
+        <td style="text-align:center; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; width:22.5%;color:#26255e;">
+            '.$pengujian->id_pengujian.'/BTKP/'.date('Y', strtotime($pengujian->tgl_terbit)).'<br>'.$pengujian->no_spk.'/'.$pengujian->kode_alat.'/'.$pengujian->id_pengujian.'/'.date('Y', strtotime($pengujian->tgl_terbit)).'<br><span style="font-style: italic; font-size: 7pt;">Center of Marine Safety Technology</span>
         </td>
         <td style="width:17%;"></td>
     </tr>
@@ -253,7 +253,7 @@ $html2 =
     	<td style="width:20%; height:52px;"></td>
 		<td style="text-align:justify; font-size:10pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize;height: 10px;">
 		</td>
-		<td style="width:25%; text-align:center; vertical-aligns:middle; font-size:17pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; color:gray;">Tanda <br>Tangan
+		<td style="width:25%; text-align:center; vertical-aligns:middle; font-size:17pt; font-family: Arial, Helvetica, sans-serif;  text-transform: capitalize; color:gray;"><img style="height:52px;align:center;" src="'.base_url('assets/ttd/'.$ttd->nama_file_ttd).'">
 		</td>
     	<td style="width:2%;"></td>
     </tr>

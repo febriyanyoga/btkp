@@ -57,14 +57,13 @@
 							<?php 
 						} 
 						?>
-						<form action="<?php echo site_url('persetujuan_kasie')?>" enctype="multipart/form-data" method="post" id="form-input-acc">
-							<div id="accordion-icon-right" class="accordion">
-								<?php
-								foreach ($detail_perizinan as $per) {
-									?>
+						<div id="accordion-icon-right" class="accordion">
+							<?php
+							foreach ($detail_perizinan as $per) {
+								?>
 
-									<div class="widget has-shadow">
-										<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne" aria-expanded="true">
+								<div class="widget has-shadow">
+									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseOne" aria-expanded="true">
 										<div class="card-title w-100"> <b>1. Identitas Service Station</b></div>
 									</a>
 									<div id="IconRightCollapseOne" class="card-body collapse show" style="color:black;" data-parent="#accordion-icon-right">
@@ -144,7 +143,15 @@
 											</div>
 											<div class="col-xl-8"><?php echo $per->npwp?></div>
 										</div>
-
+										<div class="form-group row mb-5">
+											<div class="col-xl-4">
+												<div class="styled-checkbox">
+													<input type="checkbox" checked name="checkbox" required id="900">
+													<label for="900">No TDP</label>
+												</div>
+											</div>
+											<div class="col-xl-8"><?php echo $per->no_tdp?></div>
+										</div>
 									</div>
 									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseTwo" aria-expanded="true">
 										<div class="card-title w-100">2. Permohonan SPK</div>
@@ -179,29 +186,40 @@
 									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseThree" aria-expanded="true">
 										<div class="card-title w-100">3. Dokumen Pendukung</div>
 									</a>
-									<div id="IconRightCollapseThree" class="card-body collapse show" data-parent="#accordion-icon-right">
-										<?php
-										$detail_berkas = $this->TatausahaM->get_berkas_by_id($per->id_perizinan)->result();
+									<form action="<?php echo site_url('persetujuan_kasie2')?>" method="post" id="form_tolak_kasie">
+										<div id="IconRightCollapseThree" class="card-body collapse show" data-parent="#accordion-icon-right">
+											<?php
+											$detail_berkas = $this->TatausahaM->get_berkas_by_id($per->id_perizinan)->result();
 									// print_r($detail_berkas);
-										$i=11;
-										foreach ($detail_berkas as $ber) {
-											?>
-											<div class="form-group row mb-5">
-												<div class="col-xl-4">
-													<div class="styled-checkbox">
-														<input type="checkbox" name="checkbox" required checked="" id="<?php echo $i?>">
-														<label for="<?php echo $i?>"><?php echo $ber->nama_berkas?></label>
+											$i=11;
+											foreach ($detail_berkas as $ber) {
+												?>
+												<div class="form-group row mb-5">
+													<div class="col-xl-4">
+														<div class="styled-checkbox">
+															<input type="checkbox" name="checkbox" required checked="" id="<?php echo $i?>">
+															<label for="<?php echo $i?>"><?php echo $ber->nama_berkas?></label>
+														</div>
+													</div>
+													<div class="col-xl-2">
+														<a target="_blank" href="<?php echo base_url().'assets/upload/'.$ber->nama_file;?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
+													</div>
+													<div class="col-xl-4">
+														<input type="text" name="keterangan[]" value="" class="form-control" placeholder="keterangan">
 													</div>
 												</div>
-												<div class="col-xl-8">
-													<a target="_blank" href="<?php echo base_url().'assets/upload/'.$ber->nama_file;?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
-												</div>
-											</div>
-											<?php
-											$i++;
-										}
-										?>
-									</div>
+												<?php
+												$i++;
+											}
+											?>
+										</div>
+										<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna');?>" >
+										<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $id_perizinan;?>">
+										<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
+										<input type="hidden" name="nomor" value="<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?>">
+										<input type="hidden" name="email_pengguna" value="<?php echo $per->email_pengguna;?>">
+										<input type="hidden" name="nama_pengguna" value="<?php echo $per->nama_pengguna;?>">
+									</form>
 									<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseFour" aria-expanded="true">
 										<div class="card-title w-100">4. Dokumen Hasil Survey</div>
 									</a>
@@ -213,74 +231,40 @@
 													<label for="hasil_survey">Hasil Survey</label>
 												</div>
 											</div>
-											<div class="col-xl-8">
+											<div class="col-xl-4">
 												<a target="_blank" href="<?php echo base_url().'assets/upload/'.$per->file_hasil_survey;?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
 											</div>
+
 										</div>
 									</div>
-									<div style="display: none;">
-										<input type="hidden" name="id_pengguna" value="<?php echo $this->session->userdata('id_pengguna');?>">
-										<input type="hidden" name="id_perizinan" value="<?php echo $per->id_perizinan;?>">
-										<input type="hidden" name="keterangan" value="Berkas Lengkap">
-										<input type="hidden" name="status" value="diterima">
-										<input type="hidden" name="nomor" value="<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?>">
-										<input type="hidden" name="email_pengguna" value="<?php echo $per->email_pengguna;?>">
-										<input type="hidden" name="nama_pengguna" value="<?php echo $per->nama_pengguna;?>">
-									</div>
-									<div class="text-right">
-										<a href="" id="btn-tidak-lengkap" class="btn btn-danger mr-1 mb-2" data-toggle="modal" data-target="#izin_berkas">Tidak Lolos</a>
-										<input type="submit" name="submit" id="btn-lengkap" class="btn btn-success mr-1 mb-2" value="Lolos" onClick="return confirm('Anda yakin berkas yang dibutuhkan sudah lengkap?')">
+									<form action="<?php echo site_url('persetujuan_kasie')?>" method="post" id="form_terima_kasie">
+										<div style="display: none;">
+											<input type="hidden" name="id_pengguna" value="<?php echo $this->session->userdata('id_pengguna');?>">
+											<input type="hidden" name="id_perizinan" value="<?php echo $per->id_perizinan;?>">
+											<input type="hidden" name="keterangan" value="Berkas Lengkap">
+											<input type="hidden" name="status" value="diterima">
+											<input type="hidden" name="nomor" value="<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?>">
+											<input type="hidden" name="email_pengguna" value="<?php echo $per->email_pengguna;?>">
+											<input type="hidden" name="nama_pengguna" value="<?php echo $per->nama_pengguna;?>">
+										</div>
+									</form>
+									<div class="text-right mt-3">
+										<input type="button" name="submit_tag" id="btn_tolak_kasie" value="Tidak Lolos" class="btn btn-danger mr-1 mb-2" />
+										<input type="submit" name="submit" id="btn_terima_kasie" class="btn btn-success mr-1 mb-2" value="Lolos">
 									</div>
 									<?php
 								}
 								?>
 							</div>
-						</form>
+						</div>
 					</div>
+					<!-- End Invoice Header -->
+					<!-- End Table -->
 				</div>
-				<!-- End Invoice Header -->
-				<!-- End Table -->
-			</div>
-			<!-- End Invoice Container -->
-			<!-- Begin Invoice Footer -->
-			<!-- End Invoice Footer -->
-		</div>
-	</div>
-</div>
-</div>
-
-<div class="modal" id="izin_berkas">
-	<div class="modal-dialog modal-md">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h4 class="modal-title">Persetujuan Perizinan</h4>
-				<button type="button" class="close" data-dismiss="modal">&times;</button>
-			</div>
-			<form action="<?php echo site_url('persetujuan_kasie2')?>" method="post">
-				<div class="modal-body">
-					<?php
-					foreach ($detail_berkas as $key) {
-						?>
-						<label for="<?php echo $key->nama_berkas?>" class="label"><?php echo $key->nama_berkas?> : </label>
-						<input type="text" name="keterangan[]" value="" class="form-control" placeholder="keterangan">
-						<?php
-					}
-					?>
-					<!-- <label for="keterangan" class="label">Keterangan : </label>
-						<input type="text" name="keterangan" value="" class="form-control" placeholder="keterangan" required="required"> -->
-						<input type="hidden" name="id_pengguna" class="form-control" required="required" value="<?php echo $this->session->userdata('id_pengguna');?>" >
-						<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $id_perizinan;?>">
-						<input type="hidden" name="status" class="form-control" placeholder="keterangan" value="ditolak" required="required">
-						<input type="hidden" name="nomor" value="<?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?>">
-						<input type="hidden" name="email_pengguna" value="<?php echo $per->email_pengguna;?>">
-						<input type="hidden" name="nama_pengguna" value="<?php echo $per->nama_pengguna;?>">
-					</div>
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-						<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success">
-					</div>
-				</form>
+				<!-- End Invoice Container -->
+				<!-- Begin Invoice Footer -->
+				<!-- End Invoice Footer -->
 			</div>
 		</div>
 	</div>
+</div>

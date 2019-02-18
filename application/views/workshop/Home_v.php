@@ -126,7 +126,7 @@
 								} else {
 									?>
 									<div class="widget-header d-flex align-items-center">
-										<h2>Permohonan Pengujian</h2>
+										<h2>Permohonan Pengujian dan Sertifikasi</h2>
 									</div>
 									<?php
 								}
@@ -156,7 +156,7 @@
 																if ($per->status_pengajuan == 'selesai') {
 																	$ada_status = $this->TatausahaM->cek_status($per->id_perizinan)->num_rows();
                                                                     if ($ada_status > 0) { //ada progress
-                                                                    	if ($per->status_pembayaran == 'unpaid') {
+                                                                    	if ($per->pengesahan == "tidak") {
                                                                     		$status = $this->TatausahaM->cek_status($per->id_perizinan)->row()->status;
                                                                     		if ($status != 'ditolak') {
                                                                     			?>
@@ -184,10 +184,17 @@
                                                                     					} else {
                                                                     						if ($per->kode_billing != '') {
                                                                     							if ($per->foto_bukti_trf != '') {
-                                                                    								?>
-                                                                    								<span style="width:100px; " title="pembayaran sedang diverifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu
-                                                                    								verifikasi</span></span>
-                                                                    								<?php
+                                                                    								if($per->pengesahan == 'tidak'){
+                                                                    									?>
+                                                                    									<span style="width:100px; " title="Menunggu pengesahan"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu
+                                                                    									pengesahan</span></span>
+                                                                    									<?php
+                                                                    								}else{
+                                                                    									?>
+                                                                    									<span style="width:100px; " title="pembayaran sedang diverifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu
+                                                                    									verifikasi</span></span>
+                                                                    									<?php
+                                                                    								}
                                                                     							} else {
                                                                     								if($per->ket_pembayaran == ""){
                                                                     									?>
@@ -229,7 +236,7 @@
                                                                                                 if ($per->kode_billing != '') {// sudah ada kode billing
                                                                                                         if ($per->foto_bukti_trf != '') { //ada foto
                                                                                                         	?>
-                                                                                                        	<span style="width:100px;" title="Menunggu verifikasi pembayran"><span>-</span></span>
+                                                                                                        	<span style="width:100px;" title="Menunggu verifikasi pembayaran"><span>-</span></span>
                                                                                                         	<?php
                                                                                                         } else {
                                                                                                         	?>
@@ -369,7 +376,7 @@
                                                         			$b=0;
                                                         			foreach ($data_inspeksi as $ins) {
                                                         				$progress_tu = $this->GeneralM->get_array_progress_inspeksi_tolak($ins->id_inspeksi)->num_rows();
-                                                        				if($ins->status_pembayaran == 'unpaid' && $ins->kode_barcode == ""){
+                                                        				if($ins->pengesahan == 'tidak'){
                                                         					if($progress_tu == 0){
                                                         						$tgl_pengajuan_ins = date('Y-m-d', strtotime($ins->created_at_inspeksi));
                                                         						?>
@@ -378,7 +385,19 @@
                                                         							<td class="text-center"><?php echo $ins->id_inspeksi.'/'.date('Y/m/d', strtotime($ins->created_at_inspeksi))?></td>
                                                         							<td class="text-center"><?php echo $ins->nama_kapal?></td>
                                                         							<td class="text-center"><?php echo date_indo($tgl_pengajuan_ins)?></td>
-                                                        							<td class="text-center"><span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Proses</span></span></td>
+                                                        							<td class="text-center">
+                                                        								<?php
+                                                        								if($ins->pengesahan == 'tidak' && $ins->tgl_terbit != '0000-00-00 00:00:00'){
+                                                        									?>
+                                                        									<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Menunngu Pengesahan</span></span>
+                                                        									<?php
+                                                        								}else{
+                                                        									?>
+                                                        									<span style="width:100px; "><span class="badge-text badge-text-small default" style="color: black;">Proses</span></span>
+                                                        									<?php
+                                                        								}
+                                                        								?>
+                                                        							</td>
                                                         							<td class="text-center">-</td>
                                                         						</tr>
                                                         						<?php
@@ -414,7 +433,7 @@
                                             			$j=0;
                                             			foreach ($data_pengujian as $ujian) {
                                             				if($ujian->status_pengajuan == 'selesai'){
-                                            					if($ujian->status_pembayaran_2 != 'paid'){
+                                            					if($ujian->tgl_terbit == '0000-00-00 00:00:00'){
                                             						$ada_status = $this->WorkshopM->cek_status($ujian->id_pengujian)->num_rows();
                                             						$tgl_pengajuan_p = date('Ymd', strtotime($ujian->created_at_ujian));
                                             						if($ada_status > 0){
@@ -451,9 +470,21 @@
                                             														}
                                             													}else{
                                             														if ($ujian->no_awal =="") {
-                                            															?>
-                                            															<span title="proses" style="width:100px;"><span class="badge-text badge-text-small warning">Proses</span></span>
-                                            															<?php
+                                            															if($ujian->pengesahan == 'tidak'){
+                                            																if($ujian->status_pembayaran_2 != 'paid'){
+                                            																	?>
+                                            																	<span title="proses" style="width:100px;"><span class="badge-text badge-text-small warning">Proses</span></span>
+                                            																	<?php
+                                            																}else{
+                                            																	?>
+                                            																	<span title="proses" style="width:100px;"><span class="badge-text badge-text-small warning">Menunggu pengesahan</span></span>
+                                            																	<?php
+                                            																}
+                                            															}else{
+                                            																?>
+                                            																<span title="proses" style="width:100px;"><span class="badge-text badge-text-small warning">Menunggu penerbitan</span></span>
+                                            																<?php
+                                            															}
                                             														}else{
                                             															?>
                                             															<span style="width:100px;"><span class="badge-text badge-text-small default">Proses</span></span>

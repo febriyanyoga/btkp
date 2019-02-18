@@ -2,54 +2,6 @@
 
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/*
-| -------------------------------------------------------------------------
-| URI ROUTING
-| -------------------------------------------------------------------------
-| This file lets you re-map URI requests to specific controller functions.
-|
-| Typically there is a one-to-one relationship between a URL string
-| and its corresponding controller class/method. The segments in a
-| URL normally follow this pattern:
-|
-|	example.com/class/method/id/
-|
-| In some instances, however, you may want to remap this relationship
-| so that a different class/function is called than the one
-| corresponding to the URL.
-|
-| Please see the user guide for complete details:
-|
-|	https://codeigniter.com/user_guide/general/routing.html
-|
-| -------------------------------------------------------------------------
-| RESERVED ROUTES
-| -------------------------------------------------------------------------
-|
-| There are three reserved routes:
-|
-|	$route['default_controller'] = 'welcome';
-|
-| This route indicates which controller class should be loaded if the
-| URI contains no data. In the above example, the "welcome" class
-| would be loaded.
-|
-|	$route['404_override'] = 'errors/page_missing';
-|
-| This route will tell the Router which controller/method to use if those
-| provided in the URL cannot be matched to a valid route.
-|
-|	$route['translate_uri_dashes'] = FALSE;
-|
-| This is not exactly a route, but allows you to automatically route
-| controller and method names that contain dashes. '-' isn't a valid
-| class or method name character, so it requires translation.
-| When you set this option to TRUE, it will replace ALL dashes in the
-| controller and method URI segments.
-|
-| Examples:	my-controller/index	-> my_controller/index
-|		my-controller/my-method	-> my_controller/my_method
-*/
 $route['default_controller'] = 'HomeC';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = false;
@@ -94,6 +46,7 @@ $route['cetak_bukti_bayar_ins/(:num)'] = 'WorkshopC/cetak_bukti_bayar_ins/$1';
 $route['print_surat/(:num)'] = 'WorkshopC/print_surat/$1';
 $route['print_sertifikat_pengujian/(:num)'] = 'WorkshopC/print_sertifikat_pengujian/$1';
 $route['print_label/(:num)'] = 'WorkshopC/print_label/$1';
+$route['cetak_label_ins/(:num)'] = 'WorkshopC/cetak_label_ins/$1';
 $route['update_password'] = 'WorkshopC/post_update_password';
 $route['update_perusahaan'] = 'WorkshopC/post_update_perusahaan';
 
@@ -124,6 +77,9 @@ $route['cetak_ins/(:num)'] = 'WorkshopC/cetak_ins/$1';
 
 // admin
 $route['admin'] = 'AdminC';
+$route['perizinan_admin'] = 'AdminC/perizinan';
+$route['pengujian_admin'] = 'AdminC/pengujian';
+$route['reinspeksi_admin'] = 'AdminC/reinspeksi';
 $route['profile'] = 'AdminC/profile';
 $route['update_password_a'] = 'AdminC/post_update_password';
 $route['datapengguna'] = 'AdminC/datapengguna';
@@ -157,6 +113,7 @@ $route['persetujuan_tolak'] = 'TatausahaC/persetujuan_tolak';
 $route['kode_billing'] = 'TatausahaC/post_kode_billing';
 $route['kode_billing_2'] = 'TatausahaC/kode_billing_2';
 $route['penerbitan'] = 'TatausahaC/post_penerbitan';
+$route['penerbitan_lagi'] = 'TatausahaC/penerbitan';
 $route['profile_t'] = 'TatausahaC/profile';
 $route['update_password_t'] = 'TatausahaC/post_update_password';
 $route['verifikasiawal/(:num)'] = 'TatausahaC/verifikasiawal_pengujian/$1';
@@ -171,6 +128,7 @@ $route['penerbitan_ins'] = 'TatausahaC/post_penerbitan_ins';
 // KASIE
 $route['kasie'] = 'KasieC';
 // perizinan
+$route['reinspeksi_kasie'] = 'KasieC/reinspeksi';
 $route['izin_kasie'] = 'KasieC/perizinan';
 $route['verifikasi_kasie/(:num)'] = 'KasieC/verifikasi/$1';
 $route['persetujuan_kasie'] = 'KasieC/persetujuan';
@@ -190,10 +148,20 @@ $route['perizinan_pimpinan'] = 'PimpinanC/perizinan';
 $route['pengujian_pimpinan'] = 'PimpinanC/pengujian';
 $route['reinspeksi_pimpinan'] = 'PimpinanC/reinspeksi';
 $route['pengesahan'] = 'PimpinanC/pengesahan';
+$route['post_ttd'] = 'PimpinanC/post_ttd';
+$route['pengesahan_izin/(:any)'] = 'PimpinanC/pengesahan_izin/$1';
+$route['pengesahan_ujian/(:any)'] = 'PimpinanC/pengesahan_ujian/$1';
+$route['pengesahan_inspeksi/(:any)'] = 'PimpinanC/pengesahan_inspeksi/$1';
 
 //pusditjen
 $route['pusditjen'] = 'PusditjenC';
+$route['profile_pusditjen'] = 'PusditjenC/profile';
 $route['laporan_perusahaan'] = 'PusditjenC/laporan_perusahaan';
 $route['laporan_perizinan'] = 'PusditjenC/laporan_perizinan';
 $route['laporan_sertifikasi'] = 'PusditjenC/laporan_sertifikasi';
 $route['laporan_inspeksi'] = 'PusditjenC/laporan_inspeksi';
+$route['post_password_pusditjen'] = 'PusditjenC/post_update_password';
+$route['print_laporan_perusahaan'] = 'PusditjenC/print_laporan_perusahaan';
+$route['print_laporan_perizinan'] = 'PusditjenC/print_laporan_perizinan';
+$route['print_laporan_pengujian'] = 'PusditjenC/print_laporan_pengujian';
+$route['print_laporan_reinspeksi'] = 'PusditjenC/print_laporan_reinspeksi';

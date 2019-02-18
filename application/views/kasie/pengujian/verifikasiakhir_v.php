@@ -204,6 +204,55 @@
 									</div>
 									<div class="col-xl-8"><?php echo $pengujian->tipe?></div>
 								</div>
+
+								<div class="form-group row mb-5">
+									<div class="col-xl-4">
+										<div class="styled-checkbox">
+											<input type="checkbox" name="legal" required checked="" id="legal">
+											<label for="legal">Legal</label>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<a target="_blank" href="<?php echo base_url().'assets/upload/'.$pengujian->file_legal;?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
+									</div>
+								</div>
+
+								<div class="form-group row mb-5">
+									<div class="col-xl-4">
+										<div class="styled-checkbox">
+											<input type="checkbox" name="spesifikasi" required checked="" id="spesifikasi">
+											<label for="spesifikasi">Spesifikasi Alat</label>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<a target="_blank" href="<?php echo base_url().'assets/upload/'.$pengujian->file_spesifikasi;?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
+									</div>
+								</div>
+
+								<div class="form-group row mb-5">
+									<div class="col-xl-4">
+										<div class="styled-checkbox">
+											<input type="checkbox" name="gambar" required checked="" id="gambar">
+											<label for="gambar">Gambar Alat</label>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<a target="_blank" href="<?php echo base_url().'assets/upload/'.$pengujian->file_gambar;?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Gambar</i></a>
+									</div>
+								</div>
+
+								<div class="form-group row mb-5">
+									<div class="col-xl-4">
+										<div class="styled-checkbox">
+											<input type="checkbox" name="jenis_alat" required checked="" id="jenis_alat">
+											<label for="jenis_alat">Jenis Alat</label>
+										</div>
+									</div>
+									<div class="col-xl-2">
+										<a target="_blank" href="<?php echo base_url().'assets/upload/'.$pengujian->file_jenis_alat;?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
+									</div>
+								</div>
+
 								<div class="form-group row mb-5">
 									<div class="col-xl-4">
 										<div class="styled-checkbox">

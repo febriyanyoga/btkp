@@ -226,6 +226,11 @@ Author: SAEROX
     								<i class="ti ti-write"></i><span> Data Pengujian </span>
     							</a>
     						</li>
+                            <li>
+                                <a href="<?php echo site_url('reinspeksi_kasie'); ?>">
+                                    <i class="ti ti-notepad"></i><span> Data Re-inspeksi</span>
+                                </a>
+                            </li>
     						<!-- <li>
     							<a href="<?php echo site_url('reinspeksi'); ?>">
     								<i class="ti ti-notepad"></i><span> Data Inspeksi</span>
@@ -296,25 +301,36 @@ Author: SAEROX
         <script>
           $.noConflict();
           jQuery(document).ready(function ($) {
-             $('#myTable').DataTable();
-             $('#myTable2').DataTable();
-             $('#myTable3').DataTable();
-             $('#myTable4').DataTable();
-             $('#myTable5').DataTable();
-             $('#myTable6').DataTable();
-             $('#myTable7').DataTable();
-             $('#myTable8').DataTable();
-         });
+           $('#myTable').DataTable();
+           $('#myTable2').DataTable();
+           $('#myTable3').DataTable();
+           $('#myTable4').DataTable();
+           $('#myTable5').DataTable();
+           $('#myTable6').DataTable();
+           $('#myTable7').DataTable();
+           $('#myTable8').DataTable();
+       });
 
 
-     </script>
-     <!-- Popover -->
-     <script>
+   </script>
+   <script>
       $(function () {
-         $('[data-toggle="popover"]').popover()
-     })
+       $('[data-toggle="popover"]').popover()
+   })
 
- </script>
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#btn_terima_kasie").click(function() {
+            $("#form_terima_kasie").submit(); 
+        });
+    });
+    $(document).ready(function() {
+        $("#btn_tolak_kasie").click(function() {
+            $("#form_tolak_kasie").submit(); 
+        });
+    });
+</script>
 
 </body>
 

@@ -40,10 +40,10 @@
 					<div class="widget-body sliding-tabs">
 						<ul class="nav nav-tabs" id="example-one" role="tablist">
 							<li class="nav-item">
-								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Konfirmasi Permohonan <span id="konfirmasi_ins"></span></a>
+								<a class="nav-link active" id="base-tab-1" data-toggle="tab" href="#tab-1" role="tab" aria-controls="tab-1" aria-selected="true">Verifikasi Permohonan <span id="konfirmasi_ins"></span></a>
 							</li>
 							<li class="nav-item">
-								<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode Billing <span id="kode_billing_ins"></span></a>
+								<a class="nav-link" id="base-tab-2" data-toggle="tab" href="#tab-2" role="tab" aria-controls="tab-2" aria-selected="false">Kode NTPN <span id="kode_billing_ins"></span></a>
 							</li>
 							<li class="nav-item">
 								<a class="nav-link" id="base-tab-3" data-toggle="tab" href="#tab-3" role="tab" aria-controls="tab-3" aria-selected="false">Validasi Pembayaran <span id="validasi_ins"></span></a>
@@ -86,7 +86,7 @@
 														<td class="text-center"><?php echo $ins->nama_alat?></td>
 														<td class="text-center"><?php echo $ins->nama_kapal?></td>
 														<td class="text-center">
-															<a href="<?php echo site_url('verifikasiawalinspeksi/'.$ins->id_inspeksi); ?>" class="btn btn-success mr-1 mb-2"><i class="la la-pencil"></i>Konfirmasi</i>
+															<a href="<?php echo site_url('verifikasiawalinspeksi/'.$ins->id_inspeksi); ?>" class="btn btn-success mr-1 mb-2"><i class="la la-pencil"></i>Verifikasi</i>
 															</a>
 														</td>
 													</tr>
@@ -112,7 +112,7 @@
 												<th class="text-center">Alat</th>
 												<th class="text-center">Kapal</th>
 												<th class="text-center">Catatan</th>
-												<th class="text-center">Aksi</th>
+												<th class="text-center" style="min-width: 100px;">Aksi</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -148,7 +148,7 @@
 														</td>
 														<td class="text-center">
 															<a title="Lihat dokumen hasil survey" href="<?php echo base_url().'assets/upload/'.$ins->file_hasil_survey;?>" target="_BLANK" class="badge-text badge-text-md info"><i class="la la-eye" ></i> Dokumen</i></a><hr>
-															<a href="#" title="Masukkan Kode Billing" data-toggle="modal" data-target="#kode_biling-<?php echo $ins->id_inspeksi; ?>" class="badge-text badge-text-md info"><i class="la la-pencil"></i> Kode Billing</i></a>
+															<a href="#" title="Masukkan Kode NTPN" data-toggle="modal" data-target="#kode_biling-<?php echo $ins->id_inspeksi; ?>" class="badge-text badge-text-md info"><i class="la la-pencil"></i> Kode NTPN</i></a>
 														</td>
 													</tr>
 
@@ -156,14 +156,14 @@
 														<div class="modal-dialog modal-md">
 															<div class="modal-content">
 																<div class="modal-header">
-																	<h4 class="modal-title">Masukkan Kode Billing</h4>
+																	<h4 class="modal-title">Masukkan Kode NTPN</h4>
 																	<button type="button" class="close" data-dismiss="modal">&times;</button>
 																</div>
 																<form action="<?php echo site_url('post_kode_inspeksi'); ?>" method="post">
 																	<div class="modal-body">
-																		<label for="kode_billing" class="label">Kode Billing : </label>
-																		<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
-																		<label for="bank_btkp" class="label">Bank BTKP : </label>
+																		<label for="kode_billing" class="label">Kode NTPN : </label>
+																		<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan Kode NTPN" required="required">
+																		<!-- <label for="bank_btkp" class="label">Bank BTKP : </label>
 																		<select class="form-control" name="id_bank_btkp">
 																			<option value="">---Pilih Bank---</option>
 																			<?php
@@ -173,16 +173,18 @@
 																				<?php
 																			}
 																			?>
-																		</select>
+																		</select> -->
+																		<input type="hidden" name="id_bank_btkp" value="1">
+																		
 																		<input type="hidden" name="id_inspeksi" class="form-control" required="required" value="<?php echo $ins->id_inspeksi; ?>">
 																		<label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
 																		<input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
 																		<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai: </label>
-																		<input type="date" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
+																		<input type="datetime-local" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
 																	</div>
 																	<div class="modal-footer">
 																		<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Batal</button>
-																		<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode billing yang dimasukkan sudah benar?')">
+																		<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode NTPN yang dimasukkan sudah benar?')">
 																	</div>
 																</form>
 															</div>
@@ -316,10 +318,17 @@
 														<td class="text-center"><?php echo $ins->nama_kapal;?></td>
 														<?php 
 														if($ins->no_spk != ""){
-															?>
-															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterbitkan</span></span></td>
-															<td class="text-center">-</td>
-															<?php
+															if($ins->pengesahan == 'tidak'){
+																?>
+																<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small white">Menunggu pengesahan</span></span></td>
+																<td class="text-center">-</td>
+																<?php
+															}else{
+																?>
+																<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterbitkan</span></span></td>
+																<td class="text-center">-</td>
+																<?php
+															}
 														}else{
 															?>
 															<td class="text-center"><span style="width:100px;"><span class="badge-text badge-text-small success">Diterima</span></span></td>

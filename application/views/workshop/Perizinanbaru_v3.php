@@ -147,6 +147,36 @@
 															++$i;
 														} ?>
 													</div>
+													<a class="card-header collapsed d-flex align-items-center" data-toggle="collapse" href="#IconRightCollapseFive" aria-expanded="true">
+														<div class="card-title w-100">5. Data Maker</div>
+													</a>
+													<div id="IconRightCollapseFive" class="card-body collapse show" data-parent="#accordion-icon-right">
+														<?php
+														$maker = $this->GeneralM->get_maker_by_id_maker($per->id_maker)->row();
+														?>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Nomor Sertifikat Training</div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $maker->no_maker; ?></div>
+														</div>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Nama </div>
+															<div class="col-sm-8 form-control-plaintext"><?php echo $maker->nama; ?></div>
+														</div>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Masa Berlaku</div>
+															<?php
+															$tgl_awal 		= date('Y-m-d', strtotime($maker->tgl_mulai));
+															$tgl_expired 	= date('Y-m-d', strtotime($maker->tgl_akhir));
+															?>
+															<div class="col-sm-8 form-control-plaintext"><?php echo date_indo($tgl_awal).' sampai '.date_indo($tgl_expired);?></div>
+														</div>
+														<div class="form-group row mb-5">
+															<div class="col-sm-3 form-control-label d-flex align-items-center">Dokumen</div>
+															<div class="col-xl-8">
+																<a target="_blank" href="<?php echo base_url().'assets/upload/'.$maker->dokumen_sertifikat; ?>" class="btn btn-primary btn-sm mr-1 mb-2"><i class="la la-eye"></i>Lihat Dokumen</i></a>
+															</div>
+														</div>
+													</div>
 												</div>
 												<?php
 											}

@@ -370,7 +370,7 @@ table th, table td {
         <tr> <th style="background-color: #e6e7e7; border-bottom: 0px solid; text-align: center; font-size:16px; font-weight: bold; color:#555;">
           <?php 
           $tgl_berlaku   = date('Y-m-d', strtotime($pengujian->masa_berlaku_billing_1));
-          echo longdate_indo($tgl_berlaku);
+          echo longdate_indo($tgl_berlaku).' Pukul '.date('H:i', strtotime($pengujian->masa_berlaku_billing_1));
           ?>
         </th></tr>
       </table>
@@ -384,7 +384,7 @@ table th, table td {
     </section>
 
 
-    <section id="items">
+   <!--  <section id="items">
       <table style="margin-top: -45px;">
         <?php
         $bank = $this->WorkshopM->cek_bank_btkp($pengujian->id_bank_btkp_1)->row();
@@ -392,12 +392,12 @@ table th, table td {
         <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Transfer dapat dilakukan ke nomor rekening Account <?php echo $bank->nama_bank?> berikut ini :</th></tr>
         <tr><th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;">8608121710958300</th></tr>
       </table>
-    </section>
+    </section> -->
     <div class="clearfix"></div>
 
     <section id="items">
       <table style="margin-top: -45px;" >
-        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Dengan Nomor Billing  :</th></tr>
+        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Dengan Kode NTPN  :</th></tr>
         <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;"><?php echo $pengujian->kode_billing_1?></th></tr>
       </table>
     </section>

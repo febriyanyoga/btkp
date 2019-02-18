@@ -323,7 +323,7 @@
                                                         				if($ujian->foto_bukti_trf_2 == ''){
                                                         					if($ujian->kode_billing_2 == ''){
                                                         						?>
-                                                        						<span style="width:100px;"><span class="badge-text badge-text-small info">Masukkan kode billing</span></span>
+                                                        						<span style="width:100px;"><span class="badge-text badge-text-small info">Masukkan Kode NTPN</span></span>
                                                         						<?php
                                                         					}else{
                                                         						?>
@@ -342,7 +342,7 @@
                                                         				if($ujian->foto_bukti_trf_2 == ''){
                                                         					if($ujian->kode_billing_2 == ''){
                                                         						?>
-                                                        						<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian; ?>"><i class="la la-plus"></i>Kode Billing</i>
+                                                        						<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian; ?>"><i class="la la-plus"></i>Kode NTPN</i>
                                                         						</a>
                                                         						<?php
                                                         					}else{
@@ -359,14 +359,14 @@
                                                         			<div class="modal-dialog modal-md">
                                                         				<div class="modal-content">
                                                         					<div class="modal-header">
-                                                        						<h4 class="modal-title">Masukkan Kode Billing</h4>
+                                                        						<h4 class="modal-title">Masukkan Kode NTPN</h4>
                                                         						<button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         					</div>
                                                         					<form action="<?php echo site_url('kode_billing_2')?>" method="post">
                                                         						<div class="modal-body">
-                                                        							<label for="kode_billing_2" class="label">Kode Billing : </label>
-                                                        							<input type="number" name="kode_billing_2" value="" class="form-control" placeholder="Masukkan kode billing" required="required">
-                                                        							<label for="bank_btkp_2" class="label">Bank BTKP : </label>
+                                                        							<label for="kode_billing_2" class="label">Kode NTPN : </label>
+                                                        							<input type="number" name="kode_billing_2" value="" class="form-control" placeholder="Masukkan Kode NTPN" required="required">
+                                                        							<!-- <label for="bank_btkp_2" class="label">Bank BTKP : </label>
                                                         							<select class="form-control" name="id_bank_btkp_2">
                                                         								<option value="">---Pilih Bank---</option>
                                                         								<?php
@@ -376,18 +376,20 @@
                                                         									<?php
                                                         								}
                                                         								?>
-                                                        							</select>
+                                                        							</select> -->
+                                                        							<input type="hidden" name="id_bank_btkp_2" value="1">
+                                                        							
 
                                                         							<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
                                                         							<label for="jumlah_tagihan_2" class="label">Jumlah Tagihan: </label>
                                                         							<input type="number" name="jumlah_tagihan_2" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
                                                         							<label for="masa_berlaku_billing_2" class="label">Masa Berlaku Sampai: </label>
-                                                        							<input type="date" name="masa_berlaku_billing_2" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
+                                                        							<input type="datetime-local" name="masa_berlaku_billing_2" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
 
                                                         						</div>
                                                         						<div class="modal-footer">
                                                         							<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
-                                                        							<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode billing yang dimasukkan sudah benar?')">
+                                                        							<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin Kode NTPN yang dimasukkan sudah benar?')">
                                                         						</div>
                                                         					</form>
                                                         				</div>
@@ -425,7 +427,7 @@
                             				$i=0;
                             				$validasi_2_ujian=0;
                             				foreach ($pengujian as $ujian) {
-                            					if($ujian->foto_bukti_trf_2 != "" && $ujian->status_pembayaran_2 != 'paid'){
+                            					if($ujian->foto_bukti_trf_2 != "" && $ujian->tgl_terbit == '0000-00-00 00:00:00'){
                             						$i++;
                             						$validasi_2_ujian+=1;
                             						$tgl_pengajuan = date('Y-m-d', strtotime($ujian->created_at_ujian));
@@ -441,7 +443,23 @@
                             							<td class="text-center"><?php echo $ujian->nama_perusahaan?></td>
                             							<!-- <td class="text-center"><a</td> -->
                             							<td class="text-center">
-                            								<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian?>"><i class="la la-pencil"></i>Validasi</i></a>
+                            								<?php
+                            								if($ujian->status_pembayaran_2 == 'paid'){
+                            									if($ujian->pengesahan == 'tidak'){
+                            										?>
+                            										<span style="width:100px;"><span class="badge-text badge-text-small info">Menungggu pengesahan</span></span>
+                            										<?php
+                            									}else{
+                            										?>
+                            										<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#terbit-<?php echo $ujian->id_pengujian?>"><i class="la la-pencil"></i>Penerbitan</i></a>
+                            										<?php
+                            									}
+                            								}else{
+                            									?>
+                            									<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling2-<?php echo $ujian->id_pengujian?>"><i class="la la-pencil"></i>Validasi</i></a>
+                            									<?php
+                            								}
+                            								?>
                             							</td>
                             						</tr>
 
@@ -469,7 +487,7 @@
                             											</select><br>
                             											<label id="label_ket_pembayaran_2" for="ket_pembayaran_2" class="label">Keterangan : </label>
                             											<input id="input_ket_pembayaran_2" type="text" name="ket_pembayaran_2" value="" class="form-control">
-                            											<hr>
+                            											<!-- <hr>
                             											<label for="tgl_terbit" class="label" id="label_tgl_terbit">Tanggal Terbit : </label>
                             											<input type="date" name="tgl_terbit" id="input_tgl_terbit" value="" class="form-control">
                             											<label for="tgl_expired	" class="label" id="label_tgl_expired">Tanggal Berakhir : </label>
@@ -477,13 +495,42 @@
                             											<label for="no_awal" class="label" id="label_no_awal">Nomor Label Awal : </label>
                             											<input type="number" name="no_awal" id="input_no_awal" value="" class="form-control">
                             											<label for="no_akhir" class="label" id="label_no_akhir">Nomor Label Akhir : </label>
-                            											<input type="number" name="no_akhir" id="input_no_akhir" value="" class="form-control">
+                            											<input type="number" name="no_akhir" id="input_no_akhir" value="" class="form-control"> -->
 
                             											<input type="hidden" name="nomor" value="<?php echo 'SDP'.$ujian->id_pengujian.$ujian->kode_alat;?>">
                             											<input type="hidden" name="email_pengguna" value="<?php echo $ujian->email_pengguna;?>">
                             											<input type="hidden" name="nama_pengguna" value="<?php echo $ujian->nama_pengguna;?>">
                             											<input type="hidden" name="kode_billing_2" value="<?php echo $ujian->kode_billing_2;?>">
 
+                            										</div>
+                            										<div class="modal-footer">
+                            											<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
+                            											<input type="submit" name="submit" value="Simpan" class="btn btn-md btn-success" onClick="return confirm('Anda yakin akan validasi pembayaran ini dan menerbitkan sertifikat?')">
+                            										</div>
+                            									</form>
+                            								</div>
+                            							</div>
+                            						</div>
+
+                            						<div class="modal" id="terbit-<?php echo $ujian->id_pengujian?>">
+                            							<div class="modal-dialog modal-md">
+                            								<div class="modal-content">
+                            									<div class="modal-header">
+                            										<h4 class="modal-title">Penerbitan Pengujian</h4>
+                            										<button type="button" class="close" data-dismiss="modal">&times;</button>
+                            									</div>
+
+                            									<form action="<?php echo site_url('penerbitan_lagi'); ?>" method="post">
+                            										<div class="modal-body">
+                            											<input type="hidden" name="id_pengujian" class="form-control" required="required" value="<?php echo $ujian->id_pengujian; ?>">
+                            											<label for="tgl_terbit" class="label" id="label_tgl_terbit">Tanggal Terbit : </label>
+                            											<input type="date" name="tgl_terbit" id="input_tgl_terbit" value="" class="form-control">
+                            											<label for="tgl_expired	" class="label" id="label_tgl_expired">Tanggal Berakhir : </label>
+                            											<input type="date" name="tgl_expired" value="" class="form-control" id="input_tgl_expired">
+                            											<label for="no_awal" class="label" id="label_no_awal">Nomor Label Awal : </label>
+                            											<input type="number" name="no_awal" id="input_no_awal" value="1" class="form-control" readonly>
+                            											<label for="no_akhir" class="label" id="label_no_akhir">Nomor Label Akhir : </label>
+                            											<input type="number" name="no_akhir" id="input_no_akhir" value="500" class="form-control" readonly>
                             										</div>
                             										<div class="modal-footer">
                             											<button type="button" class="btn btn-md btn-danger" data-dismiss="modal">Close</button>
@@ -523,7 +570,7 @@
                             				$i=0;
                             				$sertifikasi_ujian=0;
                             				foreach ($pengujian as $ujian) {
-                            					if($ujian->status_pembayaran_1 == "paid" && $ujian->status_pembayaran_2 == 'paid'){
+                            					if($ujian->status_pembayaran_1 == "paid" && $ujian->status_pembayaran_2 == 'paid' && $ujian->tgl_terbit != '0000-00-00 00:00:00'){
                             						$i++;
                             						$sertifikasi_ujian+=1;
                             						$tgl_pengajuan 	= date('Y-m-d', strtotime($ujian->created_at_ujian));

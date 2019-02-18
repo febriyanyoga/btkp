@@ -80,6 +80,28 @@
 														?>
 													</select>
 												</div>
+												<div class="col-xl-6">
+													<label class="form-control-label">Maker<span class="text-danger ml-2">*</span></label>
+													<select class="custom-select form-control" id="id_maker" name="id_maker" required>
+														<?php
+														$id_pengguna	= $this->session->userdata('id_pengguna');
+														$id_perusahaan 	= $this->GeneralM->get_perusahaan($id_pengguna)->row()->id_perusahaan;
+														$maker 			= $this->GeneralM->get_maker_by_id_perusahaan($id_perusahaan)->result();
+														foreach ($maker as $mak) {
+															$tgl_awal 		= date('Y-m-d', strtotime($mak->tgl_mulai));
+															$tgl_expired 	= date('Y-m-d', strtotime($mak->tgl_akhir));
+															$sekarang = date('Y-m-d');
+															if($sekarang < $tgl_expired){
+																if($mak->status == 'tampil'){
+																	?>
+																	<option value="<?php echo $mak->id_maker?>"><?php echo $mak->nama.' --- '.date_indo($tgl_awal).' sampai '.date_indo($tgl_expired);?></option>
+																	<?php
+																}
+															}
+														}
+														?>
+													</select>
+												</div>
 												<input type="hidden" value="1" class="form-control" id="jenis_perizinan" name="jenis_perizinan" required >
 											</div>
 											<div class="form-group row mb-3">

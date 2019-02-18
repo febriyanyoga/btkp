@@ -50,7 +50,7 @@
 											<th class="text-center">Ketentuan</th>
 											<th class="text-center">Jenis Pengajuan</th>
 											<th class="text-center">Status</th>
-											<th class="text-center" style="width: 115px;">Aksi</th>
+											<th class="text-center" style="width: 120px;">Aksi</th>
 										</tr>
 									</thead>
 									<tbody>
