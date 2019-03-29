@@ -16,7 +16,8 @@
 							<div class="counter"><?php echo $jumlah_workshop; ?></div>
 							<div class="total-visitors">Jumlah User</div>
 							<a href="<?php echo site_url('tatausaha'); ?>">
-								<a href="" data-toggle="modal" data-target="#detail_user" class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
+								<a href="" data-toggle="modal" data-target="#detail_user"
+									class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
 							</a>
 						</div>
 					</div>
@@ -31,7 +32,8 @@
 							<div class="counter"><?php echo $jumlah_perizinan; ?></div>
 							<div class="total-visitors">Jumlah Perizinan</div>
 							<a href="<?php echo site_url('tatausaha'); ?>">
-								<a href="<?php echo site_url('perizinan_admin')?>" class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
+								<a href="<?php echo site_url('perizinan_admin')?>"
+									class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
 							</a>
 						</div>
 					</div>
@@ -46,7 +48,8 @@
 							<div class="counter"><?php echo $jumlah_kapal?></div>
 							<div class="total-visitors">Jumlah Kapal</div>
 							<a href="<?php echo site_url('tatausaha'); ?>">
-								<a href="" data-toggle="modal" data-target="#detail_kapal" class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
+								<a href="" data-toggle="modal" data-target="#detail_kapal"
+									class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
 							</a>
 						</div>
 					</div>
@@ -61,7 +64,8 @@
 							<div class="counter"><?php echo $jumlah_pengujian;?></div>
 							<div class="total-visitors">Jumlah Pengujian</div>
 							<a href="<?php echo site_url('tatausaha'); ?>">
-								<a href="<?php echo site_url('pengujian_admin')?>" class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
+								<a href="<?php echo site_url('pengujian_admin')?>"
+									class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
 							</a>
 						</div>
 					</div>
@@ -76,7 +80,8 @@
 							<div class="counter"><?php echo $jumlah_produk; ?></div>
 							<div class="total-visitors">Jumlah Product</div>
 							<a href="<?php echo site_url('tatausaha'); ?>">
-								<a href="" data-toggle="modal" data-target="#detail_produk" class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
+								<a href="" data-toggle="modal" data-target="#detail_produk"
+									class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
 							</a>
 						</div>
 					</div>
@@ -91,7 +96,8 @@
 							<div class="counter"><?php echo $jumlah_inspeksi;?></div>
 							<div class="total-visitors">Jumlah Inspeksi</div>
 							<a href="<?php echo site_url('tatausaha'); ?>">
-								<a href="<?php echo site_url('reinspeksi_admin')?>" class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
+								<a href="<?php echo site_url('reinspeksi_admin')?>"
+									class="btn btn-gradient-03 mr-1 mb-2">Detail</a>
 							</a>
 						</div>
 					</div>
@@ -109,7 +115,9 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title text-center"><center>Detail User</center></h4>
+				<h4 class="modal-title text-center">
+					Detail User
+				</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<div class="modal-body">
@@ -120,7 +128,7 @@
 								<th class="text-center">No</th>
 								<th class="text-center">Nama User</th>
 								<th class="text-center">Jenis User</th>
-							</tr>						
+							</tr>
 						</thead>
 						<tbody>
 							<?php
@@ -128,12 +136,12 @@
 							foreach ($user as $us) {
 								$i++;
 								?>
-								<tr>
-									<td class="text-center"><?php echo $i;?></td>
-									<td><?php echo $us->nama_pengguna?></td>
-									<td><?php echo $us->nama_jabatan?></td>
-								</tr>
-								<?php
+							<tr>
+								<td class="text-center"><?php echo $i;?></td>
+								<td><?php echo $us->nama_pengguna?></td>
+								<td><?php echo $us->nama_jabatan?></td>
+							</tr>
+							<?php
 							}
 							?>
 						</tbody>
@@ -153,7 +161,9 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title text-center"><center>Detail Kapal</center></h4>
+				<h4 class="modal-title text-center">
+					<center>Detail Kapal</center>
+				</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<div class="modal-body">
@@ -165,7 +175,7 @@
 								<th class="text-center">Nama Kapal</th>
 								<th class="text-center">IMO number</th>
 								<th class="text-center">Negara</th>
-							</tr>						
+							</tr>
 						</thead>
 						<tbody>
 							<?php
@@ -173,13 +183,13 @@
 							foreach ($kapal as $kap) {
 								$j++;
 								?>
-								<tr>
-									<td class="text-center"><?php echo $j;?></td>
-									<td><?php echo $kap->nama_kapal?></td>
-									<td><?php echo $kap->imo?></td>
-									<td><?php echo $kap->flag?></td>
-								</tr>
-								<?php
+							<tr>
+								<td class="text-center"><?php echo $j;?></td>
+								<td><?php echo $kap->nama_kapal?></td>
+								<td><?php echo $kap->imo?></td>
+								<td><?php echo $kap->flag?></td>
+							</tr>
+							<?php
 							}
 							?>
 						</tbody>
@@ -199,7 +209,9 @@
 	<div class="modal-dialog modal-lg">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title text-center"><center>Detail Produk</center></h4>
+				<h4 class="modal-title text-center">
+					<center>Detail Produk</center>
+				</h4>
 				<button type="button" class="close" data-dismiss="modal">&times;</button>
 			</div>
 			<div class="modal-body">
@@ -210,7 +222,7 @@
 								<th class="text-center">No</th>
 								<th class="text-center">Nama Kapal</th>
 								<th class="text-center">Kode</th>
-							</tr>						
+							</tr>
 						</thead>
 						<tbody>
 							<?php
@@ -218,12 +230,12 @@
 							foreach ($produk as $pro) {
 								$k++;
 								?>
-								<tr>
-									<td class="text-center"><?php echo $k;?></td>
-									<td><?php echo $pro->nama_alat?></td>
-									<td><?php echo $pro->kode_alat?></td>
-								</tr>
-								<?php
+							<tr>
+								<td class="text-center"><?php echo $k;?></td>
+								<td><?php echo $pro->nama_alat?></td>
+								<td><?php echo $pro->kode_alat?></td>
+							</tr>
+							<?php
 							}
 							?>
 						</tbody>

@@ -133,8 +133,8 @@
 																</div>
 															</div>
 															<div class="modal-footer">
-																<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
-																<input type="submit" name="submit" class="btn btn-primary" value="Save" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
+																<button type="button" class="btn btn-shadow" data-dismiss="modal">Batal</button>
+																<input type="submit" name="submit" class="btn btn-success" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
 															</div>
 														</form>
 													</div>
@@ -184,8 +184,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
-					<input type="submit" name="submit" class="btn btn-primary" value="Save" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
+					<button type="button" class="btn btn-shadow" data-dismiss="modal">Batal</button>
+					<input type="submit" name="submit" class="btn btn-success" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
 				</div>
 			</form>
 		</div>

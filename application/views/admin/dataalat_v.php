@@ -149,7 +149,7 @@
 				<h4 class="modal-title">Tambah Alat Keselamatan</h4>
 				<button type="button" class="close" data-dismiss="modal">
 					<span aria-hidden="true">×</span>
-					<span class="sr-only">close</span>
+					<span class="sr-only">Batal</span>
 				</button>
 			</div>
 			<form action="<?php echo site_url('daftar_alat')?>" method="POST">
@@ -168,8 +168,8 @@
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-shadow" data-dismiss="modal">Close</button>
-					<input type="submit" name="submit" class="btn btn-primary" value="Save" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
+					<button type="button" class="btn btn-shadow" data-dismiss="modal">Batal</button>
+					<input type="submit" name="submit" class="btn btn-success" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
 				</div>
 			</form>
 		</div>

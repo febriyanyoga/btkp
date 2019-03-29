@@ -76,7 +76,7 @@
                         <div class="form-group row d-flex align-items-center mb-5" id="pilih_alamat2">
                             <label class="col-lg-2 form-control-label d-flex justify-content-lg-end "></label>
                             <div class="text-right">
-                                <input class="btn btn-gradient-01" type="submit" value="Perbarui" name="submit">
+                                <input class="btn btn-success" type="submit" value="Perbarui" name="submit">
                                 <!-- <button class="btn btn-shadow" type="reset">Cancel</button> -->
                             </div>
                         </div>
