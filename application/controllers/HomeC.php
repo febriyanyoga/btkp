@@ -183,4 +183,10 @@ class HomeC extends CI_Controller{
 			redirect('home');
 		}  
 	}
+
+	public function reset_password()
+    {
+        $data['title'] = 'BTKP - Data User';
+        $this->load->view('resetpassword_v', $data);
+    }
 }

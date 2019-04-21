@@ -15,6 +15,7 @@ $route['post_login_admin'] = 'HomeC/post_login_admin';
 $route['logout'] = 'HomeC/logout';
 $route['logout_admin'] = 'HomeC/logout_admin';
 $route['konfirmasi/(:any)'] = 'HomeC/konfirmasi/$1';
+$route['reset_password'] = 'HomeC/reset_password';
 // $route['tentang'] = 'website/tentang';
 
 // workshop

@@ -130,7 +130,7 @@
 										</div>
 										<div class="row">
 											<div class="col text-right">
-												<a href="#">Lupa Password ?</a>
+												<a href="<?php echo base_url()?>reset_password">Lupa Password ?</a>
 											</div>
 										</div>
 										<div class="sign-btn text-center">
