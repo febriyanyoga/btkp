@@ -316,7 +316,7 @@ class GeneralM extends CI_Model{
 			'smtp_host' => 'ssl://smtp.googlemail.com',  
 			'smtp_port' => 465,  
 			'smtp_user' => 'aplikasibtkp@gmail.com',   
-			'smtp_pass' => 'Btkpjaya2018',   
+			'smtp_pass' => 'Paliyan123',   
 			'mailtype' 	=> 'html',   
 			'charset' 	=> 'iso-8859-1'  
 		);  
