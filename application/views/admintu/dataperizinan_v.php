@@ -185,7 +185,7 @@
 													<th class="text-center">Alat SPK</th>
 													<th class="text-center">Tanggal Permohonan</th>
 													<th class="text-center">Status</th>
-													<th class="text-center">Aksi</th>
+													<th class="text-center">Kode Billing</th>
 												</tr>
 											</thead>
 											<tbody>
@@ -244,7 +244,7 @@
                                                         							<?php
                                                         						} else {
                                                         							?>
-                                                        							<a href="" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#kode_biling-<?php echo $per->id_perizinan; ?>"><i class="la la-plus"></i>Kode NTPN</i>
+                                                        							<a href="<?php echo base_url()?>formkodebillingperizinan" class="btn btn-primary btn-sm"><i class="la la-plus"></i>Generate</i>
                                                         							</a>
                                                         							<?php
                                                         						}
@@ -255,7 +255,7 @@
                                                         				<div class="modal-dialog modal-md">
                                                         					<div class="modal-content">
                                                         						<div class="modal-header">
-                                                        							<h4 class="modal-title">Masukkan Kode NTPN</h4>
+                                                        							<h4 class="modal-title">Masukkan Kode Billing</h4>
                                                         							<button type="button" class="close" data-dismiss="modal">&times;</button>
                                                         						</div>
                                                         						<form action="<?php echo site_url('kode_billing'); ?>" method="post">

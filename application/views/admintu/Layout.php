@@ -19,14 +19,18 @@
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/themify/css/themify-icons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/icons/meteocons/css/meteocons.min.css">
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/owl-carousel/owl.carousel.min.css">
-	
+
 	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.min.js"></script>
 	<script src="<?php echo base_url(); ?>assets/app/vendors/js/base/jquery.ui.min.js"></script>
 
 	<!-- tabel -->
 	<link rel="stylesheet" href="<?php echo base_url(); ?>assets/app/css/datatables/datatables.min.css">
-
+	<!-- Tweaks for older IEs-->
+	<!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
 </head>
+
 <body id="page-top">
 	<!-- Begin Preloader -->
 	<div id="preloader">
@@ -36,7 +40,7 @@
 		</div>
 	</div>
 	<!-- End Preloader -->
-	<div class="page db-social">
+	<div class="page">
 		<!-- Begin Header -->
 		<header class="header">
 			<nav class="navbar fixed-top">
@@ -54,7 +58,8 @@
 					<div class="navbar-header">
 						<a href="<?php echo site_url('tatausaha'); ?>" class="navbar-brand">
 							<div class="brand-image brand-big">
-								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" style="width: 70px;" class="logo-big">
+								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" style="width: 70px;"
+									class="logo-big">
 							</div>
 							<div class="brand-image brand-small">
 								<img src="<?php echo base_url(); ?>assets/logo.png" alt="logo" class="logo-small">
@@ -71,117 +76,33 @@
 					<!-- End Logo -->
 					<!-- Begin Navbar Menu -->
 					<ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center pull-right">
-						<li class="nav-item d-flex align-items-center"><a href="<?php echo site_url('tatausaha'); ?>"><i class="la la-home"></i></a></li>
 						<!-- Search -->
-						<!-- <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="la la-search"></i></a></li> -->
-						<!-- End Search -->
-						<!-- Begin Notifications -->
-						<!-- <li class="nav-item dropdown"><a id="notifications" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false" class="nav-link"><i class="la la-bell animated infinite swing"></i><span
-							class="badge-pulse"></span></a>
-							<ul aria-labelledby="notifications" class="dropdown-menu notification">
-								<li>
-									<div class="notifications-header">
-										<div class="title">Notifications (4)</div>
-										<div class="notifications-overlay"></div>
-										<img src="<?php echo base_url(); ?>assets/app/img/notifications/01.jpg" alt="..." class="img-fluid">
-									</div>
-								</li>
-								<li>
-									<a href="#">
-										<div class="message-icon">
-											<i class="la la-user"></i>
-										</div>
-										<div class="message-body">
-											<div class="message-body-heading">
-												New user registered
-											</div>
-											<span class="date">2 hours ago</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="message-icon">
-											<i class="la la-calendar-check-o"></i>
-										</div>
-										<div class="message-body">
-											<div class="message-body-heading">
-												New event added
-											</div>
-											<span class="date">7 hours ago</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="message-icon">
-											<i class="la la-history"></i>
-										</div>
-										<div class="message-body">
-											<div class="message-body-heading">
-												Server rebooted
-											</div>
-											<span class="date">7 hours ago</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a href="#">
-										<div class="message-icon">
-											<i class="la la-twitter"></i>
-										</div>
-										<div class="message-body">
-											<div class="message-body-heading">
-												You have 3 new followers
-											</div>
-											<span class="date">10 hours ago</span>
-										</div>
-									</a>
-								</li>
-								<li>
-									<a rel="nofollow" href="#" class="dropdown-item all-notifications text-center">View All Notifications</a>
-								</li>
-							</ul>
-						</li> -->
-						<!-- End Notifications -->
-						<!-- User -->
-						<li class="nav-item dropdown"><a id="user" rel="nofollow" data-target="#" href="#" data-toggle="dropdown"
-							aria-haspopup="true" aria-expanded="false" class="nav-link"><img src="<?php echo base_url(); ?>assets/app/img/avatar/images.png"
-							alt="..." class="avatar rounded-circle"></a>
+						<li class="nav-item dropdown"><a id="user" rel="nofollow" data-target="#" href="#"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="nav-link"><img
+									src="<?php echo base_url(); ?>assets/app/img/avatar/images.png" alt="..."
+									class="avatar rounded-circle"></a>
 							<ul aria-labelledby="user" class="user-size dropdown-menu">
 								<li class="welcome">
-									<a href="<?php echo site_url('profile_t'); ?>" class="edit-profil"><i class="la la-gear"></i></a>
-									<img src="<?php echo base_url(); ?>assets/app/img/avatar/images.png" alt="..." class="rounded-circle">
+									<a href="<?php echo site_url('profile_t'); ?>" class="edit-profil"><i
+											class="la la-gear"></i></a>
+									<img src="<?php echo base_url(); ?>assets/app/img/avatar/images.png" alt="..."
+										class="rounded-circle">
 								</li>
 								<li>
-									<p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5 class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5></p>
+									<p class="dropdown-item" style="margin-bottom: auto;">Selamat Datang !<h5
+											class="dropdown-item"><?php echo $this->session->userdata('nama'); ?></h5>
+									</p>
 								</li>
 								<li>
 									<a href="<?php echo site_url('profile_t'); ?>" class="dropdown-item">
 										Profile
 									</a>
 								</li>
-								<!-- <li>
-									<a href="app-mail.html" class="dropdown-item">
-										Messages
-									</a>
-								</li>
-								<li>
-									<a href="#" class="dropdown-item no-padding-bottom">
-										Settings
-									</a>
-								</li>
-								<li class="separator"></li>
-								<li>
-									<a href="pages-faq.html" class="dropdown-item no-padding-top">
-										Faq
-									</a>
-								</li> -->
-								<li><a rel="nofollow" href="<?php echo site_url('logout_admin'); ?>" class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
+								<li><a rel="nofollow" href="<?php echo site_url('logout_admin'); ?>"
+										class="dropdown-item logout text-center"><i class="ti-power-off"></i></a></li>
 							</ul>
 						</li>
-						<!-- End User -->
+						<!-- End Quick Actions -->
 					</ul>
 					<!-- End Navbar Menu -->
 				</div>
@@ -191,7 +112,7 @@
 		<!-- End Header -->
 		<!-- Begin Page Content -->
 		<div class="page-content d-flex align-items-stretch">
-			<div class="compact-sidebar light-sidebar has-shadow">
+			<div class="default-sidebar">
 				<!-- Begin Side Navbar -->
 				<nav class="side-navbar box-scroll sidebar-scroll">
 					<!-- Begin Main Navigation -->
@@ -208,34 +129,38 @@
 						</li>
 						<li>
 							<a href="<?php echo site_url('pengujian'); ?>">
-								<i class="ti ti-write"></i><span> Data Pengujian </span>
+							<i class="ion-clipboard"></i><span> Data Pengujian </span>
 							</a>
 						</li>
 						<li>
 							<a href="<?php echo site_url('reinspeksi'); ?>">
-								<i class="ti ti-notepad"></i><span> Data Re-inspeksi</span>
+							<i class="ion-clipboard"></i><span> Data Re-inspeksi</span>
 							</a>
 						</li>
 					</ul>
+					
+					<!-- End Main Navigation -->
 				</nav>
+				<!-- End Side Navbar -->
 			</div>
 			<!-- End Left Sidebar -->
-			<!-- Begin Content -->
-			<div class="content-inner compact" style="background:url(<?php echo base_url(); ?>assets/bg.jpg); background-size: cover;">
-				<!-- Begin Jumbotron -->
-
-				<!-- End Jumbotron -->
+			<div class="content-inner">
+				<div class="container-fluid">
 				<?php echo $isi; ?>
+				</div>
+				<!-- End Container -->
 				<!-- Begin Page Footer-->
 				<footer class="main-footer">
 					<div class="row">
-						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-center">
-							<p class="text-gradient-02">Design By Soepomo 84</p>
+						<div
+							class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-xl-start justify-content-lg-start justify-content-md-start justify-content-center">
+							<p class="text-gradient-02">Design By Soepomo 86</p>
 						</div>
-						<div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-xl-end justify-content-lg-end justify-content-md-end justify-content-center">
+						<div
+							class="col-xl-6 col-lg-6 col-md-6 col-sm-12 d-flex align-items-center justify-content-xl-end justify-content-lg-end justify-content-md-end justify-content-center">
 							<ul class="nav">
 								<li class="nav-item">
-									<a class="nav-link" href="documentation.html">Bantuan</a>
+									<a class="nav-link" href="#">Dokumentasi</a>
 								</li>
 							</ul>
 						</div>
@@ -243,18 +168,12 @@
 				</footer>
 				<!-- End Page Footer -->
 				<a href="#" class="go-top"><i class="la la-arrow-up"></i></a>
-
 			</div>
-			<!-- End Content -->
 		</div>
 		<!-- End Page Content -->
 	</div>
-
-</body>
-
-</html>
-<!-- Begin Vendor Js -->
-<script src="<?php echo base_url(); ?>assets/app/vendors/js/custom.js"></script>
+	<!-- Begin Vendor Js -->
+	<script src="<?php echo base_url(); ?>assets/app/vendors/js/custom.js"></script>
 <script src="<?php echo base_url(); ?>assets/app/vendors/js/base/core.min.js"></script>
 <!-- End Vendor Js -->
 <!-- Begin Page Vendor Js -->
@@ -296,27 +215,28 @@
 		$('#myTable8').DataTable();
 	});
 
-
 </script>
 <!-- Popover -->
 <script>
-
 	$(function () {
 		$('[data-toggle="popover"]').popover()
 	})
 
-</script> 
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#btn_tag").click(function() {
-			$("#form_tolak").submit(); 
-		});
-	});
-	$(document).ready(function() {
-		$("#btn-lengkap").click(function() {
-			$("#form_terima").submit(); 
-		});
-	});
 </script>
+<script type="text/javascript">
+	$(document).ready(function () {
+		$("#btn_tag").click(function () {
+			$("#form_tolak").submit();
+		});
+	});
+	$(document).ready(function () {
+		$("#btn-lengkap").click(function () {
+			$("#form_terima").submit();
+		});
+	});
 
+</script>
+	<!-- End Page Snippets -->
+</body>
 
+</html>

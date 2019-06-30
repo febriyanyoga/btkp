@@ -1015,5 +1015,19 @@ class TatausahaC extends CI_Controller
                 redirect_back();
             }
         }
-    }
+	}
+	
+	public function formkodebillingperizinan()
+	{
+		$data['title'] = 'BTKP - verifikasi';
+		$data['isi'] = $this->load->view('admintu/kodebilperizinan_v', $this->data, true);
+		$this->load->view('admintu/Layout', $data);
+	}
+
+	public function kodebillingperizinan()
+	{
+		$data['title'] = 'BTKP - verifikasi';
+		$data['isi'] = $this->load->view('admintu/kodeBilling_v', $this->data, true);
+		$this->load->view('admintu/Layout', $data);
+	}
 }

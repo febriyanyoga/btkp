@@ -194,7 +194,7 @@
 <script>
 	$.noConflict();
 	jQuery(document).ready(function ($) {
-		$('#myTable').DataTable();
+		$('#table_export').DataTable();
 		$('#myTable2').DataTable();
 		$('#myTable3').DataTable();
 		$('#myTable4').DataTable();

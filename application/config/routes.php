@@ -17,7 +17,6 @@ $route['atur_ulang/(:any)'] = 'HomeC/reset_password_2/$1';
 $route['post_reset_password'] = 'HomeC/post_reset_password';
 $route['post_atur_ulang'] = 'HomeC/post_atur_ulang';
 
-// $route['tentang'] = 'website/tentang';
 // workshop
 $route['workshop'] = 'WorkshopC';
 $route['tampil/(:any)'] = 'WorkshopC/aktif/$1';
@@ -119,6 +118,9 @@ $route['validasi_2'] = 'TatausahaC/validasi_2';
 $route['hasil_uji'] = 'TatausahaC/hasil_uji';
 $route['post_verif_ins'] = 'TatausahaC/post_verif_ins';
 $route['penerbitan_ins'] = 'TatausahaC/post_penerbitan_ins';
+
+$route['formkodebillingperizinan'] = 'TatausahaC/formkodebillingperizinan';
+$route['kodebillingperizinan'] = 'TatausahaC/kodebillingperizinan';
 // KASIE
 $route['kasie'] = 'KasieC';
 // perizinan
