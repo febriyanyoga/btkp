@@ -137,4 +137,81 @@ class TatausahaM extends CI_Model{
 		$this->db->where('pengujian.id_pengujian',$id_pengujian);
 		return $this->db->get();
 	}
+
+
+
+
+	public function reqKodeBilling($data){
+		$input_xml = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sim="http://SimponiBRI_Service">
+					   <soapenv:Header/>
+					   <soapenv:Body>
+					      <sim:PaymentRequest>
+					         <appsId>'.$data['appID'].'</appsId>
+					         <invoiceNo>'.$data['invoiceNo'].'</invoiceNo>
+					         <routeId>'.$data['routeID'].'</routeId>
+					         <data>
+					            <PaymentHeader>
+					               <TrxId>'.$data['trxID'].'</TrxId>
+					               <UserId>'.$data['userID'].'</UserId>
+					               <Password>'.$data['password'].'</Password>
+					               <ExpiredDate>'.$data['expDate'].'</ExpiredDate>
+					               <DateSent>'.$data['dateSent'].'</DateSent>
+					               <KodeKL>'.$data['kodeKL'].'</KodeKL>
+					               <KodeEselon1>'.$data['kodeEselon1'].'</KodeEselon1>
+					               <KodeSatker>'.$data['kodeSatket'].'</KodeSatker>
+					               <JenisPNBP>'.$data['jenisPNPB'].'</JenisPNBP>
+					               <KodeMataUang>'.$data['kodeMataUang'].'</KodeMataUang>
+					               <TotalNominalBilling>'.$data['totalNominalBilling'].'</TotalNominalBilling>
+					               <NamaWajibBayar>'.$data['namaWajibBayar'].'</NamaWajibBayar>
+					            </PaymentHeader>
+					            <PaymentDetails>
+					               <PaymentDetail>
+					                  <NamaWajibBayar>'.$data['detNamaWajibBayar'].'</NamaWajibBayar>
+					                  <KodeTarifSimponi>'.$data['kodeTarifSimponi'].'</KodeTarifSimponi>
+					                  <KodePPSimponi>'.$data['kodePPSimponi'].'</KodePPSimponi>
+					                  <KodeAkun>'.$data['kodeAkun'].'</KodeAkun>
+					                  <TarifPNBP>'.$data['tarifPNPB'].'</TarifPNBP>
+					                  <Volume>'.$data['volume'].'</Volume>
+					                  <Satuan>'.$data['satuan'].'</Satuan>
+					                  <TotalTarifPerRecord>'.$data['totalTarifPerRecord'].'</TotalTarifPerRecord>
+					               </PaymentDetail>
+					            </PaymentDetails>
+					         </data>
+					      </sim:PaymentRequest>
+					   </soapenv:Body>
+					</soapenv:Envelope>';
+
+					$type = 'application/xml';
+
+					$headers = array(
+                        'Content-type:'. $type,
+                        'Accept: text/xml',
+                        'Cache-Control: no-cache',
+                        'Pragma: no-cache',
+                        'SOAPAction: http://soadev.dephub.go.id:7800/SimponiBRI_Service', 
+                        'Content-length: '.strlen($input_xml),
+                    );
+
+
+					$url = "http://soadev.dephub.go.id:7800/SimponiBRI_Service";
+
+		            $ch = curl_init();
+		            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+		            curl_setopt($ch, CURLOPT_URL, $url);
+		            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		            curl_setopt($ch, CURLOPT_USERPWD, $data['userID'].":".$data['password']);
+		            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+		            curl_setopt($ch, CURLOPT_TIMEOUT, 300);
+		            curl_setopt($ch, CURLOPT_POST, true);
+		            curl_setopt($ch, CURLOPT_POSTFIELDS, $input_xml);
+		            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+		            $response = curl_exec($ch); 
+		            curl_close($ch);
+
+		            $parser = htmlspecialchars($response);
+		            return $parser;
+					
+	}
+
 }

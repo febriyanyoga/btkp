@@ -9,8 +9,8 @@ class TatausahaC extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        in_access();
-        tu_access();
+        // in_access();
+        // tu_access();
         $this->load->model(['LoginM', 'TatausahaM', 'WorkshopM', 'GeneralM']);
     }
 
@@ -1030,4 +1030,45 @@ class TatausahaC extends CI_Controller
 		$data['isi'] = $this->load->view('admintu/kodeBilling_v', $this->data, true);
 		$this->load->view('admintu/Layout', $data);
 	}
+
+
+    // ====================================API REQUEST====================================
+    public function reqKodeBilling($data = null){
+        $data = array(
+            'appID'                 => '',
+            'invoiceNo'             => '',
+            'routeID'               => '001',
+            'trxID'                 => '0',
+            'userID'                => '0',
+            'password'              => '0',
+            'expDate'               => '10/10/2019',
+            'dateSent'              => '09/10/2019',
+            'kodeKL'                => '002',
+            'kodeEselon1'           => '04',
+            'kodeSatket'            => '413721',
+            'jenisPNPB'             => 'F',
+            'kodeMataUang'          => '1',
+            'totalNominalBilling'   => '1000000',
+            'namaWajibBayar'        => 'Febriyan Yoga',
+            'detNamaWajibBayar'     => 'Pratama',
+            'kodeTarifSimponi'      => '001000',
+            'kodePPSimponi'         => '001000',
+            'kodeAkun'              => '425514',
+            'tarifPNPB'             => '1000000',
+            'volume'                => '1',
+            'satuan'                => 'buah',
+            'totalTarifPerRecord'   => '12'
+        );
+
+
+        $request = $this->TatausahaM->reqKodeBilling($data);
+        echo $request;
+        $xml = simplexml_load_string($request);
+        $json = json_encode($xml);
+        $array = json_decode($json,TRUE);
+        print_r('<pre>');
+        echo $array;
+        print_r('</pre>');
+    }
+    // ====================================API REQUEST====================================
 }
