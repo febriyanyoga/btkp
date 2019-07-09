@@ -1062,32 +1062,33 @@ class TatausahaC extends CI_Controller
             'appID'                 => '',
             'invoiceNo'             => '',
             'routeID'               => '001',
-            'trxID'                 => '0',
+            'trxID'                 => '1',
             'userID'                => '0',
             'password'              => '0',
-            'expDate'               => '10/10/2019',
-            'dateSent'              => '09/10/2019',
-            'kodeKL'                => '002',
+            'expDate'               => '2019-07-05',
+            'dateSent'              => '2019-07-04',
+            'kodeKL'                => '022',
             'kodeEselon1'           => '04',
             'kodeSatker'            => '413721',
             'jenisPNPB'             => 'F',
             'kodeMataUang'          => '1',
             'totalNominalBilling'   => '1000000',
-            'namaWajibBayar'        => 'Febriyan Yoga',
-            'detNamaWajibBayar'     => 'Pratama',
+            'namaWajibBayar'        => 'BENDAHARA PENERIMAAN BTKP',
+            'detNamaWajibBayar'     => 'BENDAHARA PENERIMAAN BTKP',
             'kodeTarifSimponi'      => '001000',
-            'kodePPSimponi'         => '001000',
-            'kodeAkun'              => '425514',
+            'kodePPSimponi'         => '201615C',
+            'kodeAkun'              => '012016015C001000',
             'tarifPNPB'             => '1000000',
             'volume'                => '1',
-            'satuan'                => 'buah',
+            'satuan'                => 'per surat ijin',
             'totalTarifPerRecord'   => '12'
         );
 
 
         $request = $this->TatausahaM->reqKodeBilling($data);
-
+        echo "<pre>";
         print_r($request);
+        echo "</pre>";
     }
     // ====================================API REQUEST====================================
 }

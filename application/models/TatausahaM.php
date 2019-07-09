@@ -199,7 +199,6 @@ class TatausahaM extends CI_Model
 					</soapenv:Envelope>';
 
 		$type = 'application/xml';
-
 		$headers = array(
 			'Content-type:' . $type,
 			'Accept: text/xml',
