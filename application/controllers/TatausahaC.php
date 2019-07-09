@@ -1034,6 +1034,30 @@ class TatausahaC extends CI_Controller
 
     // ====================================API REQUEST====================================
     public function reqKodeBilling($data = null){
+        // $appID                      = '';
+        // $routeID                    = '001';
+        // $invoiceNo                  = $this->input->post('no_billing');
+        // $trxID                      = '0';
+        // $userID                     = '0';
+        // $password                   = '0';
+        // $dateSent                   = $this->input->post('tgl_billing_start');
+        // $expDate                    = $this->input->post('tgl_billing_exp');
+        // $kodeKL                     = '022';
+        // $kodeEselon1                = '04';
+        // $kodeSatker                 = '413721';
+        // $jenisPNPB                  = $this->input->post('pnpb');
+        // $kodeMataUang               = $this->input->post('mata_uang');
+        // $totalNominalBilling        = $this->input->post('no_billing');
+        // $namaWajibBayar             = $this->input->post('nama_wajib_bayar');
+        // $detNamaWajibBayar          = $this->input->post('wajib_bayar');
+        // $kodeTarifSimponi           = $this->input->post('tarif');
+        // $kodePPSimponi              = $this->input->post('no_billing');
+        // $kodeAkun                   = $this->input->post('akun');
+        // $tarifPNPB                  = $this->input->post('no_billing');
+        // $volume                     = $this->input->post('volume');
+        // $satuan                     = $this->input->post('satuan');
+        // $totalTarifPerRecord        = $this->input->post('no_billing');
+
         $data = array(
             'appID'                 => '',
             'invoiceNo'             => '',
@@ -1045,7 +1069,7 @@ class TatausahaC extends CI_Controller
             'dateSent'              => '09/10/2019',
             'kodeKL'                => '002',
             'kodeEselon1'           => '04',
-            'kodeSatket'            => '413721',
+            'kodeSatker'            => '413721',
             'jenisPNPB'             => 'F',
             'kodeMataUang'          => '1',
             'totalNominalBilling'   => '1000000',
@@ -1062,13 +1086,8 @@ class TatausahaC extends CI_Controller
 
 
         $request = $this->TatausahaM->reqKodeBilling($data);
-        echo $request;
-        $xml = simplexml_load_string($request);
-        $json = json_encode($xml);
-        $array = json_decode($json,TRUE);
-        print_r('<pre>');
-        echo $array;
-        print_r('</pre>');
+
+        print_r($request);
     }
     // ====================================API REQUEST====================================
 }
