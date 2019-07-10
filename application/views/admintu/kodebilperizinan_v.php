@@ -44,10 +44,12 @@
 											<div class="widget-body">
 												<div class="form-group row mb-3">
 													<div class="col-xl-6 mb-3">
+														<!-- Seko XML -->
 														<label class="form-control-label">No. Billing</i> </label>
 														<input type="text" disabled value="" class="form-control" id="no_billing" name="no_billing" required>
 													</div>
 													<div class="col-xl-6 mb-3">
+														<!-- Seko XML -->
 														<label class="form-control-label">Nama Wajib Setor/Wajib Bayar</label>
 														<input type="text" readonly value="BENDAHARA PENERIMAAN BTKP" class="form-control" id="nama_wajib_bayar" name="nama_wajib_bayar" required placeholder="">
 													</div>
@@ -58,10 +60,12 @@
 											<div class="widget-body">
 												<div class="form-group row mb-3">
 													<div class="col-xl-6 mb-3">
+														<!-- Seko XML -->
 														<label class="form-control-label">Tanggal Billing</label>
 														<input type="date" value="" class="form-control" id="tgl_billing_start" name="tgl_billing_start" required>
 													</div>
 													<div class="col-xl-6 mb-3">
+														<!-- Seko XML -->
 														<label class="form-control-label">Tanggal Kadaluarsa</label>
 														<input type="date" value="" class="form-control" id="tgl_billing_exp" name="tgl_billing_exp" required>
 													</div>
@@ -72,14 +76,17 @@
 											<div class="widget-body">
 												<div class="form-group row mb-3">
 													<div class="col-xl-6 mb-3">
+														<!-- Seko XML -->
 														<label class="form-control-label">Kementerian/Lembaga</label>
 														<input type="text" readonly="readonly" value="022 - KEMENTERIAN PERHUBUNGAN" class="form-control" id="kementrian_lembaga" name="kementrian_lembaga" required placeholder="022 - KEMENTERIAN PERHUBUNGAN">
 													</div>
 													<div class="col-xl-6 mb-3">
+														<!-- Seko XML -->
 														<label class="form-control-label">Unit Eselon 1</label>
 														<input type="text" readonly="readonly" value="04 - DITJEN PERHUBUNGAN LAUT" class="form-control" id="unit_eselon_1" name="unit_eselon_1" required placeholder="04 - DITJEN PERHUBUNGAN LAUT">
 													</div>
 													<div class="col-xl-6 mb-3">
+														<!-- Seko XML -->
 														<label class="form-control-label">Satuan Kerja</label>
 														<input type="text" readonly="readonly" value="413721 - BALAI TEKNOLOGI KESELAMATAN PELAYARAN" class="form-control" id="satuan_kerja" name="satuan_kerja" required placeholder="413721 - BALAI TEKNOLOGI KESELAMATAN PELAYARAN">
 													</div>
@@ -91,9 +98,11 @@
 												<div class="form-group row mb-3">
 													<div class="col-xl-10 mb-3">
 														<div class="form-group row d-flex align-items-center mb-5">
+																<!-- Seko Form -->
 															<label class="col-lg-3 form-control-label">Kelompok PNBP</label>
 															<div class="col-lg-6">
 																<div class="styled-radio">
+																
 																	<input type="radio" name="pnpb" value="F" id="rad-1">
 																	<label for="rad-1">Fungsional</label>
 																</div>
@@ -106,6 +115,7 @@
 													</div>
 													<div class="col-xl-10 mb-3">
 														<div class="form-group row d-flex align-items-center mb-5">
+																<!-- Seko Form -->
 															<label class="col-lg-3 form-control-label">Mata Uang</label>
 															<div class="col-lg-6">
 																<select name="mata_uang" class="custom-select form-control">
@@ -123,12 +133,19 @@
 												<div class="form-group row mb-3">
 													<div class="col-xl-10 mb-3">
 														<div class="form-group row d-flex align-items-center mb-5">
+															<!-- Njupuk Jeneng PT ne sg rep bayar pep -->
 															<label class="col-lg-3 form-control-label">Wajib Bayar</label>
 															<div class="col-lg-6">
 																<input type="text" value="" class="form-control" id="wajib_bayar" name="wajib_bayar" required placeholder="">
 															</div>
 														</div>
 														<div class="form-group row d-flex align-items-center mb-5">
+															<!-- Ki kiro2 rep pie?
+															1. iso njupuk seko database dewe gek di gawe kode2ne, dadi untuk jenis alat a wge ws otomatis nampilke kode nggo alat kui tarife sekian
+															2. nggo kondisional tapi ra nggo database, if alat a value ne sekian.
+
+															kayane aman sg nomor 1 pep dadi form akun, tarif, ro satuan yo wes otomatis ke isi. -->
+
 															<label class="col-lg-3 form-control-label">Jenis Penerimaan</label>
 															<div class="col-lg-6">
 																<input type="text" value="" class="form-control" id="jenis_penerimaan" name="jenis_penerimaan" required placeholder="">
@@ -147,24 +164,28 @@
 															</div>
 														</div>
 														<div class="form-group row d-flex align-items-center mb-5">
+															<!-- seko form -->
 															<label class="col-lg-3 form-control-label">Volume</label>
 															<div class="col-lg-6">
 																<input type="text" value="" class="form-control" id="volume" name="volume" required placeholder="">
 															</div>
 														</div>
 														<div class="form-group row d-flex align-items-center mb-5">
+															<!-- seko form -->
 															<label class="col-lg-3 form-control-label">Satuan</label>
 															<div class="col-lg-6">
 																<input type="text" value="" class="form-control" id="satuan" name="satuan" required placeholder="">
 															</div>
 														</div>
 														<div class="form-group row d-flex align-items-center mb-5">
+															<!-- seko form ngango ajax wae tarifxvolume -->
 															<label class="col-lg-3 form-control-label">Jumlah</label>
 															<div class="col-lg-6">
 																<input type="number" value="" class="form-control" id="jumlah" name="jumlah" required placeholder="">
 															</div>
 														</div>
 														<div class="form-group row d-flex align-items-center mb-5">
+															<!-- seko form -->
 															<label class="col-lg-3 form-control-label">Keterangan</label>
 															<div class="col-lg-6">
 																<textarea value="" class="form-control" id="keterangan" name="keterangan" required placeholder=""></textarea>
