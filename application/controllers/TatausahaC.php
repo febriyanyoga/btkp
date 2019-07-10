@@ -9,8 +9,8 @@ class TatausahaC extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        in_access();
-        tu_access();
+        // in_access();
+        // tu_access();
         $this->load->model(['LoginM', 'TatausahaM', 'WorkshopM', 'GeneralM']);
     }
 
@@ -1030,4 +1030,65 @@ class TatausahaC extends CI_Controller
 		$data['isi'] = $this->load->view('admintu/kodeBilling_v', $this->data, true);
 		$this->load->view('admintu/Layout', $data);
 	}
+
+
+    // ====================================API REQUEST====================================
+    public function reqKodeBilling($data = null){
+        // $appID                      = '';
+        // $routeID                    = '001';
+        // $invoiceNo                  = $this->input->post('no_billing');
+        // $trxID                      = '0';
+        // $userID                     = '0';
+        // $password                   = '0';
+        // $dateSent                   = $this->input->post('tgl_billing_start');
+        // $expDate                    = $this->input->post('tgl_billing_exp');
+        // $kodeKL                     = '022';
+        // $kodeEselon1                = '04';
+        // $kodeSatker                 = '413721';
+        // $jenisPNPB                  = $this->input->post('pnpb');
+        // $kodeMataUang               = $this->input->post('mata_uang');
+        // $totalNominalBilling        = $this->input->post('no_billing');
+        // $namaWajibBayar             = $this->input->post('nama_wajib_bayar');
+        // $detNamaWajibBayar          = $this->input->post('wajib_bayar');
+        // $kodeTarifSimponi           = $this->input->post('tarif');
+        // $kodePPSimponi              = $this->input->post('no_billing');
+        // $kodeAkun                   = $this->input->post('akun');
+        // $tarifPNPB                  = $this->input->post('no_billing');
+        // $volume                     = $this->input->post('volume');
+        // $satuan                     = $this->input->post('satuan');
+        // $totalTarifPerRecord        = $this->input->post('no_billing');
+
+        $data = array(
+            'appID'                 => '',
+            'invoiceNo'             => '',
+            'routeID'               => '001',
+            'trxID'                 => '1',
+            'userID'                => '0',
+            'password'              => '0',
+            'expDate'               => '2019-07-05',
+            'dateSent'              => '2019-07-04',
+            'kodeKL'                => '022',
+            'kodeEselon1'           => '04',
+            'kodeSatker'            => '413721',
+            'jenisPNPB'             => 'F',
+            'kodeMataUang'          => '1',
+            'totalNominalBilling'   => '1000000',
+            'namaWajibBayar'        => 'BENDAHARA PENERIMAAN BTKP',
+            'detNamaWajibBayar'     => 'BENDAHARA PENERIMAAN BTKP',
+            'kodeTarifSimponi'      => '001000',
+            'kodePPSimponi'         => '201615C',
+            'kodeAkun'              => '012016015C001000',
+            'tarifPNPB'             => '1000000',
+            'volume'                => '1',
+            'satuan'                => 'per surat ijin',
+            'totalTarifPerRecord'   => '12'
+        );
+
+
+        $request = $this->TatausahaM->reqKodeBilling($data);
+        echo "<pre>";
+        print_r($request);
+        echo "</pre>";
+    }
+    // ====================================API REQUEST====================================
 }

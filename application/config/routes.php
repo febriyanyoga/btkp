@@ -118,6 +118,8 @@ $route['validasi_2'] = 'TatausahaC/validasi_2';
 $route['hasil_uji'] = 'TatausahaC/hasil_uji';
 $route['post_verif_ins'] = 'TatausahaC/post_verif_ins';
 $route['penerbitan_ins'] = 'TatausahaC/post_penerbitan_ins';
+$route['reqKodeBilling'] = 'TatausahaC/reqKodeBilling';
+ 
 
 $route['formkodebillingperizinan'] = 'TatausahaC/formkodebillingperizinan';
 $route['kodebillingperizinan'] = 'TatausahaC/kodebillingperizinan';
