@@ -1065,9 +1065,9 @@ class TatausahaC extends CI_Controller
             'trxID'                 => '0',
             'userID'                => '0',
             'password'              => '0',
-            'expDate'               => '10/10/2019',
-            'dateSent'              => '09/10/2019',
-            'kodeKL'                => '002',
+            'expDate'               => '2019-10-10',
+            'dateSent'              => '2019-10-09',
+            'kodeKL'                => '022',
             'kodeEselon1'           => '04',
             'kodeSatker'            => '413721',
             'jenisPNPB'             => 'F',
@@ -1086,8 +1086,9 @@ class TatausahaC extends CI_Controller
 
 
         $request = $this->TatausahaM->reqKodeBilling($data);
-
+        echo "<pre>";
         print_r($request);
+        echo "</pre>";
     }
     // ====================================API REQUEST====================================
 }
