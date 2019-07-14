@@ -103,6 +103,14 @@ if ( ! function_exists('in_access')){
     }
 }
 
+function getSysConfig($sysKey){
+    $CI =& get_instance();
+    $CI->db->select('sysValue');
+    $CI->db->from('sysconfig');
+    $CI->db->where('sysKey', $sysKey);
+    $query = $CI->db->get()->row()->sysValue;
+    return $query;
+}
 
 
 
