@@ -36,7 +36,7 @@
 									<?php 
 										}
 										if($data_invoice == ''){
-											$data_invoice['data']['tanggal_expired'] = '';
+											$data_invoice['data']['tanggal_pembuatan'] = '';
 										}
 										?>
 									<form action="<?php echo site_url('reqKodeBilling')?>" method="post">
@@ -68,11 +68,11 @@
 												<div class="form-group row mb-3">
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label">Tanggal Billing</label>
-														<input type="text" readonly value="<?= $data_perizinan['masa_berlaku_billing']; ?>" class="form-control" id="tgl_billing_start" name="tgl_billing_start" required>
+														<input type="text" readonly value="<?= $data_invoice['data']['tanggal_pembuatan']?>" class="form-control" id="tgl_billing_start" name="tgl_billing_start" required>
 													</div>
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label">Tanggal Kadaluarsa</label>
-														<input type="text" readonly value="<?= $data_invoice['data']['tanggal_expired']?>" class="form-control" id="tgl_billing_exp" name="tgl_billing_exp" required>
+														<input type="text" readonly value="<?= $data_perizinan['masa_berlaku_billing']; ?>" class="form-control" id="tgl_billing_exp" name="tgl_billing_exp" required>
 													</div>
 												</div>
 											</div>

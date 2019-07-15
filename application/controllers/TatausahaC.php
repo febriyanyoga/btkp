@@ -1040,7 +1040,7 @@ class TatausahaC extends CI_Controller
     $tarif_perizinan = array_merge($data_perizinan,$tarif);
 
     $this->data['data_perizinan'] = $tarif_perizinan;
-    $this->data['data_invoice'] = array('data' => array('tanggal_expired' => ''));
+    $this->data['data_invoice'] = array('data' => array('tanggal_pembuatan' => ''));
 
 
     $data['isi'] = $this->load->view('admintu/kodebilperizinan_v',$this->data, true);
