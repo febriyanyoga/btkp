@@ -1067,6 +1067,8 @@ public function reqKodeBilling($data = null){
     $volume                     = $this->input->post('volume');
     $totalTarifPerRecord        = $this->input->post('jumlah');
 
+    $tanggal = date('Y-m-d H:i:s');
+
     $data = array(
             'appID'                 => getSysConfig('appID'),
             'invoiceNo'             => $invoiceNo,
@@ -1074,8 +1076,8 @@ public function reqKodeBilling($data = null){
             'trxID'                 => $trxID,
             'userID'                => getSysConfig('userID'),
             'password'              => getSysConfig('password'),
-            'expDate'               => '2019-07-14 10:44:00',
-            'dateSent'              => '2019-07-14 10:44:00',
+            'expDate'               => $tanggal,
+            'dateSent'              => $tanggal,
             'kodeKL'                => getSysConfig('kodeKL'),
             'kodeEselon1'           => getSysConfig('kodeEselon1'),
             'kodeSatker'            => getSysConfig('kodeSatker'),
@@ -1095,22 +1097,26 @@ public function reqKodeBilling($data = null){
 
 
     $request = $this->TatausahaM->reqKodeBilling($data);
+    // echo "<pre>";
+    // print_r($request);
+    // echo "</pre>";
+    // die();
     $response = $request['soapenvBody']['NS1PaymentResponse']['NS1response']['code'];
     if($response == '00'){
         $data = array(
-            'trxID'                     => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['data']['PaymentHeader']['TrxId'],
+            'trxID'                     => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentHeader']['TrxId'],
             'invoiceNO'                 => $request['soapenvBody']['NS1PaymentResponse']['invoiceNo'],
             'kodeBilling'               => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['KodeBillingSimponi'],
-            'nama_wajib_bayar'          => $request['soapenvBody']['NS1PaymentResponse']['data']['NamaWajibBayar'],
+            'nama_wajib_bayar'          => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentHeader']['NamaWajibBayar'],
             'jumlah'                    => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['TotalTarifPerRecord'],
-            'satuan'                    => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['satuan'],
-            'tarif'                     => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['1000000'],
-            'volume'                    => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['volume'],
+            'satuan'                    => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['Satuan'],
+            'tarif'                     => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['TarifPNBP'],
+            'volume'                    => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['Volume'],
             'jenis_penerimaan'          => $this->input->post('jenis_penerimaan'),
-            'jenis_alat_keselematan'    => $this->input->post('jenis_alat_keselematan'),
+            'jenis_alat_keselematan'    => $this->input->post('jenis_alat_keselamatan'),
             'keterangan'                => $this->input->post('keterangan'),
             'tanggal_pembuatan'         => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['Date'],
-            'tanggal_expired'           => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['tanggal_expired']
+            'tanggal_expired'           => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['ExpiredDate']
         );
 
         $insert = $this->TatausahaM->insertToInvoice($data);
@@ -1119,7 +1125,7 @@ public function reqKodeBilling($data = null){
             $data_billing = array(
                 'kode_billing'          => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['KodeBillingSimponi'],
                 'jumlah_tagihan'        => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['TotalTarifPerRecord'],
-                'masa_berlaku_billing'  => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['tanggal_expired']
+                'masa_berlaku_billing'  => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['ExpiredDate']
             );
             $update_perizinan = $this->TatausahaM->insert_billing($id_perizinan, $data_billing);
             if($update_perizinan){
