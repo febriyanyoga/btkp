@@ -121,7 +121,7 @@ $route['penerbitan_ins'] = 'TatausahaC/post_penerbitan_ins';
 $route['reqKodeBilling'] = 'TatausahaC/reqKodeBilling';
  
 
-$route['formkodebillingperizinan'] = 'TatausahaC/formkodebillingperizinan';
+$route['formkodebillingperizinan/(:num)'] = 'TatausahaC/formkodebillingperizinan/$1';
 $route['kodebillingperizinan'] = 'TatausahaC/kodebillingperizinan';
 // KASIE
 $route['kasie'] = 'KasieC';

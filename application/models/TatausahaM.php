@@ -154,11 +154,29 @@ class TatausahaM extends CI_Model
 		return $this->db->get();
 	}
 
+	public function get_perizinan_by_id_perizinan($id_perizinan){
+		$this->db->select('*');
+		$this->db->from('perizinan P');
+		$this->db->join('pengguna U', 'P.id_pengguna = U.id_pengguna', 'left');
+		$this->db->join('perusahaan S', 'U.id_pengguna = S.id_pengguna', 'left');
+		$this->db->join('jenis_perizinan I','I.id_jenis_perizinan = P.id_jenis_perizinan');
+		$this->db->join('jenis_alat_keselamatan J','J.id_jenis_alat = P.id_jenis_alat');
+		$this->db->where('P.id_perizinan', $id_perizinan);
+		return $this->db->get()->row_array();
+	}
 
+	public function get_data_tarif($id_jenis_alat, $jenis_penerimaan){
+		$this->db->select('*');
+		$this->db->from('tarif_alat A');
+		$this->db->where('id_jenis_alat_keselamatan', $id_jenis_alat);
+		$this->db->where('jenis_penerimaan', $jenis_penerimaan);
+		return $this->db->get()->row_array();
+	}
 
 
 	public function reqKodeBilling($data)
 	{
+		$url = getSysConfig('soap_url');
 		$input_xml = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sim="http://SimponiBRI_Service">
 					   <soapenv:Header/>
 					   <soapenv:Body>
@@ -208,16 +226,13 @@ class TatausahaM extends CI_Model
 			'Content-length: ' . strlen($input_xml),
 		);
 
-
-		$url = "http://soadev.dephub.go.id:7800/SimponiBRI_Service";
-
 		$ch = curl_init();
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_USERPWD, $data['userID'] . ":" . $data['password']);
 		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
-		curl_setopt($ch, CURLOPT_TIMEOUT, 300);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 30);
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $input_xml);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
@@ -234,11 +249,14 @@ class TatausahaM extends CI_Model
 		// $parser = simplexml_load_string($response);
 		// return $parser;
 
-
-
 		$response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $response);
 		$xml = new SimpleXMLElement($response);
 		$array = json_decode(json_encode((array) $xml), TRUE);
 		return $array;
+	}
+
+	public function insertToInvoice($data){
+		$this->db->insert('invoice', $data);
+		return $this->db->affected_rows();
 	}
 }

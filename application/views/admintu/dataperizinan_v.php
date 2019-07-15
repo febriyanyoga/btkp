@@ -244,14 +244,14 @@
                                                         							<?php
                                                         						} else {
                                                         							?>
-                                                        							<a href="<?php echo base_url()?>formkodebillingperizinan" class="btn btn-primary btn-sm"><i class="la la-plus"></i>Generate</i>
+                                                        							<a href="<?php echo site_url('formkodebillingperizinan/').$per->id_perizinan?>" class="btn btn-primary btn-sm"><i class="la la-plus"></i>Generate</i>
                                                         							</a>
                                                         							<?php
                                                         						}
                                                         					} ?>
                                                         				</td>
                                                         			</tr>
-                                                        			<div class="modal" id="kode_biling-<?php echo $per->id_perizinan; ?>">
+                                                        			<!-- <div class="modal" id="kode_biling-<?php echo $per->id_perizinan; ?>">
                                                         				<div class="modal-dialog modal-md">
                                                         					<div class="modal-content">
                                                         						<div class="modal-header">
@@ -262,7 +262,7 @@
                                                         							<div class="modal-body">
                                                         								<label for="kode_billing" class="label">Kode NTPN : </label>
                                                         								<input type="number" name="kode_billing" value="" class="form-control" placeholder="Masukkan Kode NTPN" required="required">
-                                                        								<!-- <label for="bank_btkp" class="label">Bank BTKP : </label>
+                                                        								<label for="bank_btkp" class="label">Bank BTKP : </label>
                                                         								<select class="form-control" name="id_bank_btkp">
                                                         									<option value="">---Pilih Bank---</option>
                                                         									<?php
@@ -272,13 +272,13 @@
                                                         										<?php
                                                         									}
                                                         									?>
-                                                        								</select> -->
+                                                        								</select>
                                                         								<input type="hidden" name="id_bank_btkp" value="1">
 
                                                         								<input type="hidden" name="id_perizinan" class="form-control" required="required" value="<?php echo $per->id_perizinan; ?>">
                                                         								<label for="jumlah_tagihan" class="label">Jumlah Tagihan: </label>
                                                         								<input type="number" name="jumlah_tagihan" value="" class="form-control" placeholder="Masukkan Jumlah Tagihan" required="required">
-                                                        								<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai lele : </label>
+                                                        								<label for="masa_berlaku_billing" class="label">Masa Berlaku Sampai : </label>
                                                         								<input type="datetime-local" name="masa_berlaku_billing" value="" class="form-control" placeholder="Masukkan Masa Berlaku" required="required">
 
                                                         							</div>
@@ -289,7 +289,7 @@
                                                         						</form>
                                                         					</div>
                                                         				</div>
-                                                        			</div>
+                                                        			</div> -->
                                                         			<?php
                                                         		}
                                                         	}

@@ -1015,80 +1015,137 @@ class TatausahaC extends CI_Controller
                 redirect_back();
             }
         }
-	}
-	
-	public function formkodebillingperizinan()
-	{
-		$data['title'] = 'BTKP - verifikasi';
-		$data['isi'] = $this->load->view('admintu/kodebilperizinan_v', $this->data, true);
-		$this->load->view('admintu/Layout', $data);
-	}
+    }
 
-	public function kodebillingperizinan()
-	{
-		$data['title'] = 'BTKP - verifikasi';
-		$data['isi'] = $this->load->view('admintu/kodeBilling_v', $this->data, true);
-		$this->load->view('admintu/Layout', $data);
-	}
+    public function formkodebillingperizinan($id_perizinan)
+    {
+      $data['title'] = 'BTKP - Pembuatan Kode Billing';
+
+      $data_perizinan = $this->TatausahaM->get_perizinan_by_id_perizinan($id_perizinan);
+      if($data_perizinan['id_jenis_perizinan'] == '1'){
+        $jenis_penerimaan = 'baru';
+    }elseif ($data_perizinan['id_jenis_perizinan'] == '2') {
+        $jenis_penerimaan = 'perpanjang';
+    }
+
+    $data_tarif = $this->TatausahaM->get_data_tarif($data_perizinan['id_jenis_alat'], $jenis_penerimaan);
+
+
+    $tarif = array(
+        'jenis_penerimaan'  => $data_tarif['jenis_penerimaan'],
+        'satuan'            => $data_tarif['satuan'],
+        'tarif'             => $data_tarif['tarif']
+    );
+
+    $tarif_perizinan = array_merge($data_perizinan,$tarif);
+
+    $this->data['data_perizinan'] = $tarif_perizinan;
+
+
+    $data['isi'] = $this->load->view('admintu/kodebilperizinan_v',$this->data, true);
+    $this->load->view('admintu/Layout', $data);
+}
+
+public function kodebillingperizinan()
+{
+  $data['title'] = 'BTKP - verifikasi';
+  $data['isi'] = $this->load->view('admintu/kodeBilling_v', $this->data, true);
+  $this->load->view('admintu/Layout', $data);
+}
 
 
     // ====================================API REQUEST====================================
-    public function reqKodeBilling($data = null){
-        // $appID                      = '';
-        $invoiceNo                  = $this->input->post('no_billing');
-        // $routeID                    = '001';
-        $trxID                      = '1';
-        // $userID                     = '0';
-        // $password                   = '0';
-        // $dateSent                   = $this->input->post('tgl_billing_start');
-        // // $expDate                    = $this->input->post('tgl_billing_exp');
-        // $kodeKL                     = '022';
-        // $kodeEselon1                = '04';
-        // $kodeSatker                 = '413721';
-        // $jenisPNPB                  = $this->input->post('pnpb');
-        // $kodeMataUang               = $this->input->post('mata_uang');
-        $totalNominalBilling        = $this->input->post('tarif');
-        $namaWajibBayar             = $this->input->post('nama_wajib_bayar');
-        $detNamaWajibBayar          = $this->input->post('wajib_bayar');
-        $kodeTarifSimponi           = $this->input->post('tarif');
-        // $kodePPSimponi              = $this->input->post('no_billing');
-        // $kodeAkun                   = $this->input->post('akun');
-        $tarifPNPB                  = $this->input->post('tarif');
-        $volume                     = $this->input->post('volume');
-        // $satuan                     = $this->input->post('satuan');
-        $totalTarifPerRecord        = $this->input->post('jumlah');
+public function reqKodeBilling($data = null){
+    $tanggal = date('Y-m-d H:i:s');
+    $tanggal = strtotime($tanggal);
 
-        $data = array(
-            'appID'                 => '027',
-            'invoiceNo'             => $invoiceNo, //CONTOH.INVOICE.1907.0001
-            'routeID'               => '001',
-            'trxID'                 => $trxID, //randomstrinXacX
-            'userID'                => '0',
-            'password'              => '0',
+    $invoiceNo                  = 'BTKP.INVOICE'.$tanggal;
+    $trxID                      = 'BTKP.TRX'.$tanggal;
+    $totalNominalBilling        = $this->input->post('tarif');
+    $namaWajibBayar             = $this->input->post('nama_wajib_bayar');
+    $tarifPNPB                  = $this->input->post('tarif');
+    $volume                     = $this->input->post('volume');
+    $totalTarifPerRecord        = $this->input->post('jumlah');
+
+    $data = array(
+            'appID'                 => getSysConfig('appID'),
+            'invoiceNo'             => $invoiceNo,
+            'routeID'               => getSysConfig('routeID'),
+            'trxID'                 => $trxID,
+            'userID'                => getSysConfig('userID'),
+            'password'              => getSysConfig('password'),
             'expDate'               => '2019-07-14 10:44:00',
             'dateSent'              => '2019-07-14 10:44:00',
-            'kodeKL'                => '022',
-            'kodeEselon1'           => '04',
-            'kodeSatker'            => '606301',
-            'jenisPNPB'             => 'F',
-            'kodeMataUang'          => '1',
-            'totalNominalBilling'   => $totalNominalBilling, //1000000
-            'namaWajibBayar'        => $namaWajibBayar, //PT. PENGGUNA JASA
-            'detNamaWajibBayar'     => $namaWajibBayar, //PT. PENGGUNA JASA
-            'kodeTarifSimponi'      => $kodeTarifSimponi, //001000
-            'kodePPSimponi'         => '201615C',
-            'kodeAkun'              => '425514',
-            'tarifPNPB'             => $tarifPNPB, //1000000
-            'volume'                => $volume, //1
+            'kodeKL'                => getSysConfig('kodeKL'),
+            'kodeEselon1'           => getSysConfig('kodeEselon1'),
+            'kodeSatker'            => getSysConfig('kodeSatker'),
+            'jenisPNPB'             => getSysConfig('jenisPNPB'),
+            'kodeMataUang'          => getSysConfig('kodeMataUang'),
+            'totalNominalBilling'   => $totalNominalBilling,
+            'namaWajibBayar'        => $namaWajibBayar,
+            'detNamaWajibBayar'     => $namaWajibBayar,
+            'kodeTarifSimponi'      => getSysConfig('kodeTarifSimponi'),
+            'kodePPSimponi'         => getSysConfig('kodePPSimponi'),
+            'kodeAkun'              => getSysConfig('kodeAkun'),
+            'tarifPNPB'             => $tarifPNPB,
+            'volume'                => $volume,
             'satuan'                => 'per surat ijin',
-            'totalTarifPerRecord'   => $totalTarifPerRecord //1000000
+            'totalTarifPerRecord'   => $totalTarifPerRecord
         );
 
 
-        $request = $this->TatausahaM->reqKodeBilling($data);
-        echo "<pre>";
-        print_r($request);
-        echo "</pre>";
+    $request = $this->TatausahaM->reqKodeBilling($data);
+    $response = $request['soapenvBody']['NS1PaymentResponse']['NS1response']['code'];
+    if($response == '00'){
+        $data = array(
+            'trxID'                     => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['data']['PaymentHeader']['TrxId'],
+            'invoiceNO'                 => $request['soapenvBody']['NS1PaymentResponse']['invoiceNo'],
+            'kodeBilling'               => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['KodeBillingSimponi'],
+            'nama_wajib_bayar'          => $request['soapenvBody']['NS1PaymentResponse']['data']['NamaWajibBayar'],
+            'jumlah'                    => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['TotalTarifPerRecord'],
+            'satuan'                    => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['satuan'],
+            'tarif'                     => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['1000000'],
+            'volume'                    => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['volume'],
+            'jenis_penerimaan'          => $this->input->post('jenis_penerimaan'),
+            'jenis_alat_keselematan'    => $this->input->post('jenis_alat_keselematan'),
+            'keterangan'                => $this->input->post('keterangan'),
+            'tanggal_pembuatan'         => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['Date'],
+            'tanggal_expired'           => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['tanggal_expired']
+        );
+
+        $insert = $this->TatausahaM->insertToInvoice($data);
+        if($insert > 0){
+            $id_perizinan = $this->input->post('id_perizinan');
+            $data_billing = array(
+                'kode_billing'          => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['KodeBillingSimponi'],
+                'jumlah_tagihan'        => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['TotalTarifPerRecord'],
+                'masa_berlaku_billing'  => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['tanggal_expired']
+            );
+            $update_perizinan = $this->TatausahaM->insert_billing($id_perizinan, $data_billing);
+            if($update_perizinan){
+                $data['title'] = 'BTKP - Invoice';
+                $this->data['data_invoice'] = array(
+                    'data' => $data,
+                    'data_billing' => $data_billing
+                );
+                $data['isi'] = $this->load->view('admintu/kodeBilling_v', $this->data, true);
+                $this->session->set_flashdata('sukses', 'Berhasil generate kode billing');
+                $this->load->view('admintu/Layout', $data);
+            }else{
+                $this->session->set_flashdata('error', 'Gagal generate kode billing');
+                redirect_back();
+            }
+        }else{
+           $this->session->set_flashdata('error', 'Gagal generate kode billing');
+           redirect_back();
+        }
+    }else{
+        $this->session->set_flashdata('error', 'Gagal generate kode billing');
+        redirect_back();
     }
+    // echo "<pre>";
+    // print_r($request);
+    // echo "</pre>";
+}
     // ====================================API REQUEST====================================
 }
