@@ -240,7 +240,8 @@
                                                         					} else {
                                                         						if ($per->kode_billing != '') {
                                                         							?>
-                                                        							<span style="width:100px;" title="Sudah input billing"><span class="badge-text badge-text-small success"><i class="la la-check"></i></span></span>
+                                                        							<!-- <span style="width:100px;" title="Sudah input billing"><span class="badge-text badge-text-small success"><i class="la la-check"></i></span></span> -->
+                                                        							<a href="" style="width:100px;" title="Cetak Invoice"><span class="btn btn-sm btn-primary"><i class="la la-print"></i>Cetak</span></a>
                                                         							<?php
                                                         						} else {
                                                         							?>
