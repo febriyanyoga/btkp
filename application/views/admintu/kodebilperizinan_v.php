@@ -40,7 +40,16 @@
 										<div class="section-title mt-5 mb-5">
 											<h4 class="text-center">PEMBUATAN BILLING</h4>
 										</div>
-										<!-- <div class="widget widget-14 has-shadow">
+
+										Iki alure simponi pep
+										<p></p>
+										1. Nek wes sukses di generate tetep redirect ng halaman iki, gek form No.Billing, Tanggal Billing, Tanggal Kedaluarsa kan maune kosong kui dadi terisi pep <br>
+										2. Terus button ngisor nek wes sukses berubah dadi tombol cetak karo kembali, kui wwes tak gaweke tombole, 
+											nek cetak gek nampilke invoice, nek kembali linke bali ng gon datatabel. Dadi invoice ki ng admin tu ono, ng workshop yo ono. Kui apike nganggo sg cetak PDF kae yo?
+											
+										3.	http://localhost/btkp/perizinan tab pembayaran . gon kolom aksi . nek kode billing wis di generate kui muncul ikon cetak wae pep 
+										
+										<div class="widget widget-14 has-shadow">
 											<div class="widget-body">
 												<div class="form-group row mb-3">
 													<div class="col-xl-6 mb-3">
@@ -52,22 +61,19 @@
 														<input type="text" readonly value="BENDAHARA PENERIMAAN BTKP" class="form-control" id="nama_wajib_bayar" name="nama_wajib_bayar" required placeholder="">
 													</div>
 												</div>
-											</div>
-										</div> -->
-										<!-- <div class="widget widget-14 has-shadow">
-											<div class="widget-body">
+							
 												<div class="form-group row mb-3">
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label">Tanggal Billing</label>
-														<input type="date" value="<?= date('d/m/Y'); ?>" class="form-control" id="tgl_billing_start" name="tgl_billing_start" required>
+														<input type="date" readonly value="<?= date('d/m/Y'); ?>" class="form-control" id="tgl_billing_start" name="tgl_billing_start" required>
 													</div>
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label">Tanggal Kadaluarsa</label>
-														<input type="date" value="" class="form-control" id="tgl_billing_exp" name="tgl_billing_exp" required>
+														<input type="date" readonly value="" class="form-control" id="tgl_billing_exp" name="tgl_billing_exp" required>
 													</div>
 												</div>
 											</div>
-										</div> -->
+										</div>
 										<div class="widget widget-14 has-shadow">
 											<div class="widget-body">
 												<div class="form-group row mb-3">
@@ -175,6 +181,12 @@
 										<ul class="pager wizard text-right">
 											<li class="d-inline-block">
 												<input type="submit" name="submit" class="btn btn-gradient-01" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
+											</li>
+										</ul>
+										<ul class="pager wizard text-left">
+											<li class="d-inline-block">
+												<input type="submit" name="submit" class="btn btn-success" value="Cetak" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
+												<input type="submit" name="submit" class="btn btn-gradient-01" value="Kembali" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
 											</li>
 										</ul>
 									</form>

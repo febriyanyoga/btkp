@@ -185,7 +185,7 @@
 													<th class="text-center">Alat SPK</th>
 													<th class="text-center">Tanggal Permohonan</th>
 													<th class="text-center">Status</th>
-													<th class="text-center">Kode Billing</th>
+													<th class="text-center">Aksi</th>
 												</tr>
 											</thead>
 											<tbody>
