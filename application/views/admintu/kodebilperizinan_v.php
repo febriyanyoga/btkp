@@ -34,27 +34,30 @@
 										<?=$data2;?>
 									</div>
 									<?php 
-										} 
+										}
+										if($data_invoice == ''){
+											$data_invoice['data']['tanggal_pembuatan'] = '';
+										}
 										?>
 									<form action="<?php echo site_url('reqKodeBilling')?>" method="post">
 										<div class="section-title mt-5 mb-5">
 											<h4 class="text-center">PEMBUATAN BILLING</h4>
 										</div>
 
-										Iki alure simponi pep
+										<!-- Iki alure simponi pep
 										<p></p>
 										1. Nek wes sukses di generate tetep redirect ng halaman iki, gek form No.Billing, Tanggal Billing, Tanggal Kedaluarsa kan maune kosong kui dadi terisi pep <br>
 										2. Terus button ngisor nek wes sukses berubah dadi tombol cetak karo kembali, kui wwes tak gaweke tombole, 
 											nek cetak gek nampilke invoice, nek kembali linke bali ng gon datatabel. Dadi invoice ki ng admin tu ono, ng workshop yo ono. Kui apike nganggo sg cetak PDF kae yo?
 											
-										3.	http://localhost/btkp/perizinan tab pembayaran . gon kolom aksi . nek kode billing wis di generate kui muncul ikon cetak wae pep 
+										3.	http://localhost/btkp/perizinan tab pembayaran . gon kolom aksi . nek kode billing wis di generate kui muncul ikon cetak wae pep  -->
 										
 										<div class="widget widget-14 has-shadow">
 											<div class="widget-body">
 												<div class="form-group row mb-3">
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label">No. Billing</i> </label>
-														<input type="text" disabled value="" class="form-control" id="no_billing" name="no_billing" required>
+														<input type="text" disabled value="<?= $data_perizinan['kode_billing']?>" class="form-control" id="no_billing" name="no_billing" required>
 													</div>
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label">Nama Wajib Setor/Wajib Bayar</label>
@@ -65,11 +68,11 @@
 												<div class="form-group row mb-3">
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label">Tanggal Billing</label>
-														<input type="date" readonly value="<?= date('d/m/Y'); ?>" class="form-control" id="tgl_billing_start" name="tgl_billing_start" required>
+														<input type="text" readonly value="<?= $data_invoice['data']['tanggal_pembuatan']?>" class="form-control" id="tgl_billing_start" name="tgl_billing_start" required>
 													</div>
 													<div class="col-xl-6 mb-3">
 														<label class="form-control-label">Tanggal Kadaluarsa</label>
-														<input type="date" readonly value="" class="form-control" id="tgl_billing_exp" name="tgl_billing_exp" required>
+														<input type="text" readonly value="<?= $data_perizinan['masa_berlaku_billing']; ?>" class="form-control" id="tgl_billing_exp" name="tgl_billing_exp" required>
 													</div>
 												</div>
 											</div>
@@ -170,25 +173,34 @@
 														<div class="form-group row d-flex align-items-center mb-5">
 															<label class="col-lg-6 form-control-label">Keterangan</label>
 															<div class="col-lg-6">
-																<textarea value="" class="form-control" id="keterangan" name="keterangan" required placeholder="Keterangan"></textarea>
+																<textarea value="<?= $data_perizinan['komentar']?>" class="form-control" id="keterangan" name="keterangan" <?php if($data_perizinan['komentar'] != ''){ echo 'readonly="readonly"';}?> required placeholder="Keterangan"><?= $data_perizinan['komentar']?></textarea>
 															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-
-										<ul class="pager wizard text-right">
-											<li class="d-inline-block">
-												<input type="submit" name="submit" class="btn btn-gradient-01" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
-											</li>
-										</ul>
-										<ul class="pager wizard text-left">
-											<li class="d-inline-block">
-												<input type="submit" name="submit" class="btn btn-success" value="Cetak" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
-												<input type="submit" name="submit" class="btn btn-gradient-01" value="Kembali" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
-											</li>
-										</ul>
+										<?php
+										if($data_perizinan['kode_billing'] != ''){
+											?>
+											<ul class="pager wizard text-left">
+												<li class="d-inline-block">
+													<button class="btn btn-success"><i class="la la-print"></i>Cetak</button>
+													<a class="btn btn-gradient-01" href="<?= site_url('perizinan')?>"> Kembali</a>
+													<!-- <input type="submit" name="submit" class="btn btn-gradient-01" value="Kembali"> -->
+												</li>
+											</ul>
+											<?php
+										}else{
+											?>
+											<ul class="pager wizard text-right">
+												<li class="d-inline-block">
+													<input type="submit" name="submit" class="btn btn-gradient-01" value="Simpan" onClick="return confirm('Anda yakin data yang anda isikan sudah benar?')">
+												</li>
+											</ul>
+											<?php
+										}
+										?>
 									</form>
 								</div>
 							</div>

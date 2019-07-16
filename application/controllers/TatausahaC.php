@@ -1040,6 +1040,7 @@ class TatausahaC extends CI_Controller
     $tarif_perizinan = array_merge($data_perizinan,$tarif);
 
     $this->data['data_perizinan'] = $tarif_perizinan;
+    $this->data['data_invoice'] = array('data' => array('tanggal_pembuatan' => ''));
 
 
     $data['isi'] = $this->load->view('admintu/kodebilperizinan_v',$this->data, true);
@@ -1068,32 +1069,35 @@ public function reqKodeBilling($data = null){
     $totalTarifPerRecord        = $this->input->post('jumlah');
 
     $tanggal = date('Y-m-d H:i:s');
+    $datetime = new DateTime($tanggal);
+    $datetime->modify('+7 days');
+    $expired_date = $datetime->format('Y-m-d H:i:s');
 
     $data = array(
-            'appID'                 => getSysConfig('appID'),
-            'invoiceNo'             => $invoiceNo,
-            'routeID'               => getSysConfig('routeID'),
-            'trxID'                 => $trxID,
-            'userID'                => getSysConfig('userID'),
-            'password'              => getSysConfig('password'),
-            'expDate'               => $tanggal,
-            'dateSent'              => $tanggal,
-            'kodeKL'                => getSysConfig('kodeKL'),
-            'kodeEselon1'           => getSysConfig('kodeEselon1'),
-            'kodeSatker'            => getSysConfig('kodeSatker'),
-            'jenisPNPB'             => getSysConfig('jenisPNPB'),
-            'kodeMataUang'          => getSysConfig('kodeMataUang'),
-            'totalNominalBilling'   => $totalNominalBilling,
-            'namaWajibBayar'        => $namaWajibBayar,
-            'detNamaWajibBayar'     => $namaWajibBayar,
-            'kodeTarifSimponi'      => getSysConfig('kodeTarifSimponi'),
-            'kodePPSimponi'         => getSysConfig('kodePPSimponi'),
-            'kodeAkun'              => getSysConfig('kodeAkun'),
-            'tarifPNPB'             => $tarifPNPB,
-            'volume'                => $volume,
-            'satuan'                => 'per surat ijin',
-            'totalTarifPerRecord'   => $totalTarifPerRecord
-        );
+        'appID'                 => getSysConfig('appID'),
+        'invoiceNo'             => $invoiceNo,
+        'routeID'               => getSysConfig('routeID'),
+        'trxID'                 => $trxID,
+        'userID'                => getSysConfig('userID'),
+        'password'              => getSysConfig('password'),
+        'expDate'               => $expired_date,
+        'dateSent'              => $tanggal,
+        'kodeKL'                => getSysConfig('kodeKL'),
+        'kodeEselon1'           => getSysConfig('kodeEselon1'),
+        'kodeSatker'            => getSysConfig('kodeSatker'),
+        'jenisPNPB'             => getSysConfig('jenisPNPB'),
+        'kodeMataUang'          => getSysConfig('kodeMataUang'),
+        'totalNominalBilling'   => $totalNominalBilling,
+        'namaWajibBayar'        => $namaWajibBayar,
+        'detNamaWajibBayar'     => $namaWajibBayar,
+        'kodeTarifSimponi'      => getSysConfig('kodeTarifSimponi'),
+        'kodePPSimponi'         => getSysConfig('kodePPSimponi'),
+        'kodeAkun'              => getSysConfig('kodeAkun'),
+        'tarifPNPB'             => $tarifPNPB,
+        'volume'                => $volume,
+        'satuan'                => 'per surat ijin',
+        'totalTarifPerRecord'   => $totalTarifPerRecord
+    );
 
 
     $request = $this->TatausahaM->reqKodeBilling($data);
@@ -1125,16 +1129,40 @@ public function reqKodeBilling($data = null){
             $data_billing = array(
                 'kode_billing'          => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['KodeBillingSimponi'],
                 'jumlah_tagihan'        => $request['soapenvBody']['NS1PaymentResponse']['data']['PaymentDetails']['PaymentDetail']['TotalTarifPerRecord'],
-                'masa_berlaku_billing'  => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['ExpiredDate']
+                'masa_berlaku_billing'  => $request['soapenvBody']['NS1PaymentResponse']['NS1response']['NS1simponiData']['ExpiredDate'],
+                'komentar'              => $this->input->post('keterangan')
             );
             $update_perizinan = $this->TatausahaM->insert_billing($id_perizinan, $data_billing);
             if($update_perizinan){
+
                 $data['title'] = 'BTKP - Invoice';
                 $this->data['data_invoice'] = array(
                     'data' => $data,
                     'data_billing' => $data_billing
                 );
-                $data['isi'] = $this->load->view('admintu/kodeBilling_v', $this->data, true);
+
+
+                $data_perizinan = $this->TatausahaM->get_perizinan_by_id_perizinan($id_perizinan);
+                if($data_perizinan['id_jenis_perizinan'] == '1'){
+                    $jenis_penerimaan = 'baru';
+                }elseif ($data_perizinan['id_jenis_perizinan'] == '2') {
+                    $jenis_penerimaan = 'perpanjang';
+                }
+
+                $data_tarif = $this->TatausahaM->get_data_tarif($data_perizinan['id_jenis_alat'], $jenis_penerimaan);
+
+
+                $tarif = array(
+                    'jenis_penerimaan'  => $data_tarif['jenis_penerimaan'],
+                    'satuan'            => $data_tarif['satuan'],
+                    'tarif'             => $data_tarif['tarif']
+                );
+
+                $tarif_perizinan = array_merge($data_perizinan,$tarif);
+
+                $this->data['data_perizinan'] = $tarif_perizinan;
+
+                $data['isi'] = $this->load->view('admintu/kodebilperizinan_v', $this->data, true);
                 $this->session->set_flashdata('sukses', 'Berhasil generate kode billing');
                 $this->load->view('admintu/Layout', $data);
             }else{
@@ -1142,13 +1170,13 @@ public function reqKodeBilling($data = null){
                 redirect_back();
             }
         }else{
-           $this->session->set_flashdata('error', 'Gagal generate kode billing');
-           redirect_back();
-        }
-    }else{
-        $this->session->set_flashdata('error', 'Gagal generate kode billing');
-        redirect_back();
-    }
+         $this->session->set_flashdata('error', 'Gagal generate kode billing');
+         redirect_back();
+     }
+ }else{
+    $this->session->set_flashdata('error', 'Gagal generate kode billing');
+    redirect_back();
+}
     // echo "<pre>";
     // print_r($request);
     // echo "</pre>";
