@@ -1170,16 +1170,13 @@ public function reqKodeBilling($data = null){
                 redirect_back();
             }
         }else{
-         $this->session->set_flashdata('error', 'Gagal generate kode billing');
-         redirect_back();
-     }
- }else{
-    $this->session->set_flashdata('error', 'Gagal generate kode billing');
-    redirect_back();
-}
-    // echo "<pre>";
-    // print_r($request);
-    // echo "</pre>";
+            $this->session->set_flashdata('error', 'Gagal generate kode billing');
+            redirect_back();
+        }
+    }else{
+        $this->session->set_flashdata('error', 'Gagal generate kode billing');
+        redirect_back();
+    }
 }
     // ====================================API REQUEST====================================
 }

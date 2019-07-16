@@ -354,7 +354,7 @@ table th, table td {
       <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ9x53YKSU8UMKkk-Y9duGKfflBGI-rjbNUNAMmBax-b2-UJOxC" style="max-width: 100px; position: absolute; left: 35px; top: 15px;">
       <div style="font-size: 20px; font-weight: bold;">
         <span>Balai Teknologi Keselamatan Pelayaran<hr>
-          <span style="text-align: right; right: 30px; position: absolute; font-size: 12pt;">#TG<?php echo $perizinan->kode_billing;?>/INV</span>
+          <span style="text-align: right; right: 30px; position: absolute; font-size: 12pt;">#BTKP<?php echo $perizinan->kode_billing;?>/INV</span>
         </div>
         <div>
           <span>Jl. Raya Ancol Baru No. 1, Tanjung Priok</span><br>
@@ -394,7 +394,7 @@ table th, table td {
 
     <section id="items">
       <table style="margin-top: -45px;" >
-        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Dengan Kode NTPN  :</th></tr>
+        <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size: 14px;">Dengan Kode Billing  :</th></tr>
         <tr> <th style="background-color: #fff; border-bottom: 0px solid; text-align: center; font-size:18px; font-weight: bold; color:#555;"><?php echo $perizinan->kode_billing?></th></tr>
       </table>
     </section>
