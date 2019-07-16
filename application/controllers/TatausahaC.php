@@ -653,10 +653,10 @@ class TatausahaC extends CI_Controller
 
     public function post_penerbitan()
     {
-        $this->form_validation->set_rules('status_pembayaran', 'Status Pembayaran','required');
+        // $this->form_validation->set_rules('status_pembayaran', 'Status Pembayaran','required');
         // $this->form_validation->set_rules('nomor_spk', 'Nomor SPK', 'required');
-        $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit');
-        $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired');
+        $this->form_validation->set_rules('tgl_terbit', 'Tanggal Terbit' , 'required');
+        $this->form_validation->set_rules('tgl_expired', 'Tanggal Expired', 'required');
         if ($this->form_validation->run() == false) {
             $this->session->set_flashdata('error', 'Data Penerbitan tidak berhasil dimasukkan, cek kembali data yang anda masukkan.');
             redirect_back();
@@ -684,29 +684,29 @@ class TatausahaC extends CI_Controller
             }
             $barcode = $kode_alat.$no_spk.date('y');
 
-            if($this->input->post('status_pembayaran') == 'unpaid'){
-                //email notifikasi
-                $data_email = array(
-                    'nama'                  => $this->input->post('nama_pengguna'),
-                    'kode_billing'          => $this->input->post('kode_billing'),
-                    'nomor'                 => $this->input->post('nomor'),
-                    'salam'                 => 'Mohon maaf. . .',
-                    'isi'                   => '<b>Belum berhasil</b> di verifikasi oleh Admin Balai Teknologi Keselamatan Pelayaran (BTKP) Silahkan masuk ke aplikasi untuk melakukan konfirmasi ulang.<br> Terimakasih.',
-                );
-                $subject    = 'Pemberitahuan';
-                $to         = $this->input->post('email_pengguna');
-                $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
+            // if($this->input->post('status_pembayaran') == 'unpaid'){
+            //     //email notifikasi
+            //     $data_email = array(
+            //         'nama'                  => $this->input->post('nama_pengguna'),
+            //         'kode_billing'          => $this->input->post('kode_billing'),
+            //         'nomor'                 => $this->input->post('nomor'),
+            //         'salam'                 => 'Mohon maaf. . .',
+            //         'isi'                   => '<b>Belum berhasil</b> di verifikasi oleh Admin Balai Teknologi Keselamatan Pelayaran (BTKP) Silahkan masuk ke aplikasi untuk melakukan konfirmasi ulang.<br> Terimakasih.',
+            //     );
+            //     $subject    = 'Pemberitahuan';
+            //     $to         = $this->input->post('email_pengguna');
+            //     $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
 
-                $data = array(
-                    'status_pembayaran' => $this->input->post('status_pembayaran'),
-                    'no_spk'            => $no_spk,
-                    'kode_barcode'      => $barcode,
-                    'tgl_terbit'        => $this->input->post('tgl_terbit'),
-                    'tgl_expired'       => $this->input->post('tgl_expired'),
-                    'ket_pembayaran'    => $this->input->post('ket_pembayaran'),
-                    'foto_bukti_trf'    => '',
-                );  
-            }elseif($this->input->post('status_pembayaran') == 'paid'){
+            //     $data = array(
+            //         'status_pembayaran' => $this->input->post('status_pembayaran'),
+            //         'no_spk'            => $no_spk,
+            //         'kode_barcode'      => $barcode,
+            //         'tgl_terbit'        => $this->input->post('tgl_terbit'),
+            //         'tgl_expired'       => $this->input->post('tgl_expired'),
+            //         'ket_pembayaran'    => $this->input->post('ket_pembayaran'),
+            //         'foto_bukti_trf'    => '',
+            //     );  
+            // }elseif($this->input->post('status_pembayaran') == 'paid'){
                 //email notifikasi
                 $data_email = array(
                     'nama'                  => $this->input->post('nama_pengguna'),
@@ -720,14 +720,12 @@ class TatausahaC extends CI_Controller
                 $isi        = $this->load->view('email/Notifikasi_pembayaran', $data_email, TRUE);
 
                 $data = array(
-                    'status_pembayaran' => $this->input->post('status_pembayaran'),
                     'no_spk'            => $no_spk,
                     'kode_barcode'      => $barcode,
-                    'ket_pembayaran'    => '',
                     'tgl_terbit'        => $this->input->post('tgl_terbit'),
                     'tgl_expired'       => $this->input->post('tgl_expired'),
                 );
-            }
+            // }
 
 
             $this->load->library('ciqrcode'); //pemanggilan library QR CODE
