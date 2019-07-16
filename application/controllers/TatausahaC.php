@@ -9,8 +9,8 @@ class TatausahaC extends CI_Controller
     public function __construct()
     {
         parent::__construct();
-        // in_access();
-        // tu_access();
+        in_access();
+        tu_access();
         $this->load->model(['LoginM', 'TatausahaM', 'WorkshopM', 'GeneralM']);
     }
 
