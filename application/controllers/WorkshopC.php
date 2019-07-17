@@ -566,6 +566,8 @@ class WorkshopC extends CI_Controller
             redirect_back();
         }else {
             $upload = $this->upload_file('foto_bukti_trf');
+            // print_r($upload);
+            // die();
             if($upload['result'] == 'success'){
                 $data = array(
                     'nama_bank'      => $this->input->post('nama_bank'),
@@ -739,6 +741,9 @@ class WorkshopC extends CI_Controller
             if($this->upload->do_upload($input_name)){
                 $gbr = $this->upload->data();
                 $return = array('result' => 'success', 'file_name' => $gbr['file_name'], 'file_size' => $gbr['file_size'], 'error' => '');
+                return $return;
+            }else{
+                $return = array('result' => 'Error', 'file_name' => 'no file', 'error' => '');
                 return $return;
             }
         }else{

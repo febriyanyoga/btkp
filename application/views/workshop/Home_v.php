@@ -183,30 +183,22 @@
                                                                     						<?php
                                                                     					} else {
                                                                     						if ($per->kode_billing != '') {
-                                                                    							if ($per->foto_bukti_trf != '') {
-                                                                    								if($per->pengesahan == 'tidak'){
+                                                                    							if ($per->status_pembayaran == 'paid') {
+                                                                    								if($per->tgl_terbit == '0000-00-00 00:00:00'){
                                                                     									?>
                                                                     									<span style="width:100px; " title="Menunggu pengesahan"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu
-                                                                    									pengesahan</span></span>
+                                                                    									Penerbitan</span></span>
                                                                     									<?php
                                                                     								}else{
                                                                     									?>
-                                                                    									<span style="width:100px; " title="pembayaran sedang diverifikasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu
-                                                                    									verifikasi</span></span>
+                                                                    									<span style="width:100px; " title="Menunggu pengesahan"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu
+                                                                    									Pengesahan</span></span>
                                                                     									<?php
                                                                     								}
                                                                     							} else {
-                                                                    								if($per->ket_pembayaran == ""){
-                                                                    									?>
-                                                                    									<span style="width:100px; " title="silahkan lakukan pembayaran dan konfirmasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu Pembayaran</span></span>
-                                                                    									<?php
-                                                                    								}else{
-                                                                    									?>
-                                                                    									<span style="width:100px; " title="silahkan lakukan pembayaran ulang atau konfirmasi ulang"><span style="color: red;">Pembayaran tidak terverifikasi</span></span>
-                                                                    									<hr>
-                                                                    									<span style="color: black;"><?php echo '"'.$per->ket_pembayaran.'"'?></span>
-                                                                    									<?php
-                                                                    								}
+                                                                									?>
+                                                                									<span style="width:100px; " title="silahkan lakukan pembayaran dan konfirmasi"><span style="color: black;" class="badge-text badge-text-small warning">Menunggu Pembayaran</span></span>
+                                                                									<?php
                                                                     							}
                                                                     						} else {
                                                                     							$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
@@ -234,33 +226,25 @@
                                                                     						echo '-';
                                                                     					} else {
                                                                                                 if ($per->kode_billing != '') {// sudah ada kode billing
-                                                                                                        if ($per->foto_bukti_trf != '') { //ada foto
-                                                                                                        	?>
-                                                                                                        	<span style="width:100px;" title="Menunggu verifikasi pembayaran"><span>-</span></span>
-                                                                                                        	<?php
-                                                                                                        } else {
-                                                                                                        	?>
-                                                                                                        	<a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan; ?>" class="" target="_BLANK"><i class="la la-print"></i> cetak tagihan</a>
-                                                                                                        	<hr>
-                                                                                                        	<?php
-                                                                                                        	if($per->ket_pembayaran == ""){
-                                                                                                        		?>
-                                                                                                        		<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $per->id_perizinan; ?>">Konfirmasi
-                                                                                                        		Pembayaran</i></a>
-                                                                                                        		<?php
-                                                                                                        	}else{
-                                                                                                        		?>
-                                                                                                        		<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#konfirmasi-<?php echo $per->id_perizinan; ?>">Konfirmasi
-                                                                                                        		Ulang Pembayaran</i></a>
-                                                                                                        		<?php
-                                                                                                        	}
-                                                                                                        }
+	                                                                                                	if($per->status_pembayaran == 'paid'){
+	                                                                                                		if($per->tgl_terbit == '0000-00-00 00:00:00'){
+	                                                                                                			echo '-';
+	                                                                                                		}else{
+	                                                                                                			?>
+	                                                                                                    	<a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan; ?>" class="btn btn-sm btn-success" target="_BLANK"><i class="la la-print"></i>Cetak bukti bayar</a>
+	                                                                                                    	<?php
+	                                                                                                		}
+	                                                                                                	}else{
+	                                                                                                		?>
+	                                                                                                    	<a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan; ?>" class="btn btn-sm btn-success" target="_BLANK"><i class="la la-print"></i> cetak tagihan</a>
+	                                                                                                    	<?php
+	                                                                                                	}
                                                                                                     } else {
                                                                                                     	$progress_tu = $this->GeneralM->get_array_progress_setuju($per->id_perizinan)->num_rows();
                                                                                                     	if ($progress_tu > 0) {
                                                                                                     		if ($per->file_hasil_survey == '') {
                                                                                                     			?>
-                                                                                                    			<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#file_survey-<?php echo $per->id_perizinan; ?>">Upoad file survey</i></a>
+                                                                                                    			<a href="" class="btn btn-primary btn-md" data-toggle="modal" data-target="#file_survey-<?php echo $per->id_perizinan; ?>">Upload file survey</i></a>
                                                                                                     			<?php
                                                                                                     		} else {
                                                                                                     			echo '-';
