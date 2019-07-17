@@ -69,7 +69,8 @@
 											foreach ($perizinan as $per) {
 												$id_pengguna = $this->session->userdata('id_pengguna');
 												// $own_progress_perizinan = $this->GeneralM->get_own_progress($id_pengguna, $per->id_perizinan)->num_rows();
-												if($per->status_pembayaran == 'paid' && $per->pengesahan == 'tidak'){
+												// if($per->status_pembayaran == 'paid' && $per->pengesahan == 'tidak'){
+												if($per->tgl_terbit != '0000-00-00 00:00:00' && $per->pengesahan == 'tidak'){
 													?>
 													<tr>
 														<td class="text-center"><span class="text-primary"><?php echo 'SPK'.$per->id_perizinan.$per->kode_alat;?></span>
