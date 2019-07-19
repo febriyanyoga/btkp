@@ -780,7 +780,10 @@ class WorkshopC extends CI_Controller
     }
 
     public function cetak_invoice_perizinan($id_perizinan){
-        $this->data['perizinan'] = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
+        $data_perizinan = $this->WorkshopM->get_all_perizinan_by_id($id_perizinan)->row();
+        $this->data['perizinan'] = $data_perizinan;
+        $kode_billing = $data_perizinan->kode_billing;
+        $this->data['invoice'] = $this->WorkshopM->get_invoice_by_kode_billing($kode_billing)->row();
         $this->load->view('workshop/cetak_invoice_perizinan',$this->data);
     }
 
