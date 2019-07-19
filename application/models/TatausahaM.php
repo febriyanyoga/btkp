@@ -173,6 +173,12 @@ class TatausahaM extends CI_Model
 		return $this->db->get()->row_array();
 	}
 
+	public function get_invoice_by_kode_billing($kode_billing){
+		$this->db->select('*');
+		$this->db->from('invoice');
+		$this->db->where('kodeBilling', $kode_billing);
+		return $this->db->get();
+	}
 
 	public function reqKodeBilling($data)
 	{
@@ -258,24 +264,25 @@ class TatausahaM extends CI_Model
 	public function cekKodeBilling($data){
 		
 		$url = getSysConfig('soap_url');
-		
-		$input_xml = 	'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sim="http://SimponiBRI_Service">
-					       <soapenv:Header/>
-					       <soapenv:Body>
-					          <sim:BillingStatusRequest>
-					             <appsId>' . $data['appID'] . '</appsId>
-					             <invoiceNo>' . $data['invoiceNo'] . '</invoiceNo>
-					             <routeId>' . $data['routeID'] . '</routeId>
-					             <TrxId>' . $data['trxID'] . '</TrxId>
-					             <UserId>' . $data['userID'] . '</UserId>
-					             <Password>' . $data['password'] . '</Password>
-					             <KodeBillingSimponi>' . $data['kodeBilling'] . '</KodeBillingSimponi>
-					             <KodeKL>' . $data['kodeKL'] . '</KodeKL>
-					             <KodeEselon1>' . $data['kodeEselon1'] . '</KodeEselon1>
-					             <KodeSatker>' . $data['kodeSatker'] . '</KodeSatker>
-					          </sim:BillingStatusRequest>
-					       </soapenv:Body>
-					    </soapenv:Envelope>';
+		// parameter yang harus sesuai yaitu kode billing dan invoiceNo
+
+		$input_xml = '<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sim="http://SimponiBRI_Service">
+					   <soapenv:Header/>
+					   <soapenv:Body>
+					      <sim:BillingStatusRequest>
+					         <appsId>'.$data['appID'].'</appsId>
+					         <invoiceNo>'.$data['invoiceNo'].'</invoiceNo>
+					         <routeId>'.$data['routeID'].'</routeId>
+					         <TrxId>'.$data['trxID'] .'</TrxId>
+					         <UserId>'.$data['userID'].'</UserId>
+					         <Password>'.$data['password'].'</Password>
+					         <KodeBillingSimponi>'.$data['kodeBilling'].'</KodeBillingSimponi>
+					         <KodeKL>'.$data['kodeKL'].'</KodeKL>
+					         <KodeEselon1>'.$data['kodeEselon1'].'</KodeEselon1>
+					         <KodeSatker>'. $data['kodeSatker'].'</KodeSatker>
+					      </sim:BillingStatusRequest>
+					   </soapenv:Body>
+					</soapenv:Envelope>';
 
 		$type = 'application/xml';
 		$headers = array(

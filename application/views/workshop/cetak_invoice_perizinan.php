@@ -58,7 +58,7 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 // ---------------------------------------------------------
 
 // set font
-$pdf->SetFont('times', '', 9);
+$pdf->SetFont('times', '', 9.5);
 
 // add a page
 $pdf->AddPage();

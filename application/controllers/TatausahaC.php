@@ -1058,8 +1058,8 @@ public function reqKodeBilling($data = null){
     $tanggal = date('Y-m-d H:i:s');
     $tanggal = strtotime($tanggal);
 
-    $invoiceNo                  = 'BTKP.INVOICE'.$tanggal;
-    $trxID                      = 'BTKP.TRX'.$tanggal;
+    $invoiceNo                  = 'BTKP-INVOICE-'.$tanggal;
+    $trxID                      = 'BTKP-TRX-'.$tanggal;
     $totalNominalBilling        = $this->input->post('tarif');
     $namaWajibBayar             = $this->input->post('nama_wajib_bayar');
     $tarifPNPB                  = $this->input->post('tarif');
@@ -1178,12 +1178,14 @@ public function reqKodeBilling($data = null){
 }
 
 public function cekKodeBilling($data = null){
+
+    $invoice = $this->TatausahaM->get_invoice_by_kode_billing('820190719465802')->row();
     $tanggal = date('Y-m-d H:i:s');
     $tanggal = strtotime($tanggal);
 
-    $invoiceNo                  = 'BTKP.INVOICE'.$tanggal;
-    $trxID                      = 'BTKP.TRX'.$tanggal;
-    $kodeBilling                = '820190719465801';
+    $invoiceNo                  = $invoice->invoiceNO;
+    $trxID                      = $invoice->trxID;
+    $kodeBilling                = $invoice->kodeBilling;
 
     $data = array(
         'appID'                 => getSysConfig('appID'),
@@ -1198,11 +1200,11 @@ public function cekKodeBilling($data = null){
         'kodeSatker'            => getSysConfig('kodeSatker')
     );
 
-
     $request = $this->TatausahaM->cekKodeBilling($data);
     echo "<pre>";
     print_r($request);
     print_r($data);
+    print_r($invoice);
     echo "</pre>";
     die();
    
