@@ -1176,5 +1176,36 @@ public function reqKodeBilling($data = null){
         redirect_back();
     }
 }
+
+public function cekKodeBilling($data = null){
+    $tanggal = date('Y-m-d H:i:s');
+    $tanggal = strtotime($tanggal);
+
+    $invoiceNo                  = 'BTKP.INVOICE'.$tanggal;
+    $trxID                      = 'BTKP.TRX'.$tanggal;
+    $kodeBilling                = '820190719465801';
+
+    $data = array(
+        'appID'                 => getSysConfig('appID'),
+        'invoiceNo'             => $invoiceNo,
+        'routeID'               => getSysConfig('routeID'),
+        'trxID'                 => $trxID,
+        'userID'                => getSysConfig('userID'),
+        'password'              => getSysConfig('password'),
+        'kodeBilling'           => $kodeBilling,
+        'kodeKL'                => getSysConfig('kodeKL'),
+        'kodeEselon1'           => getSysConfig('kodeEselon1'),
+        'kodeSatker'            => getSysConfig('kodeSatker')
+    );
+
+
+    $request = $this->TatausahaM->cekKodeBilling($data);
+    echo "<pre>";
+    print_r($request);
+    print_r($data);
+    echo "</pre>";
+    die();
+   
+}
     // ====================================API REQUEST====================================
 }

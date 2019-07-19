@@ -222,7 +222,7 @@ class TatausahaM extends CI_Model
 			'Accept: text/xml',
 			'Cache-Control: no-cache',
 			'Pragma: no-cache',
-			'SOAPAction: http://soadev.dephub.go.id:7800/SimponiBRI_Service',
+			'SOAPAction:'. getSysConfig('soap_url'),
 			'Content-length: ' . strlen($input_xml),
 		);
 
@@ -248,6 +248,58 @@ class TatausahaM extends CI_Model
 
 		// $parser = simplexml_load_string($response);
 		// return $parser;
+
+		$response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $response);
+		$xml = new SimpleXMLElement($response);
+		$array = json_decode(json_encode((array) $xml), TRUE);
+		return $array;
+	}
+
+	public function cekKodeBilling($data){
+		
+		$url = getSysConfig('soap_url');
+		
+		$input_xml = 	'<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sim="http://SimponiBRI_Service">
+					       <soapenv:Header/>
+					       <soapenv:Body>
+					          <sim:BillingStatusRequest>
+					             <appsId>' . $data['appID'] . '</appsId>
+					             <invoiceNo>' . $data['invoiceNo'] . '</invoiceNo>
+					             <routeId>' . $data['routeID'] . '</routeId>
+					             <TrxId>' . $data['trxID'] . '</TrxId>
+					             <UserId>' . $data['userID'] . '</UserId>
+					             <Password>' . $data['password'] . '</Password>
+					             <KodeBillingSimponi>' . $data['kodeBilling'] . '</KodeBillingSimponi>
+					             <KodeKL>' . $data['kodeKL'] . '</KodeKL>
+					             <KodeEselon1>' . $data['kodeEselon1'] . '</KodeEselon1>
+					             <KodeSatker>' . $data['kodeSatker'] . '</KodeSatker>
+					          </sim:BillingStatusRequest>
+					       </soapenv:Body>
+					    </soapenv:Envelope>';
+
+		$type = 'application/xml';
+		$headers = array(
+			'Content-type:' . $type,
+			'Accept: text/xml',
+			'Cache-Control: no-cache',
+			'Pragma: no-cache',
+			'SOAPAction:'. getSysConfig('soap_url'),
+			'Content-length: ' . strlen($input_xml),
+		);
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 1);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_USERPWD, $data['userID'] . ":" . $data['password']);
+		curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+		curl_setopt($ch, CURLOPT_POST, true);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $input_xml);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+		$response = curl_exec($ch);
+		curl_close($ch);
 
 		$response = preg_replace("/(<\/?)(\w+):([^>]*>)/", "$1$2$3", $response);
 		$xml = new SimpleXMLElement($response);
