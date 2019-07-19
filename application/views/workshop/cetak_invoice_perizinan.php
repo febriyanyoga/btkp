@@ -25,7 +25,7 @@ $pdf = new MYPDF('landscape', PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
 // set document information
 $pdf->SetCreator(PDF_CREATOR);
 $pdf->SetAuthor('BTKP');
-$pdf->SetTitle('Inovice BTKP');
+$pdf->SetTitle('Inovice BTKP-'.$perizinan->kode_billing);
 // $pdf->SetSubject('TCPDF Tutorial');
 // $pdf->SetKeywords('TCPDF, PDF, example, test, guide');
 

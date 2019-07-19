@@ -3,10 +3,11 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Jul 2019 pada 09.07
+-- Waktu pembuatan: 19 Jul 2019 pada 10.15
 -- Versi server: 10.1.38-MariaDB
 -- Versi PHP: 7.3.2
 
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -32,7 +33,7 @@ CREATE TABLE `bank_btkp` (
   `nama_bank` varchar(100) NOT NULL,
   `no_rek` int(20) NOT NULL,
   `atas_nama` varchar(100) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `bank_btkp`
@@ -56,7 +57,7 @@ CREATE TABLE `berkas_perizinan` (
   `syarat_berkas` varchar(500) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `berkas_perizinan`
@@ -91,106 +92,14 @@ CREATE TABLE `captcha` (
   `captcha_time` int(10) NOT NULL,
   `ip_address` varchar(16) NOT NULL,
   `word` varchar(20) NOT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `captcha`
 --
 
 INSERT INTO `captcha` (`captcha_id`, `captcha_time`, `ip_address`, `word`) VALUES
-(1022, 1561851454, '::1', '45624524'),
-(1023, 1561851461, '::1', '32748356'),
-(1024, 1561874061, '::1', '96491437'),
-(1025, 1561875826, '::1', '33231294'),
-(1026, 1561875826, '::1', '55553184'),
-(1027, 1561878966, '::1', '17430290'),
-(1028, 1561879011, '::1', '61915259'),
-(1029, 1561879020, '::1', '57093073'),
-(1030, 1561879072, '::1', '52907802'),
-(1031, 1561879115, '::1', '45790874'),
-(1032, 1561879139, '::1', '07999822'),
-(1033, 1561879156, '::1', '79272199'),
-(1034, 1561879182, '::1', '97575886'),
-(1035, 1561879198, '::1', '87213047'),
-(1036, 1561879239, '::1', '19625034'),
-(1037, 1561879275, '::1', '41197879'),
-(1038, 1561879290, '::1', '03575756'),
-(1039, 1561879305, '::1', '47080459'),
-(1040, 1561879309, '::1', '99944558'),
-(1041, 1561879328, '::1', '47501294'),
-(1042, 1561879337, '::1', '52336613'),
-(1043, 1561879351, '::1', '57072468'),
-(1044, 1561879361, '::1', '84878247'),
-(1045, 1561879450, '::1', '04385575'),
-(1046, 1561879522, '::1', '15962157'),
-(1047, 1561879596, '::1', '51261970'),
-(1048, 1561879658, '::1', '18954280'),
-(1049, 1561879696, '::1', '90426442'),
-(1050, 1561879836, '::1', '48673794'),
-(1051, 1561879874, '::1', '61629313'),
-(1052, 1561879883, '::1', '30744279'),
-(1053, 1561879893, '::1', '02015912'),
-(1054, 1561879991, '::1', '29714606'),
-(1055, 1561880001, '::1', '69513812'),
-(1056, 1561880158, '::1', '95478158'),
-(1057, 1561880174, '::1', '44734956'),
-(1058, 1561880216, '::1', '13395390'),
-(1059, 1561880233, '::1', '39681926'),
-(1060, 1561880632, '::1', '45804765'),
-(1061, 1561880720, '::1', '14853740'),
-(1062, 1561880981, '::1', '94131059'),
-(1063, 1561881103, '::1', '12818520'),
-(1064, 1561881161, '::1', '89538951'),
-(1065, 1561881169, '::1', '84854368'),
-(1066, 1561881177, '::1', '04497252'),
-(1067, 1561881365, '::1', '68616821'),
-(1068, 1561881382, '::1', '83018843'),
-(1069, 1561881393, '::1', '60472199'),
-(1070, 1561881408, '::1', '40982244'),
-(1071, 1561881442, '::1', '67704706'),
-(1072, 1561881491, '::1', '67200240'),
-(1073, 1561881496, '::1', '61064276'),
-(1074, 1561881511, '::1', '61515994'),
-(1075, 1561881516, '::1', '17234065'),
-(1076, 1561881570, '::1', '47304347'),
-(1077, 1561881602, '::1', '17281710'),
-(1078, 1561881617, '::1', '86918998'),
-(1079, 1561881648, '::1', '10852098'),
-(1080, 1561881677, '::1', '93852013'),
-(1081, 1561881824, '::1', '49876111'),
-(1082, 1561881832, '::1', '37493393'),
-(1083, 1561881973, '::1', '28074773'),
-(1084, 1561882024, '::1', '26486356'),
-(1085, 1561882051, '::1', '99399861'),
-(1086, 1561882058, '::1', '64596110'),
-(1087, 1561882078, '::1', '92269937'),
-(1088, 1561882117, '::1', '04621414'),
-(1089, 1561882218, '::1', '05510139'),
-(1090, 1561882260, '::1', '32427842'),
-(1091, 1561882278, '::1', '06692569'),
-(1092, 1561882325, '::1', '61187255'),
-(1093, 1561882367, '::1', '41789812'),
-(1094, 1561882411, '::1', '74776674'),
-(1095, 1561882585, '::1', '23086168'),
-(1096, 1561882738, '::1', '88186834'),
-(1097, 1561882906, '::1', '63633769'),
-(1098, 1561883001, '::1', '33261037'),
-(1099, 1561883080, '::1', '56476249'),
-(1100, 1561883108, '::1', '47168919'),
-(1101, 1561883134, '::1', '91762758'),
-(1102, 1561883193, '::1', '18690964'),
-(1103, 1561883237, '::1', '30770374'),
-(1104, 1561883423, '::1', '66019570'),
-(1105, 1561883588, '::1', '35265284'),
-(1106, 1561883596, '::1', '23720982'),
-(1107, 1561883681, '::1', '52916970'),
-(1108, 1561883697, '::1', '56233686'),
-(1109, 1561883729, '::1', '32175002'),
-(1110, 1561883768, '::1', '82138391'),
-(1111, 1561884319, '::1', '68683993'),
-(1112, 1561884349, '::1', '46971415'),
-(1113, 1561884737, '::1', '58130875'),
-(1114, 1561964523, '::1', '74513963');
+(1152, 1563502523, '::1', '74108743');
 
 -- --------------------------------------------------------
 
@@ -204,7 +113,7 @@ CREATE TABLE `detail_alat_kapal` (
   `id_kapal` int(12) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -220,7 +129,7 @@ CREATE TABLE `detail_berkas_perizinan` (
   `ukuran_berkas` float NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `detail_berkas_perizinan`
@@ -268,7 +177,7 @@ CREATE TABLE `detail_inspeksi` (
   `id_jenis_alat` int(11) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -308,7 +217,46 @@ CREATE TABLE `inspeksi` (
   `jumlah_alat` int(20) NOT NULL,
   `created_at_inspeksi` datetime NOT NULL,
   `updated_at_inspeksi` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `invoice`
+--
+
+CREATE TABLE `invoice` (
+  `invoiceID` int(15) NOT NULL,
+  `trxID` varchar(30) NOT NULL,
+  `invoiceNO` varchar(30) NOT NULL,
+  `kodeBilling` varchar(20) NOT NULL DEFAULT '0',
+  `nama_wajib_bayar` varchar(50) NOT NULL,
+  `jumlah` int(12) NOT NULL,
+  `satuan` varchar(30) NOT NULL,
+  `tarif` int(12) NOT NULL,
+  `volume` int(12) NOT NULL,
+  `bank_pos_bayar` varchar(50) NOT NULL,
+  `channel_bayar` varchar(50) NOT NULL,
+  `ntb` varchar(30) NOT NULL,
+  `ntpn` varchar(30) NOT NULL,
+  `jenis_penerimaan` varchar(50) NOT NULL,
+  `jenis_alat_keselematan` varchar(50) NOT NULL,
+  `keterangan` text NOT NULL,
+  `status_pembayaran` enum('pending','sukses') NOT NULL DEFAULT 'pending',
+  `tanggal_pembuatan` datetime NOT NULL,
+  `tanggal_expired` datetime NOT NULL,
+  `tanggal_pembayaran` datetime NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `invoice`
+--
+
+INSERT INTO `invoice` (`invoiceID`, `trxID`, `invoiceNO`, `kodeBilling`, `nama_wajib_bayar`, `jumlah`, `satuan`, `tarif`, `volume`, `bank_pos_bayar`, `channel_bayar`, `ntb`, `ntpn`, `jenis_penerimaan`, `jenis_alat_keselematan`, `keterangan`, `status_pembayaran`, `tanggal_pembuatan`, `tanggal_expired`, `tanggal_pembayaran`, `created_at`, `updated_at`) VALUES
+(1, 'BTKP.TRX1563174748', 'BTKP.INVOICE1563174748', '820190716465624', 'PT. Abc', 1000000, 'per surat ijin', 1000000, 1, '', '', '', '', 'baru', 'Lifeboat', 'tes', 'pending', '2019-07-15 14:12:28', '2019-07-16 10:44:00', '0000-00-00 00:00:00', '2019-07-15 14:12:28', '2019-07-19 11:02:01'),
+(2, 'BTKP.TRX1563257499', 'BTKP.INVOICE1563257499', '2147483647', 'PT. Abc', 1000000, 'per surat ijin', 1000000, 1, '', '', '', '', 'baru', 'Lifeboat', 'testing kode billing', 'pending', '2019-07-16 13:11:39', '2019-07-23 13:11:39', '0000-00-00 00:00:00', '2019-07-16 13:11:40', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -321,7 +269,7 @@ CREATE TABLE `jabatan` (
   `nama_jabatan` varchar(30) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `jabatan`
@@ -352,7 +300,7 @@ CREATE TABLE `jabatan_izin` (
   `rangking` int(2) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `jabatan_izin`
@@ -376,7 +324,7 @@ CREATE TABLE `jenis_alat_keselamatan` (
   `status` enum('aktif','non-aktif') NOT NULL DEFAULT 'non-aktif',
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `jenis_alat_keselamatan`
@@ -413,7 +361,7 @@ CREATE TABLE `jenis_perizinan` (
   `nama_jenis_izin` varchar(30) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `jenis_perizinan`
@@ -433,7 +381,7 @@ CREATE TABLE `kabupaten_kota` (
   `id_kabupaten_kota` int(4) NOT NULL,
   `id_propinsi` int(4) DEFAULT NULL,
   `nama_kabupaten_kota` varchar(50) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `kabupaten_kota`
@@ -967,7 +915,7 @@ CREATE TABLE `kapal` (
   `negara` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -979,7 +927,7 @@ CREATE TABLE `kecamatan` (
   `id_kecamatan` int(7) NOT NULL,
   `id_kabupaten_kota` int(4) DEFAULT NULL,
   `nama_kecamatan` varchar(50) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `kecamatan`
@@ -8216,7 +8164,7 @@ CREATE TABLE `kelurahan` (
   `id_kelurahan` bigint(50) NOT NULL,
   `id_kecamatan` int(7) DEFAULT NULL,
   `nama_kelurahan` varchar(50) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `kelurahan`
@@ -88822,7 +88770,7 @@ CREATE TABLE `maker` (
   `tgl_akhir` datetime NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `maker`
@@ -88849,7 +88797,7 @@ CREATE TABLE `pengguna` (
   `status_email` enum('aktif','non-aktif') NOT NULL DEFAULT 'non-aktif',
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pengguna`
@@ -88866,7 +88814,7 @@ INSERT INTO `pengguna` (`id_pengguna`, `id_jabatan`, `nama_pengguna`, `email_pen
 (30, 3, 'josua', 'josua@btkp.com', '08123456789', '25f9e794323b453885f5181f1b624d0b', 'aktif', 'aktif', '2019-04-14 16:07:11', '2019-04-14 16:10:17'),
 (31, 2, 'harli', 'harli@btkp.com', '08123456789', '25f9e794323b453885f5181f1b624d0b', 'aktif', 'aktif', '2019-04-14 16:07:41', '2019-04-14 16:10:12'),
 (32, 3, 'miko', 'miko@btkp.com', '08123456789', '25f9e794323b453885f5181f1b624d0b', 'aktif', 'aktif', '2019-04-14 16:08:15', '2019-04-14 16:10:15'),
-(34, 5, 'Ferry Ferdana Putra', 'ffpjos@gmail.com', '087770903777', 'cbf470e02455c01904e5332956d35ff8', 'aktif', 'aktif', '2019-05-07 10:10:32', '2019-05-07 12:32:41'),
+(34, 5, 'Ferry Ferdana Putra', 'ffpjos@gmail.com', '087770903777', '25f9e794323b453885f5181f1b624d0b', 'aktif', 'aktif', '2019-05-07 10:10:32', '2019-05-07 12:32:41'),
 (35, 5, 'coba', 'coba@email.com', '087770903777', '25f9e794323b453885f5181f1b624d0b', 'aktif', 'aktif', '2019-06-27 18:56:09', '2019-06-27 18:56:24');
 
 -- --------------------------------------------------------
@@ -88884,7 +88832,7 @@ CREATE TABLE `pengguna_inspeksi` (
   `status` enum('ditolak','diterima') NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -88902,7 +88850,7 @@ CREATE TABLE `pengguna_pengujian` (
   `status` enum('ditolak','diterima') NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -88919,7 +88867,7 @@ CREATE TABLE `pengguna_perizinan` (
   `status` enum('ditolak','diterima') NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `pengguna_perizinan`
@@ -88982,7 +88930,7 @@ CREATE TABLE `pengujian` (
   `no_akhir` varchar(12) NOT NULL,
   `created_at_ujian` datetime NOT NULL,
   `updated_at_ujian` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -89000,7 +88948,7 @@ CREATE TABLE `perizinan` (
   `kode_barcode` varchar(20) NOT NULL,
   `kode_billing` varchar(30) DEFAULT NULL,
   `jumlah_tagihan` int(12) NOT NULL,
-  `masa_berlaku_billing` datetime NOT NULL,
+  `masa_berlaku_billing` datetime DEFAULT NULL,
   `tgl_terbit` datetime NOT NULL,
   `tgl_expired` datetime NOT NULL,
   `no_spk` varchar(100) NOT NULL,
@@ -89015,15 +88963,15 @@ CREATE TABLE `perizinan` (
   `file_hasil_survey` varchar(200) NOT NULL,
   `created_at_izin` datetime NOT NULL,
   `update_at_izin` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `perizinan`
 --
 
 INSERT INTO `perizinan` (`id_perizinan`, `id_pengguna`, `id_jenis_alat`, `id_jenis_perizinan`, `id_bank_btkp`, `id_maker`, `kode_barcode`, `kode_billing`, `jumlah_tagihan`, `masa_berlaku_billing`, `tgl_terbit`, `tgl_expired`, `no_spk`, `foto_bukti_trf`, `nama_bank`, `atas_nama`, `status_pembayaran`, `pengesahan`, `ket_pembayaran`, `status_pengajuan`, `komentar`, `file_hasil_survey`, `created_at_izin`, `update_at_izin`) VALUES
-(12, 34, 7, 1, 0, 7, '', NULL, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '', 'unpaid', 'tidak', '', 'selesai', '', '631ac250aa687935c02cb9d82a624451.jpg', '2019-05-07 12:35:21', '2019-05-07 12:39:18'),
-(13, 35, 8, 1, 0, 8, '', NULL, 0, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '', 'unpaid', 'tidak', '', 'belum', '', '', '2019-06-27 19:02:11', NULL);
+(12, 34, 7, 1, 0, 7, '', '820190716465624', 1000000, '2019-07-23 13:11:39', '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '', 'unpaid', 'tidak', '', 'selesai', 'testing kode billing', '631ac250aa687935c02cb9d82a624451.jpg', '2019-05-07 12:35:21', '2019-05-07 12:39:18'),
+(13, 35, 8, 1, 0, 8, '', NULL, 0, NULL, '0000-00-00 00:00:00', '0000-00-00 00:00:00', '', '', '', '', 'unpaid', 'tidak', '', 'belum', '', '', '2019-06-27 19:02:11', NULL);
 
 -- --------------------------------------------------------
 
@@ -89050,7 +88998,7 @@ CREATE TABLE `perusahaan` (
   `nama_pimpinan` varchar(50) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `perusahaan`
@@ -89069,7 +89017,7 @@ INSERT INTO `perusahaan` (`id_perusahaan`, `id_pengguna`, `id_kel_perusahaan`, `
 CREATE TABLE `propinsi` (
   `id_propinsi` int(2) NOT NULL,
   `nama_propinsi` varchar(50) DEFAULT NULL
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `propinsi`
@@ -89114,6 +89062,72 @@ INSERT INTO `propinsi` (`id_propinsi`, `nama_propinsi`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `sysconfig`
+--
+
+CREATE TABLE `sysconfig` (
+  `sysConfigID` int(11) NOT NULL,
+  `sysKey` varchar(30) NOT NULL,
+  `sysValue` varchar(200) NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `sysconfig`
+--
+
+INSERT INTO `sysconfig` (`sysConfigID`, `sysKey`, `sysValue`, `created_at`, `updated_at`) VALUES
+(1, 'soap_url', 'http://soadev.dephub.go.id:7800/SimponiBRI_Service', '2019-07-13 08:23:24', '2019-07-13 08:26:33'),
+(2, 'appID', '027', '2019-07-13 08:41:38', NULL),
+(3, 'routeID', '001', '2019-07-13 08:41:53', NULL),
+(4, 'userID', '0', '2019-07-13 08:42:04', NULL),
+(5, 'password', '0', '2019-07-13 08:42:12', NULL),
+(6, 'kodeKL', '022', '2019-07-13 08:42:27', NULL),
+(7, 'kodeEselon1', '04', '2019-07-13 08:42:40', NULL),
+(8, 'kodeSatker', '606301', '2019-07-13 08:42:55', NULL),
+(9, 'jenisPNPB', 'F', '2019-07-13 08:43:06', NULL),
+(10, 'kodePPSimponi', '201615C', '2019-07-13 08:43:36', NULL),
+(11, 'kodeAkun', '425514', '2019-07-13 08:43:57', NULL),
+(12, 'kodeMataUang', '1', '2019-07-13 10:03:04', NULL),
+(13, 'kodeTarifSimponi', '001000', '2019-07-13 10:32:42', NULL),
+(14, 'namaAkun', '425514 - Pendapatan Jasa Navigasi Pelayaran', '2019-07-19 13:47:10', '2019-07-19 13:47:38');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `tarif_alat`
+--
+
+CREATE TABLE `tarif_alat` (
+  `id_tarif_alat` int(12) NOT NULL,
+  `id_jenis_alat_keselamatan` int(12) NOT NULL,
+  `jenis_penerimaan` varchar(100) NOT NULL,
+  `satuan` varchar(50) NOT NULL,
+  `tarif` int(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `tarif_alat`
+--
+
+INSERT INTO `tarif_alat` (`id_tarif_alat`, `id_jenis_alat_keselamatan`, `jenis_penerimaan`, `satuan`, `tarif`) VALUES
+(1, 10, 'baru', 'per surat ijin', 1000000),
+(2, 10, 'perpanjang', 'per surat ijin', 500000),
+(3, 10, 'kewenangan', 'per surat ijin', 250000),
+(4, 15, 'baru', 'per surat ijin', 1000000),
+(5, 15, 'perpanjang', 'per surat ijin', 500000),
+(6, 15, 'kewenangan', 'per surat ijin', 250000),
+(7, 7, 'baru', 'per surat ijin', 1000000),
+(8, 7, 'perpanjang', 'per surat ijin', 500000),
+(9, 7, 'kewenangan', 'per surat ijin', 250000),
+(10, 17, 'baru', 'per surat ijin', 1000000),
+(11, 17, 'perpanjang', 'per surat ijin', 500000),
+(12, 17, 'kewenangan', 'per surat ijin', 250000);
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `ttd`
 --
 
@@ -89123,7 +89137,7 @@ CREATE TABLE `ttd` (
   `nama_file_ttd` varchar(300) NOT NULL,
   `created_at_ttd` datetime NOT NULL,
   `updated_at_ttd` datetime NOT NULL DEFAULT '0000-00-00 00:00:00'
-) ;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `ttd`
@@ -89188,6 +89202,12 @@ ALTER TABLE `inspeksi`
   ADD KEY `id_pengguna` (`id_pengguna`),
   ADD KEY `id_bank_btkp` (`id_bank_btkp`),
   ADD KEY `id_jenis_alat` (`id_jenis_alat`);
+
+--
+-- Indeks untuk tabel `invoice`
+--
+ALTER TABLE `invoice`
+  ADD PRIMARY KEY (`invoiceID`);
 
 --
 -- Indeks untuk tabel `jabatan`
@@ -89313,6 +89333,20 @@ ALTER TABLE `propinsi`
   ADD PRIMARY KEY (`id_propinsi`);
 
 --
+-- Indeks untuk tabel `sysconfig`
+--
+ALTER TABLE `sysconfig`
+  ADD PRIMARY KEY (`sysConfigID`),
+  ADD UNIQUE KEY `sysConfigID` (`sysConfigID`);
+
+--
+-- Indeks untuk tabel `tarif_alat`
+--
+ALTER TABLE `tarif_alat`
+  ADD PRIMARY KEY (`id_tarif_alat`),
+  ADD KEY `id_jenis_alat_keselamatan` (`id_jenis_alat_keselamatan`);
+
+--
 -- Indeks untuk tabel `ttd`
 --
 ALTER TABLE `ttd`
@@ -89326,19 +89360,19 @@ ALTER TABLE `ttd`
 -- AUTO_INCREMENT untuk tabel `bank_btkp`
 --
 ALTER TABLE `bank_btkp`
-  MODIFY `id_bank_btkp` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_bank_btkp` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `berkas_perizinan`
 --
 ALTER TABLE `berkas_perizinan`
-  MODIFY `id_berkas_perizinan` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_berkas_perizinan` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT untuk tabel `captcha`
 --
 ALTER TABLE `captcha`
-  MODIFY `captcha_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `captcha_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1153;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_alat_kapal`
@@ -89350,7 +89384,7 @@ ALTER TABLE `detail_alat_kapal`
 -- AUTO_INCREMENT untuk tabel `detail_berkas_perizinan`
 --
 ALTER TABLE `detail_berkas_perizinan`
-  MODIFY `id_detail_berkas_perizinan` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_detail_berkas_perizinan` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=169;
 
 --
 -- AUTO_INCREMENT untuk tabel `detail_inspeksi`
@@ -89365,34 +89399,40 @@ ALTER TABLE `inspeksi`
   MODIFY `id_inspeksi` int(12) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT untuk tabel `invoice`
+--
+ALTER TABLE `invoice`
+  MODIFY `invoiceID` int(15) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT untuk tabel `jabatan`
 --
 ALTER TABLE `jabatan`
-  MODIFY `id_jabatan` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jabatan` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `jabatan_izin`
 --
 ALTER TABLE `jabatan_izin`
-  MODIFY `id_jabatan_izin` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jabatan_izin` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `jenis_alat_keselamatan`
 --
 ALTER TABLE `jenis_alat_keselamatan`
-  MODIFY `id_jenis_alat` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jenis_alat` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT untuk tabel `jenis_perizinan`
 --
 ALTER TABLE `jenis_perizinan`
-  MODIFY `id_jenis_perizinan` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jenis_perizinan` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `kabupaten_kota`
 --
 ALTER TABLE `kabupaten_kota`
-  MODIFY `id_kabupaten_kota` int(4) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kabupaten_kota` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9472;
 
 --
 -- AUTO_INCREMENT untuk tabel `kapal`
@@ -89404,25 +89444,25 @@ ALTER TABLE `kapal`
 -- AUTO_INCREMENT untuk tabel `kecamatan`
 --
 ALTER TABLE `kecamatan`
-  MODIFY `id_kecamatan` int(7) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kecamatan` int(7) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9471041;
 
 --
 -- AUTO_INCREMENT untuk tabel `kelurahan`
 --
 ALTER TABLE `kelurahan`
-  MODIFY `id_kelurahan` bigint(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_kelurahan` bigint(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80535;
 
 --
 -- AUTO_INCREMENT untuk tabel `maker`
 --
 ALTER TABLE `maker`
-  MODIFY `id_maker` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_maker` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengguna`
 --
 ALTER TABLE `pengguna`
-  MODIFY `id_pengguna` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pengguna` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengguna_inspeksi`
@@ -89440,7 +89480,7 @@ ALTER TABLE `pengguna_pengujian`
 -- AUTO_INCREMENT untuk tabel `pengguna_perizinan`
 --
 ALTER TABLE `pengguna_perizinan`
-  MODIFY `id_pengguna_izin` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pengguna_izin` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT untuk tabel `pengujian`
@@ -89452,25 +89492,37 @@ ALTER TABLE `pengujian`
 -- AUTO_INCREMENT untuk tabel `perizinan`
 --
 ALTER TABLE `perizinan`
-  MODIFY `id_perizinan` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_perizinan` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT untuk tabel `perusahaan`
 --
 ALTER TABLE `perusahaan`
-  MODIFY `id_perusahaan` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_perusahaan` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `propinsi`
 --
 ALTER TABLE `propinsi`
-  MODIFY `id_propinsi` int(2) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_propinsi` int(2) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+
+--
+-- AUTO_INCREMENT untuk tabel `sysconfig`
+--
+ALTER TABLE `sysconfig`
+  MODIFY `sysConfigID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT untuk tabel `tarif_alat`
+--
+ALTER TABLE `tarif_alat`
+  MODIFY `id_tarif_alat` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT untuk tabel `ttd`
 --
 ALTER TABLE `ttd`
-  MODIFY `kode_ttd` int(12) NOT NULL AUTO_INCREMENT;
+  MODIFY `kode_ttd` int(12) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
@@ -89575,6 +89627,12 @@ ALTER TABLE `perizinan`
 --
 ALTER TABLE `perusahaan`
   ADD CONSTRAINT `perusahaan_ibfk_1` FOREIGN KEY (`id_pengguna`) REFERENCES `pengguna` (`id_pengguna`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Ketidakleluasaan untuk tabel `tarif_alat`
+--
+ALTER TABLE `tarif_alat`
+  ADD CONSTRAINT `tarif_alat_ibfk_1` FOREIGN KEY (`id_jenis_alat_keselamatan`) REFERENCES `jenis_alat_keselamatan` (`id_jenis_alat`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
