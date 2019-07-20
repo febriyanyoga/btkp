@@ -236,7 +236,8 @@
 	                                                                                                		}
 	                                                                                                	}else{
 	                                                                                                		?>
-	                                                                                                    	<a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan; ?>" class="btn btn-sm btn-success" target="_BLANK"><i class="la la-print"></i> cetak tagihan</a>
+	                                                                                                    	<!-- <a href="<?php echo site_url('cetak_invoice/').$per->id_perizinan; ?>" class="btn btn-sm btn-success" target="_BLANK"><i class="la la-print"></i> cetak tagihan</a> -->
+	                                                                                                    	<a href="<?php echo site_url('cetak_invoice_perizinan/').$per->id_perizinan; ?>" class="btn btn-sm btn-success" target="_BLANK"><i class="la la-print"></i> cetak tagihan</a>
 	                                                                                                    	<?php
 	                                                                                                	}
                                                                                                     } else {

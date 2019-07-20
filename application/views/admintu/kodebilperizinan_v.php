@@ -43,15 +43,6 @@
 										<div class="section-title mt-5 mb-5">
 											<h4 class="text-center">PEMBUATAN BILLING</h4>
 										</div>
-
-										<!-- Iki alure simponi pep
-										<p></p>
-										1. Nek wes sukses di generate tetep redirect ng halaman iki, gek form No.Billing, Tanggal Billing, Tanggal Kedaluarsa kan maune kosong kui dadi terisi pep <br>
-										2. Terus button ngisor nek wes sukses berubah dadi tombol cetak karo kembali, kui wwes tak gaweke tombole, 
-											nek cetak gek nampilke invoice, nek kembali linke bali ng gon datatabel. Dadi invoice ki ng admin tu ono, ng workshop yo ono. Kui apike nganggo sg cetak PDF kae yo?
-											
-										3.	http://localhost/btkp/perizinan tab pembayaran . gon kolom aksi . nek kode billing wis di generate kui muncul ikon cetak wae pep  -->
-										
 										<div class="widget widget-14 has-shadow">
 											<div class="widget-body">
 												<div class="form-group row mb-3">

@@ -1058,8 +1058,8 @@ public function reqKodeBilling($data = null){
     $tanggal = date('Y-m-d H:i:s');
     $tanggal = strtotime($tanggal);
 
-    $invoiceNo                  = 'BTKP.INVOICE'.$tanggal;
-    $trxID                      = 'BTKP.TRX'.$tanggal;
+    $invoiceNo                  = 'BTKP-INVOICE-'.$tanggal;
+    $trxID                      = 'BTKP-TRX-'.$tanggal;
     $totalNominalBilling        = $this->input->post('tarif');
     $namaWajibBayar             = $this->input->post('nama_wajib_bayar');
     $tarifPNPB                  = $this->input->post('tarif');
@@ -1175,6 +1175,37 @@ public function reqKodeBilling($data = null){
         $this->session->set_flashdata('error', 'Gagal generate kode billing');
         redirect_back();
     }
+}
+
+public function cekKodeBilling($data = null){
+
+    $invoice = $this->TatausahaM->get_invoice_by_kode_billing('820190719465802')->row();
+    $tanggal = date('Y-m-d H:i:s');
+    $tanggal = strtotime($tanggal);
+
+    $invoiceNo                  = $invoice->invoiceNO;
+    $trxID                      = $invoice->trxID;
+    $kodeBilling                = $invoice->kodeBilling;
+
+    $data = array(
+        'appID'                 => getSysConfig('appID'),
+        'invoiceNo'             => $invoiceNo,
+        'routeID'               => getSysConfig('routeID'),
+        'trxID'                 => $trxID,
+        'userID'                => getSysConfig('userID'),
+        'password'              => getSysConfig('password'),
+        'kodeBilling'           => $kodeBilling,
+        'kodeKL'                => getSysConfig('kodeKL'),
+        'kodeEselon1'           => getSysConfig('kodeEselon1'),
+        'kodeSatker'            => getSysConfig('kodeSatker')
+    );
+
+    $request = $this->TatausahaM->cekKodeBilling($data);
+    echo "<pre>";
+    print_r($request);
+    echo "</pre>";
+    die();
+   
 }
     // ====================================API REQUEST====================================
 }

@@ -153,6 +153,13 @@ class WorkshopM extends CI_Model{
 		return $this->db->get();
 	}
 
+	public function get_invoice_by_kode_billing($kode_billing){
+		$this->db->select('*');
+		$this->db->from('invoice');
+		$this->db->where('kodeBilling', $kode_billing);
+		return $this->db->get();
+	}
+
 	// detail perizinan
 	public function get_all_perizinan_by_id_pengguna($id_pengguna){
 		$this->db->select('*');

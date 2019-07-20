@@ -38,6 +38,7 @@ $route['konfirmasi_ujian_2'] = 'WorkshopC/konfirmasi_pembayaran_2';
 $route['file_survey'] = 'WorkshopC/post_file_survey';
 $route['detailperizinan/(:num)'] = 'WorkshopC/detailperizinan/$1';
 $route['cetak_invoice/(:num)'] = 'WorkshopC/cetak_produk/$1';
+$route['cetak_invoice_perizinan/(:num)'] = 'WorkshopC/cetak_invoice_perizinan/$1';
 $route['cetak_invoice_ujian/(:num)'] = 'WorkshopC/cetak_invoice_ujian/$1';
 $route['cetak_invoice_ujian2/(:num)'] = 'WorkshopC/cetak_invoice_ujian2/$1';
 $route['cetak_tagihan_ins/(:num)'] = 'WorkshopC/cetak_tagihan_ins/$1';
