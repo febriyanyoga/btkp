@@ -1203,8 +1203,6 @@ public function cekKodeBilling($data = null){
     $request = $this->TatausahaM->cekKodeBilling($data);
     echo "<pre>";
     print_r($request);
-    print_r($data);
-    print_r($invoice);
     echo "</pre>";
     die();
    
