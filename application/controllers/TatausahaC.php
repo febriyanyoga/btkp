@@ -16,6 +16,15 @@ class TatausahaC extends CI_Controller
 
     public function index()
     {
+        $kode_billing = $this->checkingKodeBilling();
+        // print_r($kode_billing);
+        if(count($kode_billing) != 0){
+            foreach ($kode_billing as $kode=>$value) {
+                $this->cekKodeBilling($value);
+                // print_r($value);
+            }
+        }
+        // die();
         $data['title'] = 'BTKP - Home';
         $this->data['jumlah_workshop'] = $this->GeneralM->get_jumlah_workshop()->num_rows();
         $this->data['user'] = $this->GeneralM->get_jumlah_workshop()->result();
@@ -1052,6 +1061,21 @@ public function kodebillingperizinan()
   $this->load->view('admintu/Layout', $data);
 }
 
+public function checkingKodeBilling(){
+    $data = $this->db->get('perizinan')->result();
+    $data_perizinan = array();
+
+    foreach ($data as $dat) {
+        if($dat->status_pembayaran == 'unpaid' && $dat->kode_billing != ''){
+            array_push($data_perizinan, $dat->kode_billing);
+        }
+    }
+
+    return $data_perizinan;
+    // print_r($data_perizinan);
+    // // print_r($data);
+}
+
 
     // ====================================API REQUEST====================================
 public function reqKodeBilling($data = null){
@@ -1177,9 +1201,9 @@ public function reqKodeBilling($data = null){
     }
 }
 
-public function cekKodeBilling($data = null){
-
-    $invoice = $this->TatausahaM->get_invoice_by_kode_billing('820190719465802')->row();
+public function cekKodeBilling($kode_billing =null){
+    // $kode_billing = '820190719465802';
+    $invoice = $this->TatausahaM->get_invoice_by_kode_billing($kode_billing)->row();
     $tanggal = date('Y-m-d H:i:s');
     $tanggal = strtotime($tanggal);
 
@@ -1201,11 +1225,58 @@ public function cekKodeBilling($data = null){
     );
 
     $request = $this->TatausahaM->cekKodeBilling($data);
+
+    $NTB                    = $request['soapenvBody']['outBillingStatusResponse']['ResponseData']['NTB'];
+    $NTPN                   = $request['soapenvBody']['outBillingStatusResponse']['ResponseData']['NTPN'];
+    $TrxDate                = $request['soapenvBody']['outBillingStatusResponse']['ResponseData']['TrxDate'];
+    $BankPersepsi           = $request['soapenvBody']['outBillingStatusResponse']['ResponseData']['BankPersepsi'];
+    $ChannelPembayaran      = $request['soapenvBody']['outBillingStatusResponse']['ResponseData']['ChannelPembayaran'];
+
+    if(count($NTB) != 0){
+        $this->db->trans_start();
+        $data_perizinan = array('status_pembayaran' => 'paid');
+        $data_invoice   = array(
+            'ntb'                   => $NTB,
+            'ntpn'                  => $NTPN,
+            'tanggal_pembayaran'    => $TrxDate,
+            'bank_pos_bayar'        => $BankPersepsi,
+            'channel_bayar'         => $ChannelPembayaran
+        );
+
+        $this->db->where('kode_billing', $kode_billing);
+        $this->db->update('perizinan', $data_perizinan);
+
+        $this->db->where('kodeBilling', $kode_billing);
+        $this->db->update('invoice', $data_invoice);
+
+        if ($this->db->trans_status() === FALSE) {
+            $this->db->trans_rollback();
+            $this->session->set_flashdata('error','Mohon maaf data gagal disimpan.');
+            // redirect_back();
+            return FALSE;
+        } else {
+            $this->db->trans_complete();
+            $this->session->set_flashdata('sukses','Selamat, Data berhasil disimpan.');
+            // redirect_back();
+            return TRUE;
+        }
+    }else{
+        // echo 'tidak ada kode billing yang sudah dibayar';
+        $id_pengguna    = $this->session->userdata('id_pengguna');
+        $nama           = $this->session->userdata('nama');
+        log_message('error', 'USER: '.$nama.', ID: '.$id_pengguna.'. Kode billing : '.$kode_billing.' Belum dibayar');
+        // redirect_back();
+        return FALSE;
+    }
+    //  perizinan -> status_pembayaran
+    //  invoice -> ntb, ntpn, tanggal_pembayaran, bank_pos_bayar, channel_pembayaran
     echo "<pre>";
     print_r($request);
     echo "</pre>";
-    die();
-   
+    // die();
+
+    // redirect_back();
+    return true;
 }
     // ====================================API REQUEST====================================
 }
